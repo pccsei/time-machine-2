@@ -1,0 +1,66 @@
+#summary SEI Meeting 2013-10-13 Notes
+
+= 7:00 =
+
+Open in prayer in AC 215
+
+*Number of guys at the meeting: 13*
+
+*Elected the leader: Rob Yoder*
+
+*Pair Programming 2 people per task*
+
+  Voted to use this method and will try to pair weaker people with stronger people to help people learn. The other person can watch and also help with error checking.
+
+|| *Sections for the project:* || *People* ||
+|| *2 people on Webpage:* || Dannie Scull ||
+|| || Zach Evans ||
+|| *8 people on Coding:* || Alex Harper ||
+|| || Stephen Chappel ||
+|| || Jake Canipe & Chris Chord (Testing) ||
+|| || Noah Conrad ||
+|| || Gordon Badgett (Secretary) ||
+|| || James Miyashita ||
+|| || James Mulvihill ||
+|| *2 people on Database:* || Stephen Weaver (DBA) ||
+|| || Koffi Wodome ||
+
+*Powerpoint Presentation:*
+
+  Dannie will compile everyone's submissions for the final presentation
+
+*Gordon Badgett:*
+
+  Gave a talk on how to submit notes on requirements and use cases to compile requirements for the project.
+
+  Using Evernote so anyone can view notes and documentation on the project.
+
+*Stephen Chappel:*
+
+  Gave talk about how to connect to [http://tortoisesun.net Tortoise SVN ]
+
+  Export from repository to computer. You may then work on your code
+
+  Import code back to the repository
+
+  Work with as few files as possible and submit entries as soon as something is running to keep members from having to look at other entries since the code was exported
+
+*Comments on coding methods:*
+
+  * Using Razor style coding for [http://www.asp.net ASP.net]
+  * "///" will open a comment box
+  * Using MIT license for the project software found on the repository
+  * We will have Version Control Tracker and Issue Tracking using Google code
+
+*Timelined To-Do-List:*
+
+  # Requirements
+  # Issue Tracker (ASAP)
+  # Database Structure (group meeting) @ class 9/11
+    * Tests
+  # Build! - 9/23
+  # Presentation - 9/30
+
+= 8:00 =
+
+Close in prayer
