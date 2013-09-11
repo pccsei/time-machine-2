@@ -1,0 +1,3 @@
+http://stackoverflow.com/questions/16142
+
+Tag will be a point in time on the trunk or a branch that you wish to preserve. The two main reasons for preservation would be that either this is a major release of the software, whether alpha, beta, RC or RTM, or this is the most stable point of the software before major revisions on the trunk were applied.

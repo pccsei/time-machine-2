@@ -1,0 +1,3 @@
+http://stackoverflow.com/questions/16142
+
+Branch will be a copy of code derived from a certain point in the trunk that is used for applying major changes to the code while preserving the integrity of the code in the trunk. If the major changes work according to plan, they are usually merged back into the trunk.
