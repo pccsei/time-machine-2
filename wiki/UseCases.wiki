@@ -1,0 +1,117 @@
+#summary Use Cases By Person Type
+
+= Manager =
+
+== Stephen Chappel's Notes: ==
+
+  * Adds teacher
+  * Does nothing else
+  * Edit 1:
+    * Teacher (can have admin privilege)
+    * Student
+  * Edit 2:
+    * One Type of User
+    * Multiple Privileges
+
+== Rob Yoder's Notes: ==
+
+The manager role is responsible for adding and disabling teachers. Only.
+
+To add a teacher, he will select the teacher tab and click the Add link.
+
+Information will include the teacher's title, first and last name, department, office number, and office phone extension.
+
+= Teacher =
+
+== Noah Conrad's Notes: ==
+
+  * Username
+  * Password
+  * Create Project
+  * View Project
+  * Edit Project
+  * Assign class of students
+  * View and edit students' info pages
+    * Date
+    * Start and end time
+    * Hours Worked
+    * Location
+    * Category
+    * Work accomplished
+    * Comments
+  * View summary page
+    * Daily Average
+    * Weekly Average
+    * Weekly Totals
+    * Semester Totals
+    * Projected Totals
+  * Nice-to-have features
+    * Teacher
+    * Student notification when teacher edits
+    * Graphs of data and statistics
+    * Projected grade in summary page
+    * Order students by alphabet or hours logged
+    * Specify specific work locations for project
+    * Implement customized warning for long work periods
+
+*Preliminary Use Case for "Teacher" Role*
+
+The teacher logs into the time log application with his manager-provided username and password (or school-provided, if possible). He chooses either to create a new project or view/edit an existing project. If he chooses to create a new project, he first creates an empty project form, and then assigns his class of students to that project by entering the course number, section, and title. For each project, he can view and edit a page containing the date, start and end time, hours worked, location, category, work accomplished, and comments for each student. (The student should be notified when the teacher edits his entries.) He can order the students in each project by name alphabetically or by hours logged. He can also view a page containing summaries, statistics, and graphs of the following information for both individuals and classes: daily average, weekly average, weekly totals, semester totals, and projected score/total. Additional features the teacher might be able to access are the ability to specify specific work locations for each project and to decide when warnings should be displayed for long work periods.
+
+*Notes*
+
+  # We will attempt to get IT to give us access to student id, number, password, and class enrollment. Until the time we have that access, we will create tables that simulate the access we would like.
+  # For simplicity, teachers create projects, not classes, and assign a class of students to each project. I believe this will add simplicity to the design and will not overly burden the teacher user as it is unlikely he will need to create more than two projects per class.
+  # There was discussion regarding the issues of handling data from past semesters. There was no solid answer to this question. This would probably be a nice-to-have feature.
+
+== Stephen Chappel's Notes: ==
+
+  * Creates students
+  * Import through various methods
+  * Student list synchronization
+  * Hide instead of delete
+  * Creates classes
+  * Statistics:
+    * Charts not needed
+    * Projection
+    * Daily Average
+    * Weekly average
+    * Order by name, hours
+    * Daily views, weekly views
+    * Grade based on time
+  * Teachers should be able to edit the time
+  * Preferences by class or project, "over-time" generates warning
+  * Edits notify other people
+  * Students can still edit
+
+= Student =
+
+== Stephen Chappel's Notes: ==
+
+  * Deal with multiple projects
+  * Start and time, not total
+  * Time increments of 5 minutes
+
+== Noah Conrad's Notes: ==
+
+  * Can edit as far back as he would like. 
+  * Can see list of daily and weekly statistics 
+  * Should use student id and passwords if at all possible 
+  * Should automatically calculate time 
+  * Should just enter time as he sees fit, no rounding necessary 
+  * Should calculate 10:00 PM to 2:00 AM correctly 
+  * There should be some sort of check to see if time was duplicated 
+  * There should be some sort of check for
+
+= Miscellaneous Notes =
+
+What Mr. Geary does not like about Test Track and what he wants to be different:
+
+  * Keep interface simple
+  * Students must select their project
+    * Users
+    * Privileges
+    * Classes
+    * Projects
+    * Time Entries
+  * Three types of users simplifies system
