@@ -1,0 +1,55 @@
+#summary SEI Meeting 2013-10-07 Notes
+
+= 1:00 =
+
+Starting with prayer in the Library 5th floor conference room.
+
+Taking down contacts, their interests and free time.
+
+Discussing methods to use: XP with paired programming.
+
+Guys who will talk Mr. Geary to finish getting project requirements: *Rob, Noah, and Dannie*
+
+Those who know how to use [http://www.asp.net/ ASP.net] are going to give those who don't know a walk through on:
+  * How to access the database
+  * How to use [http://www.asp.net/ ASP.net] and the database
+
+= 1:45 =
+
+Went to AC 212 to run through how the !WebApp communicates with database.
+
+James and Stephen worked on figuring out how to login to the old !TimeMachine by contacting Shannon.
+
+Koffi showed everyone how to link ASP webpage with a database.
+
+Rob gave those who didn't know a crash course in HTML, !JavaScript and Jquery and *where ASP fits in*.
+
+= 3:15 =
+
+Concluded meeting.
+
+= Important Information: =
+
+|| Server name: || *CSDB* ||
+|| Database Name: || *SEI_TimeMachine2* ||
+|| Location for SE project: || [http://csmain/seproject/development/14-TimeMachine2/ Time Machine 2] ||
+|| Location for old SE project: || [http://csmain/seproject/development/13-TimeMachine/ Time Machine 1] ||
+
+= Places to learn programming languages: =
+
+|| *C# and .NET:* || [http://www.homeandlearn.co.uk/csharp/csharp.html Home and Learn] ||
+|| || [http://www.w3schools.com/aspnet/mvc_app.asp W3 Schools] ||
+|| || [http://msdn.microsoft.com/en-us/magazine/cc337884.aspx MSDN] ||
+|| *Jquery:* || [http://www.w3schools.com/jquery W3 Schools] ||
+|| || [http://api.jquery.com Jquery API] ||
+
+= Guys who came to the meeting: =
+
+  * Rob Yoder
+  * Noah Conrad
+  * Dannie Scull
+  * Stephen Weaver
+  * James Miyashita
+  * James Mulvihill
+  * Koffi Wodome
+  * Gordon Badgett
