@@ -3,13 +3,18 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Web;
-using System.Web.Mvc;
 using System.Data.SqlClient;
+using System.Web.Mvc;
+using _14_TimeMachine2.Models;
 
 namespace _14_TimeMachine2.Controllers
 {
+
     public class ManagerController : Controller
     {
+        private TM2Entities db = new TM2Entities();
+
+
         //
         // GET: /Manager/
 
@@ -17,7 +22,16 @@ namespace _14_TimeMachine2.Controllers
         // view, enable, disable, and create teachers
         public ActionResult Index()
         {
-            return View();
+            return View(db.USERs);
+        }
+
+        public ActionResult StronglyTypedView()
+        {
+            //DataClasses1DataContext db = new DataClasses1DataContext();
+            //var users = from USER in _14_TimeMachine2.Models.USER
+            //            select USER;
+
+            return View(db.USERs);
         }
 
         //public ActionResult NewTeacherMethod()
@@ -25,13 +39,13 @@ namespace _14_TimeMachine2.Controllers
         //    return View();
         //}
 
-        // HTML Helper that enables the controller to receive parameters from the V
-        [AcceptVerbs(HttpVerbs.Post)]
+        // HTML Helper that enables the controller to receive parameters from the View
+        [HttpPost]
         public ActionResult Index(string userID, string firstName, string lastName)
         {
             // Create and initialize a connection string to the database
             //string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["SEI_TimeMachine2ConnectionString"].ConnectionString;
-            string connectionString = System.Web.Configuration.WebConfigurationManager.ConnectionStrings["SEI_TimeMachine2ConnectionString"].ConnectionString;
+            string connectionString = System.Web.Configuration.WebConfigurationManager.ConnectionStrings["TM2Connection"].ConnectionString;
 
             using (SqlConnection connection = new SqlConnection(connectionString)) 
             {
@@ -60,6 +74,17 @@ namespace _14_TimeMachine2.Controllers
                 connection.Close();
                 //TM_DB.Dispose();
             }
+            return View(db.USERs);
+        }
+
+        [HttpPost]
+        public ActionResult UserToggleEnabled(string user_id)
+        {
+            _14_TimeMachine2.Models.USER user = new _14_TimeMachine2.Models.USER();
+            user = db.USERs.Find(user_id);
+            user.toggle_status();
+            db.SaveChanges();
+
             return View();
         }
 

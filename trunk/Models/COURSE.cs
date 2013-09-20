@@ -14,11 +14,21 @@ namespace _14_TimeMachine2.Models
     
     public partial class COURSE
     {
+        public COURSE()
+        {
+            this.MEMBERs = new HashSet<MEMBER>();
+            this.PROJECTs = new HashSet<PROJECT>();
+        }
+    
         public int course_id { get; set; }
         public string course_name { get; set; }
-        public Nullable<int> course_submit_day { get; set; }
-        public Nullable<System.DateTime> course_date_created { get; set; }
-        public Nullable<System.DateTime> course_begin_date { get; set; }
-        public Nullable<System.DateTime> course_end_date { get; set; }
+        public int course_submit_day { get; set; }
+        public System.DateTime course_date_created { get; set; }
+        public System.DateTime course_begin_date { get; set; }
+        public System.DateTime course_end_date { get; set; }
+        public short course_is_enabled { get; set; }
+    
+        public virtual ICollection<MEMBER> MEMBERs { get; set; }
+        public virtual ICollection<PROJECT> PROJECTs { get; set; }
     }
 }

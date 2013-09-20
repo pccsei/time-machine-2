@@ -8,7 +8,7 @@
 
     <h2>TimeEntry</h2>
 
-<% using (Html.BeginForm()) { %>
+<!--<% using (Html.BeginForm()) { %>
     <%: Html.ValidationSummary(true) %>
 
     <fieldset>
@@ -17,12 +17,10 @@
         <div class="editor-label">
             <%: Html.LabelFor(model => model.entry_user_id) %>
         </div>
-        <div class="editor-field">
-            <%: Html.DropDownListFor(model => model.entry_user_id) %>
-        </div>
+
 
         <div class="editor-label">
-            <%: Html.LabelFor(model => model.entry_project_id) %>
+            <%//: Html.DropDownListFor(x => x.entry_project_id,new SelectList(_14_TimeMachine2.Controllers.StudentController.ProjectsList, "project_id", "project_name")) %>
         </div>
         <div class="editor-field">
             <%: Html.EditorFor(model => model.entry_project_id) %>
@@ -81,7 +79,7 @@
             <input type="submit" value="Create" />
         </p>
     </fieldset>
-<% } %>
+<% } %> -->
 
 <div>
     <%: Html.ActionLink("Back to List", "Index") %>

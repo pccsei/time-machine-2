@@ -17,8 +17,9 @@ namespace _14_TimeMachine2.Models
         public string member_user_id { get; set; }
         public int member_course_id { get; set; }
         public string member_position { get; set; }
-        public Nullable<System.DateTime> member_is_enabled { get; set; }
+        public Nullable<short> member_is_enabled { get; set; }
     
+        public virtual COURSE COURSE { get; set; }
         public virtual USER USER { get; set; }
     }
 }

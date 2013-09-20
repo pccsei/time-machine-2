@@ -1,0 +1,385 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="SEI_TimeMachine2Model1StoreContainer" CdmEntityContainer="TM2Entities">
+    <EntitySetMapping Name="CATEGORies">
+      <EntityTypeMapping TypeName="SEI_TimeMachine2Model1.CATEGORY">
+        <MappingFragment StoreEntitySet="CATEGORY">
+          <ScalarProperty Name="category_id" ColumnName="category_id" />
+          <ScalarProperty Name="category_name" ColumnName="category_name" />
+          <ScalarProperty Name="category_created_on" ColumnName="category_created_on" />
+          <ScalarProperty Name="category_created_by" ColumnName="category_created_by" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="COURSEs">
+      <EntityTypeMapping TypeName="SEI_TimeMachine2Model1.COURSE">
+        <MappingFragment StoreEntitySet="COURSE">
+          <ScalarProperty Name="course_id" ColumnName="course_id" />
+          <ScalarProperty Name="course_name" ColumnName="course_name" />
+          <ScalarProperty Name="course_submit_day" ColumnName="course_submit_day" />
+          <ScalarProperty Name="course_date_created" ColumnName="course_date_created" />
+          <ScalarProperty Name="course_begin_date" ColumnName="course_begin_date" />
+          <ScalarProperty Name="course_end_date" ColumnName="course_end_date" />
+          <ScalarProperty Name="course_is_enabled" ColumnName="course_is_enabled" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ENTRies">
+      <EntityTypeMapping TypeName="SEI_TimeMachine2Model1.ENTRY">
+        <MappingFragment StoreEntitySet="ENTRY">
+          <ScalarProperty Name="entry_id" ColumnName="entry_id" />
+          <ScalarProperty Name="entry_begin_time" ColumnName="entry_begin_time" />
+          <ScalarProperty Name="entry_end_time" ColumnName="entry_end_time" />
+          <ScalarProperty Name="entry_total_time" ColumnName="entry_total_time" />
+          <ScalarProperty Name="entry_work_accomplished" ColumnName="entry_work_accomplished" />
+          <ScalarProperty Name="entry_comment" ColumnName="entry_comment" />
+          <ScalarProperty Name="entry_user_id" ColumnName="entry_user_id" />
+          <ScalarProperty Name="entry_project_id" ColumnName="entry_project_id" />
+          <ScalarProperty Name="entry_location_id" ColumnName="entry_location_id" />
+          <ScalarProperty Name="entry_category_id" ColumnName="entry_category_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LOCATIONs">
+      <EntityTypeMapping TypeName="SEI_TimeMachine2Model1.LOCATION">
+        <MappingFragment StoreEntitySet="LOCATION">
+          <ScalarProperty Name="location_id" ColumnName="location_id" />
+          <ScalarProperty Name="location_name" ColumnName="location_name" />
+          <ScalarProperty Name="location_is_enabled" ColumnName="location_is_enabled" />
+          <ScalarProperty Name="location_created_by" ColumnName="location_created_by" />
+          <ScalarProperty Name="location_date_created" ColumnName="location_date_created" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MEMBERs">
+      <EntityTypeMapping TypeName="SEI_TimeMachine2Model1.MEMBER">
+        <MappingFragment StoreEntitySet="MEMBER">
+          <ScalarProperty Name="member_user_id" ColumnName="member_user_id" />
+          <ScalarProperty Name="member_course_id" ColumnName="member_course_id" />
+          <ScalarProperty Name="member_position" ColumnName="member_position" />
+          <ScalarProperty Name="member_is_enabled" ColumnName="member_is_enabled" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PROJECTs">
+      <EntityTypeMapping TypeName="SEI_TimeMachine2Model1.PROJECT">
+        <MappingFragment StoreEntitySet="PROJECT">
+          <ScalarProperty Name="project_id" ColumnName="project_id" />
+          <ScalarProperty Name="project_course_id" ColumnName="project_course_id" />
+          <ScalarProperty Name="project_name" ColumnName="project_name" />
+          <ScalarProperty Name="project_created_by" ColumnName="project_created_by" />
+          <ScalarProperty Name="project_date_created" ColumnName="project_date_created" />
+          <ScalarProperty Name="project_description" ColumnName="project_description" />
+          <ScalarProperty Name="project_begin_date" ColumnName="project_begin_date" />
+          <ScalarProperty Name="project_end_date" ColumnName="project_end_date" />
+          <ScalarProperty Name="project_is_enabled" ColumnName="project_is_enabled" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="USERs">
+      <EntityTypeMapping TypeName="SEI_TimeMachine2Model1.USER">
+        <MappingFragment StoreEntitySet="USER">
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="user_is_enabled" ColumnName="user_is_enabled" />
+          <ScalarProperty Name="user_first_name" ColumnName="user_first_name" />
+          <ScalarProperty Name="user_last_name" ColumnName="user_last_name" />
+          <ScalarProperty Name="user_is_student" ColumnName="user_is_student" />
+          <ScalarProperty Name="user_is_teacher" ColumnName="user_is_teacher" />
+          <ScalarProperty Name="user_is_manager" ColumnName="user_is_manager" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="SEI_TimeMachine2Model1.Store.sp_alterdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="SEI_TimeMachine2Model1.Store.sp_creatediagram" />
+    <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="SEI_TimeMachine2Model1.Store.sp_dropdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="SEI_TimeMachine2Model1.Store.sp_helpdiagramdefinition">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SEI_TimeMachine2Model1.sp_helpdiagramdefinition_Result">
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="SEI_TimeMachine2Model1.Store.sp_helpdiagrams">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SEI_TimeMachine2Model1.sp_helpdiagrams_Result">
+          <ScalarProperty Name="Database" ColumnName="Database" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Owner" ColumnName="Owner" />
+          <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="SEI_TimeMachine2Model1.Store.sp_renamediagram" />
+    <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="SEI_TimeMachine2Model1.Store.sp_upgraddiagrams" />
+    <FunctionImportMapping FunctionImportName="tm_AddUserToCourse" FunctionName="SEI_TimeMachine2Model1.Store.tm_AddUserToCourse" />
+    <FunctionImportMapping FunctionImportName="tm_CalculateCourseWeeks" FunctionName="SEI_TimeMachine2Model1.Store.tm_CalculateCourseWeeks" />
+    <FunctionImportMapping FunctionImportName="tm_CreateCatagory" FunctionName="SEI_TimeMachine2Model1.Store.tm_CreateCatagory" />
+    <FunctionImportMapping FunctionImportName="tm_CreateCourse" FunctionName="SEI_TimeMachine2Model1.Store.tm_CreateCourse" />
+    <FunctionImportMapping FunctionImportName="tm_CreateProject" FunctionName="SEI_TimeMachine2Model1.Store.tm_CreateProject" />
+    <FunctionImportMapping FunctionImportName="tm_CreateTeacher" FunctionName="SEI_TimeMachine2Model1.Store.tm_CreateTeacher" />
+    <FunctionImportMapping FunctionImportName="tm_CreateTimeEntry" FunctionName="SEI_TimeMachine2Model1.Store.tm_CreateTimeEntry" />
+    <FunctionImportMapping FunctionImportName="tm_CreateUser" FunctionName="SEI_TimeMachine2Model1.Store.tm_CreateUser" />
+    <FunctionImportMapping FunctionImportName="tm_DeleteCourse" FunctionName="SEI_TimeMachine2Model1.Store.tm_DeleteCourse" />
+    <FunctionImportMapping FunctionImportName="tm_DeleteProject" FunctionName="SEI_TimeMachine2Model1.Store.tm_DeleteProject" />
+    <FunctionImportMapping FunctionImportName="tm_DeleteTimeEntry" FunctionName="SEI_TimeMachine2Model1.Store.tm_DeleteTimeEntry" />
+    <FunctionImportMapping FunctionImportName="tm_DisableUser" FunctionName="SEI_TimeMachine2Model1.Store.tm_DisableUser" />
+    <FunctionImportMapping FunctionImportName="tm_GetCategoryList" FunctionName="SEI_TimeMachine2Model1.Store.tm_GetCategoryList">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SEI_TimeMachine2Model1.tm_GetCategoryList_Result">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="CNAME" ColumnName="CNAME" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="tm_GetCourse" FunctionName="SEI_TimeMachine2Model1.Store.tm_GetCourse">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SEI_TimeMachine2Model1.tm_GetCourse_Result">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="BeginDate" ColumnName="BeginDate" />
+          <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+          <ScalarProperty Name="SubmitDay" ColumnName="SubmitDay" />
+          <ScalarProperty Name="isEnabled" ColumnName="isEnabled" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="tm_GetCourseList" FunctionName="SEI_TimeMachine2Model1.Store.tm_GetCourseList">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SEI_TimeMachine2Model1.tm_GetCourseList_Result">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="cName" ColumnName="cName" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="tm_GetCourseMember" FunctionName="SEI_TimeMachine2Model1.Store.tm_GetCourseMember">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SEI_TimeMachine2Model1.tm_GetCourseMember_Result">
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="Position" ColumnName="Position" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="tm_GetCourseMembers" FunctionName="SEI_TimeMachine2Model1.Store.tm_GetCourseMembers">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SEI_TimeMachine2Model1.tm_GetCourseMembers_Result">
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="Position" ColumnName="Position" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="tm_GetCourseProjects" FunctionName="SEI_TimeMachine2Model1.Store.tm_GetCourseProjects">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SEI_TimeMachine2Model1.tm_GetCourseProjects_Result">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="tm_GetCoursesByMember" FunctionName="SEI_TimeMachine2Model1.Store.tm_GetCoursesByMember">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SEI_TimeMachine2Model1.tm_GetCoursesByMember_Result">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="cName" ColumnName="cName" />
+          <ScalarProperty Name="BeginDate" ColumnName="BeginDate" />
+          <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+          <ScalarProperty Name="SubmitDay" ColumnName="SubmitDay" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="tm_GetCourseWeeklyStats" FunctionName="SEI_TimeMachine2Model1.Store.tm_GetCourseWeeklyStats">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SEI_TimeMachine2Model1.tm_GetCourseWeeklyStats_Result">
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="Time" ColumnName="Time" />
+          <ScalarProperty Name="Week" ColumnName="Week" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="tm_GetLocationList" FunctionName="SEI_TimeMachine2Model1.Store.tm_GetLocationList">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SEI_TimeMachine2Model1.tm_GetLocationList_Result">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="lname" ColumnName="lname" />
+          <ScalarProperty Name="isEnabled" ColumnName="isEnabled" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="tm_GetProjects" FunctionName="SEI_TimeMachine2Model1.Store.tm_GetProjects">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SEI_TimeMachine2Model1.tm_GetProjects_Result">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="BeginDate" ColumnName="BeginDate" />
+          <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+          <ScalarProperty Name="isEnabled" ColumnName="isEnabled" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="tm_GetStudents" FunctionName="SEI_TimeMachine2Model1.Store.tm_GetStudents">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SEI_TimeMachine2Model1.tm_GetStudents_Result">
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="isEnabled" ColumnName="isEnabled" />
+          <ScalarProperty Name="isMangager" ColumnName="isMangager" />
+          <ScalarProperty Name="isTeacher" ColumnName="isTeacher" />
+          <ScalarProperty Name="isStudent" ColumnName="isStudent" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="tm_getTeacherFromCourse" FunctionName="SEI_TimeMachine2Model1.Store.tm_getTeacherFromCourse">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SEI_TimeMachine2Model1.tm_getTeacherFromCourse_Result">
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="user_is_enabled" ColumnName="user_is_enabled" />
+          <ScalarProperty Name="user_first_name" ColumnName="user_first_name" />
+          <ScalarProperty Name="user_last_name" ColumnName="user_last_name" />
+          <ScalarProperty Name="user_is_student" ColumnName="user_is_student" />
+          <ScalarProperty Name="user_is_teacher" ColumnName="user_is_teacher" />
+          <ScalarProperty Name="user_is_manager" ColumnName="user_is_manager" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="tm_GetTeachers" FunctionName="SEI_TimeMachine2Model1.Store.tm_GetTeachers">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SEI_TimeMachine2Model1.tm_GetTeachers_Result">
+          <ScalarProperty Name="TeacherID" ColumnName="TeacherID" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="tm_GetTeachersCourses" FunctionName="SEI_TimeMachine2Model1.Store.tm_GetTeachersCourses">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SEI_TimeMachine2Model1.tm_GetTeachersCourses_Result">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="cName" ColumnName="cName" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="tm_GetTeachersStudents" FunctionName="SEI_TimeMachine2Model1.Store.tm_GetTeachersStudents">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SEI_TimeMachine2Model1.tm_GetTeachersStudents_Result">
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="Lastname" ColumnName="Lastname" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="tm_GetTeachersYears" FunctionName="SEI_TimeMachine2Model1.Store.tm_GetTeachersYears" />
+    <FunctionImportMapping FunctionImportName="tm_GetTimeDiff" FunctionName="SEI_TimeMachine2Model1.Store.tm_GetTimeDiff" />
+    <FunctionImportMapping FunctionImportName="tm_GetTimeEntry" FunctionName="SEI_TimeMachine2Model1.Store.tm_GetTimeEntry">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SEI_TimeMachine2Model1.tm_GetTimeEntry_Result">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="ProjectID" ColumnName="ProjectID" />
+          <ScalarProperty Name="LocationID" ColumnName="LocationID" />
+          <ScalarProperty Name="LocationName" ColumnName="LocationName" />
+          <ScalarProperty Name="CatagoryID" ColumnName="CatagoryID" />
+          <ScalarProperty Name="categoryName" ColumnName="categoryName" />
+          <ScalarProperty Name="BeginTime" ColumnName="BeginTime" />
+          <ScalarProperty Name="EndTime" ColumnName="EndTime" />
+          <ScalarProperty Name="Comment" ColumnName="Comment" />
+          <ScalarProperty Name="Accomplished" ColumnName="Accomplished" />
+          <ScalarProperty Name="Time" ColumnName="Time" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="tm_getTimeLog" FunctionName="SEI_TimeMachine2Model1.Store.tm_getTimeLog">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SEI_TimeMachine2Model1.tm_getTimeLog_Result">
+          <ScalarProperty Name="BeginTime" ColumnName="BeginTime" />
+          <ScalarProperty Name="EndTime" ColumnName="EndTime" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Course" ColumnName="Course" />
+          <ScalarProperty Name="Project" ColumnName="Project" />
+          <ScalarProperty Name="Location" ColumnName="Location" />
+          <ScalarProperty Name="Catagory" ColumnName="Catagory" />
+          <ScalarProperty Name="Comment" ColumnName="Comment" />
+          <ScalarProperty Name="Accomplished" ColumnName="Accomplished" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="tm_getTimeLogFilter" FunctionName="SEI_TimeMachine2Model1.Store.tm_getTimeLogFilter" />
+    <FunctionImportMapping FunctionImportName="tm_GetTimeLogs" FunctionName="SEI_TimeMachine2Model1.Store.tm_GetTimeLogs">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SEI_TimeMachine2Model1.tm_GetTimeLogs_Result">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="BeginTime" ColumnName="BeginTime" />
+          <ScalarProperty Name="EndTime" ColumnName="EndTime" />
+          <ScalarProperty Name="Comment" ColumnName="Comment" />
+          <ScalarProperty Name="Accomplished" ColumnName="Accomplished" />
+          <ScalarProperty Name="Time" ColumnName="Time" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="pName" ColumnName="pName" />
+          <ScalarProperty Name="catName" ColumnName="catName" />
+          <ScalarProperty Name="locName" ColumnName="locName" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="tm_GetUser" FunctionName="SEI_TimeMachine2Model1.Store.tm_GetUser">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SEI_TimeMachine2Model1.tm_GetUser_Result">
+          <ScalarProperty Name="User_ID" ColumnName="User_ID" />
+          <ScalarProperty Name="isStudent" ColumnName="isStudent" />
+          <ScalarProperty Name="isTeacher" ColumnName="isTeacher" />
+          <ScalarProperty Name="isManager" ColumnName="isManager" />
+          <ScalarProperty Name="Enabled" ColumnName="Enabled" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="tm_GetUserProjects" FunctionName="SEI_TimeMachine2Model1.Store.tm_GetUserProjects">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SEI_TimeMachine2Model1.tm_GetUserProjects_Result">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="tm_GetUsers" FunctionName="SEI_TimeMachine2Model1.Store.tm_GetUsers">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SEI_TimeMachine2Model1.tm_GetUsers_Result">
+          <ScalarProperty Name="User_ID" ColumnName="User_ID" />
+          <ScalarProperty Name="isStudent" ColumnName="isStudent" />
+          <ScalarProperty Name="isTeacher" ColumnName="isTeacher" />
+          <ScalarProperty Name="isManager" ColumnName="isManager" />
+          <ScalarProperty Name="Enabled" ColumnName="Enabled" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="tm_GetUsersByType" FunctionName="SEI_TimeMachine2Model1.Store.tm_GetUsersByType">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SEI_TimeMachine2Model1.tm_GetUsersByType_Result">
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="user_is_enabled" ColumnName="user_is_enabled" />
+          <ScalarProperty Name="user_first_name" ColumnName="user_first_name" />
+          <ScalarProperty Name="user_last_name" ColumnName="user_last_name" />
+          <ScalarProperty Name="user_is_student" ColumnName="user_is_student" />
+          <ScalarProperty Name="user_is_teacher" ColumnName="user_is_teacher" />
+          <ScalarProperty Name="user_is_manager" ColumnName="user_is_manager" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="tm_GetUserTimeLog" FunctionName="SEI_TimeMachine2Model1.Store.tm_GetUserTimeLog" />
+    <FunctionImportMapping FunctionImportName="tm_IsValidEntryTime" FunctionName="SEI_TimeMachine2Model1.Store.tm_IsValidEntryTime" />
+    <FunctionImportMapping FunctionImportName="tm_RemoveUserFromCourse" FunctionName="SEI_TimeMachine2Model1.Store.tm_RemoveUserFromCourse" />
+    <FunctionImportMapping FunctionImportName="tm_UpdateCourse" FunctionName="SEI_TimeMachine2Model1.Store.tm_UpdateCourse" />
+    <FunctionImportMapping FunctionImportName="tm_UpdateProject" FunctionName="SEI_TimeMachine2Model1.Store.tm_UpdateProject" />
+    <FunctionImportMapping FunctionImportName="tm_UpdateTimeLog" FunctionName="SEI_TimeMachine2Model1.Store.tm_UpdateTimeLog" />
+    <FunctionImportMapping FunctionImportName="tm_UpdateUser" FunctionName="SEI_TimeMachine2Model1.Store.tm_UpdateUser" />
+  </EntityContainerMapping>
+</Mapping>
