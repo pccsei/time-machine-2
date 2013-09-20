@@ -107,6 +107,17 @@
         onBeforeShow:   undefined,
         onClose:        undefined
     };
+
+    jQuery.ptTimeSelect._doCheckMouseClick = function (ev) {
+        if (!$("#ptTimeSelectCntr:visible").length) {
+            return;
+        }
+        if (!jQuery(ev.target).closest("#ptTimeSelectCntr").length
+            && jQuery(ev.target).not("input.isPtTimeSelectActive").length) {
+            jQuery.ptTimeSelect.closeCntr();
+        }
+
+    };
     
     /**
      * Internal method. Called when page is initialized to add the time
@@ -224,8 +235,8 @@
                         .bind("click", function(){
                             jQuery.ptTimeSelect.setHr($(this).text());
                          });
-                    
-                    $(document).mousedown(jQuery.ptTimeSelect._doCheckMouseClick);            
+                    console.log(e);
+                    $(document).mousedown(jQuery.ptTimeSelect._doCheckMouseClick(e));
                 }//end if
             }
         );
@@ -384,16 +395,7 @@
      * @param {jQueryEvent} ev -    Event passed in by jQuery
      * @return {undefined}
      */
-    jQuery.ptTimeSelect._doCheckMouseClick = function(ev){
-        if (!$("#ptTimeSelectCntr:visible").length) {
-            return;
-        }
-        if (   !jQuery(ev.target).closest("#ptTimeSelectCntr").length
-            && jQuery(ev.target).not("input.isPtTimeSelectActive").length ){
-            jQuery.ptTimeSelect.closeCntr();
-        }
-        
-    };// jQuery.ptTimeSelect._doCheckMouseClick
+    // jQuery.ptTimeSelect._doCheckMouseClick
     
     /**
      * FUNCTION: $().ptTimeSelect()

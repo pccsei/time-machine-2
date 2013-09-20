@@ -6,11 +6,14 @@ using System.Web;
 using System.Data.SqlClient;
 using System.Web.Mvc;
 using _14_TimeMachine2.Models;
+using System.Web.Mvc.Html;
+using System.Web.UI.WebControls;
 
 namespace _14_TimeMachine2.Controllers
 {
     public class TeacherController : Controller
     {
+        //string course_name;
         //
         // GET: /Teacher/
         private TM2Entities db = new TM2Entities();
@@ -66,5 +69,26 @@ namespace _14_TimeMachine2.Controllers
         {
             return View();
         }
+
+        [HttpGet]
+        public ViewResult CategoryChosen(string course_id)
+        {
+            ViewBag.messageString = course_id;
+
+            return View(course_id);
+        }
+
+        public ViewResult Index()
+        {
+            return View(db.COURSEs.ToList());
+        }
+
+        public SelectList GetCourseSelectList() {
+
+            _14_TimeMachine2.Models.COURSE course = new _14_TimeMachine2.Models.COURSE();
+            var courses = COURSE.; 
+
+             //_14_TimeMachine2.Models.COURSE course = new _14_TimeMachine2.Models.COURSE();
+            //course = db.COURSEs.Select(); 
     }
 }

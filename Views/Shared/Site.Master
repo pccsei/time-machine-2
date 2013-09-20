@@ -8,10 +8,10 @@
         <link href="<%: Url.Content("~/favicon.ico") %>" rel="shortcut icon" type="image/x-icon" />
         <meta name="viewport" content="width=device-width" />
         <%: Styles.Render("~/Content/css") %>
+        <%: Styles.Render("~/Content/themes/base/anytime.css") %>
         <%: Scripts.Render("~/bundles/modernizr") %>
         <%: Scripts.Render("~/Scripts/jquery-1.7.1.min.js") %>
-        <%: Scripts.Render("~/Scripts/jquery.ptTimeSelect.js") %>
-        
+        <%: Scripts.Render("~/Scripts/anytime.js") %>
         <%: Scripts.Render("~/Scripts/timemachine2.js") %>
         <%: Scripts.Render("~/Scripts/time-entry.js") %>
     </head>

@@ -16,7 +16,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
     <!-- Links to the different pages for a teacher -->
-    <form id="form1" runat="server">
+    <form id="form1" runat="server" name="teacher" action="teacher/Selection_Change" method="get">
         <div style="text-align: center;">
             <%=Html.ActionLink("Alerts", "Alerts") %>
             <%=Html.ActionLink("Settings", "Settings") %>
@@ -36,19 +36,15 @@
         </select>
 	    </div>--%>
 
-    <div style="text-align: right;" >
-    <%= Html.DropDownList("course_id", (SelectList) ViewBag.course_id, "Select a class",) %>
-    </div>
+<%using (Html.BeginForm("CategoryChosen", "teacher", FormMethod.Get)) %> {
+         
+    <fieldset>
+        <legend></legend>
 
-        <asp:DropDownList id="course_list"
-                    AutoPostBack="True"
-                    OnSelectedIndexChanged="Selection_Change"
-                    runat="server">
-
-                  <asp:ListItem> (SelectList) ViewBag.course_id </asp:ListItem>
-                  <asp:ListItem Selected="True"> MonthYear </asp:ListItem>
-
-               </asp:DropDownList>
+                <%=Html.DropDownList("course_id", (SelectList) ViewBag.course_id, "Choose a Class")%>
+        <input type="submit" value="Submit" />
+    </fieldset> 
+}
     <h2>Semester Summary</h2>
     <!-- Summary table of entire semester of all the students -->
     <asp:GridView ID="GridView1" runat="server" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" DataSourceID="SqlDataSource1">
@@ -69,7 +65,7 @@
         </asp:GridView>
 
         <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:TM2Connection %>" 
-             SelectCommand="SELECT [user_first_name], [user_last_name], [TotalHours], [HoursDay], [HoursWeek], [ProjectedGrade] FROM [class_summary] WHERE [course_id] = 4"></asp:SqlDataSource>
+             SelectCommand="SELECT [user_first_name], [user_last_name], [TotalHours], [HoursDay], [HoursWeek], [ProjectedGrade] FROM [class_summary]"></asp:SqlDataSource>
     </form>
 
     </asp:Content>

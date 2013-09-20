@@ -26,10 +26,9 @@
         <form id="loginForm" runat="server">
             
             <asp:TextBox Placeholder="Your user name" ID="loginName" runat="server" style="width:120px" BorderColor="Green" /> <br />
-            <asp:Label ID="lblLoginError" ForeColor="Blue" runat="server"/><br />
+            <asp:Label ID="lblLoginError" ForeColor="Red" runat="server"/><br />
             <asp:TextBox Placeholder="Password" ID="loginPass" runat="server" style="width:120px" BorderColor="Green" /> <br />
-            <!--MESSAGE FROM NOAH: Did you use the http post html helper above your function?"-->
-            <!--I added it it just in case
+            <!--MESSAGE FROM NOAH: Did you use the http post html helper above your function? Forms use post as default"-->
             <!-- TODO: cannot figure out how to get OnClick function below to work -->
             <asp:Button ID="loginButton" Text="Login" OnClick="testFields" runat="server" />            
     </form>

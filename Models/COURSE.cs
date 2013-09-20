@@ -7,6 +7,8 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System.Data.Entity;
+
 namespace _14_TimeMachine2.Models
 {
     using System;
@@ -30,5 +32,10 @@ namespace _14_TimeMachine2.Models
     
         public virtual ICollection<MEMBER> MEMBERs { get; set; }
         public virtual ICollection<PROJECT> PROJECTs { get; set; }
+
+        public class COURSEDBContext : DbContext
+        {
+            public DbSet<COURSE> Courses { get; set; }
+        }
     }
 }

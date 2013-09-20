@@ -375,6 +375,7 @@
       <LastGenOutput>TM2Model.cs</LastGenOutput>
     </Content>
     <None Include="Scripts\jquery-1.7.1.intellisense.js" />
+    <Content Include="Scripts\anytime.js" />
     <Content Include="Scripts\jquery.ptTimeSelect.js" />
     <Content Include="Scripts\time-entry.js" />
     <Content Include="Scripts\timemachine2.js" />
@@ -404,6 +405,7 @@
     <Content Include="Views\Student\TimeLog.aspx" />
     <Content Include="Views\Teacher\Alerts.aspx" />
     <Content Include="Views\Teacher\Index.aspx" />
+    <Content Include="Views\Teacher\Selection_Change.aspx" />
     <Content Include="Views\Teacher\Settings.aspx" />
     <Content Include="Views\Teacher\Timelog.aspx" />
     <Content Include="Views\Teacher\WeeklyReports.aspx" />

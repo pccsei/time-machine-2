@@ -119,7 +119,7 @@ namespace _14_TimeMachine2.Controllers
 
 
         //protected void testFields()
-        [HttpPost]
+        //[HttpPost]
         protected void testFields(object sender, EventArgs e)
         {
             //global loginName = "testing";
