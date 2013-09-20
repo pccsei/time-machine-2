@@ -70,26 +70,25 @@ namespace _14_TimeMachine2.Controllers
             return View();
         }
 
-        [HttpGet]
-        public ViewResult CategoryChosen(string course_id)
-        {
-            ViewBag.messageString = course_id;
+    //    [HttpGet]
+    //    public ViewResult CategoryChosen(string course_id)
+    //    {
+    //        ViewBag.messageString = course_id;
 
-            return View(course_id);
-        }
+    //        return View(course_id);
+    //    }
 
-        public ViewResult Index()
-        {
-            return View(db.COURSEs.ToList());
-        }
+    //    public ViewResult Index()
+    //    {
+    //        return View(db.COURSEs.ToList());
+    //    }
 
-        public SelectList GetCourseSelectList() {
+    //    public SelectList GetCourseSelectList() {
 
-            _14_TimeMachine2.Models.COURSE course = new _14_TimeMachine2.Models.COURSE();
-            var courses = COURSE.; 
+    //        _14_TimeMachine2.Models.COURSE course = new _14_TimeMachine2.Models.COURSE();
+    //        var courses = COURSE.; 
 
-             //_14_TimeMachine2.Models.COURSE course = new _14_TimeMachine2.Models.COURSE();
-            //course = db.COURSEs.Select(); 
-    }
+    //         //_14_TimeMachine2.Models.COURSE course = new _14_TimeMachine2.Models.COURSE();
+    //        //course = db.COURSEs.Select(); 
     }
 }
