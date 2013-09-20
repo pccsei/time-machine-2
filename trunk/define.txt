@@ -1,3 +1,0 @@
-http://stackoverflow.com/questions/16142
-
-Trunk would be the main body of development, originating from the start of the project until the present.

@@ -38,10 +38,11 @@ namespace _14_TimeMachine2.Controllers
             return View();
         }
 
-        public ActionResult Summary()
-        {
-            return View();
-        }
+        //public ActionResult Summary()
+        //{
+        //    course_id.TitleFormat
+        //    return View();
+        //}
 
     }
 }
