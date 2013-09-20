@@ -22,13 +22,6 @@
       FROM [dbo].[sysdiagrams] AS [sysdiagrams]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="USER" EntityType="SEI_TimeMachine2Model.Store.USER" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="TEACHERS" EntityType="SEI_TimeMachine2Model.Store.TEACHERS" store:Type="Views" store:Schema="dbo" store:Name="TEACHERS">
-            <DefiningQuery>SELECT 
-      [TEACHERS].[user_id] AS [user_id], 
-      [TEACHERS].[user_first_name] AS [user_first_name], 
-      [TEACHERS].[user_last_name] AS [user_last_name]
-      FROM [dbo].[TEACHERS] AS [TEACHERS]</DefiningQuery>
-          </EntitySet>
           <AssociationSet Name="FK__ENTRY__entry_cat__498EEC8D" Association="SEI_TimeMachine2Model.Store.FK__ENTRY__entry_cat__498EEC8D">
             <End Role="CATEGORY" EntitySet="CATEGORY" />
             <End Role="ENTRY" EntitySet="ENTRY" />
@@ -159,17 +152,6 @@
           <Property Name="user_is_teacher" Type="smallint" />
           <Property Name="user_is_manager" Type="smallint" />
         </EntityType>
-        <!--Errors Found During Generation:
-      warning 6002: The table/view 'SEI_TimeMachine2.dbo.TEACHERS' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
-      -->
-        <EntityType Name="TEACHERS">
-          <Key>
-            <PropertyRef Name="user_id" />
-          </Key>
-          <Property Name="user_id" Type="nvarchar" Nullable="false" MaxLength="50" />
-          <Property Name="user_first_name" Type="nvarchar" MaxLength="50" />
-          <Property Name="user_last_name" Type="nvarchar" MaxLength="50" />
-        </EntityType>
         <Association Name="FK__ENTRY__entry_cat__498EEC8D">
           <End Role="CATEGORY" Type="SEI_TimeMachine2Model.Store.CATEGORY" Multiplicity="0..1" />
           <End Role="ENTRY" Type="SEI_TimeMachine2Model.Store.ENTRY" Multiplicity="*" />
@@ -277,7 +259,6 @@
           <EntitySet Name="LOCATIONs" EntityType="SEI_TimeMachine2Model.LOCATION" />
           <EntitySet Name="MEMBERs" EntityType="SEI_TimeMachine2Model.MEMBER" />
           <EntitySet Name="PROJECTs" EntityType="SEI_TimeMachine2Model.PROJECT" />
-          <EntitySet Name="sysdiagrams" EntityType="SEI_TimeMachine2Model.sysdiagram" />
           <EntitySet Name="USERs" EntityType="SEI_TimeMachine2Model.USER" />
           <AssociationSet Name="FK__ENTRY__entry_cat__0E6E26BF" Association="SEI_TimeMachine2Model.FK__ENTRY__entry_cat__0E6E26BF">
             <End Role="CATEGORY" EntitySet="CATEGORies" />
@@ -303,15 +284,15 @@
             <End Role="COURSE" EntitySet="COURSEs" />
             <End Role="MEMBER" EntitySet="MEMBERs" />
           </AssociationSet>
-          <AssociationSet Name="FK__PROJECT__project__1332DBDC" Association="SEI_TimeMachine2Model.FK__PROJECT__project__1332DBDC">
+          <AssociationSet Name="FK__PROJECT__project__1332DBDC" Association="SEI_TimeMachine2Model.FK__PROJECT__course__1332DBDC">
             <End Role="COURSE" EntitySet="COURSEs" />
             <End Role="PROJECT" EntitySet="PROJECTs" />
           </AssociationSet>
-          <EntitySet Name="TEACHERS" EntityType="SEI_TimeMachine2Model.TEACHER" />
           <AssociationSet Name="FK_PROJECT_created_by" Association="SEI_TimeMachine2Model.FK_PROJECT_created_by">
             <End Role="USER" EntitySet="USERs" />
             <End Role="PROJECT" EntitySet="PROJECTs" />
           </AssociationSet>
+          <EntitySet Name="sysdiagrams" EntityType="SEI_TimeMachine2Model.sysdiagrams" />
         </EntityContainer>
         <EntityType Name="CATEGORY">
           <Key>
@@ -334,7 +315,7 @@
           <Property Name="course_begin_date" Type="DateTime" Precision="0" Nullable="false" />
           <Property Name="course_end_date" Type="DateTime" Precision="0" Nullable="false" />
           <NavigationProperty Name="MEMBERs" Relationship="SEI_TimeMachine2Model.FK__MEMBER__member_c__123EB7A3" FromRole="COURSE" ToRole="MEMBER" />
-          <NavigationProperty Name="PROJECTs" Relationship="SEI_TimeMachine2Model.FK__PROJECT__project__1332DBDC" FromRole="COURSE" ToRole="PROJECT" />
+          <NavigationProperty Name="PROJECTs" Relationship="SEI_TimeMachine2Model.FK__PROJECT__course__1332DBDC" FromRole="COURSE" ToRole="PROJECT" />
           <Property Type="Int16" Name="course_is_enabled" Nullable="false" />
         </EntityType>
         <EntityType Name="ENTRY">
@@ -375,7 +356,7 @@
           <Property Name="member_user_id" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
           <Property Name="member_course_id" Type="Int32" Nullable="false" />
           <Property Name="member_position" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
-          <Property Name="member_is_enabled" Type="DateTime" />
+          <Property Name="member_is_enabled" Type="Int16" />
           <NavigationProperty Name="USER" Relationship="SEI_TimeMachine2Model.FK__MEMBER__user_id__68487DD7" FromRole="MEMBER" ToRole="USER" />
           <NavigationProperty Name="COURSE" Relationship="SEI_TimeMachine2Model.FK__MEMBER__member_c__123EB7A3" FromRole="MEMBER" ToRole="COURSE" />
         </EntityType>
@@ -390,23 +371,11 @@
           <Property Name="project_date_created" Type="DateTime" Precision="3" Nullable="false" />
           <Property Name="project_description" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
           <NavigationProperty Name="ENTRies" Relationship="SEI_TimeMachine2Model.FK__ENTRY__entry_pro__10566F31" FromRole="PROJECT" ToRole="ENTRY" />
-          <NavigationProperty Name="COURSE" Relationship="SEI_TimeMachine2Model.FK__PROJECT__project__1332DBDC" FromRole="PROJECT" ToRole="COURSE" />
+          <NavigationProperty Name="COURSE" Relationship="SEI_TimeMachine2Model.FK__PROJECT__course__1332DBDC" FromRole="PROJECT" ToRole="COURSE" />
           <Property Type="DateTime" Name="project_begin_date" Nullable="false" Precision="0" />
           <Property Type="DateTime" Name="project_end_date" Nullable="false" Precision="0" />
           <Property Type="Int16" Name="project_is_enabled" Nullable="false" />
           <NavigationProperty Name="USER" Relationship="SEI_TimeMachine2Model.FK_PROJECT_created_by" FromRole="PROJECT" ToRole="USER" />
-        </EntityType>
-        <EntityType Name="sysdiagram">
-          <Key>
-            <PropertyRef Name="name" />
-            <PropertyRef Name="principal_id" />
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Name="name" Type="String" Nullable="false" MaxLength="128" Unicode="true" FixedLength="false" />
-          <Property Name="principal_id" Type="Int32" Nullable="false" />
-          <Property Name="diagram_id" Type="Int32" Nullable="false" />
-          <Property Name="version" Type="Int32" />
-          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
         <EntityType Name="USER">
           <Key>
@@ -495,8 +464,9 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__PROJECT__project__1332DBDC">
-          <End Type="SEI_TimeMachine2Model.COURSE" Role="COURSE" Multiplicity="0..1" />
+        <Association Name="FK__PROJECT__course__1332DBDC">
+          <End Type="SEI_TimeMachine2Model.COURSE" Role="COURSE" Multiplicity="1" >
+          </End>
           <End Type="SEI_TimeMachine2Model.PROJECT" Role="PROJECT" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="COURSE">
@@ -507,14 +477,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="TEACHER">
-          <Key>
-            <PropertyRef Name="user_id" />
-          </Key>
-          <Property Type="String" Name="user_id" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="user_first_name" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="user_last_name" MaxLength="50" FixedLength="false" Unicode="true" />
-        </EntityType>
         <Association Name="FK_PROJECT_created_by">
           <End Type="SEI_TimeMachine2Model.USER" Role="USER" Multiplicity="1" />
           <End Type="SEI_TimeMachine2Model.PROJECT" Role="PROJECT" Multiplicity="*" />
@@ -527,6 +489,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="name" />
+            <PropertyRef Name="principal_id" />
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Type="String" Name="name" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="principal_id" Nullable="false" />
+          <Property Type="Int32" Name="diagram_id" Nullable="false" />
+          <Property Type="Int32" Name="version" />
+          <Property Type="Binary" Name="definition" MaxLength="Max" FixedLength="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -608,17 +582,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="SEI_TimeMachine2Model.sysdiagram">
-              <MappingFragment StoreEntitySet="sysdiagrams">
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
-                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
-                <ScalarProperty Name="version" ColumnName="version" />
-                <ScalarProperty Name="definition" ColumnName="definition" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="USERs">
             <EntityTypeMapping TypeName="SEI_TimeMachine2Model.USER">
               <MappingFragment StoreEntitySet="USER">
@@ -632,12 +595,14 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="TEACHERS">
-            <EntityTypeMapping TypeName="SEI_TimeMachine2Model.TEACHER">
-              <MappingFragment StoreEntitySet="TEACHERS">
-                <ScalarProperty Name="user_last_name" ColumnName="user_last_name" />
-                <ScalarProperty Name="user_first_name" ColumnName="user_first_name" />
-                <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="SEI_TimeMachine2Model.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

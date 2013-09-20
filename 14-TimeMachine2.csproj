@@ -43,6 +43,8 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Data.Services" />
+    <Reference Include="System.DirectoryServices" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
@@ -170,6 +172,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\ManagerController.cs" />
     <Compile Include="Controllers\StudentController.cs" />
     <Compile Include="Controllers\TeacherController.cs" />
@@ -179,43 +182,118 @@
     </Compile>
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\CATEGORY.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>TM2Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\COURSE.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>TM2Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ENTRY.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>TM2Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\LOCATION.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>TM2Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\MEMBER.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Model1.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model1.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Model1.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Model1.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model1.edmx</DependentUpon>
+      <DependentUpon>TM2Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\PROJECT.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>TM2Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_helpdiagramdefinition_Result.cs">
+      <DependentUpon>TM2Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_helpdiagrams_Result.cs">
+      <DependentUpon>TM2Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\sysdiagram.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>TM2Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TEACHER.cs">
+      <DependentUpon>TM2Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TM2Model.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TM2Model.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TM2Model.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TM2Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TM2Model.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TM2Model.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tm_GetCategoryList_Result.cs">
+      <DependentUpon>TM2Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tm_GetCourseList_Result.cs">
+      <DependentUpon>TM2Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tm_GetCourseMembers_Result.cs">
+      <DependentUpon>TM2Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tm_GetCourseMember_Result.cs">
+      <DependentUpon>TM2Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tm_GetCourseProjects_Result.cs">
+      <DependentUpon>TM2Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tm_GetCoursesByMember_Result.cs">
+      <DependentUpon>TM2Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tm_GetCourseWeeklyStats_Result.cs">
+      <DependentUpon>TM2Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tm_GetCourse_Result.cs">
+      <DependentUpon>TM2Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tm_GetLocationList_Result.cs">
+      <DependentUpon>TM2Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tm_GetProjects_Result.cs">
+      <DependentUpon>TM2Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tm_GetStudents_Result.cs">
+      <DependentUpon>TM2Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tm_getTeacherFromCourse_Result.cs">
+      <DependentUpon>TM2Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tm_GetTeachersCourses_Result.cs">
+      <DependentUpon>TM2Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tm_GetTeachersStudents_Result.cs">
+      <DependentUpon>TM2Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tm_GetTeachers_Result.cs">
+      <DependentUpon>TM2Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tm_GetTimeEntry_Result.cs">
+      <DependentUpon>TM2Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tm_GetTimeLogs_Result.cs">
+      <DependentUpon>TM2Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tm_getTimeLog_Result.cs">
+      <DependentUpon>TM2Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tm_GetUserProjects_Result.cs">
+      <DependentUpon>TM2Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tm_GetUsersByType_Result.cs">
+      <DependentUpon>TM2Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tm_GetUsers_Result.cs">
+      <DependentUpon>TM2Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tm_GetUser_Result.cs">
+      <DependentUpon>TM2Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\USER.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>TM2Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -276,25 +354,30 @@
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
-    <EntityDeploy Include="Models\Model1.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\Model1.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Model1.edmx</DependentUpon>
-      <LastGenOutput>Model1.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Models\Model1.edmx.diagram">
-      <DependentUpon>Model1.edmx</DependentUpon>
-    </Content>
-    <Content Include="Models\Model1.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Model1.edmx</DependentUpon>
-      <LastGenOutput>Model1.cs</LastGenOutput>
-    </Content>
     <Content Include="EF.Utility.CS.ttinclude" />
+    <EntityDeploy Include="Models\TM2Model.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>TM2Model.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Images\TIme machine logo.png" />
+    <Content Include="Models\EF.Utility.CS.ttinclude" />
+    <Content Include="Models\TM2Model.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>TM2Model.edmx</DependentUpon>
+      <LastGenOutput>TM2Model.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\TM2Model.edmx.diagram">
+      <DependentUpon>TM2Model.edmx</DependentUpon>
+    </Content>
+    <Content Include="Models\TM2Model.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>TM2Model.edmx</DependentUpon>
+      <LastGenOutput>TM2Model.cs</LastGenOutput>
+    </Content>
     <None Include="Scripts\jquery-1.7.1.intellisense.js" />
+    <Content Include="Scripts\jquery.ptTimeSelect.js" />
+    <Content Include="Scripts\time-entry.js" />
+    <Content Include="Scripts\timemachine2.js" />
     <Content Include="Scripts\jquery-1.7.1.js" />
     <Content Include="Scripts\jquery-1.7.1.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -309,9 +392,13 @@
     <Content Include="Scripts\knockout-2.1.0.debug.js" />
     <Content Include="Scripts\knockout-2.1.0.js" />
     <Content Include="Scripts\modernizr-2.5.3.js" />
+    <Content Include="Views\Home\LoginButtonClick.aspx" />
     <Content Include="Views\Home\TimeEntry.aspx" />
     <Content Include="Views\Home\TimeLog.aspx" />
+    <Content Include="Views\Login\Index.aspx" />
     <Content Include="Views\Manager\Index.aspx" />
+    <Content Include="Views\Manager\StronglyTypedView.aspx" />
+    <Content Include="Views\Student\StudentTimeEntry.aspx" />
     <Content Include="Views\Student\Summary.aspx" />
     <Content Include="Views\Student\Index.aspx" />
     <Content Include="Views\Student\TimeLog.aspx" />

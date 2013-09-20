@@ -6,8 +6,14 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
-<h2>WeeklyReports</h2>
-
+<h2>Weekly Reports</h2>
+    <!-- Links to the different pages for a teacher -->
+    <div style="text-align: center;">
+        <%=Html.ActionLink("Summary", "Index") %>
+        <%=Html.ActionLink("Alerts", "Alerts") %>
+        <%=Html.ActionLink("Settings", "Settings") %>
+        <%=Html.ActionLink("Timelog", "Timelog") %>
+    </div>
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="FeaturedContent" runat="server">

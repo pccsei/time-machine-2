@@ -17,13 +17,6 @@
       FROM [dbo].[sysdiagrams] AS [sysdiagrams]</DefiningQuery>
     </EntitySet>
     <EntitySet Name="USER" EntityType="SEI_TimeMachine2Model.Store.USER" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="TEACHERS" EntityType="SEI_TimeMachine2Model.Store.TEACHERS" store:Type="Views" store:Schema="dbo" store:Name="TEACHERS">
-      <DefiningQuery>SELECT 
-      [TEACHERS].[user_id] AS [user_id], 
-      [TEACHERS].[user_first_name] AS [user_first_name], 
-      [TEACHERS].[user_last_name] AS [user_last_name]
-      FROM [dbo].[TEACHERS] AS [TEACHERS]</DefiningQuery>
-    </EntitySet>
     <AssociationSet Name="FK__ENTRY__entry_cat__498EEC8D" Association="SEI_TimeMachine2Model.Store.FK__ENTRY__entry_cat__498EEC8D">
       <End Role="CATEGORY" EntitySet="CATEGORY" />
       <End Role="ENTRY" EntitySet="ENTRY" />
@@ -153,17 +146,6 @@
     <Property Name="user_is_student" Type="smallint" />
     <Property Name="user_is_teacher" Type="smallint" />
     <Property Name="user_is_manager" Type="smallint" />
-  </EntityType>
-  <!--Errors Found During Generation:
-      warning 6002: The table/view 'SEI_TimeMachine2.dbo.TEACHERS' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
-      -->
-  <EntityType Name="TEACHERS">
-    <Key>
-      <PropertyRef Name="user_id" />
-    </Key>
-    <Property Name="user_id" Type="nvarchar" Nullable="false" MaxLength="50" />
-    <Property Name="user_first_name" Type="nvarchar" MaxLength="50" />
-    <Property Name="user_last_name" Type="nvarchar" MaxLength="50" />
   </EntityType>
   <Association Name="FK__ENTRY__entry_cat__498EEC8D">
     <End Role="CATEGORY" Type="SEI_TimeMachine2Model.Store.CATEGORY" Multiplicity="0..1" />
