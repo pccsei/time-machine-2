@@ -3732,37 +3732,37 @@ AnyTime.setLatest = function( id, newTime )
 
 
 
-$(window).load(function () {
-    var oneDay = 24 * 60 * 60 * 1000;
-    var rangeDemoFormat = "%Y-%m-%d %T";
-    var rangeDemoConv = new AnyTime.Converter({ format: rangeDemoFormat });
-    $("#rangeDemoToday").click(function (e) {
-        $("#entry_begin_time").val(rangeDemoConv.format(new Date())).change();
-    });
-    $("#rangeDemoClear").click(function (e) {
-        $("#entry_begin_time").val("").change();
-    });
-    $("#entry_begin_time").AnyTime_picker({ format: "%Y-%m-%d %T" });
-    $("#entry_begin_time").change(function (e) {
-        try {
-            var fromDay = rangeDemoConv.parse($("#entry_begin_time").val()).getTime();
-            var dayLater = new Date(fromDay + oneDay);
-            dayLater.setHours(0, 0, 0, 0);
-            var ninetyDaysLater = new Date(fromDay + (90 * oneDay));
-            ninetyDaysLater.setHours(23, 59, 59, 999);
-            $("#entry_end_time").
-            AnyTime_noPicker().
-            removeAttr("disabled").
-            val(rangeDemoConv.format(dayLater)).
-            AnyTime_picker(
-                {
-                    earliest: dayLater,
-                    format: rangeDemoFormat,
-                    latest: ninetyDaysLater
-                });
-        } catch (e) { $("#entry_end_time").val("").attr("disabled", "disabled"); }
-    });
+//$(window).load(function () {
+//    var oneDay = 24 * 60 * 60 * 1000;
+//    var rangeDemoFormat = "%Y-%m-%d %T";
+//    var rangeDemoConv = new AnyTime.Converter({ format: rangeDemoFormat });
+//    $("#rangeDemoToday").click(function (e) {
+//        $("#entry_begin_time").val(rangeDemoConv.format(new Date())).change();
+//    });
+//    $("#rangeDemoClear").click(function (e) {
+//        $("#entry_begin_time").val("").change();
+//    });
+//    $("#entry_begin_time").AnyTime_picker({ format: "%Y-%m-%d %T" });
+//    $("#entry_begin_time").change(function (e) {
+//        try {
+//            var fromDay = rangeDemoConv.parse($("#entry_begin_time").val()).getTime();
+//            var dayLater = new Date(fromDay + oneDay);
+//            dayLater.setHours(0, 0, 0, 0);
+//            var ninetyDaysLater = new Date(fromDay + (90 * oneDay));
+//            ninetyDaysLater.setHours(23, 59, 59, 999);
+//            $("#entry_end_time").
+//            AnyTime_noPicker().
+//            removeAttr("disabled").
+//            val(rangeDemoConv.format(dayLater)).
+//            AnyTime_picker(
+//                {
+//                    earliest: dayLater,
+//                    format: rangeDemoFormat,
+//                    latest: ninetyDaysLater
+//                });
+//        } catch (e) { $("#entry_end_time").val("").attr("disabled", "disabled"); }
+//    });
 
 
-});
+//});
 
