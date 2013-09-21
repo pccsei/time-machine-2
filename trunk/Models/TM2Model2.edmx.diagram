@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="4b003817edf74331883355ffc2e2c3a6" Name="Diagram1">
+        <EntityTypeShape EntityType="TM2ModelNameSpace.CATEGORY" Width="1.5" PointX="0.75" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="TM2ModelNameSpace.COURSE" Width="1.5" PointX="0.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TM2ModelNameSpace.ENTRY" Width="1.5" PointX="3" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="TM2ModelNameSpace.LOCATION" Width="1.5" PointX="0.75" PointY="12.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="TM2ModelNameSpace.MEMBER" Width="1.5" PointX="6" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="TM2ModelNameSpace.PROJECT" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TM2ModelNameSpace.USER" Width="1.5" PointX="0.75" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="TM2ModelNameSpace.class_summary" Width="1.5" PointX="5.75" PointY="0.875" IsExpanded="true" />
+        <AssociationConnector Association="TM2ModelNameSpace.FK__ENTRY__entry_cat__498EEC8D" ManuallyRouted="false" />
+        <AssociationConnector Association="TM2ModelNameSpace.FK_MEMBER_course_id" ManuallyRouted="false" />
+        <AssociationConnector Association="TM2ModelNameSpace.FK_PROJECT_course_id" ManuallyRouted="false" />
+        <AssociationConnector Association="TM2ModelNameSpace.FK__ENTRY__entry_loc__4A8310C6" ManuallyRouted="false" />
+        <AssociationConnector Association="TM2ModelNameSpace.FK__ENTRY__entry_pro__4C6B5938" ManuallyRouted="false" />
+        <AssociationConnector Association="TM2ModelNameSpace.FK__ENTRY__entry_use__4B7734FF" ManuallyRouted="false" />
+        <AssociationConnector Association="TM2ModelNameSpace.FK_MEMBER_user_id" ManuallyRouted="false" />
+        <AssociationConnector Association="TM2ModelNameSpace.FK_PROJECT_created_by" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -13,6 +13,25 @@
           <EntitySet Name="MEMBER" EntityType="SEI_TimeMachine2Model1.Store.MEMBER" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="PROJECT" EntityType="SEI_TimeMachine2Model1.Store.PROJECT" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="USER" EntityType="SEI_TimeMachine2Model1.Store.USER" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="class_summary" EntityType="SEI_TimeMachine2Model1.Store.class_summary" store:Type="Views" store:Schema="dbo" store:Name="class_summary">
+            <DefiningQuery>SELECT 
+      [class_summary].[course_id] AS [course_id], 
+      [class_summary].[user_id] AS [user_id], 
+      [class_summary].[user_first_name] AS [user_first_name], 
+      [class_summary].[user_last_name] AS [user_last_name], 
+      [class_summary].[TotalHours] AS [TotalHours], 
+      [class_summary].[HoursDay] AS [HoursDay], 
+      [class_summary].[HoursWeek] AS [HoursWeek], 
+      [class_summary].[ProjectedGrade] AS [ProjectedGrade]
+      FROM [dbo].[class_summary] AS [class_summary]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="TEACHERS" EntityType="SEI_TimeMachine2Model1.Store.TEACHERS" store:Type="Views" store:Schema="dbo" store:Name="TEACHERS">
+            <DefiningQuery>SELECT 
+      [TEACHERS].[user_id] AS [user_id], 
+      [TEACHERS].[user_first_name] AS [user_first_name], 
+      [TEACHERS].[user_last_name] AS [user_last_name]
+      FROM [dbo].[TEACHERS] AS [TEACHERS]</DefiningQuery>
+          </EntitySet>
           <AssociationSet Name="FK__ENTRY__entry_cat__498EEC8D" Association="SEI_TimeMachine2Model1.Store.FK__ENTRY__entry_cat__498EEC8D">
             <End Role="CATEGORY" EntitySet="CATEGORY" />
             <End Role="ENTRY" EntitySet="ENTRY" />
@@ -66,6 +85,8 @@
           <Property Name="course_begin_date" Type="date" Nullable="false" />
           <Property Name="course_end_date" Type="date" Nullable="false" />
           <Property Name="course_is_enabled" Type="smallint" Nullable="false" />
+          <Property Name="course_ref_grade" Type="float" />
+          <Property Name="course_ref_hours" Type="float" />
         </EntityType>
         <EntityType Name="ENTRY">
           <Key>
@@ -127,6 +148,34 @@
           <Property Name="user_is_student" Type="smallint" />
           <Property Name="user_is_teacher" Type="smallint" />
           <Property Name="user_is_manager" Type="smallint" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'SEI_TimeMachine2.dbo.class_summary' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="class_summary">
+          <Key>
+            <PropertyRef Name="course_id" />
+            <PropertyRef Name="user_id" />
+          </Key>
+          <Property Name="course_id" Type="int" Nullable="false" />
+          <Property Name="user_id" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="user_first_name" Type="nvarchar" MaxLength="50" />
+          <Property Name="user_last_name" Type="nvarchar" MaxLength="50" />
+          <Property Name="TotalHours" Type="int" />
+          <Property Name="HoursDay" Type="int" />
+          <Property Name="HoursWeek" Type="int" />
+          <Property Name="ProjectedGrade" Type="float" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'SEI_TimeMachine2.dbo.TEACHERS' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="TEACHERS">
+          <Key>
+            <PropertyRef Name="user_id" />
+          </Key>
+          <Property Name="user_id" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="user_first_name" Type="nvarchar" MaxLength="50" />
+          <Property Name="user_last_name" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <Association Name="FK__ENTRY__entry_cat__498EEC8D">
           <End Role="CATEGORY" Type="SEI_TimeMachine2Model1.Store.CATEGORY" Multiplicity="0..1" />
@@ -407,11 +456,9 @@
           <Parameter Name="userID" Type="varchar" Mode="In" />
         </Function>
         <Function Name="tm_IsValidEntryTime" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="entryID" Type="int" Mode="In" />
           <Parameter Name="entryUserID" Type="nvarchar" Mode="In" />
           <Parameter Name="entryBeginTime" Type="datetime" Mode="In" />
           <Parameter Name="entryEndTime" Type="datetime" Mode="In" />
-          <Parameter Name="entryTotalTime" Type="int" Mode="In" />
           <Parameter Name="projectID" Type="int" Mode="In" />
         </Function>
         <Function Name="tm_RemoveUserFromCourse" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
@@ -464,7 +511,6 @@
       <Schema Namespace="SEI_TimeMachine2Model1" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
         <EntityContainer Name="TM2Entities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="CATEGORies" EntityType="SEI_TimeMachine2Model1.CATEGORY" />
-          <EntitySet Name="COURSEs" EntityType="SEI_TimeMachine2Model1.COURSE" />
           <EntitySet Name="ENTRies" EntityType="SEI_TimeMachine2Model1.ENTRY" />
           <EntitySet Name="LOCATIONs" EntityType="SEI_TimeMachine2Model1.LOCATION" />
           <EntitySet Name="MEMBERs" EntityType="SEI_TimeMachine2Model1.MEMBER" />
@@ -473,14 +519,6 @@
           <AssociationSet Name="FK__ENTRY__entry_cat__498EEC8D" Association="SEI_TimeMachine2Model1.FK__ENTRY__entry_cat__498EEC8D">
             <End Role="CATEGORY" EntitySet="CATEGORies" />
             <End Role="ENTRY" EntitySet="ENTRies" />
-          </AssociationSet>
-          <AssociationSet Name="FK_MEMBER_course_id" Association="SEI_TimeMachine2Model1.FK_MEMBER_course_id">
-            <End Role="COURSE" EntitySet="COURSEs" />
-            <End Role="MEMBER" EntitySet="MEMBERs" />
-          </AssociationSet>
-          <AssociationSet Name="FK_PROJECT_course_id" Association="SEI_TimeMachine2Model1.FK_PROJECT_course_id">
-            <End Role="COURSE" EntitySet="COURSEs" />
-            <End Role="PROJECT" EntitySet="PROJECTs" />
           </AssociationSet>
           <AssociationSet Name="FK__ENTRY__entry_loc__4A8310C6" Association="SEI_TimeMachine2Model1.FK__ENTRY__entry_loc__4A8310C6">
             <End Role="LOCATION" EntitySet="LOCATIONs" />
@@ -684,11 +722,9 @@
             <Parameter Name="userID" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="tm_IsValidEntryTime" ReturnType="Collection(Int32)">
-            <Parameter Name="entryID" Mode="In" Type="Int32" />
             <Parameter Name="entryUserID" Mode="In" Type="String" />
             <Parameter Name="entryBeginTime" Mode="In" Type="DateTime" />
             <Parameter Name="entryEndTime" Mode="In" Type="DateTime" />
-            <Parameter Name="entryTotalTime" Mode="In" Type="Int32" />
             <Parameter Name="projectID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="tm_RemoveUserFromCourse">
@@ -735,7 +771,18 @@
             <Parameter Name="userIsTeacher" Mode="In" Type="Int16" />
             <Parameter Name="userIsManager" Mode="In" Type="Int16" />
           </FunctionImport>
-        </EntityContainer>
+          <EntitySet Name="class_summary" EntityType="SEI_TimeMachine2Model1.class_summary" />
+          <EntitySet Name="TEACHERS" EntityType="SEI_TimeMachine2Model1.TEACHER" />
+          <EntitySet Name="COURSEs" EntityType="SEI_TimeMachine2Model1.COURSE" />
+          <AssociationSet Name="FK_MEMBER_course_id" Association="SEI_TimeMachine2Model1.FK_MEMBER_course_id">
+            <End Role="COURSE" EntitySet="COURSEs" />
+            <End Role="MEMBER" EntitySet="MEMBERs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PROJECT_course_id" Association="SEI_TimeMachine2Model1.FK_PROJECT_course_id">
+            <End Role="COURSE" EntitySet="COURSEs" />
+            <End Role="PROJECT" EntitySet="PROJECTs" />
+          </AssociationSet>
+          </EntityContainer>
         <EntityType Name="CATEGORY">
           <Key>
             <PropertyRef Name="category_id" />
@@ -745,20 +792,6 @@
           <Property Name="category_created_on" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="category_created_by" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
           <NavigationProperty Name="ENTRies" Relationship="SEI_TimeMachine2Model1.FK__ENTRY__entry_cat__498EEC8D" FromRole="CATEGORY" ToRole="ENTRY" />
-        </EntityType>
-        <EntityType Name="COURSE">
-          <Key>
-            <PropertyRef Name="course_id" />
-          </Key>
-          <Property Name="course_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="course_name" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
-          <Property Name="course_submit_day" Type="Int32" Nullable="false" />
-          <Property Name="course_date_created" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="course_begin_date" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="course_end_date" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="course_is_enabled" Type="Int16" Nullable="false" />
-          <NavigationProperty Name="MEMBERs" Relationship="SEI_TimeMachine2Model1.FK_MEMBER_course_id" FromRole="COURSE" ToRole="MEMBER" />
-          <NavigationProperty Name="PROJECTs" Relationship="SEI_TimeMachine2Model1.FK_PROJECT_course_id" FromRole="COURSE" ToRole="PROJECT" />
         </EntityType>
         <EntityType Name="ENTRY">
           <Key>
@@ -799,8 +832,8 @@
           <Property Name="member_course_id" Type="Int32" Nullable="false" />
           <Property Name="member_position" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
           <Property Name="member_is_enabled" Type="Int16" />
-          <NavigationProperty Name="COURSE" Relationship="SEI_TimeMachine2Model1.FK_MEMBER_course_id" FromRole="MEMBER" ToRole="COURSE" />
           <NavigationProperty Name="USER" Relationship="SEI_TimeMachine2Model1.FK_MEMBER_user_id" FromRole="MEMBER" ToRole="USER" />
+          <NavigationProperty Name="COURSE" Relationship="SEI_TimeMachine2Model1.FK_MEMBER_course_id" FromRole="MEMBER" ToRole="COURSE" />
         </EntityType>
         <EntityType Name="PROJECT">
           <Key>
@@ -815,9 +848,9 @@
           <Property Name="project_begin_date" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="project_end_date" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="project_is_enabled" Type="Int16" Nullable="false" />
-          <NavigationProperty Name="COURSE" Relationship="SEI_TimeMachine2Model1.FK_PROJECT_course_id" FromRole="PROJECT" ToRole="COURSE" />
           <NavigationProperty Name="ENTRies" Relationship="SEI_TimeMachine2Model1.FK__ENTRY__entry_pro__4C6B5938" FromRole="PROJECT" ToRole="ENTRY" />
           <NavigationProperty Name="USER" Relationship="SEI_TimeMachine2Model1.FK_PROJECT_created_by" FromRole="PROJECT" ToRole="USER" />
+          <NavigationProperty Name="COURSE" Relationship="SEI_TimeMachine2Model1.FK_PROJECT_course_id" FromRole="PROJECT" ToRole="COURSE" />
         </EntityType>
         <EntityType Name="USER">
           <Key>
@@ -843,30 +876,6 @@
             </Principal>
             <Dependent Role="ENTRY">
               <PropertyRef Name="entry_category_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_MEMBER_course_id">
-          <End Role="COURSE" Type="SEI_TimeMachine2Model1.COURSE" Multiplicity="1" />
-          <End Role="MEMBER" Type="SEI_TimeMachine2Model1.MEMBER" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="COURSE">
-              <PropertyRef Name="course_id" />
-            </Principal>
-            <Dependent Role="MEMBER">
-              <PropertyRef Name="member_course_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_PROJECT_course_id">
-          <End Role="COURSE" Type="SEI_TimeMachine2Model1.COURSE" Multiplicity="1" />
-          <End Role="PROJECT" Type="SEI_TimeMachine2Model1.PROJECT" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="COURSE">
-              <PropertyRef Name="course_id" />
-            </Principal>
-            <Dependent Role="PROJECT">
-              <PropertyRef Name="project_course_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1099,7 +1108,69 @@
           <Property Type="Int16" Name="user_is_teacher" Nullable="true" />
           <Property Type="Int16" Name="user_is_manager" Nullable="true" />
         </ComplexType>
-      </Schema>
+        <EntityType Name="class_summary">
+          <Key>
+            <PropertyRef Name="course_id" />
+            <PropertyRef Name="user_id" />
+          </Key>
+          <Property Type="Int32" Name="course_id" Nullable="false" />
+          <Property Type="String" Name="user_id" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="user_first_name" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="user_last_name" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="TotalHours" />
+          <Property Type="Int32" Name="HoursDay" />
+          <Property Type="Int32" Name="HoursWeek" />
+          <Property Type="Double" Name="ProjectedGrade" />
+        </EntityType>
+        <EntityType Name="TEACHER">
+          <Key>
+            <PropertyRef Name="user_id" />
+          </Key>
+          <Property Type="String" Name="user_id" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="user_first_name" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="user_last_name" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="COURSE">
+          <Key>
+            <PropertyRef Name="course_id" />
+          </Key>
+          <Property Type="Int32" Name="course_id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="course_name" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="course_submit_day" Nullable="false" />
+          <Property Type="DateTime" Name="course_date_created" Nullable="false" Precision="3" />
+          <Property Type="DateTime" Name="course_begin_date" Nullable="false" Precision="0" />
+          <Property Type="DateTime" Name="course_end_date" Nullable="false" Precision="0" />
+          <Property Type="Int16" Name="course_is_enabled" Nullable="false" />
+          <Property Type="Double" Name="course_ref_grade" />
+          <Property Type="Double" Name="course_ref_hours" />
+          <NavigationProperty Name="MEMBERs" Relationship="SEI_TimeMachine2Model1.FK_MEMBER_course_id" FromRole="COURSE" ToRole="MEMBER" />
+          <NavigationProperty Name="PROJECTs" Relationship="SEI_TimeMachine2Model1.FK_PROJECT_course_id" FromRole="COURSE" ToRole="PROJECT" />
+        </EntityType>
+        <Association Name="FK_MEMBER_course_id">
+          <End Type="SEI_TimeMachine2Model1.COURSE" Role="COURSE" Multiplicity="1" />
+          <End Type="SEI_TimeMachine2Model1.MEMBER" Role="MEMBER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="COURSE">
+              <PropertyRef Name="course_id" />
+            </Principal>
+            <Dependent Role="MEMBER">
+              <PropertyRef Name="member_course_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PROJECT_course_id">
+          <End Type="SEI_TimeMachine2Model1.COURSE" Role="COURSE" Multiplicity="1" />
+          <End Type="SEI_TimeMachine2Model1.PROJECT" Role="PROJECT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="COURSE">
+              <PropertyRef Name="course_id" />
+            </Principal>
+            <Dependent Role="PROJECT">
+              <PropertyRef Name="project_course_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -1112,19 +1183,6 @@
                 <ScalarProperty Name="category_name" ColumnName="category_name" />
                 <ScalarProperty Name="category_created_on" ColumnName="category_created_on" />
                 <ScalarProperty Name="category_created_by" ColumnName="category_created_by" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="COURSEs">
-            <EntityTypeMapping TypeName="SEI_TimeMachine2Model1.COURSE">
-              <MappingFragment StoreEntitySet="COURSE">
-                <ScalarProperty Name="course_id" ColumnName="course_id" />
-                <ScalarProperty Name="course_name" ColumnName="course_name" />
-                <ScalarProperty Name="course_submit_day" ColumnName="course_submit_day" />
-                <ScalarProperty Name="course_date_created" ColumnName="course_date_created" />
-                <ScalarProperty Name="course_begin_date" ColumnName="course_begin_date" />
-                <ScalarProperty Name="course_end_date" ColumnName="course_end_date" />
-                <ScalarProperty Name="course_is_enabled" ColumnName="course_is_enabled" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1485,6 +1543,44 @@
           <FunctionImportMapping FunctionImportName="tm_UpdateProject" FunctionName="SEI_TimeMachine2Model1.Store.tm_UpdateProject" />
           <FunctionImportMapping FunctionImportName="tm_UpdateTimeLog" FunctionName="SEI_TimeMachine2Model1.Store.tm_UpdateTimeLog" />
           <FunctionImportMapping FunctionImportName="tm_UpdateUser" FunctionName="SEI_TimeMachine2Model1.Store.tm_UpdateUser" />
+          <EntitySetMapping Name="class_summary">
+            <EntityTypeMapping TypeName="SEI_TimeMachine2Model1.class_summary">
+              <MappingFragment StoreEntitySet="class_summary">
+                <ScalarProperty Name="ProjectedGrade" ColumnName="ProjectedGrade" />
+                <ScalarProperty Name="HoursWeek" ColumnName="HoursWeek" />
+                <ScalarProperty Name="HoursDay" ColumnName="HoursDay" />
+                <ScalarProperty Name="TotalHours" ColumnName="TotalHours" />
+                <ScalarProperty Name="user_last_name" ColumnName="user_last_name" />
+                <ScalarProperty Name="user_first_name" ColumnName="user_first_name" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="course_id" ColumnName="course_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TEACHERS">
+            <EntityTypeMapping TypeName="SEI_TimeMachine2Model1.TEACHER">
+              <MappingFragment StoreEntitySet="TEACHERS">
+                <ScalarProperty Name="user_last_name" ColumnName="user_last_name" />
+                <ScalarProperty Name="user_first_name" ColumnName="user_first_name" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="COURSEs">
+            <EntityTypeMapping TypeName="SEI_TimeMachine2Model1.COURSE">
+              <MappingFragment StoreEntitySet="COURSE">
+                <ScalarProperty Name="course_ref_hours" ColumnName="course_ref_hours" />
+                <ScalarProperty Name="course_ref_grade" ColumnName="course_ref_grade" />
+                <ScalarProperty Name="course_is_enabled" ColumnName="course_is_enabled" />
+                <ScalarProperty Name="course_end_date" ColumnName="course_end_date" />
+                <ScalarProperty Name="course_begin_date" ColumnName="course_begin_date" />
+                <ScalarProperty Name="course_date_created" ColumnName="course_date_created" />
+                <ScalarProperty Name="course_submit_day" ColumnName="course_submit_day" />
+                <ScalarProperty Name="course_name" ColumnName="course_name" />
+                <ScalarProperty Name="course_id" ColumnName="course_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

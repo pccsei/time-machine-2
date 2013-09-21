@@ -16,7 +16,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
     <!-- Links to the different pages for a teacher -->
-    <form id="form1" runat="server" name="teacher" action="teacher/Selection_Change" method="get">
+    <form id="form1" runat="server" name="TeacherLinks" action="teacher/Selection_Change" method="get">
         <div style="text-align: center;">
             <%=Html.ActionLink("Alerts", "Alerts") %>
             <%=Html.ActionLink("Settings", "Settings") %>
@@ -36,34 +36,49 @@
         </select>
 	    </div>--%>
 
-<%using (Html.BeginForm("CategoryChosen", "teacher", FormMethod.Get)) %> {
+<%--<%using (Html.BeginForm("CategoryChosen", "teacher/CategoryChosen", FormMethod.Post)) %> 
          
     <fieldset>
         <legend></legend>
 
-                <%=Html.DropDownList("course_id", (SelectList) ViewBag.course_id, "Choose a Class")%>
+                 <%=Html.DropDownList("course_id", (SelectList) ViewBag.course_id, "Choose a Class")%>
         <input type="submit" value="Submit" />
-    </fieldset> 
-}
+    </fieldset>--%>
+
     <h2>Semester Summary</h2>
     <!-- Summary table of entire semester of all the students -->
-    <asp:GridView ID="GridView1" runat="server" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" DataSourceID="SqlDataSource1">
-        <Columns>
 
-            <asp:TemplateField HeaderText="Student Name" SortExpression="Student Name">
-                <ItemTemplate>
-                    <%# Eval("user_first_name")%>
-                    <%# Eval("user_last_name") %>
-                </ItemTemplate>    
-            </asp:TemplateField>
+    <%--foreach (var item in summaryTable)
+    {
+        System.Console.WriteLine(user);
+        }--%>
+    <table>
+        <tr>
+            <th>
+                <%--Student Name <%: ; %>--%>
+                <%--<%=Html.DisplayTextFor() --%>
+            </th>
+            <th>
+                Total Hours
+            </th>
+            <th>
+                Daily Hours
+            </th>
+            <th>
+                Weekly Hours
+            </th>
+            <th>
+                Projected Grade
+            </th>
 
-            <asp:BoundField DataField="TotalHours" HeaderText="TotalHours"                        SortExpression="TotalHours" />
-            <asp:BoundField DataField="HoursDay"  HeaderText="HoursDay"                          SortExpression="HoursDay" ReadOnly="True" />
-            <asp:BoundField DataField="HoursWeek"      HeaderText="HoursWeek"                        SortExpression="HoursWeek" ReadOnly="True" />
-            <asp:BoundField DataField="ProjectedGrade"        HeaderText="ProjectedGrade"     ReadOnly="True"    SortExpression="ProjectedGrade" />
-        </Columns>
-        </asp:GridView>
+            <td>
+                <%= Html.ActionLink("edit", "edit")  %>
+            </td>
+        </tr>
 
+        
+    </table>
+}
         <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:TM2Connection %>" 
              SelectCommand="SELECT [user_first_name], [user_last_name], [TotalHours], [HoursDay], [HoursWeek], [ProjectedGrade] FROM [class_summary]"></asp:SqlDataSource>
     </form>
