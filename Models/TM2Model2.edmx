@@ -1,0 +1,647 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="TM2ModelNameSpace.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="TM2ModelNameSpaceStoreContainer">
+          <EntitySet Name="CATEGORY" EntityType="TM2ModelNameSpace.Store.CATEGORY" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="COURSE" EntityType="TM2ModelNameSpace.Store.COURSE" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="ENTRY" EntityType="TM2ModelNameSpace.Store.ENTRY" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="LOCATION" EntityType="TM2ModelNameSpace.Store.LOCATION" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="MEMBER" EntityType="TM2ModelNameSpace.Store.MEMBER" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="PROJECT" EntityType="TM2ModelNameSpace.Store.PROJECT" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="USER" EntityType="TM2ModelNameSpace.Store.USER" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="class_summary" EntityType="TM2ModelNameSpace.Store.class_summary" store:Type="Views" store:Schema="dbo" store:Name="class_summary">
+            <DefiningQuery>SELECT 
+      [class_summary].[course_id] AS [course_id], 
+      [class_summary].[user_id] AS [user_id], 
+      [class_summary].[user_first_name] AS [user_first_name], 
+      [class_summary].[user_last_name] AS [user_last_name], 
+      [class_summary].[TotalHours] AS [TotalHours], 
+      [class_summary].[HoursDay] AS [HoursDay], 
+      [class_summary].[HoursWeek] AS [HoursWeek], 
+      [class_summary].[ProjectedGrade] AS [ProjectedGrade]
+      FROM [dbo].[class_summary] AS [class_summary]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK__ENTRY__entry_cat__498EEC8D" Association="TM2ModelNameSpace.Store.FK__ENTRY__entry_cat__498EEC8D">
+            <End Role="CATEGORY" EntitySet="CATEGORY" />
+            <End Role="ENTRY" EntitySet="ENTRY" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ENTRY__entry_loc__4A8310C6" Association="TM2ModelNameSpace.Store.FK__ENTRY__entry_loc__4A8310C6">
+            <End Role="LOCATION" EntitySet="LOCATION" />
+            <End Role="ENTRY" EntitySet="ENTRY" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ENTRY__entry_pro__4C6B5938" Association="TM2ModelNameSpace.Store.FK__ENTRY__entry_pro__4C6B5938">
+            <End Role="PROJECT" EntitySet="PROJECT" />
+            <End Role="ENTRY" EntitySet="ENTRY" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ENTRY__entry_use__4B7734FF" Association="TM2ModelNameSpace.Store.FK__ENTRY__entry_use__4B7734FF">
+            <End Role="USER" EntitySet="USER" />
+            <End Role="ENTRY" EntitySet="ENTRY" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MEMBER_course_id" Association="TM2ModelNameSpace.Store.FK_MEMBER_course_id">
+            <End Role="COURSE" EntitySet="COURSE" />
+            <End Role="MEMBER" EntitySet="MEMBER" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MEMBER_user_id" Association="TM2ModelNameSpace.Store.FK_MEMBER_user_id">
+            <End Role="USER" EntitySet="USER" />
+            <End Role="MEMBER" EntitySet="MEMBER" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PROJECT_course_id" Association="TM2ModelNameSpace.Store.FK_PROJECT_course_id">
+            <End Role="COURSE" EntitySet="COURSE" />
+            <End Role="PROJECT" EntitySet="PROJECT" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PROJECT_created_by" Association="TM2ModelNameSpace.Store.FK_PROJECT_created_by">
+            <End Role="USER" EntitySet="USER" />
+            <End Role="PROJECT" EntitySet="PROJECT" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="CATEGORY">
+          <Key>
+            <PropertyRef Name="category_id" />
+          </Key>
+          <Property Name="category_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="category_name" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="category_created_on" Type="datetime" Nullable="false" />
+          <Property Name="category_created_by" Type="nvarchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="COURSE">
+          <Key>
+            <PropertyRef Name="course_id" />
+          </Key>
+          <Property Name="course_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="course_name" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="course_submit_day" Type="int" Nullable="false" />
+          <Property Name="course_date_created" Type="datetime" Nullable="false" />
+          <Property Name="course_begin_date" Type="date" Nullable="false" />
+          <Property Name="course_end_date" Type="date" Nullable="false" />
+          <Property Name="course_is_enabled" Type="smallint" Nullable="false" />
+          <Property Name="course_ref_grade" Type="float" />
+          <Property Name="course_ref_hours" Type="float" />
+        </EntityType>
+        <EntityType Name="ENTRY">
+          <Key>
+            <PropertyRef Name="entry_id" />
+          </Key>
+          <Property Name="entry_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="entry_begin_time" Type="datetime" />
+          <Property Name="entry_end_time" Type="datetime" />
+          <Property Name="entry_total_time" Type="int" />
+          <Property Name="entry_work_accomplished" Type="nvarchar(max)" />
+          <Property Name="entry_comment" Type="nvarchar(max)" />
+          <Property Name="entry_user_id" Type="nvarchar" MaxLength="50" />
+          <Property Name="entry_project_id" Type="int" />
+          <Property Name="entry_location_id" Type="int" />
+          <Property Name="entry_category_id" Type="int" />
+        </EntityType>
+        <EntityType Name="LOCATION">
+          <Key>
+            <PropertyRef Name="location_id" />
+          </Key>
+          <Property Name="location_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="location_name" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="location_is_enabled" Type="smallint" />
+          <Property Name="location_created_by" Type="int" />
+          <Property Name="location_date_created" Type="datetime" />
+        </EntityType>
+        <EntityType Name="MEMBER">
+          <Key>
+            <PropertyRef Name="member_user_id" />
+            <PropertyRef Name="member_course_id" />
+          </Key>
+          <Property Name="member_user_id" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="member_course_id" Type="int" Nullable="false" />
+          <Property Name="member_position" Type="nvarchar" MaxLength="50" />
+          <Property Name="member_is_enabled" Type="smallint" />
+        </EntityType>
+        <EntityType Name="PROJECT">
+          <Key>
+            <PropertyRef Name="project_id" />
+          </Key>
+          <Property Name="project_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="project_course_id" Type="int" Nullable="false" />
+          <Property Name="project_name" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="project_created_by" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="project_date_created" Type="datetime" Nullable="false" />
+          <Property Name="project_description" Type="nvarchar(max)" />
+          <Property Name="project_begin_date" Type="date" Nullable="false" />
+          <Property Name="project_end_date" Type="date" Nullable="false" />
+          <Property Name="project_is_enabled" Type="smallint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="USER">
+          <Key>
+            <PropertyRef Name="user_id" />
+          </Key>
+          <Property Name="user_id" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="user_is_enabled" Type="smallint" />
+          <Property Name="user_first_name" Type="nvarchar" MaxLength="50" />
+          <Property Name="user_last_name" Type="nvarchar" MaxLength="50" />
+          <Property Name="user_is_student" Type="smallint" />
+          <Property Name="user_is_teacher" Type="smallint" />
+          <Property Name="user_is_manager" Type="smallint" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'SEI_TimeMachine2.dbo.class_summary' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="class_summary">
+          <Key>
+            <PropertyRef Name="course_id" />
+            <PropertyRef Name="user_id" />
+          </Key>
+          <Property Name="course_id" Type="int" Nullable="false" />
+          <Property Name="user_id" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="user_first_name" Type="nvarchar" MaxLength="50" />
+          <Property Name="user_last_name" Type="nvarchar" MaxLength="50" />
+          <Property Name="TotalHours" Type="int" />
+          <Property Name="HoursDay" Type="int" />
+          <Property Name="HoursWeek" Type="int" />
+          <Property Name="ProjectedGrade" Type="float" />
+        </EntityType>
+        <Association Name="FK__ENTRY__entry_cat__498EEC8D">
+          <End Role="CATEGORY" Type="TM2ModelNameSpace.Store.CATEGORY" Multiplicity="0..1" />
+          <End Role="ENTRY" Type="TM2ModelNameSpace.Store.ENTRY" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CATEGORY">
+              <PropertyRef Name="category_id" />
+            </Principal>
+            <Dependent Role="ENTRY">
+              <PropertyRef Name="entry_category_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ENTRY__entry_loc__4A8310C6">
+          <End Role="LOCATION" Type="TM2ModelNameSpace.Store.LOCATION" Multiplicity="0..1" />
+          <End Role="ENTRY" Type="TM2ModelNameSpace.Store.ENTRY" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LOCATION">
+              <PropertyRef Name="location_id" />
+            </Principal>
+            <Dependent Role="ENTRY">
+              <PropertyRef Name="entry_location_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ENTRY__entry_pro__4C6B5938">
+          <End Role="PROJECT" Type="TM2ModelNameSpace.Store.PROJECT" Multiplicity="0..1" />
+          <End Role="ENTRY" Type="TM2ModelNameSpace.Store.ENTRY" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PROJECT">
+              <PropertyRef Name="project_id" />
+            </Principal>
+            <Dependent Role="ENTRY">
+              <PropertyRef Name="entry_project_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ENTRY__entry_use__4B7734FF">
+          <End Role="USER" Type="TM2ModelNameSpace.Store.USER" Multiplicity="0..1" />
+          <End Role="ENTRY" Type="TM2ModelNameSpace.Store.ENTRY" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USER">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="ENTRY">
+              <PropertyRef Name="entry_user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MEMBER_course_id">
+          <End Role="COURSE" Type="TM2ModelNameSpace.Store.COURSE" Multiplicity="1" />
+          <End Role="MEMBER" Type="TM2ModelNameSpace.Store.MEMBER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="COURSE">
+              <PropertyRef Name="course_id" />
+            </Principal>
+            <Dependent Role="MEMBER">
+              <PropertyRef Name="member_course_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MEMBER_user_id">
+          <End Role="USER" Type="TM2ModelNameSpace.Store.USER" Multiplicity="1" />
+          <End Role="MEMBER" Type="TM2ModelNameSpace.Store.MEMBER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USER">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="MEMBER">
+              <PropertyRef Name="member_user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PROJECT_course_id">
+          <End Role="COURSE" Type="TM2ModelNameSpace.Store.COURSE" Multiplicity="1" />
+          <End Role="PROJECT" Type="TM2ModelNameSpace.Store.PROJECT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="COURSE">
+              <PropertyRef Name="course_id" />
+            </Principal>
+            <Dependent Role="PROJECT">
+              <PropertyRef Name="project_course_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PROJECT_created_by">
+          <End Role="USER" Type="TM2ModelNameSpace.Store.USER" Multiplicity="1" />
+          <End Role="PROJECT" Type="TM2ModelNameSpace.Store.PROJECT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USER">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="PROJECT">
+              <PropertyRef Name="project_created_by" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="TM2ModelNameSpace" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="TM2Entities2" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="CATEGORies" EntityType="TM2ModelNameSpace.CATEGORY" />
+          <EntitySet Name="COURSEs" EntityType="TM2ModelNameSpace.COURSE" />
+          <EntitySet Name="ENTRies" EntityType="TM2ModelNameSpace.ENTRY" />
+          <EntitySet Name="LOCATIONs" EntityType="TM2ModelNameSpace.LOCATION" />
+          <EntitySet Name="MEMBERs" EntityType="TM2ModelNameSpace.MEMBER" />
+          <EntitySet Name="PROJECTs" EntityType="TM2ModelNameSpace.PROJECT" />
+          <EntitySet Name="USERs" EntityType="TM2ModelNameSpace.USER" />
+          <EntitySet Name="class_summary" EntityType="TM2ModelNameSpace.class_summary" />
+          <AssociationSet Name="FK__ENTRY__entry_cat__498EEC8D" Association="TM2ModelNameSpace.FK__ENTRY__entry_cat__498EEC8D">
+            <End Role="CATEGORY" EntitySet="CATEGORies" />
+            <End Role="ENTRY" EntitySet="ENTRies" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MEMBER_course_id" Association="TM2ModelNameSpace.FK_MEMBER_course_id">
+            <End Role="COURSE" EntitySet="COURSEs" />
+            <End Role="MEMBER" EntitySet="MEMBERs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PROJECT_course_id" Association="TM2ModelNameSpace.FK_PROJECT_course_id">
+            <End Role="COURSE" EntitySet="COURSEs" />
+            <End Role="PROJECT" EntitySet="PROJECTs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ENTRY__entry_loc__4A8310C6" Association="TM2ModelNameSpace.FK__ENTRY__entry_loc__4A8310C6">
+            <End Role="LOCATION" EntitySet="LOCATIONs" />
+            <End Role="ENTRY" EntitySet="ENTRies" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ENTRY__entry_pro__4C6B5938" Association="TM2ModelNameSpace.FK__ENTRY__entry_pro__4C6B5938">
+            <End Role="PROJECT" EntitySet="PROJECTs" />
+            <End Role="ENTRY" EntitySet="ENTRies" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ENTRY__entry_use__4B7734FF" Association="TM2ModelNameSpace.FK__ENTRY__entry_use__4B7734FF">
+            <End Role="USER" EntitySet="USERs" />
+            <End Role="ENTRY" EntitySet="ENTRies" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MEMBER_user_id" Association="TM2ModelNameSpace.FK_MEMBER_user_id">
+            <End Role="USER" EntitySet="USERs" />
+            <End Role="MEMBER" EntitySet="MEMBERs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PROJECT_created_by" Association="TM2ModelNameSpace.FK_PROJECT_created_by">
+            <End Role="USER" EntitySet="USERs" />
+            <End Role="PROJECT" EntitySet="PROJECTs" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="CATEGORY">
+          <Key>
+            <PropertyRef Name="category_id" />
+          </Key>
+          <Property Name="category_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="category_name" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="category_created_on" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="category_created_by" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="ENTRies" Relationship="TM2ModelNameSpace.FK__ENTRY__entry_cat__498EEC8D" FromRole="CATEGORY" ToRole="ENTRY" />
+        </EntityType>
+        <EntityType Name="COURSE">
+          <Key>
+            <PropertyRef Name="course_id" />
+          </Key>
+          <Property Name="course_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="course_name" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="course_submit_day" Type="Int32" Nullable="false" />
+          <Property Name="course_date_created" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="course_begin_date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="course_end_date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="course_is_enabled" Type="Int16" Nullable="false" />
+          <Property Name="course_ref_grade" Type="Double" />
+          <Property Name="course_ref_hours" Type="Double" />
+          <NavigationProperty Name="MEMBERs" Relationship="TM2ModelNameSpace.FK_MEMBER_course_id" FromRole="COURSE" ToRole="MEMBER" />
+          <NavigationProperty Name="PROJECTs" Relationship="TM2ModelNameSpace.FK_PROJECT_course_id" FromRole="COURSE" ToRole="PROJECT" />
+        </EntityType>
+        <EntityType Name="ENTRY">
+          <Key>
+            <PropertyRef Name="entry_id" />
+          </Key>
+          <Property Name="entry_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="entry_begin_time" Type="DateTime" Precision="3" />
+          <Property Name="entry_end_time" Type="DateTime" Precision="3" />
+          <Property Name="entry_total_time" Type="Int32" />
+          <Property Name="entry_work_accomplished" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="entry_comment" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="entry_user_id" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="entry_project_id" Type="Int32" />
+          <Property Name="entry_location_id" Type="Int32" />
+          <Property Name="entry_category_id" Type="Int32" />
+          <NavigationProperty Name="CATEGORY" Relationship="TM2ModelNameSpace.FK__ENTRY__entry_cat__498EEC8D" FromRole="ENTRY" ToRole="CATEGORY" />
+          <NavigationProperty Name="LOCATION" Relationship="TM2ModelNameSpace.FK__ENTRY__entry_loc__4A8310C6" FromRole="ENTRY" ToRole="LOCATION" />
+          <NavigationProperty Name="PROJECT" Relationship="TM2ModelNameSpace.FK__ENTRY__entry_pro__4C6B5938" FromRole="ENTRY" ToRole="PROJECT" />
+          <NavigationProperty Name="USER" Relationship="TM2ModelNameSpace.FK__ENTRY__entry_use__4B7734FF" FromRole="ENTRY" ToRole="USER" />
+        </EntityType>
+        <EntityType Name="LOCATION">
+          <Key>
+            <PropertyRef Name="location_id" />
+          </Key>
+          <Property Name="location_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="location_name" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="location_is_enabled" Type="Int16" />
+          <Property Name="location_created_by" Type="Int32" />
+          <Property Name="location_date_created" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="ENTRies" Relationship="TM2ModelNameSpace.FK__ENTRY__entry_loc__4A8310C6" FromRole="LOCATION" ToRole="ENTRY" />
+        </EntityType>
+        <EntityType Name="MEMBER">
+          <Key>
+            <PropertyRef Name="member_user_id" />
+            <PropertyRef Name="member_course_id" />
+          </Key>
+          <Property Name="member_user_id" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="member_course_id" Type="Int32" Nullable="false" />
+          <Property Name="member_position" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="member_is_enabled" Type="Int16" />
+          <NavigationProperty Name="COURSE" Relationship="TM2ModelNameSpace.FK_MEMBER_course_id" FromRole="MEMBER" ToRole="COURSE" />
+          <NavigationProperty Name="USER" Relationship="TM2ModelNameSpace.FK_MEMBER_user_id" FromRole="MEMBER" ToRole="USER" />
+        </EntityType>
+        <EntityType Name="PROJECT">
+          <Key>
+            <PropertyRef Name="project_id" />
+          </Key>
+          <Property Name="project_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="project_course_id" Type="Int32" Nullable="false" />
+          <Property Name="project_name" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="project_created_by" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="project_date_created" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="project_description" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="project_begin_date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="project_end_date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="project_is_enabled" Type="Int16" Nullable="false" />
+          <NavigationProperty Name="COURSE" Relationship="TM2ModelNameSpace.FK_PROJECT_course_id" FromRole="PROJECT" ToRole="COURSE" />
+          <NavigationProperty Name="ENTRies" Relationship="TM2ModelNameSpace.FK__ENTRY__entry_pro__4C6B5938" FromRole="PROJECT" ToRole="ENTRY" />
+          <NavigationProperty Name="USER" Relationship="TM2ModelNameSpace.FK_PROJECT_created_by" FromRole="PROJECT" ToRole="USER" />
+        </EntityType>
+        <EntityType Name="USER">
+          <Key>
+            <PropertyRef Name="user_id" />
+          </Key>
+          <Property Name="user_id" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="user_is_enabled" Type="Int16" />
+          <Property Name="user_first_name" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="user_last_name" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="user_is_student" Type="Int16" />
+          <Property Name="user_is_teacher" Type="Int16" />
+          <Property Name="user_is_manager" Type="Int16" />
+          <NavigationProperty Name="ENTRies" Relationship="TM2ModelNameSpace.FK__ENTRY__entry_use__4B7734FF" FromRole="USER" ToRole="ENTRY" />
+          <NavigationProperty Name="MEMBERs" Relationship="TM2ModelNameSpace.FK_MEMBER_user_id" FromRole="USER" ToRole="MEMBER" />
+          <NavigationProperty Name="PROJECTs" Relationship="TM2ModelNameSpace.FK_PROJECT_created_by" FromRole="USER" ToRole="PROJECT" />
+        </EntityType>
+        <EntityType Name="class_summary">
+          <Key>
+            <PropertyRef Name="course_id" />
+            <PropertyRef Name="user_id" />
+          </Key>
+          <Property Name="course_id" Type="Int32" Nullable="false" />
+          <Property Name="user_id" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="user_first_name" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="user_last_name" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="TotalHours" Type="Int32" />
+          <Property Name="HoursDay" Type="Int32" />
+          <Property Name="HoursWeek" Type="Int32" />
+          <Property Name="ProjectedGrade" Type="Double" />
+        </EntityType>
+        <Association Name="FK__ENTRY__entry_cat__498EEC8D">
+          <End Role="CATEGORY" Type="TM2ModelNameSpace.CATEGORY" Multiplicity="0..1" />
+          <End Role="ENTRY" Type="TM2ModelNameSpace.ENTRY" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CATEGORY">
+              <PropertyRef Name="category_id" />
+            </Principal>
+            <Dependent Role="ENTRY">
+              <PropertyRef Name="entry_category_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MEMBER_course_id">
+          <End Role="COURSE" Type="TM2ModelNameSpace.COURSE" Multiplicity="1" />
+          <End Role="MEMBER" Type="TM2ModelNameSpace.MEMBER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="COURSE">
+              <PropertyRef Name="course_id" />
+            </Principal>
+            <Dependent Role="MEMBER">
+              <PropertyRef Name="member_course_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PROJECT_course_id">
+          <End Role="COURSE" Type="TM2ModelNameSpace.COURSE" Multiplicity="1" />
+          <End Role="PROJECT" Type="TM2ModelNameSpace.PROJECT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="COURSE">
+              <PropertyRef Name="course_id" />
+            </Principal>
+            <Dependent Role="PROJECT">
+              <PropertyRef Name="project_course_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ENTRY__entry_loc__4A8310C6">
+          <End Role="LOCATION" Type="TM2ModelNameSpace.LOCATION" Multiplicity="0..1" />
+          <End Role="ENTRY" Type="TM2ModelNameSpace.ENTRY" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LOCATION">
+              <PropertyRef Name="location_id" />
+            </Principal>
+            <Dependent Role="ENTRY">
+              <PropertyRef Name="entry_location_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ENTRY__entry_pro__4C6B5938">
+          <End Role="PROJECT" Type="TM2ModelNameSpace.PROJECT" Multiplicity="0..1" />
+          <End Role="ENTRY" Type="TM2ModelNameSpace.ENTRY" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PROJECT">
+              <PropertyRef Name="project_id" />
+            </Principal>
+            <Dependent Role="ENTRY">
+              <PropertyRef Name="entry_project_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ENTRY__entry_use__4B7734FF">
+          <End Role="USER" Type="TM2ModelNameSpace.USER" Multiplicity="0..1" />
+          <End Role="ENTRY" Type="TM2ModelNameSpace.ENTRY" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USER">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="ENTRY">
+              <PropertyRef Name="entry_user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MEMBER_user_id">
+          <End Role="USER" Type="TM2ModelNameSpace.USER" Multiplicity="1" />
+          <End Role="MEMBER" Type="TM2ModelNameSpace.MEMBER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USER">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="MEMBER">
+              <PropertyRef Name="member_user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PROJECT_created_by">
+          <End Role="USER" Type="TM2ModelNameSpace.USER" Multiplicity="1" />
+          <End Role="PROJECT" Type="TM2ModelNameSpace.PROJECT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USER">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="PROJECT">
+              <PropertyRef Name="project_created_by" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="TM2ModelNameSpaceStoreContainer" CdmEntityContainer="TM2Entities2">
+          <EntitySetMapping Name="CATEGORies">
+            <EntityTypeMapping TypeName="TM2ModelNameSpace.CATEGORY">
+              <MappingFragment StoreEntitySet="CATEGORY">
+                <ScalarProperty Name="category_id" ColumnName="category_id" />
+                <ScalarProperty Name="category_name" ColumnName="category_name" />
+                <ScalarProperty Name="category_created_on" ColumnName="category_created_on" />
+                <ScalarProperty Name="category_created_by" ColumnName="category_created_by" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="COURSEs">
+            <EntityTypeMapping TypeName="TM2ModelNameSpace.COURSE">
+              <MappingFragment StoreEntitySet="COURSE">
+                <ScalarProperty Name="course_id" ColumnName="course_id" />
+                <ScalarProperty Name="course_name" ColumnName="course_name" />
+                <ScalarProperty Name="course_submit_day" ColumnName="course_submit_day" />
+                <ScalarProperty Name="course_date_created" ColumnName="course_date_created" />
+                <ScalarProperty Name="course_begin_date" ColumnName="course_begin_date" />
+                <ScalarProperty Name="course_end_date" ColumnName="course_end_date" />
+                <ScalarProperty Name="course_is_enabled" ColumnName="course_is_enabled" />
+                <ScalarProperty Name="course_ref_grade" ColumnName="course_ref_grade" />
+                <ScalarProperty Name="course_ref_hours" ColumnName="course_ref_hours" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ENTRies">
+            <EntityTypeMapping TypeName="TM2ModelNameSpace.ENTRY">
+              <MappingFragment StoreEntitySet="ENTRY">
+                <ScalarProperty Name="entry_id" ColumnName="entry_id" />
+                <ScalarProperty Name="entry_begin_time" ColumnName="entry_begin_time" />
+                <ScalarProperty Name="entry_end_time" ColumnName="entry_end_time" />
+                <ScalarProperty Name="entry_total_time" ColumnName="entry_total_time" />
+                <ScalarProperty Name="entry_work_accomplished" ColumnName="entry_work_accomplished" />
+                <ScalarProperty Name="entry_comment" ColumnName="entry_comment" />
+                <ScalarProperty Name="entry_user_id" ColumnName="entry_user_id" />
+                <ScalarProperty Name="entry_project_id" ColumnName="entry_project_id" />
+                <ScalarProperty Name="entry_location_id" ColumnName="entry_location_id" />
+                <ScalarProperty Name="entry_category_id" ColumnName="entry_category_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LOCATIONs">
+            <EntityTypeMapping TypeName="TM2ModelNameSpace.LOCATION">
+              <MappingFragment StoreEntitySet="LOCATION">
+                <ScalarProperty Name="location_id" ColumnName="location_id" />
+                <ScalarProperty Name="location_name" ColumnName="location_name" />
+                <ScalarProperty Name="location_is_enabled" ColumnName="location_is_enabled" />
+                <ScalarProperty Name="location_created_by" ColumnName="location_created_by" />
+                <ScalarProperty Name="location_date_created" ColumnName="location_date_created" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MEMBERs">
+            <EntityTypeMapping TypeName="TM2ModelNameSpace.MEMBER">
+              <MappingFragment StoreEntitySet="MEMBER">
+                <ScalarProperty Name="member_user_id" ColumnName="member_user_id" />
+                <ScalarProperty Name="member_course_id" ColumnName="member_course_id" />
+                <ScalarProperty Name="member_position" ColumnName="member_position" />
+                <ScalarProperty Name="member_is_enabled" ColumnName="member_is_enabled" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PROJECTs">
+            <EntityTypeMapping TypeName="TM2ModelNameSpace.PROJECT">
+              <MappingFragment StoreEntitySet="PROJECT">
+                <ScalarProperty Name="project_id" ColumnName="project_id" />
+                <ScalarProperty Name="project_course_id" ColumnName="project_course_id" />
+                <ScalarProperty Name="project_name" ColumnName="project_name" />
+                <ScalarProperty Name="project_created_by" ColumnName="project_created_by" />
+                <ScalarProperty Name="project_date_created" ColumnName="project_date_created" />
+                <ScalarProperty Name="project_description" ColumnName="project_description" />
+                <ScalarProperty Name="project_begin_date" ColumnName="project_begin_date" />
+                <ScalarProperty Name="project_end_date" ColumnName="project_end_date" />
+                <ScalarProperty Name="project_is_enabled" ColumnName="project_is_enabled" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="USERs">
+            <EntityTypeMapping TypeName="TM2ModelNameSpace.USER">
+              <MappingFragment StoreEntitySet="USER">
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="user_is_enabled" ColumnName="user_is_enabled" />
+                <ScalarProperty Name="user_first_name" ColumnName="user_first_name" />
+                <ScalarProperty Name="user_last_name" ColumnName="user_last_name" />
+                <ScalarProperty Name="user_is_student" ColumnName="user_is_student" />
+                <ScalarProperty Name="user_is_teacher" ColumnName="user_is_teacher" />
+                <ScalarProperty Name="user_is_manager" ColumnName="user_is_manager" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="class_summary">
+            <EntityTypeMapping TypeName="TM2ModelNameSpace.class_summary">
+              <MappingFragment StoreEntitySet="class_summary">
+                <ScalarProperty Name="course_id" ColumnName="course_id" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="user_first_name" ColumnName="user_first_name" />
+                <ScalarProperty Name="user_last_name" ColumnName="user_last_name" />
+                <ScalarProperty Name="TotalHours" ColumnName="TotalHours" />
+                <ScalarProperty Name="HoursDay" ColumnName="HoursDay" />
+                <ScalarProperty Name="HoursWeek" ColumnName="HoursWeek" />
+                <ScalarProperty Name="ProjectedGrade" ColumnName="ProjectedGrade" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

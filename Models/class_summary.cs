@@ -12,25 +12,15 @@ namespace _14_TimeMachine2.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class USER
+    public partial class class_summary
     {
-        public USER()
-        {
-            this.ENTRies = new HashSet<ENTRY>();
-            this.MEMBERs = new HashSet<MEMBER>();
-            this.PROJECTs = new HashSet<PROJECT>();
-        }
-    
+        public int course_id { get; set; }
         public string user_id { get; set; }
-        public Nullable<short> user_is_enabled { get; set; }
         public string user_first_name { get; set; }
         public string user_last_name { get; set; }
-        public Nullable<short> user_is_student { get; set; }
-        public Nullable<short> user_is_teacher { get; set; }
-        public Nullable<short> user_is_manager { get; set; }
-    
-        public virtual ICollection<ENTRY> ENTRies { get; set; }
-        public virtual ICollection<MEMBER> MEMBERs { get; set; }
-        public virtual ICollection<PROJECT> PROJECTs { get; set; }
+        public Nullable<int> TotalHours { get; set; }
+        public Nullable<int> HoursDay { get; set; }
+        public Nullable<int> HoursWeek { get; set; }
+        public Nullable<double> ProjectedGrade { get; set; }
     }
 }
