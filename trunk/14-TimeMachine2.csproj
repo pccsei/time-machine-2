@@ -331,7 +331,7 @@
     <Content Include="Views\Student\Index.aspx" />
     <Content Include="Views\Student\TimeLog.aspx" />
     <Content Include="Views\Teacher\Alerts.aspx" />
-    <Content Include="Views\Teacher\GetCourseSummary.aspx" />
+    <Content Include="Views\Teacher\CategoryChosen.aspx" />
     <Content Include="Views\Teacher\Index.aspx" />
     <Content Include="Views\Teacher\Selection_Change.aspx" />
     <Content Include="Views\Teacher\Settings.aspx" />
@@ -403,7 +403,7 @@
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>54157</DevelopmentServerPort>
+          <DevelopmentServerPort>50061</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>
           </IISUrl>

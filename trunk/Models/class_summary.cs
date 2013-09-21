@@ -11,6 +11,7 @@ namespace _14_TimeMachine2.Models
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
     
     public partial class class_summary
     {
@@ -22,5 +23,12 @@ namespace _14_TimeMachine2.Models
         public Nullable<int> HoursDay { get; set; }
         public Nullable<int> HoursWeek { get; set; }
         public Nullable<double> ProjectedGrade { get; set; }
+    }
+
+    public class ViewClassSummary
+    {
+        [DisplayFormat(DataFormatString = "{0:n2}")]
+        public double? ProjectedGrade { get; set; }
+
     }
 }

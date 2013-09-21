@@ -12,17 +12,6 @@ using System.Data.Entity;
 
 namespace _14_TimeMachine2.Controllers
 {
-    public class CourseSummary
-    {
-        public int course_id;
-        public char user_id;
-        public char user_first_name;
-        public char user_last_name;
-        public int TotalHours;
-        public int HoursDay;
-        public int HoursWeek;
-        public float ProjectedGrade;
-    }
 
     public class TeacherController : Controller
     {
@@ -33,12 +22,6 @@ namespace _14_TimeMachine2.Controllers
             return View();
         }
 
-        public ActionResult GetCourseSummary()
-        {            
-            return View(db.COURSEs.ToList());
-            
-
-        }
         public ActionResult Timelog()
         {
             return View();
@@ -59,9 +42,12 @@ namespace _14_TimeMachine2.Controllers
             return View();
         }
 
+        //[HttpPost]
         public ActionResult CategoryChosen()
         {
-            return View();
+            var db = new TM2Entities2();
+
+            return View(db.class_summary.ToList());
         }
     }
 }
