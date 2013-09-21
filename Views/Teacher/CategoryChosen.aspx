@@ -21,10 +21,10 @@
             <%: Html.DisplayNameFor(model => model.user_id) %>
         </th>--%>
         <th>
-            Student Name
+            <%: Html.ActionLink("Student Name", "CategoryChosen", new { sortOrder = ViewBag.NameSort}) %>
         </th>
         <th>
-            Total Hours
+            <%: Html.ActionLink("Total Hours", "CategoryChosen", new { sortOrder = ViewBag.HourSort}) %>
         </th>
         <th>
             Daily Hours
@@ -47,17 +47,20 @@
             <%: Html.HiddenFor(modelItem => item.user_id) %>
         </td>--%>
         <td>
-            <%: Html.DisplayFor(modelItem => item.user_first_name) %>
-            <%: Html.DisplayFor(modelItem => item.user_last_name) %>
+            <%: Html.Encode(item.user_first_name) %>
+            <%: Html.Encode(item.user_last_name) %>
         </td>
         <td>
-            <%: Html.DisplayFor(modelItem => item.TotalHours) %>
+            <%: Html.Encode(item.TotalHours) %>
         </td>
         <td>
-            <%: Html.DisplayFor(modelItem => item.HoursDay) %>
+            <%: Html.Encode(item.HoursDay) %>
         </td>
         <td>
-            <%: Html.DisplayFor(modelItem => item.HoursWeek) %>
+            <%: Html.Encode(item.HoursWeek) %>
+        </td>
+        <td>
+            <%= Html.Encode(item.HoursDay) %>
         </td>
         <td>
             <%--<%: Html.DisplayFor(modelItem => string.Format("{0:0.00}", item.ProjectedGrade)) %>--%>

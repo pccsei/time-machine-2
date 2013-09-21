@@ -16,7 +16,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
     <!-- Links to the different pages for a teacher -->
-    <form id="form1" runat="server" name="TeacherLinks" action="teacher/Selection_Change" method="get">
+    <form id="form1" runat="server" name="TeacherLinks" action="teacher" method="get">
         <div style="text-align: center;">
             <%=Html.ActionLink("Alerts", "Alerts") %>
             <%=Html.ActionLink("Settings", "Settings") %>
@@ -25,17 +25,19 @@
             <%=Html.ActionLink("CategoryChosen", "CategoryChosen") %>
         </div>
 
+        <div>
     <!-- Dropdown list of all the classes to choose -->
-    <!-- Information from stackoverflow.com -->
-    <%--<div style="text-align: right;">
-        <select onchange="location = this.options[this.selectedIndex].value;">
-            <option selected="selected" value="#">Select a class</option>
-	        <option value="http://csmain/seproject/TimeMachine2/CategoryChosen">CS 451</option>
-            <option value="http://csmain/seproject/TimeMachine2/CategoryChosen">BA 511</option>
-            <option value="http://csmain/seproject/TimeMachine2/home">CS 202-1</option>
-            <option value="http://csmain/seproject/TimeMachine2/account">CS 202-2</option>
-        </select>
-	    </div>--%>
+            <div style="text-align: right;">
+<% using (Html.BeginForm("DropDown", "GetDropDownSelection", FormMethod.Post)) {%>
+            <%= Html.DropDownList("Course Names", new SelectList(ViewBag.ListOfCourseNames, Model), "Choose a Class") %>
+            )%>
+        <input type="submit" value="Choose" />
+        <% } %>
+            </div>
+
+            <%--<%: Html.ValidationMessageFor(model => model._project_id) %>--%>
+        </div>
+
 
 <%----<% using (Html.BeginForm("CategoryChosen", "teacher/CategoryChosen", FormMethod.Post)) %> 
          
@@ -49,7 +51,18 @@
     <h2>Semester Summary</h2>
     <!-- Summary table of entire semester of all the students -->
 
+        <div style="text-align: right;">
+        <select onchange="location = this.options[this.selectedIndex].value;">
+            <option selected="selected" value="#">Select a class</option>
+	        <option value="http://localhost:50061/teacher/CategoryChosen">CS 451</option>
+            <option value="http://csmain/seproject/TimeMachine2/CategoryChosen">BA 511</option>
+            <option value="http://csmain/seproject/TimeMachine2/home">CS 202-1</option>
+            <option value="http://csmain/seproject/TimeMachine2/account">CS 202-2</option>
+        </select>
+	    </div>
+
     </form>
+
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="FeaturedContent" runat="server">
