@@ -12,7 +12,7 @@ namespace _14_TimeMachine2.Controllers
 
     public class ManagerController : Controller
     {
-        private TM2Entities2 db = new TM2Entities2();
+        private TM2Entities db = new TM2Entities();
 
 
         //
@@ -82,7 +82,7 @@ namespace _14_TimeMachine2.Controllers
         {
             _14_TimeMachine2.Models.USER user = new _14_TimeMachine2.Models.USER();
             user = db.USERs.Find(user_id);
-            //user.toggle_status();
+            user.toggle_status();
             db.SaveChanges();
 
             return View();

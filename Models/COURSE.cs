@@ -7,6 +7,8 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System.Data.Entity;
+
 namespace _14_TimeMachine2.Models
 {
     using System;
@@ -27,10 +29,13 @@ namespace _14_TimeMachine2.Models
         public System.DateTime course_begin_date { get; set; }
         public System.DateTime course_end_date { get; set; }
         public short course_is_enabled { get; set; }
-        public Nullable<double> course_ref_grade { get; set; }
-        public Nullable<double> course_ref_hours { get; set; }
     
         public virtual ICollection<MEMBER> MEMBERs { get; set; }
         public virtual ICollection<PROJECT> PROJECTs { get; set; }
+
+        public class COURSEDBContext : DbContext
+        {
+            public DbSet<COURSE> Courses { get; set; }
+        }
     }
 }
