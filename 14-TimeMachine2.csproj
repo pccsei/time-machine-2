@@ -360,6 +360,7 @@
       <LastGenOutput>TM2Model.Designer.cs</LastGenOutput>
     </EntityDeploy>
     <Content Include="Images\TIme machine logo.png" />
+    <Content Include="Images\white_carbonfiber.png" />
     <Content Include="Models\EF.Utility.CS.ttinclude" />
     <Content Include="Models\TM2Model.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
