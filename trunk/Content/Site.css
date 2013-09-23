@@ -1,4 +1,8 @@
-﻿html {
+﻿#MainContent_GridView1 tr th{
+    padding-right: 40px;
+}
+
+html {
     background-color: #e2e2e2;
     margin: 0;
     padding: 0;
@@ -50,6 +54,7 @@ mark {
         position: relative;
         right: 50px;
         bottom: 10px;
+        width: 240px;
     }
 
 .float-right {
@@ -102,6 +107,8 @@ h5, h6 {
 .content-wrapper {
     margin: 0 auto;
     max-width: 960px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
 }
 
 #body {
@@ -126,7 +133,7 @@ header .content-wrapper {
 
 footer {
     clear: both;
-    background-color: #e2e2e2;
+    background: url('../Images/white_carbonfiber.png'), #e2e2e2;
     font-size: .8em;
     height: 100px;
 }
@@ -185,7 +192,7 @@ footer {
 
 /* menu
 ----------------------------------------------------------*/
-ul#menu {
+#menu {
     font-size: 1.3em;
     font-weight: 600;
     margin: 0 0 5px;

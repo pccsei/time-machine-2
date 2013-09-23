@@ -32,5 +32,33 @@ namespace _14_TimeMachine2.Models
         public virtual ICollection<ENTRY> ENTRies { get; set; }
         public virtual ICollection<MEMBER> MEMBERs { get; set; }
         public virtual ICollection<PROJECT> PROJECTs { get; set; }
+
+        // ryoder [start]
+        public bool is_enabled()
+        {
+            return (this.user_is_enabled == 1);
+        }
+
+        public bool is_student()
+        {
+            return (this.user_is_student == 1);
+        }
+
+        public bool is_teacher()
+        {
+            return (this.user_is_teacher == 1);
+        }
+
+        public bool is_manager()
+        {
+            return (this.user_is_manager == 1);
+        }
+
+        public void toggle_status()
+        {
+            this.user_is_enabled = (Int16)(this.user_is_enabled ^ 1);
+            return;
+        }
+        // ryoder [end]
     }
 }
