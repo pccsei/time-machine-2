@@ -60,5 +60,16 @@ namespace _14_TimeMachine2.Models
             return;
         }
         // ryoder [end]
+
+        //public float totalHoursForCourse(int courseId)
+        //{
+
+        //}
+        //public float HoursPerWeek(int courseId)
+        //{
+        //}
+        //public float HoursPerDay(int courseId)
+        //{
+        //}
     }
 }
