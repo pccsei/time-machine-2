@@ -406,6 +406,7 @@
     <Content Include="Views\Student\TimeLog.aspx" />
     <Content Include="Views\Teacher\Alerts.aspx" />
     <Content Include="Views\Teacher\Index.aspx" />
+    <Content Include="Views\Teacher\OldIndex.aspx" />
     <Content Include="Views\Teacher\Selection_Change.aspx" />
     <Content Include="Views\Teacher\Settings.aspx" />
     <Content Include="Views\Teacher\Timelog.aspx" />

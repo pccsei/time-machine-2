@@ -1,4 +1,5 @@
-﻿using System;
+﻿using _14_TimeMachine2.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -6,6 +7,8 @@ using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using _14_TimeMachine2.Controllers;
+
 
 namespace _14_TimeMachine2
 {
@@ -24,5 +27,18 @@ namespace _14_TimeMachine2
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             AuthConfig.RegisterAuth();
         }
+
+        //public bool userCheck()
+        //{
+        //    TM2Entities2 db = new TM2Entities2();
+        //    var userID = 117567;
+        //    USER currentUser = db.USERs.Find(userID);
+
+        //    if (currentUser.user_is_enabled == 1)
+        //        return true;
+        //    else
+        //        return false;
+
+        //}
     }
 }
