@@ -10,7 +10,7 @@ namespace _14_TimeMachine2.Controllers
 {
     public class StudentController : Controller
     {
-        private TM2Entities db = new TM2Entities();
+        private TM2Entities2 db = new TM2Entities2();
         //
         // GET: /Student/
 
