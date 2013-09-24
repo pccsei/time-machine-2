@@ -8,52 +8,75 @@ using System.Web.Mvc;
 using _14_TimeMachine2.Models;
 using System.Web.Mvc.Html;
 using System.Web.UI.WebControls;
+using System.Data.Entity;
 
 namespace _14_TimeMachine2.Controllers
 {
     public class TeacherController : Controller
     {
-        //string course_name;
-        //
-        // GET: /Teacher/
-        private TM2Entities db = new TM2Entities();
-        // The default page for teacher's, includes summary information
+        public string courseSelected;
+
+        private TM2Entities2 db = new TM2Entities2();
+        private TM2Entities2 db2 = new TM2Entities2();
+
         public ActionResult Index()
         {
+            
+            var query = (from courses in db.COURSEs 
+                         select courses).ToList();
 
-            var courseQuery = db.COURSEs.Select(p => new { p.course_id, p.course_name });
-            ViewBag.course_id = new SelectList(courseQuery.AsEnumerable(), "course_id", "course_name", 0);
+            List<string> listOfCourses = new List<string>();
 
-            // Create and initialize a connection string to the database
-            string connectionString = System.Web.Configuration.WebConfigurationManager.ConnectionStrings["TM2Connection"].ConnectionString;
+            var memberQuery = (from members in db.MEMBERs
+                               select members).ToList();
 
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            List<string> listOfMembers = new List<string>();
+
+            foreach (var member in memberQuery)
             {
-                SqlCommand command_getSummary = new SqlCommand();
 
-                // Give the command both the name of the stored procedure and specify the type of command - NPC 9/16/2013
-                command_getSummary.CommandText = "tm_GetCourseSummary";
-                command_getSummary.CommandType = CommandType.StoredProcedure;
-
-                // Add parameters to the command to execute the stored procedure - NPC 9/16/2013
-                command_getSummary.Parameters.AddWithValue("@courseID", 5);
-
-                command_getSummary.Connection = connection;
-
-
-                connection.Open();
-                SqlDataReader user_reader = command_getSummary.ExecuteReader();
-                connection.Close();
-                //TM_DB.Dispose();
+                foreach (var item in query)
+                {
+                    //"mgeary" will be changed to indicate whatever teacher is currently logged in
+                    if ((item.course_id == member.member_course_id) && (member.member_user_id == "rhowell"))
+                        listOfCourses.Add(item.course_name);
+                }
             }
+            ViewBag.listOfCourseNames = listOfCourses;
 
-            return View();
+
+
+            return View(db.class_summary.ToList());
         }
 
-        public ActionResult Timelog()
+        public ActionResult SortStudent(string sortOrder)
         {
-            return View();
+            ViewBag.NameSort = String.IsNullOrEmpty(sortOrder) ? "Name_desc" : "";
+            ViewBag.HourSort = sortOrder == "Hours" ? "Hours_des" : "Hours";
+            var students = from student in db.USERs select student;
+            var hours = from hour in db.class_summary select hour;
+
+            switch (sortOrder)
+            {
+                case "Name_desc":
+                    students = students.OrderByDescending(student => student.user_first_name);
+                    break;
+                case "Hours":
+                    hours = hours.OrderBy(hour => hour.TotalHours);
+                    break;
+                default:
+                    students = students.OrderBy(student => student.user_first_name);
+                    break;
+            }
+            return View(db.class_summary.ToList());
         }
+
+       [HttpPost]
+       public ActionResult GetDropDownSelection(string DropDown)
+       {
+           courseSelected = DropDown;
+           return RedirectToAction("Index"); 
+       }
 
         public ActionResult WeeklyReports()
         {
@@ -70,25 +93,11 @@ namespace _14_TimeMachine2.Controllers
             return View();
         }
 
-    //    [HttpGet]
-    //    public ViewResult CategoryChosen(string course_id)
-    //    {
-    //        ViewBag.messageString = course_id;
+        public ActionResult TeacherSummary()
+        {
+            var db = new TM2Entities2();
 
-    //        return View(course_id);
-    //    }
-
-    //    public ViewResult Index()
-    //    {
-    //        return View(db.COURSEs.ToList());
-    //    }
-
-    //    public SelectList GetCourseSelectList() {
-
-    //        _14_TimeMachine2.Models.COURSE course = new _14_TimeMachine2.Models.COURSE();
-    //        var courses = COURSE.; 
-
-    //         //_14_TimeMachine2.Models.COURSE course = new _14_TimeMachine2.Models.COURSE();
-    //        //course = db.COURSEs.Select(); 
+            return View(db.class_summary.ToList());
+        }
     }
 }

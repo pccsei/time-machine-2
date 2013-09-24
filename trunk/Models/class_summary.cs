@@ -22,6 +22,8 @@ namespace _14_TimeMachine2.Models
         public Nullable<int> TotalHours { get; set; }
         public Nullable<int> HoursDay { get; set; }
         public Nullable<int> HoursWeek { get; set; }
+
+        [DisplayFormat(DataFormatString = "{0:n0}%")]
         public Nullable<double> ProjectedGrade { get; set; }
     }
 
