@@ -11,7 +11,7 @@
         <!-- Dropdown list of all the classes to choose -->
         <div style="text-align: right;">
             <% using (Html.BeginForm("DropDown", "GetDropDownSelection")) {%>
-                <%= Html.DropDownList("Course Names", new SelectList(ViewBag.ListOfCourseNames, Model), "Choose a Class to View") %> 
+                <%= Html.DropDownList("CourseList", (SelectList)ViewData["Courses"]) %> 
                 <input type="hidden" value="Choose" />
             <% } %>
         </div>
@@ -57,7 +57,7 @@
             <%= Html.Encode(item.HoursDay) %>
         </td>
         <td>
-            <%: Html.Encode(item.ProjectedGrade) %>
+            <%:Html.DisplayFor(model => item.ProjectedGrade) %>
         </td>
         <%--<td>
             <%: Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) %> |

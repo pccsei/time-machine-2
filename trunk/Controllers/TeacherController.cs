@@ -25,7 +25,7 @@ namespace _14_TimeMachine2.Controllers
             var query = (from courses in db.COURSEs 
                          select courses).ToList();
 
-            List<string> listOfCourses = new List<string>();
+            List<COURSE> listOfCourses = new List<COURSE>();
 
             var memberQuery = (from members in db.MEMBERs
                                select members).ToList();
@@ -39,10 +39,12 @@ namespace _14_TimeMachine2.Controllers
                 {
                     //"mgeary" will be changed to indicate whatever teacher is currently logged in
                     if ((item.course_id == member.member_course_id) && (member.member_user_id == "rhowell"))
-                        listOfCourses.Add(item.course_name);
+                        listOfCourses.Add(item);
                 }
             }
-            ViewBag.listOfCourseNames = listOfCourses;
+
+            var selectlist = new SelectList(listOfCourses, "course_id", "course_name", 1);
+            ViewData["Courses"] = selectlist;
 
 
 
