@@ -11,9 +11,12 @@ namespace _14_TimeMachine2.Models
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     
     public partial class USER
     {
+        TM2Entities2 db = new TM2Entities2();
+
         public USER()
         {
             this.ENTRies = new HashSet<ENTRY>();
@@ -71,5 +74,50 @@ namespace _14_TimeMachine2.Models
         //public float HoursPerDay(int courseId)
         //{
         //}
+
+        public List<COURSE> getCoursesForUser()
+        {
+            List<COURSE> courseList = new List<COURSE>();
+
+            foreach (MEMBER m in this.MEMBERs)
+            {
+                courseList.Add(db.COURSEs.Find(m.member_course_id));
+            }
+
+            return courseList;
+        }
+
+        public float[] getCourseStatsForStudent(int course_id)
+        {
+            var course   = db.COURSEs.Find(course_id);
+            var projects = course.PROJECTs.ToList();
+
+            float[] stats = new float[4] {0.0f, 0.0f, 0.0f, 0.0f};
+
+            // Total hours
+            foreach (ENTRY e in this.ENTRies)
+            {
+                if (projects.Find(
+                        delegate(PROJECT p)
+                        {
+                            return p.project_id == e.entry_project_id;
+                        }
+                    ) != null)
+                {
+                    stats[0] += (float) e.entry_total_time;
+                }
+            }
+
+            // Hours per day
+            stats[1] = stats[0] / (float) (DateTime.Now - course.course_begin_date).Days;
+
+            // Hours per week
+            stats[2] = stats[1] * 7.0f;
+
+            // Projected Grade
+            stats[3] = stats[2] * (float) course.course_ref_grade / (float) course.course_ref_hours;
+
+            return stats;
+        }
     }
 }

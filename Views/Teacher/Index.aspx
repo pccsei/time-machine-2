@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<IEnumerable<_14_TimeMachine2.Models.class_summary>>" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<IEnumerable<_14_TimeMachine2.Models.COURSE>>" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
     Index
@@ -9,10 +9,10 @@
 <h2>Index</h2>
 
         <!-- Dropdown list of all the classes to choose -->
-        <div style="text-align: right;">
-            <% using (Html.BeginForm("DropDown", "GetDropDownSelection")) {%>
-                <%= Html.DropDownList("CourseList", (SelectList)ViewData["Courses"]) %> 
-                <input type="hidden" value="Choose" />
+        <div>
+            <% using (Html.BeginForm("DropDown", "GetDropDownSelection")) { %>
+            <p>Choose course:
+                <%= Html.DropDownList("CourseList", (SelectList)ViewData["Courses"]) %></p>
             <% } %>
         </div>
 
@@ -35,29 +35,27 @@
         <th>
             Projected Grade
         </th>
-        <th></th>
     </tr>
 
-<% foreach (var item in Model) { %>
-    <tr>
+<% foreach (var course in Model) { 
+       foreach (var student in course.getStudentsForCourse()) { 
+           var stats = student.getCourseStatsForStudent(course.course_id); %>
+    <tr class="datarow <%: "student-" + student.user_id + " course-" + course.course_id %>">
         <td>
-            <%: Html.Encode(item.user_first_name) %>
-            <%: Html.Encode(item.user_last_name) %>
+            <%: student.user_first_name %>
+            <%: student.user_last_name %>
         </td>
         <td>
-            <%: Html.Encode(item.TotalHours) %>
+            <%: stats[0] %>
         </td>
         <td>
-            <%: Html.Encode(item.HoursDay) %>
+            <%: stats[1] %>
         </td>
         <td>
-            <%: Html.Encode(item.HoursWeek) %>
+            <%: stats[2] %>
         </td>
         <td>
-            <%= Html.Encode(item.HoursDay) %>
-        </td>
-        <td>
-            <%:Html.DisplayFor(model => item.ProjectedGrade) %>
+            <%: stats[3] %>
         </td>
         <%--<td>
             <%: Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) %> |
@@ -65,7 +63,7 @@
             <%: Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ }) %>
         </td>--%>
     </tr>
-<% } %>
+<% } } %>
 
 </table>
 
@@ -79,4 +77,14 @@
 </asp:Content>
 
 <asp:Content ID="Content5" ContentPlaceHolderID="ScriptsSection" runat="server">
+    <script type="text/javascript">
+
+        $('tr.datarow').hide();
+        $('tr.course-' + $('#CourseList').val()).show();
+
+        $('#CourseList').change(function () {
+            $('tr.datarow').hide();
+            $('tr.course-' + $('#CourseList').val()).show();
+        });
+    </script>
 </asp:Content>

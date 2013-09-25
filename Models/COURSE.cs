@@ -32,5 +32,35 @@ namespace _14_TimeMachine2.Models
     
         public virtual ICollection<MEMBER> MEMBERs { get; set; }
         public virtual ICollection<PROJECT> PROJECTs { get; set; }
+
+        public List<USER> getStudentsForCourse()
+        {
+            List<USER> studentList = new List<USER>();
+            TM2Entities2 db = new TM2Entities2();
+
+            foreach (MEMBER m in this.MEMBERs)
+            {
+                USER temp = db.USERs.Find(m.member_user_id);
+                if (temp.is_student())
+                    studentList.Add(temp);
+            }
+
+            return studentList;
+        }
+
+        public USER getTeacherForCourse()
+        {
+            USER teacher = new USER();
+            USER temp;
+            TM2Entities2 db = new TM2Entities2();
+
+            foreach (MEMBER m in this.MEMBERs)
+            {
+                if ((temp = db.USERs.Find(m.member_user_id)).is_teacher())
+                    teacher = temp;
+            }
+
+            return teacher;
+        }
     }
 }
