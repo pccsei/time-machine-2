@@ -26,8 +26,17 @@
             <%: Html.LabelFor(model => model.course_submit_day) %>
         </div>
         <div class="editor-field">
-            <%: Html.EditorFor(model => model.course_submit_day) %>
-            <%: Html.ValidationMessageFor(model => model.course_submit_day) %>
+            <select id="course_submit_day" name="course_submit_day">
+                <option value="0">Sunday</option>
+                <option value="1">Monday</option>
+                <option value="2">Tuesday</option>
+                <option value="3">Wednesday</option>
+                <option value="4">Thursday</option>
+                <option value="5">Friday</option>
+                <option value="6">Saturday</option>
+           </select>
+            <%--<%: Html.EditorFor(model => model.course_submit_day) %>
+            <%: Html.ValidationMessageFor(model => model.course_submit_day) %>--%>
         </div>
 
         <div class="editor-label">
@@ -46,13 +55,15 @@
             <%: Html.ValidationMessageFor(model => model.course_end_date) %>
         </div>
 
-        <div class="editor-label">
+<%--        <div class="editor-label">
             <%: Html.LabelFor(model => model.course_is_enabled) %>
         </div>
         <div class="editor-field">
             <%: Html.EditorFor(model => model.course_is_enabled) %>
             <%: Html.ValidationMessageFor(model => model.course_is_enabled) %>
-        </div>
+        </div>--%>
+
+        <input id="is_enabled" type="text" hidden="hidden" value="1" />
 
         <div class="editor-label">
             <%: Html.LabelFor(model => model.course_ref_grade) %>

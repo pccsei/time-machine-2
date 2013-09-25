@@ -352,7 +352,6 @@
     <Content Include="Theme\redmond\jquery-ui-1.10.3.custom.css" />
     <Content Include="Theme\redmond\jquery-ui-1.10.3.custom.min.css" />
     <Content Include="Views\Course\Create.aspx" />
-    <Content Include="Views\Course\Delete.aspx" />
     <Content Include="Views\Course\Details.aspx" />
     <Content Include="Views\Course\Edit.aspx" />
     <Content Include="Views\Course\Index.aspx" />

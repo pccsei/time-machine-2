@@ -17,8 +17,8 @@ namespace _14_TimeMachine2.Filters
             // System.Web.HttpContext.Current.Session[
             try
             {
-                //string userId = "118679"; //HttpContext.Current.User.Identity.Name.Substring(HttpContext.Current.User.Identity.Name.LastIndexOf('\\') + 1).ToString();
-                string userId = HttpContext.Current.User.Identity.Name.Substring(HttpContext.Current.User.Identity.Name.LastIndexOf('\\') + 1).ToString();
+                string userId = "118679"; //HttpContext.Current.User.Identity.Name.Substring(HttpContext.Current.User.Identity.Name.LastIndexOf('\\') + 1).ToString();
+                //string userId = HttpContext.Current.User.Identity.Name.Substring(HttpContext.Current.User.Identity.Name.LastIndexOf('\\') + 1).ToString();
                 USER currentUser = new USER();
                 currentUser = db.USERs.Find(userId);
 
