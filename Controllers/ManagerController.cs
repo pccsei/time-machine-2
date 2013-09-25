@@ -6,10 +6,11 @@ using System.Web;
 using System.Data.SqlClient;
 using System.Web.Mvc;
 using _14_TimeMachine2.Models;
+using _14_TimeMachine2.Filters;
 
 namespace _14_TimeMachine2.Controllers
 {
-
+    [AuthorizeManager]
     public class ManagerController : Controller
     {
         private TM2Entities2 db = new TM2Entities2();
