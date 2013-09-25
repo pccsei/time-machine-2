@@ -175,6 +175,7 @@
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\ManagerController.cs" />
     <Compile Include="Controllers\StudentController.cs" />
+    <Compile Include="Controllers\StudentEntryController.cs" />
     <Compile Include="Controllers\TeacherController.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
     <Compile Include="Global.asax.cs">
@@ -329,6 +330,11 @@
     <Content Include="Views\Login\Index.aspx" />
     <Content Include="Views\Manager\Index.aspx" />
     <Content Include="Views\Manager\StronglyTypedView.aspx" />
+    <Content Include="Views\StudentEntry\Create.aspx" />
+    <Content Include="Views\StudentEntry\Delete.aspx" />
+    <Content Include="Views\StudentEntry\Details.aspx" />
+    <Content Include="Views\StudentEntry\Edit.aspx" />
+    <Content Include="Views\StudentEntry\Index.aspx" />
     <Content Include="Views\Student\StudentTimeEntry.aspx" />
     <Content Include="Views\Student\Summary.aspx" />
     <Content Include="Views\Student\Index.aspx" />

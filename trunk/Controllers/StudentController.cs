@@ -19,6 +19,7 @@ namespace _14_TimeMachine2.Controllers
             return View();
         }
 
+        [HttpPost]
         public ActionResult StudentTimeEntry()
         {
             var projectQuery = db.PROJECTs.Select(p => new { p.project_id, p.project_name});
@@ -30,7 +31,7 @@ namespace _14_TimeMachine2.Controllers
             var categoryQuery = db.CATEGORies.Select(c => new { c.category_id, c.category_name });
             ViewBag.category_id = new SelectList(categoryQuery.AsEnumerable(), "category_id", "category_name", 0);
 
-            return View();
+            return View(db.ENTRies.ToList());
         }
 
         public ActionResult TimeLog()
