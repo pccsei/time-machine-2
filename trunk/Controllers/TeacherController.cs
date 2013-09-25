@@ -9,9 +9,11 @@ using _14_TimeMachine2.Models;
 using System.Web.Mvc.Html;
 using System.Web.UI.WebControls;
 using System.Data.Entity;
+using _14_TimeMachine2.Filters;
 
 namespace _14_TimeMachine2.Controllers
 {
+    [AuthorizeTeacher]
     public class TeacherController : Controller
     {
         public string courseSelected;
