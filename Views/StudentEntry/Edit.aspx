@@ -15,47 +15,7 @@
         <legend>ENTRY</legend>
 
         <div class="editor-label">
-            <%: Html.LabelFor(model => model.entry_begin_time) %>
-        </div>
-        <div class="editor-field">
-            <%: Html.EditorFor(model => model.entry_begin_time) %>
-            <%: Html.ValidationMessageFor(model => model.entry_begin_time) %>
-        </div>
-
-        <div class="editor-label">
-            <%: Html.LabelFor(model => model.entry_end_time) %>
-        </div>
-        <div class="editor-field">
-            <%: Html.EditorFor(model => model.entry_end_time) %>
-            <%: Html.ValidationMessageFor(model => model.entry_end_time) %>
-        </div>
-
-        <div class="editor-label">
-            <%: Html.LabelFor(model => model.entry_work_accomplished) %>
-        </div>
-        <div class="editor-field">
-            <%: Html.EditorFor(model => model.entry_work_accomplished) %>
-            <%: Html.ValidationMessageFor(model => model.entry_work_accomplished) %>
-        </div>
-
-        <div class="editor-label">
-            <%: Html.LabelFor(model => model.entry_comment) %>
-        </div>
-        <div class="editor-field">
-            <%: Html.EditorFor(model => model.entry_comment) %>
-            <%: Html.ValidationMessageFor(model => model.entry_comment) %>
-        </div>
-
-        <div class="editor-label">
-            <%: Html.LabelFor(model => model.entry_user_id, "USER") %>
-        </div>
-        <div class="editor-field">
-            <%: Html.DropDownList("entry_user_id", String.Empty) %>
-            <%: Html.ValidationMessageFor(model => model.entry_user_id) %>
-        </div>
-
-        <div class="editor-label">
-            <%: Html.LabelFor(model => model.entry_project_id, "PROJECT") %>
+            <%: Html.LabelFor(model => model.entry_project_id) %>
         </div>
         <div class="editor-field">
             <%: Html.DropDownList("entry_project_id", String.Empty) %>
@@ -63,7 +23,23 @@
         </div>
 
         <div class="editor-label">
-            <%: Html.LabelFor(model => model.entry_location_id, "LOCATION") %>
+            Start Time
+        </div>
+        <div class="editor-field">
+            <%: Html.EditorFor(model => model.entry_begin_time) %>
+            <%: Html.ValidationMessageFor(model => model.entry_begin_time) %>
+        </div>
+
+        <div class="editor-label">
+            End Time
+        </div>
+        <div class="editor-field">
+            <%: Html.EditorFor(model => model.entry_end_time) %>
+            <%: Html.ValidationMessageFor(model => model.entry_end_time) %>
+        </div>
+
+        <div class="editor-label">
+            <%: Html.LabelFor(model => model.entry_location_id, "Location") %>
         </div>
         <div class="editor-field">
             <%: Html.DropDownList("entry_location_id", String.Empty) %>
@@ -71,11 +47,27 @@
         </div>
 
         <div class="editor-label">
-            <%: Html.LabelFor(model => model.entry_category_id, "CATEGORY") %>
+            <%: Html.LabelFor(model => model.entry_category_id, "Category") %>
         </div>
         <div class="editor-field">
             <%: Html.DropDownList("entry_category_id", String.Empty) %>
             <%: Html.ValidationMessageFor(model => model.entry_category_id) %>
+        </div>
+
+        <div class="editor-label">
+            Work Accomplished
+        </div>
+        <div class="editor-field">
+            <%: Html.EditorFor(model => model.entry_work_accomplished) %>
+            <%: Html.ValidationMessageFor(model => model.entry_work_accomplished) %>
+        </div>
+
+        <div class="editor-label">
+            Comment
+        </div>
+        <div class="editor-field">
+            <%: Html.EditorFor(model => model.entry_comment) %>
+            <%: Html.ValidationMessageFor(model => model.entry_comment) %>
         </div>
 
         <p>

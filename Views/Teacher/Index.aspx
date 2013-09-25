@@ -42,8 +42,8 @@
            var stats = student.getCourseStatsForStudent(course.course_id); %>
     <tr class="datarow <%: "student-" + student.user_id + " course-" + course.course_id %>">
         <td>
-            <%: student.user_first_name %>
-            <%: student.user_last_name %>
+            <a href ="/studentEntry/<%: student.user_id %>"><%: student.user_first_name %>
+            <%: student.user_last_name %> </a>
         </td>
         <td>
             <%: stats[0] %>
