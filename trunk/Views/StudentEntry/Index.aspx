@@ -36,32 +36,29 @@
 </div>
 <table class="student_list">
     <tr>
-<%--        <th>
-            <%: Html.DisplayNameFor(model => model.entry_id) %>
-        </th>--%>
         <th>
-            Project Name
+            <%: Html.DisplayNameFor(model => model.PROJECT.project_name) %>
         </th>
         <th>
-            Start Time
+            <%: Html.DisplayNameFor(model => model.entry_begin_time) %>
         </th>
         <th>
-            End Time
+            <%: Html.DisplayNameFor(model => model.entry_end_time) %>
         </th>
         <th>
-            Total Time
+            <%: Html.DisplayNameFor(model => model.entry_total_time) %>
         </th>
         <th>
-            Location
+            <%: Html.DisplayNameFor(model => model.LOCATION.location_name) %>
         </th>
         <th>
-            Category
+            <%: Html.DisplayNameFor(model => model.CATEGORY.category_name) %>
         </th>
         <th>
-            Work Accomplished
+            <%: Html.DisplayNameFor(model => model.entry_work_accomplished) %>
         </th>
         <th>
-           Comment
+            <%: Html.DisplayNameFor(model => model.entry_comment) %>
         </th>
 
         <th></th>
@@ -73,9 +70,6 @@
         <td>
             <%: Html.DisplayFor(modelItem => item.PROJECT.project_name) %>
         </td>
-<%--        <td>
-            <%: Html.DisplayFor(modelItem => item.entry_id) %>
-        </td> --%>
         <td>
             <%: Html.DisplayFor(modelItem => item.entry_begin_time) %>
         </td>
@@ -99,9 +93,9 @@
         </td>
 
         <td>
-            <%: Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) %> |
+            <%: Html.ActionLink("Edit", "Edit", new {  id=item.entry_id  }) %> |
            <%-- <%: Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) %> |--%>
-            <%: Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ }) %>
+            <%: Html.ActionLink("Delete", "Delete", new {  id=item.entry_id  }) %>
         </td>
     </tr>
 <% } %>
