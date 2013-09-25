@@ -14,13 +14,10 @@
     <fieldset>
         <legend>COURSE</legend>
 
-        <div class="editor-label">
-            <%: Html.LabelFor(model => model.course_id) %>
-        </div>
-        <div class="editor-field">
+<%--        <div class="editor-field">
             <%: Html.EditorFor(model => model.course_id) %>
             <%: Html.ValidationMessageFor(model => model.course_id) %>
-        </div>
+        </div>--%>
 
         <div class="editor-label">
             <%: Html.LabelFor(model => model.course_name) %>
@@ -39,14 +36,6 @@
         </div>
 
         <div class="editor-label">
-            <%: Html.LabelFor(model => model.course_date_created) %>
-        </div>
-        <div class="editor-field">
-            <%: Html.EditorFor(model => model.course_date_created) %>
-            <%: Html.ValidationMessageFor(model => model.course_date_created) %>
-        </div>
-
-        <div class="editor-label">
             <%: Html.LabelFor(model => model.course_begin_date) %>
         </div>
         <div class="editor-field">
@@ -62,13 +51,13 @@
             <%: Html.ValidationMessageFor(model => model.course_end_date) %>
         </div>
 
-        <div class="editor-label">
+<%--        <div class="editor-label">
             <%: Html.LabelFor(model => model.course_is_enabled) %>
         </div>
         <div class="editor-field">
             <%: Html.EditorFor(model => model.course_is_enabled) %>
             <%: Html.ValidationMessageFor(model => model.course_is_enabled) %>
-        </div>
+        </div>--%>
 
         <div class="editor-label">
             <%: Html.LabelFor(model => model.course_ref_grade) %>

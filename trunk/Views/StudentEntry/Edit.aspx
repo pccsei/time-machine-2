@@ -15,14 +15,6 @@
         <legend>ENTRY</legend>
 
         <div class="editor-label">
-            <%: Html.LabelFor(model => model.entry_id) %>
-        </div>
-        <div class="editor-field">
-            <%: Html.EditorFor(model => model.entry_id) %>
-            <%: Html.ValidationMessageFor(model => model.entry_id) %>
-        </div>
-
-        <div class="editor-label">
             <%: Html.LabelFor(model => model.entry_begin_time) %>
         </div>
         <div class="editor-field">

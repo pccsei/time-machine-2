@@ -48,6 +48,8 @@ namespace _14_TimeMachine2.Controllers
         [HttpPost]
         public ActionResult Create(COURSE course)
         {
+            course.course_date_created = DateTime.Now;
+
             if (ModelState.IsValid)
             {
                 db.COURSEs.Add(course);

@@ -83,7 +83,7 @@ namespace _14_TimeMachine2.Controllers
         {
             _14_TimeMachine2.Models.USER user = new _14_TimeMachine2.Models.USER();
             user = db.USERs.Find(user_id);
-            //user.toggle_status();
+            user.toggle_status();
             db.SaveChanges();
 
             return View();

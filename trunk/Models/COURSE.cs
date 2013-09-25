@@ -11,6 +11,7 @@ namespace _14_TimeMachine2.Models
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
     
     public partial class COURSE
     {
@@ -19,19 +20,45 @@ namespace _14_TimeMachine2.Models
             this.MEMBERs = new HashSet<MEMBER>();
             this.PROJECTs = new HashSet<PROJECT>();
         }
-    
+        [Key]
         public int course_id { get; set; }
+        [Required]
+        [StringLength(30, ErrorMessage = "Max 50 digits")]
+        [Display(Name = "Course")]
         public string course_name { get; set; }
+        [Required]
+        [Display(Name = "Submit Day")]
         public int course_submit_day { get; set; }
+        [Required]
+        [Display(Name = "Created Date")]
+        [DataType(DataType.DateTime)]
         public System.DateTime course_date_created { get; set; }
+        [Required]
+        [Display(Name = "Begin Date")]
+        [DataType(DataType.Date)]
         public System.DateTime course_begin_date { get; set; }
+        [Required]
+        [Display(Name = "End Date")]
+        [DataType(DataType.Date)]
         public System.DateTime course_end_date { get; set; }
+        [Required]
+        [Display(Name = "Enabled?")]
         public short course_is_enabled { get; set; }
+        [Required]
+        [Display(Name = "Reference Grade")]
         public Nullable<double> course_ref_grade { get; set; }
+        [Required]
+        [Display(Name = "Reference Hours")]
         public Nullable<double> course_ref_hours { get; set; }
     
         public virtual ICollection<MEMBER> MEMBERs { get; set; }
         public virtual ICollection<PROJECT> PROJECTs { get; set; }
+
+        // ryoder [start]
+        public bool is_enabled()
+        {
+            return (this.course_is_enabled == 1);
+        }
 
         public List<USER> getStudentsForCourse()
         {

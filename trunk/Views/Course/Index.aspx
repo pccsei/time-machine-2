@@ -32,9 +32,6 @@
             <%: Html.DisplayNameFor(model => model.course_end_date) %>
         </th>
         <th>
-            <%: Html.DisplayNameFor(model => model.course_is_enabled) %>
-        </th>
-        <th>
             <%: Html.DisplayNameFor(model => model.course_ref_grade) %>
         </th>
         <th>
@@ -44,7 +41,7 @@
     </tr>
 
 <% foreach (var item in Model) { %>
-    <tr>
+    <tr id="tr_<%= item.course_id %>" <% if (!item.is_enabled()) { %>class="disabled_course"<% } %>>
         <td>
             <%: Html.DisplayFor(modelItem => item.course_id) %>
         </td>
@@ -64,18 +61,15 @@
             <%: Html.DisplayFor(modelItem => item.course_end_date) %>
         </td>
         <td>
-            <%: Html.DisplayFor(modelItem => item.course_is_enabled) %>
-        </td>
-        <td>
             <%: Html.DisplayFor(modelItem => item.course_ref_grade) %>
         </td>
         <td>
             <%: Html.DisplayFor(modelItem => item.course_ref_hours) %>
         </td>
         <td>
-            <%: Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) %> |
-            <%: Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) %> |
-            <%: Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ }) %>
+            <%: Html.ActionLink("edit", "Edit", new {  id=item.course_id }) %> |
+           <%-- <%: Html.ActionLink("Details", "Details", new {  /*id=item.course_id */ }) %> |--%>
+            <a class="enable_disable_link" onclick="toggle_course_status('<%= item.course_id  %>')">disable</a>
         </td>
     </tr>
 <% } %>
