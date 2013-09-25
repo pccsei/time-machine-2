@@ -11,12 +11,18 @@ namespace _14_TimeMachine2.Models
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
     
     public partial class ENTRY
     {
         public int entry_id { get; set; }
+
+        [Required]
         public Nullable<System.DateTime> entry_begin_time { get; set; }
+        [Required]
         public Nullable<System.DateTime> entry_end_time { get; set; }
+
+
         public Nullable<int> entry_total_time { get; set; }
         public string entry_work_accomplished { get; set; }
         public string entry_comment { get; set; }
