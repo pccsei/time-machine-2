@@ -1,17 +1,40 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.master" Inherits="System.Web.Mvc.ViewPage<IEnumerable<_14_TimeMachine2.Models.ENTRY>>" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
-    Index
+    Student Time Log
+</asp:Content>
+
+<asp:Content ID="Content6" ContentPlaceHolderID="HeadContent" runat="server">
+    <style type="text/css">
+        .student_list {
+            width:100%;
+            margin:auto;
+            
+        }
+
+        td, th, tr {
+            padding:5px 10px 5px 10px;
+        }
+
+        th {
+            width:auto;
+            font-size:10pt;
+        }
+
+        tr:nth-child(even) {
+            background-color:#ffffff;
+        }
+    </style>
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
-<h2>Index</h2>
+<h2>Time Log</h2>
 
-<p>
-    <%: Html.ActionLink("Create New", "Create") %>
-</p>
-<table>
+<div class="submit">
+    <%: Html.ActionLink("Create New Entry", "Create") %>
+</div>
+<table class="student_list">
     <tr>
 <%--        <th>
             <%: Html.DisplayNameFor(model => model.entry_id) %>

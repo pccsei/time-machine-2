@@ -48,7 +48,7 @@ mark {
 
     .float-left #logo {
         position: relative;
-        right: 50px;
+        right: 0px;
         bottom: 10px;
     }
 
