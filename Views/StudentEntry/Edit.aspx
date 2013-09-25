@@ -39,14 +39,6 @@
         </div>
 
         <div class="editor-label">
-            <%: Html.LabelFor(model => model.entry_total_time) %>
-        </div>
-        <div class="editor-field">
-            <%: Html.EditorFor(model => model.entry_total_time) %>
-            <%: Html.ValidationMessageFor(model => model.entry_total_time) %>
-        </div>
-
-        <div class="editor-label">
             <%: Html.LabelFor(model => model.entry_work_accomplished) %>
         </div>
         <div class="editor-field">

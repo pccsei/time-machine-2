@@ -52,7 +52,7 @@ namespace _14_TimeMachine2.Controllers
         {
             ViewBag.entry_category_id = new SelectList(db.CATEGORies, "category_id", "category_name");
             ViewBag.entry_location_id = new SelectList(db.LOCATIONs, "location_id", "location_name");
-            ViewBag.entry_project_id = new SelectList(db.PROJECTs, "project_id", "project_name");
+            ViewBag.entry_project_id = new SelectList(db.USERs.Find("117567").getProjectsForUser(), "project_id", "project_name");
             return View();
         }
 
@@ -62,6 +62,11 @@ namespace _14_TimeMachine2.Controllers
         [HttpPost]
         public ActionResult Create(ENTRY entry)
         {
+            DateTime startTime = DateTime.Parse(entry.entry_begin_time.ToString());
+            DateTime endTime = DateTime.Parse(entry.entry_end_time.ToString());
+            Double totalTime = endTime.Subtract(startTime).TotalMinutes;
+
+            entry.entry_total_time = Convert.ToInt32(totalTime);
             if (ModelState.IsValid)            {
                 entry.entry_user_id = currentUser;
                 db.ENTRies.Add(entry);
@@ -100,6 +105,10 @@ namespace _14_TimeMachine2.Controllers
         [HttpPost]
         public ActionResult Edit(ENTRY entry)
         {
+            Double totalTime = (DateTime.Parse(entry.entry_begin_time.ToString()) - DateTime.Parse(entry.entry_begin_time.ToString())).TotalMinutes;
+
+            entry.entry_total_time = Convert.ToInt32(totalTime);
+            
             if (ModelState.IsValid)
             {
                 db.Entry(entry).State = EntityState.Modified;
