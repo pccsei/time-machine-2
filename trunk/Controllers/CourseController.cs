@@ -91,27 +91,27 @@ namespace _14_TimeMachine2.Controllers
         //
         // GET: /Course/Delete/5
 
-        public ActionResult Delete(int id = 0)
-        {
-            COURSE course = db.COURSEs.Find(id);
-            if (course == null)
-            {
-                return HttpNotFound();
-            }
-            return View(course);
-        }
+        //public ActionResult Delete(int id = 0)
+        //{
+        //    COURSE course = db.COURSEs.Find(id);
+        //    if (course == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+        //    return View(course);
+        //}
 
-        //
-        // POST: /Course/Delete/5
+        ////
+        //// POST: /Course/Delete/5
 
-        [HttpPost, ActionName("Delete")]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            COURSE course = db.COURSEs.Find(id);
-            db.COURSEs.Remove(course);
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
+        //[HttpPost, ActionName("Delete")]
+        //public ActionResult DeleteConfirmed(int id)
+        //{
+        //    COURSE course = db.COURSEs.Find(id);
+        //    db.COURSEs.Remove(course);
+        //    db.SaveChanges();
+        //    return RedirectToAction("Index");
+        //}
 
         protected override void Dispose(bool disposing)
         {
