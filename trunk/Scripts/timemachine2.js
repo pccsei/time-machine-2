@@ -23,6 +23,7 @@ function toggle_user_status(user_id) {
 }
 
 $(window).load(function () {
+    console.log("helloe");
     $('.disabled_user').hide();
     $('.disabled_user').find(".enable_disable_link").text('enable');
     
@@ -68,3 +69,5 @@ $(window).load(function () {
         // show_disabled = show_disabled ^ 1;
     // });
 // });
+
+

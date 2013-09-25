@@ -87,6 +87,24 @@ namespace _14_TimeMachine2.Models
             return courseList;
         }
 
+        public List<PROJECT> getProjectsForUser()
+        {
+            List<COURSE> courseList = new List<COURSE>();
+            List<PROJECT> projectList = new List<PROJECT>();
+
+            foreach (MEMBER m in this.MEMBERs)
+            {
+                courseList.Add(db.COURSEs.Find(m.member_course_id));
+            }
+
+            foreach (COURSE m in courseList)
+            {
+                projectList.AddRange(db.PROJECTs.Where(p => p.project_course_id == m.course_id));
+            }
+
+            return projectList;
+        }
+
         public float[] getCourseStatsForStudent(int course_id)
         {
             var course   = db.COURSEs.Find(course_id);
