@@ -178,6 +178,10 @@
     <Compile Include="Controllers\StudentController.cs" />
     <Compile Include="Controllers\StudentEntryController.cs" />
     <Compile Include="Controllers\TeacherController.cs" />
+    <Compile Include="Filters\AuthorizeManagerAttribute.cs" />
+    <Compile Include="Filters\AuthorizeStudentAttribute.cs" />
+    <Compile Include="Filters\AuthorizeTeacherAttribute.cs" />
+    <Compile Include="Filters\AuthorizeUserAttribute.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -293,7 +297,6 @@
       <LastGenOutput>TM2Model2.Designer.cs</LastGenOutput>
     </EntityDeploy>
     <Content Include="Images\TIme machine logo.png" />
-    <Content Include="Images\white_carbonfiber.png" />
     <Content Include="Models\EF.Utility.CS.ttinclude" />
     <Content Include="Models\TM2Model.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -371,7 +374,6 @@
     <Content Include="Views\Teacher\Alerts.aspx" />
     <Content Include="Views\Teacher\CategoryChosen.aspx" />
     <Content Include="Views\Teacher\Index.aspx" />
-    <Content Include="Views\Teacher\OldIndex.aspx" />
     <Content Include="Views\Teacher\Selection_Change.aspx" />
     <Content Include="Views\Teacher\Settings.aspx" />
     <Content Include="Views\Teacher\Timelog.aspx" />

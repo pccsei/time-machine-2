@@ -5,9 +5,11 @@ using System.Web;
 using System.Web.Mvc;
 using System.Data.SqlClient;
 using _14_TimeMachine2.Models ;
+using _14_TimeMachine2.Filters;
 
 namespace _14_TimeMachine2.Controllers
 {
+    [AuthorizeStudent]
     public class StudentController : Controller
     {
         private TM2Entities2 db = new TM2Entities2();
