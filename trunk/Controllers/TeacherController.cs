@@ -22,33 +22,32 @@ namespace _14_TimeMachine2.Controllers
         public ActionResult Index()
         {
             
-            var query = (from courses in db.COURSEs 
-                         select courses).ToList();
+            //var query = (from courses in db.COURSEs 
+            //             select courses).ToList();
 
-            List<COURSE> listOfCourses = new List<COURSE>();
+            //List<COURSE> listOfCourses = new List<COURSE>();
 
-            var memberQuery = (from members in db.MEMBERs
-                               select members).ToList();
+            //var memberQuery = (from members in db.MEMBERs
+            //                   select members).ToList();
 
-            List<string> listOfMembers = new List<string>();
+            //List<string> listOfMembers = new List<string>();
 
-            foreach (var member in memberQuery)
-            {
+            //foreach (var member in memberQuery)
+            //{
 
-                foreach (var item in query)
-                {
-                    //"mgeary" will be changed to indicate whatever teacher is currently logged in
-                    if ((item.course_id == member.member_course_id) && (member.member_user_id == "rhowell"))
-                        listOfCourses.Add(item);
-                }
-            }
+                //foreach (var item in query)
+                //{
+                //    //"mgeary" will be changed to indicate whatever teacher is currently logged in
+                //    //if ((item.course_id == member.member_course_id) && (member.member_user_id == "mgeary"))
+                //        listOfCourses.Add(item);
+                //}
+            //}
 
-            var selectlist = new SelectList(listOfCourses, "course_id", "course_name", 1);
+            var coursesForTeacher = db.USERs.Find("mgeary").getCoursesForUser();
+            var selectlist = new SelectList(coursesForTeacher, "course_id", "course_name", 1);
             ViewData["Courses"] = selectlist;
 
-
-
-            return View(db.class_summary.ToList());
+            return View(coursesForTeacher);
         }
 
         public ActionResult SortStudent(string sortOrder)
