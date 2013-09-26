@@ -35,7 +35,7 @@ namespace _14_TimeMachine2.Models
         [Required]
         [Display(Name = "Date Created")]
         public System.DateTime project_date_created { get; set; }
-        [Required]
+        //[Required]
         [Display(Name = "Description")]
         public string project_description { get; set; }
         [Required]
@@ -51,5 +51,20 @@ namespace _14_TimeMachine2.Models
         public virtual COURSE COURSE { get; set; }
         public virtual ICollection<ENTRY> ENTRies { get; set; }
         public virtual USER USER { get; set; }
+
+        // ryoder [start]
+        public bool is_enabled()
+        {
+            return (this.project_is_enabled == 1);
+        }
+
+        public void toggle_status()
+        {
+            this.project_is_enabled = (short)(this.project_is_enabled ^ 1);
+            return;
+        }
+
+        // ryoder [end]
+
     }
 }

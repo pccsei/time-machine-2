@@ -9,11 +9,10 @@
         <meta name="viewport" content="width=device-width" />
         <%: Styles.Render("~/Content/css") %>
         <%: Styles.Render("~/Content/themes/base/anytime.css") %>
-        <%: Styles.Render("~/Content/css") %>
         <%: Styles.Render("~/Theme/redmond/jquery-ui-1.10.3.custom.min.css") %>
-         <%: Styles.Render("~/Content/css/jquery.timepicker.css") %>
-        <%: Scripts.Render("~/bundles/modernizr") %>
+        <%: Styles.Render("~/Content/css/jquery.timepicker.css") %>
         <%: Styles.Render("~/Content/css/jquery-ui-timepicker-addon.css") %>
+        <%: Styles.Render("~/Content/tm2.css") %>
         <%: Scripts.Render("~/bundles/modernizr") %>
         <%: Scripts.Render("~/Scripts/jquery-1.7.1.min.js") %>
         <asp:ContentPlaceHolder ID="HeadContent" runat="server" />

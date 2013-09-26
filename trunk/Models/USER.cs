@@ -37,11 +37,6 @@ namespace _14_TimeMachine2.Models
         public virtual ICollection<PROJECT> PROJECTs { get; set; }
 
         // ryoder [start]
-        public bool is_enabled()
-        {
-            return (this.user_is_enabled == 1);
-        }
-
         public bool is_student()
         {
             return (this.user_is_student == 1);
@@ -57,23 +52,16 @@ namespace _14_TimeMachine2.Models
             return (this.user_is_manager == 1);
         }
 
+        public bool is_enabled()
+        {
+            return (this.user_is_enabled == 1);
+        }
+
         public void toggle_status()
         {
-            this.user_is_enabled = (Int16)(this.user_is_enabled ^ 1);
+            this.user_is_enabled = (short)(this.user_is_enabled ^ 1);
             return;
         }
-        // ryoder [end]
-
-        //public float totalHoursForCourse(int courseId)
-        //{
-
-        //}
-        //public float HoursPerWeek(int courseId)
-        //{
-        //}
-        //public float HoursPerDay(int courseId)
-        //{
-        //}
 
         public List<COURSE> getCoursesForUser()
         {
@@ -137,5 +125,6 @@ namespace _14_TimeMachine2.Models
 
             return stats;
         }
+        // ryoder [end]
     }
 }

@@ -60,6 +60,12 @@ namespace _14_TimeMachine2.Models
             return (this.course_is_enabled == 1);
         }
 
+        public void toggle_status()
+        {
+            this.course_is_enabled = (short)(this.course_is_enabled ^ 1);
+            return;
+        }
+
         public List<USER> getStudentsForCourse()
         {
             List<USER> studentList = new List<USER>();
@@ -89,5 +95,6 @@ namespace _14_TimeMachine2.Models
 
             return teacher;
         }
+        // ryoder [end]
     }
 }
