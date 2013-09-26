@@ -15,6 +15,7 @@
         <%: Styles.Render("~/Content/tm2.css") %>
         <%: Scripts.Render("~/bundles/modernizr") %>
         <%: Scripts.Render("~/Scripts/jquery-1.7.1.min.js") %>
+        <%: Scripts.Render("~/Scripts/timemachine2.js") %>
         <asp:ContentPlaceHolder ID="HeadContent" runat="server" />
     </head>
     <body>
@@ -26,9 +27,11 @@
                 <div class="float-right">
                     <nav>
                         <ul id="menu">
-                            <%--<li><%: Html.ActionLink("About", "About", "Home") %></li>--%>
-                            <li><%: Html.ActionLink("Home", "Index", "Home") %></li>
-                            <%--<li><%: Html.ActionLink("Contact", "Contact", "Home") %></li>--%>
+                            <!--<li><%: Html.ActionLink("Home", "Index", "Home") %></li>-->
+                            <li><%: Html.ActionLink("Timelog", "Index", "TimeEntry") %></li>
+                            <!--<li><%: Html.ActionLink("Summary", "Summary", "Student") %></li>-->
+                            <li><%: Html.ActionLink("Students", "Index", "Teacher") %></li>
+                            <li><%: Html.ActionLink("Teachers", "Index", "Manager") %></li>
                         </ul>
                     </nav>
                 </div>
@@ -53,7 +56,6 @@
         <%: Scripts.Render("~/Scripts/jquery.timepicker.js") %>
         <%: Scripts.Render("~/Scripts/jquery-ui-sliderAccess.js") %>
         <%: Scripts.Render("~/Scripts/jquery-ui-timepicker-addon.js") %>
-        <%: Scripts.Render("~/Scripts/timemachine2.js") %>
         <%: Scripts.Render("~/Scripts/time-entry.js") %>
         <asp:ContentPlaceHolder ID="ScriptsSection" runat="server" /> 
     </body>
