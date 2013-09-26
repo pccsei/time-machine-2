@@ -18,7 +18,10 @@
             <%: Html.LabelFor(model => model.entry_project_id) %>
         </div>
         <div class="editor-field">
-            <%: Html.DropDownList("entry_project_id", String.Empty) %>
+
+            <%: Html.DropDownListFor(m => m.entry_project_id, 
+                (SelectList)(ViewBag.entry_project_id), "-- Select Project --") %>
+
             <%: Html.ValidationMessageFor(model => model.entry_project_id) %>
         </div>
 
@@ -42,7 +45,8 @@
             <%: Html.LabelFor(model => model.entry_location_id) %>
         </div>
         <div class="editor-field">
-            <%: Html.DropDownList("entry_location_id", String.Empty) %>
+            <%: Html.DropDownListFor(m => m.entry_location_id, 
+                (SelectList)(ViewBag.entry_project_id), "-- Select Location --") %>
             <%: Html.ValidationMessageFor(model => model.entry_location_id) %>
         </div>
 
@@ -50,7 +54,8 @@
             <%: Html.LabelFor(model => model.entry_category_id) %>
         </div>
         <div class="editor-field">
-            <%: Html.DropDownList("entry_category_id", String.Empty) %>
+            <%: Html.DropDownListFor(m => m.entry_category_id, 
+                (SelectList)(ViewBag.entry_category_id), "-- Select Category --") %>
             <%: Html.ValidationMessageFor(model => model.entry_category_id) %>
         </div>
 

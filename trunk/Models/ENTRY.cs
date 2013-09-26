@@ -17,13 +17,11 @@ namespace _14_TimeMachine2.Models
     public partial class ENTRY
     {
         public int entry_id { get; set; }
-        [Required]
         [Display(Name = "Start Time")]
         public Nullable<System.DateTime> entry_begin_time { get; set; }
         [Required]
         [Display(Name = "End Time")]
         public Nullable<System.DateTime> entry_end_time { get; set; }
-        [Required]
         [Display(Name = "Total Time")]
         public Nullable<int> entry_total_time { get; set; }
         [Display(Name = "Work Accomplished")]

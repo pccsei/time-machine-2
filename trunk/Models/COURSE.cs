@@ -30,7 +30,7 @@ namespace _14_TimeMachine2.Models
         [Display(Name = "Submit Day")]
         public int course_submit_day { get; set; }
         [Required]
-        [Display(Name = "Created Date")]
+        [Display(Name = "Date Created")]
         [DataType(DataType.DateTime)]
         public System.DateTime course_date_created { get; set; }
         [Required]
