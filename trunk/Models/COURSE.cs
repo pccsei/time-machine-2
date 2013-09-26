@@ -12,6 +12,7 @@ namespace _14_TimeMachine2.Models
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+    using _14_TimeMachine2.Models;
     
     public partial class COURSE
     {
@@ -77,6 +78,11 @@ namespace _14_TimeMachine2.Models
                 if (temp.is_student())
                     studentList.Add(temp);
             }
+
+            // We still need the capability to sort by total hours
+            //var stats = student.getCourseStatsForStudent(course.course_id);
+            _14_TimeMachine2.Models.USER.USER_SortByLastName sortName = new _14_TimeMachine2.Models.USER.USER_SortByLastName();
+            studentList.Sort(sortName);            
 
             return studentList;
         }

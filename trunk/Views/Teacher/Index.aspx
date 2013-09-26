@@ -21,10 +21,10 @@
 <table>
     <tr>
         <th>
-            <%: Html.ActionLink("Student Name", "CategoryChosen", new { sortOrder = ViewBag.NameSort}) %>
+            <%: Html.ActionLink("Student Name", "Index", new { sortOrder = ViewBag.NameSort}) %>
         </th>
         <th>
-            <%: Html.ActionLink("Total Hours", "CategoryChosen", new { sortOrder = ViewBag.HourSort}) %>
+            <%: Html.ActionLink("Total Hours", "Index", new { sortOrder = ViewBag.HourSort}) %>
         </th>
         <th>
             Daily Hours
