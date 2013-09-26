@@ -12,9 +12,9 @@ namespace _14_TimeMachine2.Filters
     {        
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
-            // If the user is not a teacher, close the session
-            if (!HttpContext.Current.Session["userType"].ToString().Equals("teacher"))
-                HttpContext.Current.Response.Close();            
+            // If the user is not a teacher, redirect
+            if ((string) HttpContext.Current.Session["userIsTeacher"] == "False")
+                HttpContext.Current.Response.Redirect("http://eaglesnest.pcci.edu/studentlife/pathway/");
         }
     }
 }
