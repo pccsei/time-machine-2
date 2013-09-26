@@ -12,7 +12,7 @@ using System.Data.Entity;
 
 namespace _14_TimeMachine2.Controllers
 {
-    public class StudentEntryController : Controller
+    public class TimeEntryController : Controller
     {
         private TM2Entities2 db = new TM2Entities2();
         private TM2Entities2 db2 = new TM2Entities2();
@@ -20,7 +20,7 @@ namespace _14_TimeMachine2.Controllers
         string currentUser = "117567";
 
         //
-        // GET: /StudentEntry/
+        // GET: /TimeEntry/
 
         public ActionResult Index()
         {
@@ -33,7 +33,7 @@ namespace _14_TimeMachine2.Controllers
         }
 
         //
-        // GET: /StudentEntry/Details/5
+        // GET: /TimeEntry/Details/5
 
         public ActionResult Details(int id = 0)
         {
@@ -46,7 +46,7 @@ namespace _14_TimeMachine2.Controllers
         }
 
         //
-        // GET: /StudentEntry/Create
+        // GET: /TimeEntry/Create
 
         public ActionResult Create()
         {
@@ -57,7 +57,7 @@ namespace _14_TimeMachine2.Controllers
         }
 
         //
-        // POST: /StudentEntry/Create
+        // POST: /TimeEntry/Create
 
         [HttpPost]
         public ActionResult Create(ENTRY entry)
@@ -83,7 +83,7 @@ namespace _14_TimeMachine2.Controllers
         }
 
         //
-        // GET: /StudentEntry/Edit/5
+        // GET: /TimeEntry/Edit/5
 
         public ActionResult Edit(int id = 0)
         {
@@ -100,7 +100,7 @@ namespace _14_TimeMachine2.Controllers
         }
 
         //
-        // POST: /StudentEntry/Edit/5
+        // POST: /TimeEntry/Edit/5
 
         [HttpPost]
         public ActionResult Edit(ENTRY entry)
@@ -123,7 +123,7 @@ namespace _14_TimeMachine2.Controllers
         }
 
         //
-        // GET: /StudentEntry/Delete/5
+        // GET: /TimeEntry/Delete/5
 
         public ActionResult Delete(int id = 0)
         {
@@ -136,7 +136,7 @@ namespace _14_TimeMachine2.Controllers
         }
 
         //
-        // POST: /StudentEntry/Delete/5
+        // POST: /TimeEntry/Delete/5
 
         [HttpPost, ActionName("Delete")]
         public ActionResult DeleteConfirmed(int id)
