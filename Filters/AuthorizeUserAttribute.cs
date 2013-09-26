@@ -17,23 +17,27 @@ namespace _14_TimeMachine2.Filters
             // System.Web.HttpContext.Current.Session[
             try
             {
-                string userId = "118679"; //HttpContext.Current.User.Identity.Name.Substring(HttpContext.Current.User.Identity.Name.LastIndexOf('\\') + 1).ToString();
+                string userId = "superuser"; //HttpContext.Current.User.Identity.Name.Substring(HttpContext.Current.User.Identity.Name.LastIndexOf('\\') + 1).ToString();
                 //string userId = HttpContext.Current.User.Identity.Name.Substring(HttpContext.Current.User.Identity.Name.LastIndexOf('\\') + 1).ToString();
-                USER currentUser = new USER();
-                currentUser = db.USERs.Find(userId);
+                USER currentUser = db.USERs.Find(userId);
 
                 if (currentUser == null || !(currentUser.is_enabled()))
                     //HttpContext.Current.Response.Close();
                     HttpContext.Current.Response.Redirect("http://eaglesnest.pcci.edu/studentlife/pathway/");
                 else
-                    if (currentUser.is_student())
-                        HttpContext.Current.Session["userType"] = "student";//Session["userType"] = "student";
-                    else if (currentUser.is_teacher())
-                        HttpContext.Current.Session["userType"] = "teacher";
-                    else if (currentUser.is_manager())
-                        HttpContext.Current.Session["userType"] = "manager";
-                    else
-                        HttpContext.Current.Session["userType"] = null;
+                {
+                    HttpContext.Current.Session["userIsStudent"] = currentUser.is_student().ToString();// ? "yes" : "no";
+                    HttpContext.Current.Session["userIsTeacher"] = currentUser.is_teacher().ToString();// ? "yes" : "no";
+                    HttpContext.Current.Session["userIsManager"] = currentUser.is_manager().ToString();// ? "yes" : "no";
+                    //if (currentUser.is_student())
+                    //    HttpContext.Current.Session["userType"] = "student";//Session["userType"] = "student";
+                    //if (currentUser.is_teacher())
+                    //    HttpContext.Current.Session["userType"] = "teacher";
+                    //if (currentUser.is_manager())
+                    //    HttpContext.Current.Session["userType"] = "manager";
+                    //else
+                    //    HttpContext.Current.Session["userType"] = null;
+                }
 
                 HttpContext.Current.Session["username"] = userId;
 

@@ -6,7 +6,6 @@ using System.Web.Mvc;
 using System.Data.SqlClient;
 using _14_TimeMachine2.Models;
 using _14_TimeMachine2.Filters;
-using _14_TimeMachine2.Filters;
 
 namespace _14_TimeMachine2.Controllers
 {
