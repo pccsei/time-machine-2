@@ -430,7 +430,7 @@ label.checkbox {
     display: inline;
 }
 
-input, textarea {
+input, textarea, select {
     border: 1px solid #e2e2e2;
     background: #fff;
     color: #333;
@@ -439,7 +439,9 @@ input, textarea {
     padding: 5px;
     width: 300px;
 }
-
+select {
+     width: 310px;
+}
 textarea {
     font-family: inherit;
     width: 500px;
@@ -722,6 +724,9 @@ tr.pager td {
     /* forms */
     input {
         width: 90%;
+    }
+    select {
+        width: 91.5%;
     }
 
     /* login page */

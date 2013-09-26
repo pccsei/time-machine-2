@@ -1,7 +1,7 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage" %>
 
 <asp:Content ID="indexTitle" ContentPlaceHolderID="TitleContent" runat="server">
-    Home Page - My ASP.NET MVC Application
+    Home Page - TimeMachine2
 </asp:Content>
 
 <asp:Content ID="indexFeatured" ContentPlaceHolderID="FeaturedContent" runat="server">
@@ -10,32 +10,7 @@
         <div class="content-wrapper">
             <hgroup class="title">
                 <h1>Home Page.</h1>
-                <h2><%: ViewBag.Message %>
-                    <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="category_id" DataSourceID="SqlDataSource1" EmptyDataText="There are no data records to display.">
-                        <Columns>
-                            <asp:BoundField DataField="category_id" HeaderText="category_id" ReadOnly="True" SortExpression="category_id" />
-                            <asp:BoundField DataField="category_name" HeaderText="category_name" SortExpression="category_name" />
-                            <asp:BoundField DataField="category_created_on" HeaderText="category_created_on" SortExpression="category_created_on" />
-                            <asp:BoundField DataField="category_created_by" HeaderText="category_created_by" SortExpression="category_created_by" />
-                        </Columns>
-                    </asp:GridView>
-                    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:TM2Connection %>" DeleteCommand="DELETE FROM [CATEGORY] WHERE [category_id] = @category_id" InsertCommand="INSERT INTO [CATEGORY] ([category_name], [category_created_on], [category_created_by]) VALUES (@category_name, @category_created_on, @category_created_by)" SelectCommand="SELECT * FROM [CATEGORY]" UpdateCommand="UPDATE [CATEGORY] SET [category_name] = @category_name, [category_created_on] = @category_created_on, [category_created_by] = @category_created_by WHERE [category_id] = @category_id">
-                        <DeleteParameters>
-                            <asp:Parameter Name="category_id" Type="Int32" />
-                        </DeleteParameters>
-                        <InsertParameters>
-                            <asp:Parameter Name="category_name" Type="String" />
-                            <asp:Parameter Name="category_created_on" Type="DateTime" />
-                            <asp:Parameter Name="category_created_by" Type="String" />
-                        </InsertParameters>
-                        <UpdateParameters>
-                            <asp:Parameter Name="category_name" Type="String" />
-                            <asp:Parameter Name="category_created_on" Type="DateTime" />
-                            <asp:Parameter Name="category_created_by" Type="String" />
-                            <asp:Parameter Name="category_id" Type="Int32" />
-                        </UpdateParameters>
-                    </asp:SqlDataSource>
-                </h2>
+                <h2><%: ViewBag.Message %></h2>
             </hgroup>
         </div>
     </section>

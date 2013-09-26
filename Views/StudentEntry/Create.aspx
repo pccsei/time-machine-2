@@ -23,7 +23,7 @@
         </div>
 
         <div class="editor-label">
-            Start Time
+            <%: Html.LabelFor(model => model.entry_begin_time) %>
         </div>
         <div class="editor-field">
             <%: Html.EditorFor(model => model.entry_begin_time) %>
@@ -31,7 +31,7 @@
         </div>
 
         <div class="editor-label">
-            End Time
+            <%: Html.LabelFor(model => model.entry_end_time) %>
         </div>
         <div class="editor-field">
             <%: Html.EditorFor(model => model.entry_end_time) %>
@@ -39,7 +39,7 @@
         </div>
 
         <div class="editor-label">
-            <%: Html.LabelFor(model => model.entry_location_id, "Location") %>
+            <%: Html.LabelFor(model => model.entry_location_id) %>
         </div>
         <div class="editor-field">
             <%: Html.DropDownList("entry_location_id", String.Empty) %>
@@ -47,7 +47,7 @@
         </div>
 
         <div class="editor-label">
-            <%: Html.LabelFor(model => model.entry_category_id, "Category") %>
+            <%: Html.LabelFor(model => model.entry_category_id) %>
         </div>
         <div class="editor-field">
             <%: Html.DropDownList("entry_category_id", String.Empty) %>
@@ -55,7 +55,7 @@
         </div>
 
         <div class="editor-label">
-            Work Accomplished
+            <%: Html.LabelFor(model => model.entry_work_accomplished) %>
         </div>
         <div class="editor-field">
             <%: Html.EditorFor(model => model.entry_work_accomplished) %>
@@ -63,7 +63,7 @@
         </div>
 
         <div class="editor-label">
-            Comment
+            <%: Html.LabelFor(model => model.entry_comment) %>
         </div>
         <div class="editor-field">
             <%: Html.EditorFor(model => model.entry_comment) %>
