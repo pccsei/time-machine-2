@@ -23,57 +23,11 @@ namespace _14_TimeMachine2.Controllers
 
         public ActionResult Index()
         {
-            
-            //var query = (from courses in db.COURSEs 
-            //             select courses).ToList();
-
-            //List<COURSE> listOfCourses = new List<COURSE>();
-
-            //var memberQuery = (from members in db.MEMBERs
-            //                   select members).ToList();
-
-            //List<string> listOfMembers = new List<string>();
-
-            //foreach (var member in memberQuery)
-            //{
-
-                //foreach (var item in query)
-                //{
-                //    //"mgeary" will be changed to indicate whatever teacher is currently logged in
-                //    //if ((item.course_id == member.member_course_id) && (member.member_user_id == "mgeary"))
-                //        listOfCourses.Add(item);
-                //}
-            //}
-
             var coursesForTeacher = db.USERs.Find("mgeary").getCoursesForUser();
             var selectlist = new SelectList(coursesForTeacher, "course_id", "course_name", 1);
             ViewData["Courses"] = selectlist;
 
             return View(coursesForTeacher);
-        }
-
-        [HttpPost]
-        public ActionResult Index(string sortOrder)
-        {
-
-            ViewBag.NameSort = String.IsNullOrEmpty(sortOrder) ? "Name_desc" : "";
-            ViewBag.HourSort = sortOrder == "Hours" ? "Hours_des" : "Hours";
-            var students = from student in db.USERs select student;
-            var hours = from hour in db.class_summary select hour;
-
-            switch (sortOrder)
-            {
-                case "Name_desc":
-                    students = students.OrderByDescending(student => student.user_first_name);
-                    break;
-                case "Hours":
-                    hours = hours.OrderBy(hour => hour.TotalHours);
-                    break;
-                default:
-                    students = students.OrderBy(student => student.user_first_name);
-                    break;
-            }
-            return View();
         }
 
        [HttpPost]
@@ -96,13 +50,6 @@ namespace _14_TimeMachine2.Controllers
         public ActionResult Alerts()
         {
             return View();
-        }
-
-        public ActionResult TeacherSummary()
-        {
-            var db = new TM2Entities2();
-
-            return View(db.class_summary.ToList());
         }
     }
 }
