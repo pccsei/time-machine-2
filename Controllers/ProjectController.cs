@@ -125,5 +125,18 @@ namespace _14_TimeMachine2.Controllers
             db.Dispose();
             base.Dispose(disposing);
         }
+
+        // ryoder [start]
+        [HttpPost]
+        public ActionResult ToggleEnabled(int id)
+        {
+            _14_TimeMachine2.Models.PROJECT project = new _14_TimeMachine2.Models.PROJECT();
+            project = db.PROJECTs.Find(id);
+            project.toggle_status();
+            db.SaveChanges();
+
+            return View();
+        }
+        // ryoder [end]
     }
 }

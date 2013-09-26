@@ -79,10 +79,10 @@ namespace _14_TimeMachine2.Controllers
         }
 
         [HttpPost]
-        public ActionResult UserToggleEnabled(string user_id)
+        public ActionResult UserToggleEnabled(string id)
         {
             _14_TimeMachine2.Models.USER user = new _14_TimeMachine2.Models.USER();
-            user = db.USERs.Find(user_id);
+            user = db.USERs.Find(id);
             user.toggle_status();
             db.SaveChanges();
 

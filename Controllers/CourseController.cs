@@ -118,5 +118,19 @@ namespace _14_TimeMachine2.Controllers
             db.Dispose();
             base.Dispose(disposing);
         }
+
+        // ryoder [start]
+        [HttpPost]
+        public ActionResult ToggleEnabled(int id)
+        {
+            _14_TimeMachine2.Models.COURSE course = new _14_TimeMachine2.Models.COURSE();
+            course = db.COURSEs.Find(id);
+            course.toggle_status();
+            db.SaveChanges();
+
+            return View();
+        }
+        // ryoder [end]
+
     }
 }

@@ -4,9 +4,10 @@
     Index
 </asp:Content>
 
+
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
-<h2>Index</h2>
+<h2 style="display: inline;">Index</h2> <a id="show_hide_button">show all</a>
 
 <p>
     <%: Html.ActionLink("Create New", "Create") %>
@@ -44,7 +45,7 @@
     </tr>
 
 <% foreach (var item in Model) { %>
-    <tr>
+    <tr id="tr_<%= item.project_id %>" <% if (!item.is_enabled()) { %>class="disabled_entity"<% } %>>
         <%--<td>
             <%: Html.DisplayFor(modelItem => item.project_id) %>
         </td>--%>
@@ -74,7 +75,7 @@
         </td>--%>
         <td>
             <%: Html.ActionLink("edit", "edit", new { /* id=item.PrimaryKey */ }) %> |
-            <a class="enable_disable_link" onclick="toggle_project_status('<%= item.project_id  %>')">disable</a>
+            <a class="enable_disable_link" onclick="toggle_entity_enabled('<%= item.project_id  %>', '<%= Url.Action("ToggleEnabled", "Project")  %>')">disable</a>
             <%--<%: Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) %> |--%>
             <%--<%: Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ }) %>--%>
         </td>
