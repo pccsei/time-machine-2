@@ -51,7 +51,6 @@ namespace _14_TimeMachine2.Controllers
         public ActionResult Create()
         {
             ViewBag.entry_category_id = new SelectList(db.CATEGORies, "category_id", "category_name");
-            
             ViewBag.entry_location_id = new SelectList(db.LOCATIONs, "location_id", "location_name");
             ViewBag.entry_project_id = new SelectList(db.USERs.Find("117567").getProjectsForUser(), "project_id", "project_name");
             return View();
