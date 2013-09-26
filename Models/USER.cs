@@ -125,6 +125,18 @@ namespace _14_TimeMachine2.Models
 
             return stats;
         }
-        // ryoder [end]
+
+        public class USER_SortByLastName : IComparer<USER>
+        {
+
+            #region IComparable<USER> Members
+
+            public int Compare(USER x, USER y)
+            {
+                return string.Compare(x.user_last_name, y.user_last_name);
+            }
+
+            #endregion
+        }
     }
 }

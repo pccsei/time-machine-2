@@ -52,8 +52,10 @@ namespace _14_TimeMachine2.Controllers
             return View(coursesForTeacher);
         }
 
-        public ActionResult SortStudent(string sortOrder)
+        [HttpPost]
+        public ActionResult Index(string sortOrder)
         {
+
             ViewBag.NameSort = String.IsNullOrEmpty(sortOrder) ? "Name_desc" : "";
             ViewBag.HourSort = sortOrder == "Hours" ? "Hours_des" : "Hours";
             var students = from student in db.USERs select student;
@@ -71,7 +73,7 @@ namespace _14_TimeMachine2.Controllers
                     students = students.OrderBy(student => student.user_first_name);
                     break;
             }
-            return View(db.class_summary.ToList());
+            return View();
         }
 
        [HttpPost]
