@@ -27,43 +27,29 @@ namespace _14_TimeMachine2.Controllers
         {
             return View(db.USERs);
         }
-
+                
         // HTML Helper that enables the controller to receive parameters from the View
-
         [HttpPost]
-        public ActionResult Index(string userID, string firstName, string lastName)
+        public ActionResult Index(string firstName, string lastName, string userID)
         {
-            // Create and initialize a connection string to the database
-            //string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["SEI_TimeMachine2ConnectionString"].ConnectionString;
-            string connectionString = System.Web.Configuration.WebConfigurationManager.ConnectionStrings["TM2Connection"].ConnectionString;
+         
+            USER newTeacher = new USER();
 
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            if (ModelState.IsValid)
             {
-                SqlCommand command_CreateTeacher = new SqlCommand();
+                newTeacher.user_first_name = firstName;
+                newTeacher.user_last_name  = lastName;
+                newTeacher.user_id         = userID;
+                newTeacher.user_is_teacher = 1;
+                newTeacher.user_is_enabled = 1;
+                newTeacher.user_is_manager = 0;
+                newTeacher.user_is_student = 0;
+                db.USERs.Add(newTeacher);
 
-                // Give the command both the name of the stored procedure and specify the type of command - NPC 9/16/2013
-                command_CreateTeacher.CommandText = "tm_CreateTeacher";
-                command_CreateTeacher.CommandType = CommandType.StoredProcedure;
-
-                // Add parameters to the command to execute the stored procedure - NPC 9/16/2013
-                command_CreateTeacher.Parameters.AddWithValue("@userID", userID);
-                command_CreateTeacher.Parameters.AddWithValue("@firstName", firstName);
-                command_CreateTeacher.Parameters.AddWithValue("@lastName", lastName);
-
-                //command_CreateTeacher.Parameters.Add(new SqlParameter("@userID", SqlDbType.VarChar)).Value = userID;
-                //command_CreateTeacher.Parameters.Add(new SqlParameter("@firstName", SqlDbType.VarChar)).Value = firstName;
-                //command_CreateTeacher.Parameters.Add(new SqlParameter("@lastName", SqlDbType.VarChar)).Direction = lastName;
-
-
-
-                command_CreateTeacher.Connection = connection;
-
-
-                connection.Open();
-                SqlDataReader user_reader = command_CreateTeacher.ExecuteReader();
-                connection.Close();
-                //TM_DB.Dispose();
+                db.SaveChanges();
+                return RedirectToAction("Index");
             }
+
             return View(db.USERs);
         }
 

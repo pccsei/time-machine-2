@@ -21,13 +21,16 @@
         <legend></legend>
         <div class="field">
             <table>
-                <tr><td>User ID:   </td><td><input type="text" name="userID" id="userID"/></td></tr>
+                <tr><td>User ID:   </td><td><input type="text" name="userID"    id="userID"/></td></tr>
                 <tr><td>First Name:</td><td><input type="text" name="firstName" id="firstName"/></td></tr>
-                <tr><td>Last Name: </td><td><input type="text" name="lastName" id="lastName" /></td></tr>
+                <tr><td>Last Name: </td><td><input type="text" name="lastName"  id="lastName" /></td></tr>
             </table>
         </div>
     </fieldset>
-        <asp:Button ID="submitButton" runat="server" Text="Create Teacher" OnClick="submitButton_Click" />
+        <p>
+            <input type="submit" value="Create Teacher" />
+        </p>
+        <%--<asp:Button ID="submitButton" runat="server" Text="Create Teacher" OnClick="submitButton_Click" />--%>
     </form>
     
     <br /><br />
