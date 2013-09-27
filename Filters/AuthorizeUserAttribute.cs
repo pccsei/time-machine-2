@@ -17,7 +17,7 @@ namespace _14_TimeMachine2.Filters
             // System.Web.HttpContext.Current.Session[
             try
             {
-                string userId = "superuser"; //HttpContext.Current.User.Identity.Name.Substring(HttpContext.Current.User.Identity.Name.LastIndexOf('\\') + 1).ToString();
+                string userId = HttpContext.Current.User.Identity.Name.Substring(HttpContext.Current.User.Identity.Name.LastIndexOf('\\') + 1).ToString();
                 //string userId = HttpContext.Current.User.Identity.Name.Substring(HttpContext.Current.User.Identity.Name.LastIndexOf('\\') + 1).ToString();
                 USER currentUser = db.USERs.Find(userId);
 
@@ -26,9 +26,9 @@ namespace _14_TimeMachine2.Filters
                     HttpContext.Current.Response.Redirect("http://eaglesnest.pcci.edu/studentlife/pathway/");
                 else
                 {
-                    HttpContext.Current.Session["userIsStudent"] = currentUser.is_student().ToString();// ? "yes" : "no";
-                    HttpContext.Current.Session["userIsTeacher"] = currentUser.is_teacher().ToString();// ? "yes" : "no";
-                    HttpContext.Current.Session["userIsManager"] = currentUser.is_manager().ToString();// ? "yes" : "no";
+                    HttpContext.Current.Session["userIsStudent"] = currentUser.is_student();//.ToString();// ? "yes" : "no";
+                    HttpContext.Current.Session["userIsTeacher"] = currentUser.is_teacher();//.ToString();// ? "yes" : "no";
+                    HttpContext.Current.Session["userIsManager"] = currentUser.is_manager();//.ToString();// ? "yes" : "no";
                     //if (currentUser.is_student())
                     //    HttpContext.Current.Session["userType"] = "student";//Session["userType"] = "student";
                     //if (currentUser.is_teacher())
