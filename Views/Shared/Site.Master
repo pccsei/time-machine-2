@@ -24,7 +24,7 @@
                 <div class="float-left">
 
                     <!-- The image works on localhost but not on the server, the problem is the path name -->
-                    <img id="logo" src="<%= Url.Action("timemachine2/Images", "seproject", new {id="TIme machine logo.png"})%>" alt="Logo" />
+                    <img id="logo" src="<%= Url.Action("TIme machine logo.png", "Images")%>" alt="Logo" />
                 </div>
                 <div class="float-right">
                     <nav>
