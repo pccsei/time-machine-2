@@ -22,7 +22,7 @@
         <header>
             <div class="content-wrapper">
                 <div class="float-left">
-                    <img id="logo" src="../../Images/Time machine logo.png" />
+                    <img id="logo" src="<%= Url.Action("TIme machine logo.png", "Images")%>" alt="Logo" />
                 </div>
                 <div class="float-right">
                     <nav>
