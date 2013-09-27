@@ -171,7 +171,6 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\CourseController.cs" />
-    <Compile Include="Controllers\ManagerController.cs" />
     <Compile Include="Controllers\ProjectController.cs" />
     <Compile Include="Controllers\StudentController.cs" />
     <Compile Include="Controllers\TimeEntryController.cs" />
@@ -208,9 +207,10 @@
       <DependentUpon>TM2Model2.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\TM2Model2.Context.cs">
-      <AutoGen>True</AutoGen>
+      <SubType>Code</SubType>
       <DesignTime>True</DesignTime>
-      <DependentUpon>TM2Model2.Context.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>TM2Model.Context.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\TM2Model2.cs">
       <AutoGen>True</AutoGen>
@@ -287,11 +287,9 @@
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
-    <Content Include="EF.Utility.CS.ttinclude" />
     <Content Include="Images\PL_Add_1x.png" />
     <Content Include="Images\PL_Add_1x_Hit.png" />
     <Content Include="Images\TIme machine logo.png" />
-    <Content Include="Models\EF.Utility.CS.ttinclude" />
     <Content Include="ClassDiagram1.cd" />
     <EntityDeploy Include="Models\TM2Model2.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
@@ -356,8 +354,7 @@
     <Content Include="Views\Course\Details.aspx" />
     <Content Include="Views\Course\Edit.aspx" />
     <Content Include="Views\Course\Index.aspx" />
-    <Content Include="Views\Manager\Index.aspx" />
-    <Content Include="Views\Manager\StronglyTypedView.aspx" />
+    <Content Include="Views\Teacher\Index.aspx" />
     <Content Include="Views\Project\Create.aspx" />
     <Content Include="Views\Project\Delete.aspx" />
     <Content Include="Views\Project\Details.aspx" />
@@ -370,10 +367,9 @@
     <Content Include="Views\TimeEntry\Index.aspx" />
     <Content Include="Views\Student\StudentTimeEntry.aspx" />
     <Content Include="Views\Student\Summary.aspx" />
-    <Content Include="Views\Student\Index.aspx" />
     <Content Include="Views\Student\TimeLog.aspx" />
     <Content Include="Views\Teacher\Alerts.aspx" />
-    <Content Include="Views\Teacher\Index.aspx" />
+    <Content Include="Views\Student\Index.aspx" />
     <Content Include="Views\Teacher\Settings.aspx" />
     <Content Include="Views\Teacher\Timelog.aspx" />
     <Content Include="Views\Teacher\WeeklyReports.aspx" />

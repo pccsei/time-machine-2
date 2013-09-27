@@ -56,11 +56,12 @@
             <%: Html.DisplayNameFor(model => model.PROJECT.project_name) %>
         </th>
         <th>
-            <%: Html.DisplayNameFor(model => model.entry_begin_time) %>
+            Time Period
+            <%--: Html.DisplayNameFor(model => model.entry_begin_time) --%>
         </th>
-        <th>
+<%--        <th>
             <%: Html.DisplayNameFor(model => model.entry_end_time) %>
-        </th>
+        </th>--%>
         <th>
             <%: Html.DisplayNameFor(model => model.entry_total_time) %>
         </th>
@@ -73,9 +74,6 @@
         <th>
             <%: Html.DisplayNameFor(model => model.entry_work_accomplished) %>
         </th>
-        <th>
-            <%: Html.DisplayNameFor(model => model.entry_comment) %>
-        </th>
 
         <th></th>
     </tr>
@@ -87,13 +85,14 @@
             <%: Html.DisplayFor(modelItem => item.PROJECT.project_name) %>
         </td>
         <td>
-            <%: Html.DisplayFor(modelItem => item.entry_begin_time) %>
+            <%: ((DateTime) item.entry_begin_time).ToString("M/d h:mm tt") %> -
+            <%: ((DateTime) item.entry_end_time).ToString("h:mm tt") %>
         </td>
-        <td>
+<%--        <td>
             <%: Html.DisplayFor(modelItem => item.entry_end_time) %>
-        </td>
+        </td>--%>
         <td>
-            <%: Html.DisplayFor(modelItem => item.entry_total_time) %>
+            <%: ((float) item.entry_total_time / 60.0f).ToString("n2") %>
         </td>
         <td>
             <%: Html.DisplayFor(modelItem => item.LOCATION.location_name) %>
@@ -103,9 +102,6 @@
         </td>
         <td>
             <%: Html.DisplayFor(modelItem => item.entry_work_accomplished) %>
-        </td>
-        <td>
-            <%: Html.DisplayFor(modelItem => item.entry_comment) %>
         </td>
 
         <td>

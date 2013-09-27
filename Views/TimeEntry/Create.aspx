@@ -46,7 +46,7 @@
         </div>
         <div class="editor-field">
             <%: Html.DropDownListFor(m => m.entry_location_id, 
-                (SelectList)(ViewBag.entry_project_id), "-- Select Location --") %>
+                (SelectList)(ViewBag.entry_location_id), "-- Select Location --") %>
             <%: Html.ValidationMessageFor(model => model.entry_location_id) %>
         </div>
 

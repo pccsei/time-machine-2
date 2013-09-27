@@ -30,8 +30,8 @@
                             <!--<li><%: Html.ActionLink("Home", "Index", "Home") %></li>-->
                             <li><%: Html.ActionLink("Timelog", "Index", "TimeEntry") %></li>
                             <!--<li><%: Html.ActionLink("Summary", "Summary", "Student") %></li>-->
-                            <li><%: Html.ActionLink("Students", "Index", "Teacher") %></li>
-                            <li><%: Html.ActionLink("Teachers", "Index", "Manager") %></li>
+                            <li><%: Html.ActionLink("Students", "Index", "Student") %></li>
+                            <li><%: Html.ActionLink("Teachers", "Index", "Teacher") %></li>
                         </ul>
                     </nav>
                 </div>

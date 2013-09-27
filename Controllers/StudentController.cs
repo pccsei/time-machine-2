@@ -9,32 +9,35 @@ using _14_TimeMachine2.Filters;
 
 namespace _14_TimeMachine2.Controllers
 {
-    [AuthorizeStudent]
+    [AuthorizeTeacher]
     public class StudentController : Controller
     {
         private TM2Entities2 db = new TM2Entities2();
-        //
-        // GET: /Student/
+        // This needs to be changed to reflect the session user
+        public string currentUser = "mgeary";
 
         public ActionResult Index()
         {
-            return View();
+            var coursesForTeacher = db.USERs.Find(currentUser).getCoursesForUser();
+            var selectlist = new SelectList(coursesForTeacher, "course_id", "course_name", 1);
+            ViewData["Courses"] = selectlist;
+
+            return View(coursesForTeacher);
         }
 
         [HttpPost]
-        public ActionResult StudentTimeEntry()
+        public ActionResult Create(USER newStudent)
         {
-            var projectQuery = db.PROJECTs.Select(p => new { p.project_id, p.project_name});
-            ViewBag.project_id = new SelectList(projectQuery.AsEnumerable(), "project_id", "project_name", 0);
-
-            var locationQuery = db.LOCATIONs.Select(l => new {l.location_id, l.location_name });
-            ViewBag.location_id = new SelectList(locationQuery.AsEnumerable(), "location_id", "location_name", 0);
-
-            var categoryQuery = db.CATEGORies.Select(c => new { c.category_id, c.category_name });
-            ViewBag.category_id = new SelectList(categoryQuery.AsEnumerable(), "category_id", "category_name", 0);
-
-            return View(db.ENTRies.ToList());
+            if (ModelState.IsValid)
+            {
+                db.USERs.Add(newStudent);
+                db.SaveChanges();
+            }
+            return RedirectToAction("Index");
         }
+
+
+
 
         public ActionResult TimeLog()
         {
@@ -47,5 +50,15 @@ namespace _14_TimeMachine2.Controllers
         //    return View();
         //}
 
+        [HttpPost]
+        public ActionResult ToggleEnabled(string id)
+        {
+            _14_TimeMachine2.Models.USER user = new _14_TimeMachine2.Models.USER();
+            user = db.USERs.Find(id);
+            user.toggle_status();
+            db.SaveChanges();
+
+            return View();
+        }
     }
 }
