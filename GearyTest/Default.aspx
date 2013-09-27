@@ -7,8 +7,10 @@
     <title>Geary Test</title>
 </head>
 <body>
-
-
+    
+    <form id="form1" runat="server">
+        <asp:TextBox ID="TextBox1" runat="server" OnTextChanged="TextBox1_TextChanged"></asp:TextBox>
+    </form>
     
 </body>
 </html>

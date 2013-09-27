@@ -32,6 +32,5 @@ namespace _14_TimeMachine2.Models
         public DbSet<MEMBER> MEMBERs { get; set; }
         public DbSet<PROJECT> PROJECTs { get; set; }
         public DbSet<USER> USERs { get; set; }
-        public DbSet<class_summary> class_summary { get; set; }
     }
 }

@@ -13,18 +13,6 @@
           <EntitySet Name="MEMBER" EntityType="TM2ModelNameSpace.Store.MEMBER" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="PROJECT" EntityType="TM2ModelNameSpace.Store.PROJECT" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="USER" EntityType="TM2ModelNameSpace.Store.USER" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="class_summary" EntityType="TM2ModelNameSpace.Store.class_summary" store:Type="Views" store:Schema="dbo" store:Name="class_summary">
-            <DefiningQuery>SELECT 
-      [class_summary].[course_id] AS [course_id], 
-      [class_summary].[user_id] AS [user_id], 
-      [class_summary].[user_first_name] AS [user_first_name], 
-      [class_summary].[user_last_name] AS [user_last_name], 
-      [class_summary].[TotalHours] AS [TotalHours], 
-      [class_summary].[HoursDay] AS [HoursDay], 
-      [class_summary].[HoursWeek] AS [HoursWeek], 
-      [class_summary].[ProjectedGrade] AS [ProjectedGrade]
-      FROM [dbo].[class_summary] AS [class_summary]</DefiningQuery>
-          </EntitySet>
           <AssociationSet Name="FK__ENTRY__entry_cat__498EEC8D" Association="TM2ModelNameSpace.Store.FK__ENTRY__entry_cat__498EEC8D">
             <End Role="CATEGORY" EntitySet="CATEGORY" />
             <End Role="ENTRY" EntitySet="ENTRY" />
@@ -145,20 +133,6 @@
         <!--Errors Found During Generation:
       warning 6002: The table/view 'SEI_TimeMachine2.dbo.class_summary' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
       -->
-        <EntityType Name="class_summary">
-          <Key>
-            <PropertyRef Name="course_id" />
-            <PropertyRef Name="user_id" />
-          </Key>
-          <Property Name="course_id" Type="int" Nullable="false" />
-          <Property Name="user_id" Type="nvarchar" Nullable="false" MaxLength="50" />
-          <Property Name="user_first_name" Type="nvarchar" MaxLength="50" />
-          <Property Name="user_last_name" Type="nvarchar" MaxLength="50" />
-          <Property Name="TotalHours" Type="int" />
-          <Property Name="HoursDay" Type="int" />
-          <Property Name="HoursWeek" Type="int" />
-          <Property Name="ProjectedGrade" Type="float" />
-        </EntityType>
         <Association Name="FK__ENTRY__entry_cat__498EEC8D">
           <End Role="CATEGORY" Type="TM2ModelNameSpace.Store.CATEGORY" Multiplicity="0..1" />
           <End Role="ENTRY" Type="TM2ModelNameSpace.Store.ENTRY" Multiplicity="*" />
@@ -268,7 +242,6 @@
           <EntitySet Name="MEMBERs" EntityType="TM2ModelNameSpace.MEMBER" />
           <EntitySet Name="PROJECTs" EntityType="TM2ModelNameSpace.PROJECT" />
           <EntitySet Name="USERs" EntityType="TM2ModelNameSpace.USER" />
-          <EntitySet Name="class_summary" EntityType="TM2ModelNameSpace.class_summary" />
           <AssociationSet Name="FK__ENTRY__entry_cat__498EEC8D" Association="TM2ModelNameSpace.FK__ENTRY__entry_cat__498EEC8D">
             <End Role="CATEGORY" EntitySet="CATEGORies" />
             <End Role="ENTRY" EntitySet="ENTRies" />
@@ -401,20 +374,6 @@
           <NavigationProperty Name="ENTRies" Relationship="TM2ModelNameSpace.FK__ENTRY__entry_use__4B7734FF" FromRole="USER" ToRole="ENTRY" />
           <NavigationProperty Name="MEMBERs" Relationship="TM2ModelNameSpace.FK_MEMBER_user_id" FromRole="USER" ToRole="MEMBER" />
           <NavigationProperty Name="PROJECTs" Relationship="TM2ModelNameSpace.FK_PROJECT_created_by" FromRole="USER" ToRole="PROJECT" />
-        </EntityType>
-        <EntityType Name="class_summary">
-          <Key>
-            <PropertyRef Name="course_id" />
-            <PropertyRef Name="user_id" />
-          </Key>
-          <Property Name="course_id" Type="Int32" Nullable="false" />
-          <Property Name="user_id" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
-          <Property Name="user_first_name" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
-          <Property Name="user_last_name" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
-          <Property Name="TotalHours" Type="Int32" />
-          <Property Name="HoursDay" Type="Int32" />
-          <Property Name="HoursWeek" Type="Int32" />
-          <Property Name="ProjectedGrade" Type="Double" />
         </EntityType>
         <Association Name="FK__ENTRY__entry_cat__498EEC8D">
           <End Role="CATEGORY" Type="TM2ModelNameSpace.CATEGORY" Multiplicity="0..1" />
@@ -605,20 +564,6 @@
                 <ScalarProperty Name="user_is_student" ColumnName="user_is_student" />
                 <ScalarProperty Name="user_is_teacher" ColumnName="user_is_teacher" />
                 <ScalarProperty Name="user_is_manager" ColumnName="user_is_manager" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="class_summary">
-            <EntityTypeMapping TypeName="TM2ModelNameSpace.class_summary">
-              <MappingFragment StoreEntitySet="class_summary">
-                <ScalarProperty Name="course_id" ColumnName="course_id" />
-                <ScalarProperty Name="user_id" ColumnName="user_id" />
-                <ScalarProperty Name="user_first_name" ColumnName="user_first_name" />
-                <ScalarProperty Name="user_last_name" ColumnName="user_last_name" />
-                <ScalarProperty Name="TotalHours" ColumnName="TotalHours" />
-                <ScalarProperty Name="HoursDay" ColumnName="HoursDay" />
-                <ScalarProperty Name="HoursWeek" ColumnName="HoursWeek" />
-                <ScalarProperty Name="ProjectedGrade" ColumnName="ProjectedGrade" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
