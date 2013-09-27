@@ -26,7 +26,7 @@
 <%--        <th>
             <%: Html.DisplayNameFor(model => model.USER.user_first_name) %>
         </th>--%>
-        <th>
+<%--        <th>
             <%: Html.DisplayNameFor(model => model.project_date_created) %>
         </th>
         <th>
@@ -37,7 +37,7 @@
         </th>
         <th>
             <%: Html.DisplayNameFor(model => model.project_end_date) %>
-        </th>
+        </th>--%>
         <%--<th>
             <%: Html.DisplayNameFor(model => model.project_is_enabled) %>
         </th>--%>
@@ -58,7 +58,7 @@
         <%--<td>
             <%: Html.DisplayFor(modelItem => item.USER.user_first_name) %>
         </td>--%>
-        <td>
+<%--        <td>
             <%: Html.DisplayFor(modelItem => item.project_date_created) %>
         </td>
         <td>
@@ -69,12 +69,12 @@
         </td>
         <td>
             <%: Html.DisplayFor(modelItem => item.project_end_date) %>
-        </td>
+        </td>--%>
         <%--<td>
             <%: Html.DisplayFor(modelItem => item.project_is_enabled) %>
         </td>--%>
         <td>
-            <%: Html.ActionLink("edit", "edit", new { /* id=item.PrimaryKey */ }) %> |
+            <%: Html.ActionLink("edit", "edit", new {  id=item.project_id  }) %> |
             <a class="enable_disable_link" onclick="toggle_entity_enabled('<%= item.project_id  %>', '<%= Url.Action("ToggleEnabled", "Project")  %>')">disable</a>
             <%--<%: Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) %> |--%>
             <%--<%: Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ }) %>--%>

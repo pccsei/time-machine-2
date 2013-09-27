@@ -38,10 +38,10 @@ namespace _14_TimeMachine2.Models
         //[Required]
         [Display(Name = "Description")]
         public string project_description { get; set; }
-        [Required]
+        //[Required]
         [Display(Name = "Begin Date")]
         public System.DateTime project_begin_date { get; set; }
-        [Required]
+        //[Required]
         [Display(Name = "End Date")]
         public System.DateTime project_end_date { get; set; }
         [Required]

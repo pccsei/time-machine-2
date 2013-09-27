@@ -17,13 +17,12 @@ namespace _14_TimeMachine2.Controllers
         private TM2Entities2 db = new TM2Entities2();
         private TM2Entities2 db2 = new TM2Entities2();
 
-        string currentUser = "117567";
+        public string currentUser = "117567";
 
-        //
-        // GET: /TimeEntry/
-
-        public ActionResult Index()
+        public ActionResult Index(string id = "")
         {
+            if((string.Compare(id, "") != 0))
+                currentUser = id;
             var entries = db.ENTRies.Include(e => e.CATEGORY).Include(e => e.LOCATION).Include(e => e.PROJECT).Include(e => e.USER);
             List<ENTRY> entryList = new List<ENTRY>();
 
@@ -31,9 +30,6 @@ namespace _14_TimeMachine2.Controllers
             entryList = db.USERs.Find(currentUser).ENTRies.ToList();
             return View(entryList);
         }
-
-        //
-        // GET: /TimeEntry/Details/5
 
         public ActionResult Details(int id = 0)
         {
@@ -52,7 +48,7 @@ namespace _14_TimeMachine2.Controllers
         {
             ViewBag.entry_category_id = new SelectList(db.CATEGORies, "category_id", "category_name");
             ViewBag.entry_location_id = new SelectList(db.LOCATIONs, "location_id", "location_name");
-            ViewBag.entry_project_id = new SelectList(db.USERs.Find("117567").getProjectsForUser(), "project_id", "project_name");
+            ViewBag.entry_project_id = new SelectList(db.USERs.Find(currentUser).getProjectsForUser(), "project_id", "project_name");
             return View();
         }
 

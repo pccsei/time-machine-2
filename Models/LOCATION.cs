@@ -11,6 +11,7 @@ namespace _14_TimeMachine2.Models
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
     
     public partial class LOCATION
     {
@@ -20,6 +21,7 @@ namespace _14_TimeMachine2.Models
         }
     
         public int location_id { get; set; }
+        [Display(Name = "Location")]
         public string location_name { get; set; }
         public Nullable<short> location_is_enabled { get; set; }
         public Nullable<int> location_created_by { get; set; }
