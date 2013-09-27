@@ -13,8 +13,8 @@ namespace _14_TimeMachine2.Filters
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
             // If the user is not a teacher, redirect
-            if ((string) HttpContext.Current.Session["userIsTeacher"] == "False")
-                HttpContext.Current.Response.Redirect("http://eaglesnest.pcci.edu/studentlife/pathway/");
+            if (!(bool) HttpContext.Current.Session["userIsManager"])                
+              HttpContext.Current.Response.Redirect("http://eaglesnest.pcci.edu/studentlife/pathway/");
         }
     }
 }
