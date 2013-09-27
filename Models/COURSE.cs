@@ -46,10 +46,10 @@ namespace _14_TimeMachine2.Models
         [Display(Name = "Enabled?")]
         public short course_is_enabled { get; set; }
         [Required]
-        [Display(Name = "Reference Grade")]
+        [Display(Name = "Grade")]
         public Nullable<double> course_ref_grade { get; set; }
         [Required]
-        [Display(Name = "Reference Hours")]
+        [Display(Name = "Hours")]
         public Nullable<double> course_ref_hours { get; set; }
     
         public virtual ICollection<MEMBER> MEMBERs { get; set; }
