@@ -46,7 +46,7 @@
 
 <div class="submit">
     <a href="<%: Url.Action("Create") %>">
-        <img id="add" src="../Images/PL_Add_1x.png" alt="Create" />
+        <img id="add" src="<%= Url.Action("PL_Add_1x.png", "Images")%>" alt="Create Entry" />
         Create New Entry
     </a>
 </div>
