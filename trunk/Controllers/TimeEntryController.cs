@@ -21,8 +21,8 @@ namespace _14_TimeMachine2.Controllers
 
         public ActionResult Index(string id = "")
         {
-            if((string.Compare(id, "") != 0))
-                currentUser = id;
+            //if((string.Compare(id, "") != 0))
+            //    currentUser = id;
             var entries = db.ENTRies.Include(e => e.CATEGORY).Include(e => e.LOCATION).Include(e => e.PROJECT).Include(e => e.USER);
             List<ENTRY> entryList = new List<ENTRY>();
 
@@ -63,7 +63,8 @@ namespace _14_TimeMachine2.Controllers
             Double totalTime = endTime.Subtract(startTime).TotalMinutes;
 
             entry.entry_total_time = Convert.ToInt32(totalTime);
-            if (ModelState.IsValid)            {
+            if (ModelState.IsValid)            
+            {
                 entry.entry_user_id = currentUser;
                 db.ENTRies.Add(entry);
          
@@ -101,7 +102,7 @@ namespace _14_TimeMachine2.Controllers
         [HttpPost]
         public ActionResult Edit(ENTRY entry)
         {
-            Double totalTime = (DateTime.Parse(entry.entry_begin_time.ToString()) - DateTime.Parse(entry.entry_begin_time.ToString())).TotalMinutes;
+            Double totalTime = (DateTime.Parse(entry.entry_end_time.ToString()) - DateTime.Parse(entry.entry_begin_time.ToString())).TotalMinutes;
 
             entry.entry_total_time = Convert.ToInt32(totalTime);
             
