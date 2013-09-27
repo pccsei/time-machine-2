@@ -35,8 +35,8 @@ namespace _14_TimeMachine2.Models
         [Display(Name = "Project")]
         [Required]
         public Nullable<int> entry_project_id { get; set; }
-        [Display(Name = "Location")]
         [Required]
+        [Display(Name = "Location")]
         public Nullable<int> entry_location_id { get; set; }
         [Display(Name = "Category")]
         [Required]
