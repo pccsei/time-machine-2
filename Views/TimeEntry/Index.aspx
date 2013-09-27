@@ -7,9 +7,14 @@
 <asp:Content ID="Content6" ContentPlaceHolderID="HeadContent" runat="server">
     <style type="text/css">
         .student_list {
-            width:100%;
+            width:auto;
             margin:auto;
             
+        }
+
+        div.submit {
+            font-size:12pt;
+            margin: 15px 0 15px 0;
         }
 
         td, th, tr {
@@ -18,7 +23,7 @@
 
         th {
             width:auto;
-            font-size:10pt;
+            font-size:11pt;
         }
 
         tr:nth-child(even) {
