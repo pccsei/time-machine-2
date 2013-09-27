@@ -17,6 +17,17 @@ namespace _14_TimeMachine2
     // Note: For instructions on enabling IIS6 or IIS7 classic mode, 
     // visit http://go.microsoft.com/?LinkId=9394801
 
+    public static class GlobalVariables
+    {
+        public static string current_user_id
+        {
+            get
+            {
+                return (string) HttpContext.Current.Session["username"].ToString();
+            }
+        }
+    }
+
     public class MvcApplication : System.Web.HttpApplication
     {
         //private TM2Entities db = new TM2Entities();        
