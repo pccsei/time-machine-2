@@ -288,6 +288,8 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="EF.Utility.CS.ttinclude" />
+    <Content Include="Images\PL_Add_1x.png" />
+    <Content Include="Images\PL_Add_1x_Hit.png" />
     <Content Include="Images\TIme machine logo.png" />
     <Content Include="Models\EF.Utility.CS.ttinclude" />
     <Content Include="ClassDiagram1.cd" />

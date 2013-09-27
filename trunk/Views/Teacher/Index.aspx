@@ -4,6 +4,18 @@
     Index
 </asp:Content>
 
+<asp:Content ID="Content7" ContentPlaceHolderID="HeadContent" runat="server">
+    <style type="text/css">
+        th, tr, td {
+            padding:2px 10px 2px 10px;
+        }
+
+        .right-align {
+            text-align: right;
+        }
+    </style>
+</asp:Content>
+
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
 <h2>Student Summary</h2>
@@ -18,7 +30,7 @@
 
 
 <!--A list of all the students in a class -->
-<table>
+<table id="student_list">
     <tr>
         <th>
             ID
@@ -53,16 +65,16 @@
             <a href ="/TimeEntry/Index/<%: student.user_id %>"><%: student.user_first_name %>
             <%: student.user_last_name %> </a>
         </td>
-        <td>
+        <td class="right-align">
             <%: stats[0].ToString("n2") %>
         </td>
-        <td>
+        <td class="right-align">
             <%: stats[1].ToString("n2") %>
         </td>
-        <td>
+        <td class="right-align">
             <%: stats[2].ToString("n2") %>
         </td>
-        <td>
+        <td class="right-align">
             <%: stats[3].ToString("n2") %>%
         </td>
         <%--<td>

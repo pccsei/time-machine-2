@@ -17,6 +17,14 @@
             margin: 15px 0 15px 0;
         }
 
+        #add {
+            float:left;
+        }
+
+            #add:hover {
+                content:url("../Images/PL_Add_1x_Hit.png");
+            }
+
         td, th, tr {
             padding:5px 10px 5px 10px;
         }
@@ -37,7 +45,10 @@
 <h2>Time Log</h2>
 
 <div class="submit">
-    <%: Html.ActionLink("Create New Entry", "Create") %>
+    <a href="<%: Url.Action("Create") %>">
+        <img id="add" src="../Images/PL_Add_1x.png" alt="Create" />
+        Create New Entry
+    </a>
 </div>
 <table class="student_list">
     <tr>
