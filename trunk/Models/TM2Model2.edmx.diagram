@@ -12,7 +12,6 @@
         <EntityTypeShape EntityType="TM2ModelNameSpace.MEMBER" Width="1.5" PointX="6" PointY="5.25" IsExpanded="true" />
         <EntityTypeShape EntityType="TM2ModelNameSpace.PROJECT" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="TM2ModelNameSpace.USER" Width="1.5" PointX="0.75" PointY="4.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="TM2ModelNameSpace.class_summary" Width="1.5" PointX="5.75" PointY="0.875" IsExpanded="true" />
         <AssociationConnector Association="TM2ModelNameSpace.FK__ENTRY__entry_cat__498EEC8D" ManuallyRouted="false" />
         <AssociationConnector Association="TM2ModelNameSpace.FK_MEMBER_course_id" ManuallyRouted="false" />
         <AssociationConnector Association="TM2ModelNameSpace.FK_PROJECT_course_id" ManuallyRouted="false" />

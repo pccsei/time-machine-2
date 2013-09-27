@@ -179,15 +179,10 @@
     <Compile Include="Filters\AuthorizeStudentAttribute.cs" />
     <Compile Include="Filters\AuthorizeTeacherAttribute.cs" />
     <Compile Include="Filters\AuthorizeUserAttribute.cs" />
-    <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\CATEGORY.cs">
-      <DependentUpon>TM2Model2.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\class_summary.cs">
       <DependentUpon>TM2Model2.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\COURSE.cs">
@@ -207,15 +202,9 @@
       <DependentUpon>TM2Model2.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\TM2Model2.Context.cs">
-      <SubType>Code</SubType>
+      <DependentUpon>TM2Model2.Context.tt</DependentUpon>
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
-      <DependentUpon>TM2Model.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\TM2Model2.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>TM2Model2.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\TM2Model2.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -297,9 +286,8 @@
     </EntityDeploy>
     <Content Include="Images\TIme machine logo.png" />
     <Content Include="Models\EF.Utility.CS.ttinclude" />
-    <Content Include="Models\TM2Model.Context.tt">
+    <Content Include="Models\TM2Model2.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>TM2Model2.edmx</DependentUpon>
       <LastGenOutput>TM2Model2.Context.cs</LastGenOutput>
     </Content>
     <Content Include="Models\TM2Model2.edmx.diagram">
@@ -398,7 +386,6 @@
     <Content Include="Images\orderedList8.png" />
     <Content Include="Images\orderedList9.png" />
     <Content Include="Views\Shared\Error.aspx" />
-    <Content Include="Views\Shared\_LoginPartial.aspx" />
     <Content Include="Views\Shared\Site.Master" />
     <Content Include="Views\Web.config" />
   </ItemGroup>
