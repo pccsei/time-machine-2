@@ -12,6 +12,7 @@ namespace _14_TimeMachine2.Models
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.ComponentModel.DataAnnotations;
     
     public partial class USER
     {
@@ -24,9 +25,12 @@ namespace _14_TimeMachine2.Models
             this.PROJECTs = new HashSet<PROJECT>();
         }
     
+        [Display(Name = "User ID")]
         public string user_id { get; set; }
         public Nullable<short> user_is_enabled { get; set; }
+        [Display(Name = "First Name")]
         public string user_first_name { get; set; }
+        [Display(Name = "Last Name")]
         public string user_last_name { get; set; }
         public Nullable<short> user_is_student { get; set; }
         public Nullable<short> user_is_teacher { get; set; }
@@ -110,7 +114,7 @@ namespace _14_TimeMachine2.Models
                         }
                     ) != null)
                 {
-                    stats[0] += (float) e.entry_total_time;
+                    stats[0] += (float) e.entry_total_time / 60.0f;
                 }
             }
 

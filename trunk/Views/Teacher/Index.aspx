@@ -21,10 +21,13 @@
 <table>
     <tr>
         <th>
-            <%: Html.ActionLink("Student Name", "Index", new { sortOrder = ViewBag.NameSort}) %>
+            ID
         </th>
         <th>
-            <%: Html.ActionLink("Total Hours", "Index", new { sortOrder = ViewBag.HourSort}) %>
+            Student Name
+        </th>
+        <th>
+            Total Hours
         </th>
         <th>
             Daily Hours
@@ -42,20 +45,25 @@
            var stats = student.getCourseStatsForStudent(course.course_id); %>
     <tr class="datarow <%: "student-" + student.user_id + " course-" + course.course_id %>">
         <td>
-            <a href ="/TimeEntry/<%: student.user_id %>"><%: student.user_first_name %>
+            <%: student.user_id %>
+        </td>
+        <td>
+            <%--<%: Html.ActionLink(student.user_first_name + student.user_last_name, "*/TimeEntry/", 
+                new {id = "student.user_id"}, null) %>--%>
+            <a href ="/TimeEntry/Index/<%: student.user_id %>"><%: student.user_first_name %>
             <%: student.user_last_name %> </a>
         </td>
         <td>
-            <%: stats[0] %>
+            <%: stats[0].ToString("n2") %>
         </td>
         <td>
-            <%: stats[1] %>
+            <%: stats[1].ToString("n2") %>
         </td>
         <td>
-            <%: stats[2] %>
+            <%: stats[2].ToString("n2") %>
         </td>
         <td>
-            <%: stats[3] %>
+            <%: stats[3].ToString("n2") %>%
         </td>
         <%--<td>
             <%: Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) %> |
