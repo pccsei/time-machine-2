@@ -1,4 +1,5 @@
-﻿var disabled_are_hidden = 1;
+﻿// var day_of_week = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+var disabled_are_hidden = 1;
 
 function toggle_entity_enabled(entity_id, post_action) {
     var entity_row      = $("#tr_" + entity_id);
