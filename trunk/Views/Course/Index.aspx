@@ -13,18 +13,18 @@
 </p>
 <table>
     <tr>
-        <th>
+<%--        <th>
             <%: Html.DisplayNameFor(model => model.course_id) %>
-        </th>
+        </th>--%>
         <th>
             <%: Html.DisplayNameFor(model => model.course_name) %>
         </th>
         <th>
             <%: Html.DisplayNameFor(model => model.course_submit_day) %>
         </th>
-        <th>
+<%--        <th>
             <%: Html.DisplayNameFor(model => model.course_date_created) %>
-        </th>
+        </th>--%>
         <th>
             <%: Html.DisplayNameFor(model => model.course_begin_date) %>
         </th>
@@ -42,18 +42,18 @@
 
 <% foreach (var item in Model) { %>
     <tr id="tr_<%= item.course_id %>" <% if (!item.is_enabled()) { %>class="disabled_entity"<% } %>>
-        <td>
+<%--        <td>
             <%: Html.DisplayFor(modelItem => item.course_id) %>
-        </td>
+        </td>--%>
         <td>
             <%: Html.DisplayFor(modelItem => item.course_name) %>
         </td>
         <td>
             <%: Html.DisplayFor(modelItem => item.course_submit_day) %>
         </td>
-        <td>
+<%--        <td>
             <%: Html.DisplayFor(modelItem => item.course_date_created) %>
-        </td>
+        </td>--%>
         <td>
             <%: Html.DisplayFor(modelItem => item.course_begin_date) %>
         </td>

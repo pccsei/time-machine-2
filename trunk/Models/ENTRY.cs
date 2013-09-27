@@ -22,7 +22,7 @@ namespace _14_TimeMachine2.Models
         [Required]
         [Display(Name = "End Time")]
         public Nullable<System.DateTime> entry_end_time { get; set; }
-        [Display(Name = "Total Time")]
+        [Display(Name = "Hours")]
         public Nullable<int> entry_total_time { get; set; }
         [Display(Name = "Work Accomplished")]
         [Required]
