@@ -332,8 +332,6 @@
     <Content Include="Views\Course\Edit.aspx" />
     <Content Include="Views\Course\Index.aspx" />
     <Content Include="Views\Teacher\Index.aspx" />
-    <Content Include="Views\Project\Create.aspx" />
-    <Content Include="Views\Project\Delete.aspx" />
     <Content Include="Views\Project\Details.aspx" />
     <Content Include="Views\Project\Edit.aspx" />
     <Content Include="Views\Project\Index.aspx" />

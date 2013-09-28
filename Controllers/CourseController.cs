@@ -13,6 +13,8 @@ namespace _14_TimeMachine2.Controllers
     {
         private TM2Entities2 db = new TM2Entities2();
 
+        //public string currentUser = GlobalVariables.current_user_id;
+        public string currentUser = "mgeary";
         //
         // GET: /Course/
 
