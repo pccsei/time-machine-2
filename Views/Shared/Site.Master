@@ -5,7 +5,7 @@
         <meta charset="utf-8" />
         <title><asp:ContentPlaceHolder ID="TitleContent" runat="server" /></title>
         <asp:ContentPlaceHolder ID="cphHead" runat="server" />
-        <link href="<%: Url.Content("~/favicon.ico") %>" rel="shortcut icon" type="image/x-icon" />
+        <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
         <meta name="viewport" content="width=device-width" />
         <%: Styles.Render("~/Content/css") %>
         <%: Styles.Render("~/Content/themes/base/anytime.css") %>
