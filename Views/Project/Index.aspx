@@ -23,7 +23,7 @@
     
     <br /><br />
     <h2 style="display: inline;">Projects</h2> <a id="A1">show all</a>
-<table>
+<table class="standard">
     <tr>
         <th>
             <%: Html.DisplayNameFor(model => model.project_name) %>

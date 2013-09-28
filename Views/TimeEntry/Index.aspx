@@ -19,18 +19,6 @@
                 content:url("/seproject/timemachine2/Images/PL_Add_1x_Hit.png");
             }
 
-        td, th, tr {
-            padding:5px 10px 5px 10px;
-        }
-
-        th {
-            width:auto;
-            font-size:11pt;
-        }
-
-        tr:nth-child(even) {
-            background-color:#ffffff;
-        }
     </style>
 </asp:Content>
 
@@ -44,7 +32,7 @@
         Create New Entry
     </a>
 </div>
-<table class="student_list">
+<table class="zebra">
     <tr>
         <th>
             <%: Html.DisplayNameFor(model => model.PROJECT.project_name) %>

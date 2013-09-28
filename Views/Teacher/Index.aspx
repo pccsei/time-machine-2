@@ -36,7 +36,7 @@
     <br /><br />
     <h2 style="display: inline;">Teachers</h2> <a id="show_hide_button">show all</a>
 
-    <table>
+    <table class="standard">
         <tbody>
             <% foreach (var user in Model.ToArray())
                { 
