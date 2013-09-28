@@ -8,12 +8,12 @@ using System.Security.Principal;
 
 namespace _14_TimeMachine2.Filters
 {
-    public class AuthorizeTeacherAttribute : ActionFilterAttribute
+    public class AuthorizeBothAttribute : ActionFilterAttribute
     {
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
             // If the user is not a teacher, redirect
-            if (!(bool)HttpContext.Current.Session["userIsTeacher"])
+            if (!(bool)HttpContext.Current.Session["userIsTeacher"] && !(bool)HttpContext.Current.Session["userIsStudent"])
                 HttpContext.Current.Response.Redirect("http://eaglesnest.pcci.edu/studentlife/pathway/");
         }
     }

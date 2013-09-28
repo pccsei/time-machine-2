@@ -29,13 +29,22 @@
                 <div class="float-right">
                     <nav>
                         <ul id="menu">
-                            <!--<li><%: Html.ActionLink("Home", "Index", "Home") %></li>-->
-                            <li><%: Html.ActionLink("Timelog", "Index", "TimeEntry") %></li>
-                            <!--<li><%: Html.ActionLink("Summary", "Summary", "Student") %></li>-->
-                            <li><%: Html.ActionLink("Projects", "Index", "Project") %></li>
-                            <li><%: Html.ActionLink("Courses", "Index", "Course") %></li>
-                            <li><%: Html.ActionLink("Students", "Index", "Student") %></li>
-                            <li><%: Html.ActionLink("Teachers", "Index", "Teacher") %></li>
+                            <% if ((bool)HttpContext.Current.Session["userIsStudent"]){%>
+                                   <li><%: Html.ActionLink("Timelog", "Index", "TimeEntry") %></li> 
+                            <%;};%>                            
+                            <% if ((bool)HttpContext.Current.Session["userIsTeacher"]){%>
+                                   <li><%: Html.ActionLink("Projects", "Index", "Project") %></li> 
+                            <%;};%>
+                            <% if ((bool)HttpContext.Current.Session["userIsTeacher"]){%>
+                                   <li><%: Html.ActionLink("Courses", "Index", "Course") %></li> 
+                            <%;};%>                            
+                            <% if ((bool)HttpContext.Current.Session["userIsTeacher"]){%>
+                                   <li><%: Html.ActionLink("Students", "Index", "Student") %></li> 
+                            <%;};%>
+                            <%  if ((bool)HttpContext.Current.Session["userIsManager"]) {%>
+                                    <li><%: Html.ActionLink("Teachers", "Index", "Teacher") %></li> 
+                            <%;};%>
+
                         </ul>
                     </nav>
                 </div>

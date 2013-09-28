@@ -6,9 +6,11 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using _14_TimeMachine2.Models;
+using _14_TimeMachine2.Filters;
 
 namespace _14_TimeMachine2.Controllers
 {
+    [AuthorizeTeacher]
     public class CourseController : Controller
     {
         private TM2Entities2 db = new TM2Entities2();
