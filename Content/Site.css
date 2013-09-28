@@ -46,7 +46,7 @@ mark {
 }
 
     .float-left #logo {
-        height:120px;
+        height:150px;
         width:270px;
         position: relative;
         right: 0px;
@@ -60,7 +60,7 @@ mark {
 .clear-fix:after {
     content: ".";
     clear: both;
-    display: block;
+    //display: block;
     height: 0;
     visibility: hidden;
 }

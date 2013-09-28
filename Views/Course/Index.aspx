@@ -6,12 +6,12 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
-<h2 style="display: inline;">Index</h2> <a id="show_hide_button">show all</a>
+<h2 style="display: inline;">Courses</h2> <a id="show_hide_button">show all</a>
 
 <div class="submit">
     <a class="create" href="<%: Url.Action("Create") %>">
         <img id="add" src="/seproject/timemachine2/Images/PL_Add_1x.png" alt="Create Entry" />
-        Create New Entry
+        Create New Course
     </a>
 </div>
 <table class="standard">
