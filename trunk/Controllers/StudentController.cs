@@ -13,8 +13,9 @@ namespace _14_TimeMachine2.Controllers
     public class StudentController : Controller
     {
         private TM2Entities2 db = new TM2Entities2();
-        // This needs to be changed to reflect the session user
-        public string currentUser = GlobalVariables.current_user_id;
+
+        //public string currentUser = GlobalVariables.current_user_id;
+        public string currentUser = "mgeary";
 
         public ActionResult Index()
         {
