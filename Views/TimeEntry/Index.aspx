@@ -6,18 +6,7 @@
 
 <asp:Content ID="Content6" ContentPlaceHolderID="HeadContent" runat="server">
     <style type="text/css">
-        div.submit {
-            font-size:12pt;
-            margin: 15px 0 15px 0;
-        }
-
-        #add {
-            float:left;
-        }
-
-            #add:hover {
-                content:url("/seproject/timemachine2/Images/PL_Add_1x_Hit.png");
-            }
+        
 
     </style>
 </asp:Content>

@@ -8,9 +8,12 @@
 
 <h2 style="display: inline;">Index</h2> <a id="show_hide_button">show all</a>
 
-<p>
-    <%: Html.ActionLink("Create New", "Create") %>
-</p>
+<div class="submit">
+    <a class="create" href="<%: Url.Action("Create") %>">
+        <img id="add" src="/seproject/timemachine2/Images/PL_Add_1x.png" alt="Create Entry" />
+        Create New Entry
+    </a>
+</div>
 <table class="standard">
     <tr>
 <%--        <th>
