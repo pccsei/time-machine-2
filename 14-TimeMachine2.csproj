@@ -335,6 +335,7 @@
     <Content Include="Views\Course\Edit.aspx" />
     <Content Include="Views\Course\Index.aspx" />
     <Content Include="Views\Error\Index.aspx" />
+    <Content Include="Views\Student\WeeklyView.aspx" />
     <Content Include="Views\Teacher\Index.aspx" />
     <Content Include="Views\Project\Create.aspx" />
     <Content Include="Views\Project\Delete.aspx" />
