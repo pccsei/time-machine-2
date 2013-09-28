@@ -21,7 +21,7 @@
             float:left;
         }
 
-            #add:hover {
+            #add:hover, div.create {
                 content:url("/seproject/timemachine2/Images/PL_Add_1x_Hit.png");
             }
 
@@ -45,7 +45,7 @@
 <h2>Time Log</h2>
 
 <div class="submit">
-    <a href="<%: Url.Action("Create") %>">
+    <a class="create" href="<%: Url.Action("Create") %>">
         <img id="add" src="/seproject/timemachine2/Images/PL_Add_1x.png" alt="Create Entry" />
         Create New Entry
     </a>
