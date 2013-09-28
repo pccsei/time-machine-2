@@ -166,6 +166,7 @@
     <Compile Include="Controllers\TeacherController.cs" />
     <Compile Include="Filters\AuthorizeManagerAttribute.cs" />
     <Compile Include="Filters\AuthorizeStudentAttribute.cs" />
+    <Compile Include="Filters\AuthorizeBothAttribute.cs" />
     <Compile Include="Filters\AuthorizeTeacherAttribute.cs" />
     <Compile Include="Filters\AuthorizeUserAttribute.cs" />
     <Compile Include="Global.asax.cs">
