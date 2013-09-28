@@ -20,17 +20,23 @@ namespace _14_TimeMachine2.Controllers
         private TM2Entities2 db2 = new TM2Entities2();
 
         //public string currentUser = GlobalVariables.current_user_id;
-          public string currentUser = "117567";
+          public string currentUser = "mgeary";
 
-        public ActionResult Index(string id = "")
+        public ActionResult Index(string id = null)
         {
             //if((string.Compare(id, "") != 0))
             //    currentUser = id;
             var entries = db.ENTRies.Include(e => e.CATEGORY).Include(e => e.LOCATION).Include(e => e.PROJECT).Include(e => e.USER);
             List<ENTRY> entryList = new List<ENTRY>();
 
-            //Replace hardcoded value with session username
-            entryList = db.USERs.Find(currentUser).ENTRies.ToList();
+            
+            // Test to see if a student or a teacher is trying to access this page so the correct page is displayed
+            if (id == null)
+            {
+                entryList = db.USERs.Find(currentUser).ENTRies.ToList();
+            }
+            else
+                entryList = db.USERs.Find(id).ENTRies.ToList();
             return View(entryList);
         }
 
@@ -67,19 +73,17 @@ namespace _14_TimeMachine2.Controllers
 
             entry.entry_total_time = Convert.ToInt32(totalTime);
             entry.entry_user_id = currentUser;
-                
+            entry.entry_user_id = "117567";    
             if (ModelState.IsValid)            
             {
-
-                db.ENTRies.Add(entry);
-         
+                db.ENTRies.Add(entry);         
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
             ViewBag.entry_category_id = new SelectList(db.CATEGORies, "category_id", "category_name", entry.entry_category_id);
             ViewBag.entry_location_id = new SelectList(db.LOCATIONs, "location_id", "location_name", entry.entry_location_id);
-            ViewBag.entry_project_id = new SelectList(db.PROJECTs, "project_id", "project_name", entry.entry_project_id);
+            ViewBag.entry_project_id  = new SelectList(db.PROJECTs, "project_id", "project_name", entry.entry_project_id);
 
             return View(entry);
         }
@@ -97,7 +101,7 @@ namespace _14_TimeMachine2.Controllers
             ViewBag.entry_category_id = new SelectList(db.CATEGORies, "category_id", "category_name", entry.entry_category_id);
             ViewBag.entry_location_id = new SelectList(db.LOCATIONs, "location_id", "location_name", entry.entry_location_id);
             ViewBag.entry_project_id = new SelectList(db.PROJECTs, "project_id", "project_name", entry.entry_project_id);
-            ViewBag.entry_user_id = new SelectList(db.USERs, "user_id", "user_first_name", entry.entry_user_id);
+            //ViewBag.entry_user_id = new SelectList(db.USERs, "user_id", "user_first_name", entry.entry_user_id);
             return View(entry);
         }
 
