@@ -533,6 +533,21 @@ input[type="checkbox"].input-validation-error {
     display: none;
 }
 
+/* "Add" image
+----------------------------------------------------------*/
+div.submit {
+            font-size:12pt;
+            margin: 15px 0 15px 0;
+        }
+
+        #add {
+            float:left;
+        }
+
+            #add:hover {
+                content:url("/seproject/timemachine2/Images/PL_Add_1x_Hit.png");
+            }
+
 
 /* tables
 ----------------------------------------------------------*/

@@ -24,7 +24,10 @@
                     <td><input type="text" name="user_last_name" id="user_last_name" placeholder="Last Name"/></td>
                 </tr>
             </table>
-    <input type="submit" value="Add" />
+        <div class="submit">
+            <img id="add" src="/seproject/timemachine2/Images/PL_Add_1x.png" alt="Create Entry" />
+            <input type="submit" value="Add" />
+        </div>
     </form>
 
 
