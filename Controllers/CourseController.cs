@@ -16,7 +16,7 @@ namespace _14_TimeMachine2.Controllers
         private TM2Entities2 db = new TM2Entities2();
 
         //public string currentUser = GlobalVariables.current_user_id;
-        public string currentUser = "mgeary";
+        public string currentUser = "116766";
 
         //
         // GET: /Course/
@@ -57,6 +57,7 @@ namespace _14_TimeMachine2.Controllers
 
             if (ModelState.IsValid)
             {
+                course.course_is_enabled = 1;
                 db.COURSEs.Add(course);
                 db.SaveChanges();
                 return RedirectToAction("Index");
