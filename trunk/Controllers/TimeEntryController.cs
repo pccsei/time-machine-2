@@ -20,7 +20,7 @@ namespace _14_TimeMachine2.Controllers
         private TM2Entities2 db2 = new TM2Entities2();
 
         //public string currentUser = GlobalVariables.current_user_id;
-        public string currentUser = "mgeary";
+          public string currentUser = "117567";
 
         public ActionResult Index(string id = "")
         {
@@ -67,10 +67,10 @@ namespace _14_TimeMachine2.Controllers
 
             entry.entry_total_time = Convert.ToInt32(totalTime);
             entry.entry_user_id = currentUser;
-            if (entry.entry_id == 4);
                 
             if (ModelState.IsValid)            
             {
+
                 db.ENTRies.Add(entry);
          
                 db.SaveChanges();

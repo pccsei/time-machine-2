@@ -16,6 +16,7 @@ namespace _14_TimeMachine2.Models
 
     public partial class ENTRY
     {
+        [Required]
         public int entry_id { get; set; }
         [Display(Name = "Start Time")]
         public Nullable<System.DateTime> entry_begin_time { get; set; }
