@@ -22,7 +22,7 @@
         }
 
             #add:hover {
-                content:url("seproject/timemachine2/Images/PL_Add_1x_Hit.png");
+                content:url("/seproject/timemachine2/Images/PL_Add_1x_Hit.png");
             }
 
         td, th, tr {
@@ -46,7 +46,7 @@
 
 <div class="submit">
     <a href="<%: Url.Action("Create") %>">
-        <img id="add" src="seproject/timemachine2/Images/PL_Add_1x_Hit.png" alt="Create Entry" />
+        <img id="add" src="/seproject/timemachine2/Images/PL_Add_1x_Hit.png" alt="Create Entry" />
         Create New Entry
     </a>
 </div>
