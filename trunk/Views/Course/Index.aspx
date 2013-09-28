@@ -11,7 +11,7 @@
 <p>
     <%: Html.ActionLink("Create New", "Create") %>
 </p>
-<table>
+<table class="standard">
     <tr>
 <%--        <th>
             <%: Html.DisplayNameFor(model => model.course_id) %>
@@ -48,7 +48,7 @@
         <td>
             <%: Html.DisplayFor(modelItem => item.course_name) %>
         </td>
-        <td>
+        <td class="centered">
             <%: Html.DisplayFor(modelItem => item.course_submit_day) %>
         </td>
 <%--        <td>
@@ -60,10 +60,10 @@
         <td>
             <%: Html.DisplayFor(modelItem => item.course_end_date) %>
         </td>
-        <td>
+        <td class="centered">
             <%: Html.DisplayFor(modelItem => item.course_ref_grade) %>
         </td>
-        <td>
+        <td class="centered">
             <%: Html.DisplayFor(modelItem => item.course_ref_hours) %>
         </td>
         <td>

@@ -29,7 +29,7 @@
 
 
 <!--A list of all the students in a class -->
-<table>
+<table class="zebra">
     <tr>
         <th>
             ID
@@ -63,16 +63,16 @@
                 new {id = "student.user_id"}, null) %>--%>
             <a href ="/TimeEntry/Index/<%: student.user_id %>"><%: student.user_last_name %>, <%: student.user_first_name %></a>
         </td>
-        <td>
+        <td class="centered">
             <%: stats[0].ToString("n2") %>
         </td>
-        <td>
+        <td class="centered">
             <%: stats[1].ToString("n2") %>
         </td>
-        <td>
+        <td class="centered">
             <%: stats[2].ToString("n2") %>
         </td>
-        <td>
+        <td class="centered">
             <%: stats[3].ToString("n2") %>%
         </td>
         <%--<td>

@@ -58,7 +58,7 @@
         </div>
         <footer>
             <div class="content-wrapper">
-                <div class="float-right">
+                <div class="float-left">
                     <p>&copy; <%: DateTime.Now.Year %> - Software Engineers Incorporated</p>
                 </div>
             </div>

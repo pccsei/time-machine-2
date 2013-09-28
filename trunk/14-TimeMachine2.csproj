@@ -267,6 +267,7 @@
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
+    <Content Include="Images\bokeh.png" />
     <Content Include="Images\PL_Add_1x.png" />
     <Content Include="Images\PL_Add_1x_Hit.png" />
     <Content Include="Images\TIme machine logo.png" />
@@ -335,6 +336,8 @@
     <Content Include="Views\Course\Index.aspx" />
     <Content Include="Views\Error\Index.aspx" />
     <Content Include="Views\Teacher\Index.aspx" />
+    <Content Include="Views\Project\Create.aspx" />
+    <Content Include="Views\Project\Delete.aspx" />
     <Content Include="Views\Project\Details.aspx" />
     <Content Include="Views\Project\Edit.aspx" />
     <Content Include="Views\Project\Index.aspx" />
