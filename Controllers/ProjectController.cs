@@ -48,7 +48,7 @@ namespace _14_TimeMachine2.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.entry_project_id = new SelectList(db.USERs.Find(currentUser).getProjectsForUser(), "project_id", "project_name");
+            ViewBag.project_course_id = new SelectList(db.USERs.Find(currentUser).getProjectsForUser(), "project_id", "project_name");
             ViewBag.course_id = new SelectList(db.USERs.Find(currentUser).getCoursesForUser(), "course_id", "course_name");
             return View(project);
         }
