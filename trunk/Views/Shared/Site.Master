@@ -5,7 +5,7 @@
         <meta charset="utf-8" />
         <title><asp:ContentPlaceHolder ID="TitleContent" runat="server" /></title>
         <asp:ContentPlaceHolder ID="cphHead" runat="server" />
-        <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+        <link href="<%: Url.Content("~/favicon.ico") %>" rel="shortcut icon" type="image/x-icon" />
         <meta name="viewport" content="width=device-width" />
         <%: Styles.Render("~/Content/css") %>
         <%: Styles.Render("~/Content/themes/base/anytime.css") %>
@@ -24,7 +24,7 @@
                 <div class="float-left">
 
                     <!-- The image works on localhost but not on the server, the problem is the path name -->
-                    <img id="logo" src="<%= Url.Action("Time machine logo 2.png", "Images")%>" alt="Logo" />
+                    <img id="logo" src="<%= Url.Action("/seproject/timemachine2", "Images", new {id="Time machine logo 2.png"} )%>" alt="Logo" />
                 </div>
                 <div class="float-right">
                     <nav>
