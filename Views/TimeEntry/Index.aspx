@@ -21,7 +21,7 @@
             float:left;
         }
 
-            #add:hover, div.create {
+            #add:hover, a.create {
                 content:url("/seproject/timemachine2/Images/PL_Add_1x_Hit.png");
             }
 
