@@ -23,7 +23,7 @@ namespace _14_TimeMachine2.Filters
 
                 if (currentUser == null || !(currentUser.is_enabled()))
                     //HttpContext.Current.Response.Close();
-                    HttpContext.Current.Response.Redirect("http://eaglesnest.pcci.edu/studentlife/pathway/");
+                    HttpContext.Current.Response.Redirect("http://csmain/seproject/timemachine2/error/");
                 else
                 {
                     HttpContext.Current.Session["userIsStudent"] = currentUser.is_student();//.ToString();// ? "yes" : "no";
