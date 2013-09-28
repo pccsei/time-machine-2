@@ -16,6 +16,7 @@ namespace _14_TimeMachine2.Controllers
 
         //public string currentUser = GlobalVariables.current_user_id;
         public string currentUser = "mgeary";
+        
 
         public ActionResult Index()
         {
