@@ -46,11 +46,14 @@ namespace _14_TimeMachine2.Controllers
             return View();
         }
 
-        //public ActionResult Summary()
-        //{
-        //    course_id.TitleFormat
-        //    return View();
-        //}
+        public ActionResult WeeklyView()
+        {
+            var coursesForTeacher = db.USERs.Find(currentUser).getCoursesForUser();
+            var selectlist = new SelectList(coursesForTeacher, "course_id", "course_name", 1);
+            ViewData["Courses"] = selectlist;
+
+            return View(coursesForTeacher);
+        }
 
         [HttpPost]
         public ActionResult ToggleEnabled(string id)
