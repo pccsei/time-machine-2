@@ -6,12 +6,6 @@
 
 <asp:Content ID="Content6" ContentPlaceHolderID="HeadContent" runat="server">
     <style type="text/css">
-        .student_list {
-            width:auto;
-            margin:auto;
-            
-        }
-
         div.submit {
             font-size:12pt;
             margin: 15px 0 15px 0;
