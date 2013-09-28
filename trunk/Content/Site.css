@@ -578,7 +578,7 @@ table {
 }
 
 .zebra th {
-    width:auto;
+    width:200px;
     font-size:11pt;
 }
 
