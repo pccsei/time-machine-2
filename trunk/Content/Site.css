@@ -545,7 +545,6 @@ table {
     border: 0 none;
 }
 
-
 /* Lists containing edit/disable
 ----------------------------------------------------------*/
 .standard td, .standard th, .standard tr {
@@ -581,7 +580,7 @@ th {
     font-size: 1.2em;
     text-align: left;
     border: none 0px;
-    //padding-left: 0;
+    background-color:#ddd;
 }
 
     th a {
