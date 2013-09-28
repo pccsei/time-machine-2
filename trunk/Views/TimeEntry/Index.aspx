@@ -46,7 +46,7 @@
 
 <div class="submit">
     <a href="<%: Url.Action("Create") %>">
-        <img id="add" src="<%= Url.Action("/seproject/timemachine2", "Images", new {id ="PL_Add_1x.png"}) %>" alt="Create Entry" />
+        <img id="add" src="/seproject/timemachine2/Images/PL_Add_1x.png" alt="Create Entry" />
         Create New Entry
     </a>
 </div>
