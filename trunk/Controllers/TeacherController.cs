@@ -17,7 +17,7 @@ namespace _14_TimeMachine2.Controllers
     public class TeacherController : Controller
     {
         //public string currentUser = GlobalVariables.current_user_id;
-        public string currentUser = "116766";
+        public string currentUser = "mgeary";
         public string courseSelected;
 
         private TM2Entities2 db = new TM2Entities2();
