@@ -270,6 +270,7 @@
     <Content Include="Images\bokeh.png" />
     <Content Include="Images\PL_Add_1x.png" />
     <Content Include="Images\PL_Add_1x_Hit.png" />
+    <Content Include="Images\Time machine logo 2.png" />
     <Content Include="Images\TIme machine logo.png" />
     <Content Include="ClassDiagram1.cd" />
     <EntityDeploy Include="Models\TM2Model2.edmx">
@@ -335,7 +336,6 @@
     <Content Include="Views\Course\Edit.aspx" />
     <Content Include="Views\Course\Index.aspx" />
     <Content Include="Views\Error\Index.aspx" />
-    <Content Include="Views\Student\WeeklyView.aspx" />
     <Content Include="Views\Teacher\Index.aspx" />
     <Content Include="Views\Project\Create.aspx" />
     <Content Include="Views\Project\Delete.aspx" />
