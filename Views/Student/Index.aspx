@@ -107,3 +107,17 @@
         });
     </script>
 </asp:Content>
+<asp:Content ID="Content6" runat="server" contentplaceholderid="HeadContent">
+    <style type="text/css">
+        #user_id {
+            width: 66px;
+        }
+        #user_first_name {
+            width: 150px;
+        }
+        #user_last_name {
+            width: 150px;
+        }
+    </style>
+</asp:Content>
+
