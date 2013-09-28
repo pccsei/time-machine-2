@@ -30,7 +30,6 @@ namespace _14_TimeMachine2.Models
         public string entry_work_accomplished { get; set; }
         [Display(Name = "Comment")]
         public string entry_comment { get; set; }
-        [Required]
         [Display(Name = "Student")]
         public string entry_user_id { get; set; }
         [Display(Name = "Project")]

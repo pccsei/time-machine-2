@@ -30,6 +30,9 @@
             <%: Html.ValidationMessageFor(model => model.entry_begin_time) %>
         </div>
 
+        <%: Html.HiddenFor(model => model.entry_id) %>
+        <%: Html.HiddenFor(model => model.entry_user_id)%>
+
         <div class="editor-label">
             End Time
         </div>
