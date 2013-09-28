@@ -1,78 +1,49 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<IEnumerable<_14_TimeMachine2.Models.PROJECT>>" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
-    Index
+    Projects
 </asp:Content>
 
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
-<h2 style="display: inline;">Index</h2> <a id="show_hide_button">show all</a>
+    <form id="form1" runat="server">
+            <table>
+                <tr><td>Project Name:        </td><td><input type="text" name="projectName" id="projectName"/></td></tr>
 
-<p>
-    <%: Html.ActionLink("Create New", "Create") %>
-</p>
+                <tr><td>Choose Course:       </td><td><%: Html.DropDownList("project_course_id",
+                (SelectList)(ViewBag.project_course_id), "-- Select Course --", String.Empty) %></td></tr>
+
+                <tr><td>Project Description: </td><td><input type="text" name="ProjectDescription"  id="ProjectDescription" /></td></tr>
+            </table>
+        <p>
+            <input type="submit" value="Create Project" />
+        </p>
+    </form>
+    
+    <br /><br />
+    <h2 style="display: inline;">Projects</h2> <a id="A1">show all</a>
 <table>
     <tr>
-<%--        <th>
-            <%: Html.DisplayNameFor(model => model.project_id) %>
-        </th>--%>
         <th>
             <%: Html.DisplayNameFor(model => model.project_name) %>
+
         </th>
         <th>
             <%: Html.DisplayNameFor(model => model.COURSE.course_name) %>
         </th>
-<%--        <th>
-            <%: Html.DisplayNameFor(model => model.USER.user_first_name) %>
-        </th>--%>
-<%--        <th>
-            <%: Html.DisplayNameFor(model => model.project_date_created) %>
-        </th>
-        <th>
-            <%: Html.DisplayNameFor(model => model.project_description) %>
-        </th>
-        <th>
-            <%: Html.DisplayNameFor(model => model.project_begin_date) %>
-        </th>
-        <th>
-            <%: Html.DisplayNameFor(model => model.project_end_date) %>
-        </th>--%>
-        <%--<th>
-            <%: Html.DisplayNameFor(model => model.project_is_enabled) %>
-        </th>--%>
         <th></th>
     </tr>
 
 <% foreach (var item in Model) { %>
     <tr id="tr_<%= item.project_id %>" <% if (!item.is_enabled()) { %>class="disabled_entity"<% } %>>
-        <%--<td>
-            <%: Html.DisplayFor(modelItem => item.project_id) %>
-        </td>--%>
         <td>
             <%: Html.DisplayFor(modelItem => item.project_name) %>
         </td>
         <td>
             <%: Html.DisplayFor(modelItem => item.COURSE.course_name) %>
         </td>
-        <%--<td>
-            <%: Html.DisplayFor(modelItem => item.USER.user_first_name) %>
-        </td>--%>
-<%--        <td>
-            <%: Html.DisplayFor(modelItem => item.project_date_created) %>
-        </td>
-        <td>
-            <%: Html.DisplayFor(modelItem => item.project_description) %>
-        </td>
-        <td>
-            <%: Html.DisplayFor(modelItem => item.project_begin_date) %>
-        </td>
-        <td>
-            <%: Html.DisplayFor(modelItem => item.project_end_date) %>
-        </td>--%>
-        <%--<td>
-            <%: Html.DisplayFor(modelItem => item.project_is_enabled) %>
-        </td>--%>
+   
         <td>
             <%: Html.ActionLink("edit", "edit", new {  id=item.project_id  }) %> |
             <a class="enable_disable_link" onclick="toggle_entity_enabled('<%= item.project_id  %>', '<%= Url.Action("ToggleEnabled", "Project")  %>')">disable</a>

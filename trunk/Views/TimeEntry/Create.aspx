@@ -9,7 +9,7 @@
 <h2>Create New Entry</h2>
 
 <% using (Html.BeginForm()) { %>
-    <%: Html.ValidationSummary(true) %>
+    <%: Html.ValidationSummary(true, "There was an error validating your entry.") %>
 
     <fieldset>
         <legend>ENTRY</legend>

@@ -63,9 +63,11 @@ namespace _14_TimeMachine2.Controllers
             Double totalTime = endTime.Subtract(startTime).TotalMinutes;
 
             entry.entry_total_time = Convert.ToInt32(totalTime);
+            entry.entry_user_id = currentUser;
+            if (entry.entry_id == 4);
+                
             if (ModelState.IsValid)            
             {
-                entry.entry_user_id = currentUser;
                 db.ENTRies.Add(entry);
          
                 db.SaveChanges();
