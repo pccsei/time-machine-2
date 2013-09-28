@@ -30,6 +30,7 @@
         <div class="editor-field">
             <%: Html.EditorFor(model => model.entry_begin_time) %>
             <%: Html.ValidationMessageFor(model => model.entry_begin_time) %>
+            <%: Html.ValidationMessage("StartError") %>
         </div>
 
         <div class="editor-label">
@@ -38,6 +39,7 @@
         <div class="editor-field">
             <%: Html.EditorFor(model => model.entry_end_time) %>
             <%: Html.ValidationMessageFor(model => model.entry_end_time) %>
+            <%: Html.ValidationMessage("EndError") %>
         </div>
 
         <div class="editor-label">

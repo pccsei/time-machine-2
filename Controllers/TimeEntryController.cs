@@ -20,7 +20,7 @@ namespace _14_TimeMachine2.Controllers
         private TM2Entities2 db2 = new TM2Entities2();
 
         //public string currentUser = GlobalVariables.current_user_id;
-        public string currentUser = "116431";
+          public string currentUser = "116431";
 
         public ActionResult Index(string id = null)
         {
@@ -72,6 +72,39 @@ namespace _14_TimeMachine2.Controllers
             DateTime endTime = DateTime.Parse(entry.entry_end_time.ToString());
             Double totalTime = endTime.Subtract(startTime).TotalMinutes;
 
+            // See if the entry is overlapping a previous entry
+            List<ENTRY> entryList = new List<ENTRY>();
+            entryList = db.USERs.Find(currentUser).ENTRies.ToList();
+            bool startError = true;
+            bool endError = true;
+
+            //Jake Canipe's validation
+            foreach (var currentEntry in entryList)
+            {
+                if (startTime <= currentEntry.entry_begin_time &&
+                    endTime >= currentEntry.entry_end_time ||
+                    startTime >= currentEntry.entry_begin_time &&
+                    endTime <= currentEntry.entry_end_time ||
+                    startTime == endTime)
+                {
+                    startError = false;
+                    endError = false;
+                }
+
+                if (startTime >= currentEntry.entry_begin_time &&
+                    startTime <= currentEntry.entry_end_time)
+                    startError = false;
+
+                if (endTime >= currentEntry.entry_begin_time &&
+                    endTime <= currentEntry.entry_end_time)
+                    endError = false;
+            }
+            if (!startError)
+                ModelState.AddModelError("StartError", "Start time is overlapping previously entered time");
+
+            if (!endError)
+                ModelState.AddModelError("EndError", "End time is overlapping previously entered time");
+
             entry.entry_total_time = Convert.ToInt32(totalTime);
             entry.entry_user_id = currentUser;
 
@@ -114,6 +147,41 @@ namespace _14_TimeMachine2.Controllers
         {
             Double totalTime = (DateTime.Parse(entry.entry_end_time.ToString()) - DateTime.Parse(entry.entry_begin_time.ToString())).TotalMinutes;
 
+            // See if the entry is overlapping a previous entry
+            List<ENTRY> entryList = new List<ENTRY>();
+            entryList = db.USERs.Find(currentUser).ENTRies.ToList();
+            bool startError = true;
+            bool endError = true;
+
+
+            // Jake's validation work
+            DateTime startTime = DateTime.Parse(entry.entry_begin_time.ToString());
+            DateTime endTime = DateTime.Parse(entry.entry_end_time.ToString());
+            foreach (var currentEntry in entryList)
+            {
+                if (startTime <= currentEntry.entry_begin_time &&
+                    endTime >= currentEntry.entry_end_time ||
+                    startTime >= currentEntry.entry_begin_time &&
+                    endTime <= currentEntry.entry_end_time ||
+                    startTime == endTime)
+                {
+                    startError = false;
+                    endError = false;
+                }
+
+                if (startTime >= currentEntry.entry_begin_time &&
+                    startTime <= currentEntry.entry_end_time)
+                    startError = false;
+
+                if (endTime >= currentEntry.entry_begin_time &&
+                    endTime <= currentEntry.entry_end_time)
+                    endError = false;
+            }
+            if (!startError)
+                ModelState.AddModelError("StartError", "Start time is overlapping previously entered time");
+
+            if (!endError)
+                ModelState.AddModelError("EndError", "End time is overlapping previously entered time");
             entry.entry_total_time = Convert.ToInt32(totalTime);
             //entry.entry_user_id = currentUser;
             
