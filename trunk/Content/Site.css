@@ -70,6 +70,7 @@ h1, h2, h3,
 h4, h5, h6 {
     color: #000;
     margin-bottom: 0;
+    margin-top: 0;
     padding-bottom: 0;
 }
 
@@ -114,7 +115,7 @@ h5, h6 {
 
     .main-content {
         background: url("../Images/accent.png") no-repeat;
-        //padding-left: 10px;
+        /*padding-left: 10px;*/
         padding-top: 30px;
     }
 
