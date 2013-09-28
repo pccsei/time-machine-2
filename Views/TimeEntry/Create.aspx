@@ -24,7 +24,6 @@
 
             <%: Html.ValidationMessageFor(model => model.entry_project_id) %>
         </div>
-
         <div class="editor-label">
             <%: Html.LabelFor(model => model.entry_begin_time) %>
         </div>
