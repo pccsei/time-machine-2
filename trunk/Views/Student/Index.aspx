@@ -12,13 +12,7 @@
         <div>
             
         </div>
-        <% using (Ajax.BeginForm("Index", "Student", new AjaxOptions()
-           {
-               HttpMethod = "POST",
-               OnSuccess = "alert('sucess');",
-               OnFailure = "alert('failure');"
-           })) %>
-        <% { %>
+        <form  method="post" action="Student/Create">
             <p>Choose course:
                 <%= Html.DropDownList("CourseList", (SelectList)ViewData["Courses"]) %></p>
         <table>
@@ -28,8 +22,8 @@
                 <td><input type="text" name="user_last_name" id="user_last_name" placeholder="Last Name"/></td>
             </tr>
         </table>
-         <input class="button" id="ajaxAddMember" type="submit"  />
-         <% } %>
+         <input class="button" id="ajaxAddMember" type="submit" value="Submit" />
+         </form>
 
 <!--A list of all the students in a class -->
 <table id ="memberTable">
