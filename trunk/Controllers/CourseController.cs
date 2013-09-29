@@ -23,7 +23,7 @@ namespace _14_TimeMachine2.Controllers
 
         public ActionResult Index()
         {
-            return View(db.COURSEs.ToList());
+            return View(db.USERs.Find(currentUser).getCoursesForUser().ToList());
         }
 
         //
