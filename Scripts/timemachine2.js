@@ -70,4 +70,12 @@ $(window).load(function () {
     // });
 // });
 
-
+    function OnSuccess(data) {
+        alert('Success');
+    }
+    function OnFailure(data, textStatus) {
+        var response = ajaxContext.get_response();
+        var statusCode = response.get_statusCode();
+        alert('Failure');
+        $('#targetDiv').empty();
+    }

@@ -10,27 +10,29 @@
 
         <!-- Dropdown list of all the classes to choose -->
         <div>
-            <% using (Html.BeginForm("DropDown", "GetDropDownSelection")) { %>
+            
+        </div>
+        <% using (Ajax.BeginForm("Index", "Student", new AjaxOptions()
+           {
+               HttpMethod = "POST",
+               OnSuccess = "alert('sucess');",
+               OnFailure = "alert('failure');"
+           })) %>
+        <% { %>
             <p>Choose course:
                 <%= Html.DropDownList("CourseList", (SelectList)ViewData["Courses"]) %></p>
-            <% } %>
-        </div>
-
-    <form id="form1" action="Create" runat="server">
-            <table>
-                <tr>
-                    <td><input type="text" name="user_id"   id="user_id" placeholder="User ID"/></td>
-                    <td><input type="text" name="user_first_name" id="user_first_name" placeholder="First Name"/></td>
-                    <td><input type="text" name="user_last_name" id="user_last_name" placeholder="Last Name"/></td>
-                </tr>
-            </table>
-
-    <input type="submit" value="Add" style="height: 33px" />
-    </form>
-
+        <table>
+            <tr>
+                <td><input type="text" name="user_id" id="user_id" placeholder="User ID"/></td>
+                <td><input type="text" name="user_first_name" id="user_first_name" placeholder="First Name"/></td>
+                <td><input type="text" name="user_last_name" id="user_last_name" placeholder="Last Name"/></td>
+            </tr>
+        </table>
+         <input class="button" id="ajaxAddMember" type="submit"  />
+         <% } %>
 
 <!--A list of all the students in a class -->
-<table class="zebra">
+<table id ="memberTable">
     <tr>
         <th>
             ID
@@ -64,16 +66,16 @@
                 new {id = "student.user_id"}, null) %>--%>
             <a href ="/TimeEntry/Index/<%: student.user_id %>"><%: student.user_last_name %>, <%: student.user_first_name %></a>
         </td>
-        <td class="centered">
+        <td>
             <%: stats[0].ToString("n2") %>
         </td>
-        <td class="centered">
+        <td>
             <%: stats[1].ToString("n2") %>
         </td>
-        <td class="centered">
+        <td>
             <%: stats[2].ToString("n2") %>
         </td>
-        <td class="centered">
+        <td>
             <%: stats[3].ToString("n2") %>%
         </td>
         <%--<td>
@@ -107,17 +109,3 @@
         });
     </script>
 </asp:Content>
-<asp:Content ID="Content6" runat="server" contentplaceholderid="HeadContent">
-    <style type="text/css">
-        #user_id {
-            width: 66px;
-        }
-        #user_first_name {
-            width: 150px;
-        }
-        #user_last_name {
-            width: 150px;
-        }
-    </style>
-</asp:Content>
-
