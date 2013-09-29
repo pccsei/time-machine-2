@@ -165,6 +165,7 @@
     <Compile Include="Controllers\StudentController.cs" />
     <Compile Include="Controllers\TimeEntryController.cs" />
     <Compile Include="Controllers\TeacherController.cs" />
+    <Compile Include="Controllers\WelcomeController.cs" />
     <Compile Include="Filters\AuthorizeManagerAttribute.cs" />
     <Compile Include="Filters\AuthorizeStudentAttribute.cs" />
     <Compile Include="Filters\AuthorizeBothAttribute.cs" />
@@ -355,6 +356,7 @@
     <Content Include="Views\Teacher\Settings.aspx" />
     <Content Include="Views\Teacher\Timelog.aspx" />
     <Content Include="Views\Teacher\WeeklyReports.aspx" />
+    <Content Include="Views\Welcome\Index.aspx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>

@@ -18,7 +18,7 @@ namespace _14_TimeMachine2.Filters
 
             try
             {
-                string userId = (string)HttpContext.Current.Session["username"];
+                string userId = (string) HttpContext.Current.Session["username"];
                 USER currentUser = db.USERs.Find(userId);
                 string error = HttpContext.Current.Request.Path;
 
@@ -26,7 +26,7 @@ namespace _14_TimeMachine2.Filters
                 HttpContext.Current.Session["userIsTeacher"] = false;
                 HttpContext.Current.Session["userIsManager"] = false;
 
-                if (error != "/Error")
+                if (!error.Contains("Error"))
                 {
                     if (currentUser == null || !currentUser.is_enabled())
                     {
