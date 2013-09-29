@@ -13,11 +13,9 @@ namespace _14_TimeMachine2.Filters
       public override void OnActionExecuting(ActionExecutingContext filterContext)
       {
          // If the user is not a manager, close the session
-            if (!(bool) HttpContext.Current.Session["userIsManager"])
-                HttpContext.Current.Response.Redirect("http://eaglesnest.pcci.edu/studentlife/pathway/");
-
-
-
+          if (!(bool)HttpContext.Current.Session["userIsManager"])
+              filterContext.Result = new RedirectToRouteResult(
+                  new RouteValueDictionary { { "controller", "Error" }, { "action", "Index" } });
       }
    }
 }

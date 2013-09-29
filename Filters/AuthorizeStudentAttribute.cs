@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using _14_TimeMachine2.Models;
 using System.Security.Principal;
+using System.Web.Routing;
 
 namespace _14_TimeMachine2.Filters
 {
@@ -14,8 +15,8 @@ namespace _14_TimeMachine2.Filters
       {
          // If the user is not a student, close the session
          if (!(bool) HttpContext.Current.Session["userIsStudent"])
-             HttpContext.Current.Response.Redirect(filterContext.Result.ToString());
-             //HttpContext.Current.Response.Redirect("http://eaglesnest.pcci.edu/studentlife/pathway/");
+             filterContext.Result = new RedirectToRouteResult(
+                 new RouteValueDictionary { { "controller", "Error" }, { "action", "Index" } });
       }
    }
 }
