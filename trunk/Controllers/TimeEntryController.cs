@@ -17,10 +17,13 @@ namespace _14_TimeMachine2.Controllers
     public class TimeEntryController : Controller
     {
         private TM2Entities2 db = new TM2Entities2();
-        private TM2Entities2 db2 = new TM2Entities2();
+        public string currentUser = GlobalVariables.current_user_id;
+        //public string currentUser = "116431";
 
-        //public string currentUser = GlobalVariables.current_user_id;
-          public string currentUser = "116431";
+        public string getCurrentUser() 
+        {
+            return currentUser;
+        }
 
         public ActionResult Index(string id = null)
         {
