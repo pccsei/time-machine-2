@@ -16,7 +16,7 @@ namespace _14_TimeMachine2
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "TimeEntry", action = "Index", id = UrlParameter.Optional }
+                defaults: new { controller = "Welcome", action = "Index", id = UrlParameter.Optional }
             );
         }
     }
