@@ -5,6 +5,7 @@ using System.Web;
 using _14_TimeMachine2.Models;
 using System.Web.Mvc;
 using System.Data.Entity;
+using System.Web.Routing;
 
 
 namespace _14_TimeMachine2.Filters
@@ -17,26 +18,34 @@ namespace _14_TimeMachine2.Filters
 
             try
             {
-                string userId = (string) HttpContext.Current.Session["username"];
+                string userId = (string)HttpContext.Current.Session["username"];
                 USER currentUser = db.USERs.Find(userId);
+                string error = HttpContext.Current.Request.Path;
 
                 HttpContext.Current.Session["userIsStudent"] = false;
                 HttpContext.Current.Session["userIsTeacher"] = false;
                 HttpContext.Current.Session["userIsManager"] = false;
 
-                if (currentUser == null || !(currentUser.is_enabled()))
-                    HttpContext.Current.Response.Redirect("http://csmain/seproject/timemachine2/error/");
-                else
+                if (error != "/Error")
                 {
-                    HttpContext.Current.Session["userIsStudent"] = currentUser.is_student();
-                    HttpContext.Current.Session["userIsTeacher"] = currentUser.is_teacher();
-                    HttpContext.Current.Session["userIsManager"] = currentUser.is_manager();
+                    if (currentUser == null || !currentUser.is_enabled())
+                    {
+                        filterContext.Result = new RedirectToRouteResult(
+                        new RouteValueDictionary { { "controller", "Error" }, { "action", "Index" } });
+
+                    }
+                    else
+                    {
+                        HttpContext.Current.Session["userIsStudent"] = currentUser.is_student();
+                        HttpContext.Current.Session["userIsTeacher"] = currentUser.is_teacher();
+                        HttpContext.Current.Session["userIsManager"] = currentUser.is_manager();
+                    }
                 }
 
             }
             catch (Exception ex)
             {
-                HttpContext.Current.Response.Redirect("http://eaglesnest.pcci.edu");
+                HttpContext.Current.Response.Redirect("http://csmain/seproject/development/resources/500.htm");
             }
         }
     }
