@@ -16,7 +16,7 @@ namespace _14_TimeMachine2.Controllers
         private TM2Entities2 db = new TM2Entities2();
 
         //public string currentUser = GlobalVariables.current_user_id;
-        public string currentUser = "mgeary";
+        public string currentUser = "115245";
 
         //
         // GET: /Course/
@@ -53,12 +53,21 @@ namespace _14_TimeMachine2.Controllers
         [HttpPost]
         public ActionResult Create(COURSE course)
         {
+            MEMBER member = new MEMBER();
             course.course_date_created = DateTime.Now;
 
             if (ModelState.IsValid)
             {
                 course.course_is_enabled = 1;
                 db.COURSEs.Add(course);
+                db.SaveChanges();
+
+                member.member_course_id = course.course_id;
+                member.member_is_enabled = 1;
+                member.member_position = "teacher";
+                member.member_user_id = currentUser;
+
+                db.MEMBERs.Add(member);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
