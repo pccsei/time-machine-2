@@ -23,7 +23,7 @@
         </div>
 
         <div class="editor-label">
-            <%: Html.LabelFor(model => model.project_course_id, "COURSE") %>
+            <%: Html.LabelFor(model => model.project_course_id, "Course") %>
         </div>
         <div class="editor-field">
             <%: Html.DropDownList("project_course_id", String.Empty) %>
@@ -78,11 +78,11 @@
             <%: Html.ValidationMessageFor(model => model.project_end_date) %>
         </div>
 
-        <div class="editor-label">
+        <%--<div class="editor-label">
             <%: Html.LabelFor(model => model.project_is_enabled) %>
-        </div>
+        </div>--%>
         <div class="editor-field">
-            <%: Html.EditorFor(model => model.project_is_enabled) %>
+            <%: Html.HiddenFor(model => model.project_is_enabled) %>
             <%: Html.ValidationMessageFor(model => model.project_is_enabled) %>
         </div>
 
@@ -93,7 +93,7 @@
 <% } %>
 
 <div>
-    <%: Html.ActionLink("Back to List", "Index") %>
+    <%: Html.ActionLink("Back to Projects", "Index") %>
 </div>
 
 </asp:Content>

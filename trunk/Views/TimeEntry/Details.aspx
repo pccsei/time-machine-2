@@ -117,7 +117,7 @@
 <p>
     <%: Html.ActionLink("Edit", "Edit", new { id = Model.entry_id }) %> |
     <%: Html.ActionLink("Delete", "Delete", new {  id = Model.entry_id  }) %> | 
-    <%: Html.ActionLink("Back to List", "Index") %>
+    <%: Html.ActionLink("Back to Timelog", "Index") %>
 </p>
 
 </asp:Content>
