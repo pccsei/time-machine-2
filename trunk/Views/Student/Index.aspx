@@ -58,7 +58,7 @@
         <td>
             <%--<%: Html.ActionLink(student.user_first_name + student.user_last_name, "*/TimeEntry/", 
                 new {id = "student.user_id"}, null) %>--%>
-            <a href="<%: Url.Action("Index/", "TimeEntry") + student.user_id %>"><%: student.user_last_name %>, <%: student.user_first_name %></a>
+            <a href="<%: Url.Action("Summary/", "Student") + student.user_id %>"><%: student.user_last_name %>, <%: student.user_first_name %></a>
         </td>
         <td>
             <%: stats[0].ToString("n2") %>
