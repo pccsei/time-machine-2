@@ -9,78 +9,64 @@
 <h2>Student List</h2>
 
         <!-- Dropdown list of all the classes to choose -->
-        <div>
-            
-        </div>
-        <form  method="post" action="Student/Create">
-            <p>Choose course:
-                <%= Html.DropDownList("CourseList", (SelectList)ViewData["Courses"]) %></p>
-        <table>
+    <form  method="post" action="<%: Url.Action("Create", "Student") %>">
+        <p>Choose course: <%= Html.DropDownList("CourseList", (SelectList)ViewData["Courses"]) %></p>
+        <table class="inlineForm">
             <tr>
                 <td><input type="text" name="user_id" id="user_id" placeholder="User ID"/></td>
                 <td><input type="text" name="user_first_name" id="user_first_name" placeholder="First Name"/></td>
                 <td><input type="text" name="user_last_name" id="user_last_name" placeholder="Last Name"/></td>
             </tr>
         </table>
-         <input class="button" id="ajaxAddMember" type="submit" value="Submit" />
-         </form>
+        <input class="button" id="ajaxAddMember" type="submit" value="Add Student" />
+    </form>
 
-<!--A list of all the students in a class -->
-<table id ="memberTable" class="zebra hasHeader">
-    <tr>
-        <th>
-            ID
-        </th>
-        <th>
-            Student Name
-        </th>
-        <th>
-            Total Hours
-        </th>
-        <th>
-            Daily Hours
-        </th>
-        <th>
-            Weekly Hours
-        </th>
-        <th>
-            Projected Grade
-        </th>
-    </tr>
+    <section class="content">
+        <!--A list of all the students in a class -->
+        <table id ="memberTable" class="zebra hasHeader large">
+            <tr>
+                <th>ID</th>
+                <th>Student Name</th>
+                <th>Total Hours</th>
+                <th>Daily Hours</th>
+                <th>Weekly Hours</th>
+                <th>Projected Grade</th>
+            </tr>
 
-<% foreach (var course in Model) { 
-       foreach (var student in course.getStudentsForCourse()) { 
-           var stats = student.getCourseStatsForStudent(course.course_id); %>
-    <tr class="datarow <%: "student-" + student.user_id + " course-" + course.course_id %>">
-        <td>
-            <%: student.user_id %>
-        </td>
-        <td>
-            <%--<%: Html.ActionLink(student.user_first_name + student.user_last_name, "*/TimeEntry/", 
-                new {id = "student.user_id"}, null) %>--%>
-            <a href="<%: Url.Action("Summary/", "Student") + student.user_id %>"><%: student.user_last_name %>, <%: student.user_first_name %></a>
-        </td>
-        <td>
-            <%: stats[0].ToString("n2") %>
-        </td>
-        <td>
-            <%: stats[1].ToString("n2") %>
-        </td>
-        <td>
-            <%: stats[2].ToString("n2") %>
-        </td>
-        <td>
-            <%: stats[3].ToString("n2") %>%
-        </td>
-        <%--<td>
-            <%: Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) %> |
-            <%: Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) %> |
-            <%: Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ }) %>
-        </td>--%>
-    </tr>
-<% } } %>
+    <% foreach (var course in Model) { 
+        foreach (var student in course.getStudentsForCourse()) { 
+            var stats = student.getCourseStatsForStudent(course.course_id); %>
+            <tr class="datarow <%: "student-" + student.user_id + " course-" + course.course_id %>">
+                <td>
+                    <%: student.user_id %>
+                </td>
+                <td>
+                    <%--<%: Html.ActionLink(student.user_first_name + student.user_last_name, "*/TimeEntry/", 
+                        new {id = "student.user_id"}, null) %>--%>
+                    <a href="<%: Url.Action("Summary/", "Student") + student.user_id %>"><%: student.user_last_name %>, <%: student.user_first_name %></a>
+                </td>
+                <td>
+                    <%: stats[0].ToString("n2") %>
+                </td>
+                <td>
+                    <%: stats[1].ToString("n2") %>
+                </td>
+                <td>
+                    <%: stats[2].ToString("n2") %>
+                </td>
+                <td>
+                    <%: stats[3].ToString("n2") %>%
+                </td>
+                <%--<td>
+                    <%: Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) %> |
+                    <%: Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) %> |
+                    <%: Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ }) %>
+                </td>--%>
+            </tr>
+        <% } } %>
 
-</table>
+        </table>
+    </section>
 
 
 </asp:Content>

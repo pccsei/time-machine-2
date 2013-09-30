@@ -25,7 +25,7 @@ namespace _14_TimeMachine2.Models
         public int course_id { get; set; }
         [Required]
         [StringLength(30, ErrorMessage = "Max 50 digits")]
-        [Display(Name = "Course")]
+        [Display(Name = "Course Name")]
         public string course_name { get; set; }
         [Required]
         [Display(Name = "Submit Day")]

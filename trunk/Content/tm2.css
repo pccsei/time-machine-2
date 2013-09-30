@@ -1,9 +1,9 @@
 ﻿.disabled_entity {
-    background: #666;
+    background: #666 !important;
     color: white !important;
 }
 
-a {
+a, a:link {
     cursor: pointer;
 }
 
@@ -12,19 +12,54 @@ td, th {
 }
 
 td.editor-label {
-    padding-right: 15px;
+    padding-right: 0px;
     text-align: right;
     padding-top: 15px;
 }
 
 table.hasHeader {
-    border: 2px solid #ccc;
+    border: 5px solid #ccc;
+    border-top: none;
+}
+
+table.large {
+    width: 100%;
+}
+
+table.medium {
+    width: 75%;
+}
+
+table.small {
+    width: 50%;
 }
 
 td, th {
     vertical-align: top;
+    width: auto;
 }
 
-input, textarea {
+input, textarea, select {
     margin: 0;
+}
+
+table.inlineForm input {
+    width: 150px;
+}
+
+table.inlineForm select {
+    width: 200px;
+}
+
+table.inlineForm td {
+    padding: 0;
+    padding-right: 15px;
+}
+
+input[type=submit] {
+    margin-top: 10px;
+}
+
+section.content {
+    margin-top: 30px;
 }
