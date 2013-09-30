@@ -18,7 +18,7 @@ namespace _14_TimeMachine2.Controllers
     {
         private TM2Entities2 db = new TM2Entities2();
         public string currentUser = GlobalVariables.current_user_id;
-        //public string currentUser = "116431";
+        //public string currentUser = "115245";
 
         public string getCurrentUser() 
         {
@@ -80,33 +80,43 @@ namespace _14_TimeMachine2.Controllers
             entryList = db.USERs.Find(currentUser).ENTRies.ToList();
             bool startError = true;
             bool endError = true;
+            bool negativeError = true;
 
             //Jake Canipe's validation
             foreach (var currentEntry in entryList)
             {
-                if (startTime <= currentEntry.entry_begin_time &&
-                    endTime >= currentEntry.entry_end_time ||
-                    startTime >= currentEntry.entry_begin_time &&
-                    endTime <= currentEntry.entry_end_time ||
-                    startTime == endTime)
+                if (startTime > endTime)
+                    negativeError = false;
+                else
                 {
-                    startError = false;
-                    endError = false;
+
+                    if (startTime <= currentEntry.entry_begin_time &&
+                        endTime >= currentEntry.entry_end_time ||
+                        startTime >= currentEntry.entry_begin_time &&
+                        endTime <= currentEntry.entry_end_time ||
+                        startTime == endTime)
+                    {
+                        startError = false;
+                        endError = false;
+                    }
+
+                    if (startTime >= currentEntry.entry_begin_time &&
+                        startTime <= currentEntry.entry_end_time)
+                        startError = false;
+
+                    if (endTime >= currentEntry.entry_begin_time &&
+                        endTime <= currentEntry.entry_end_time)
+                        endError = false;
                 }
-
-                if (startTime >= currentEntry.entry_begin_time &&
-                    startTime <= currentEntry.entry_end_time)
-                    startError = false;
-
-                if (endTime >= currentEntry.entry_begin_time &&
-                    endTime <= currentEntry.entry_end_time)
-                    endError = false;
             }
             if (!startError)
-                ModelState.AddModelError("StartError", "Start time is overlapping previously entered time");
+                ModelState.AddModelError("StartError", "Start time is overlapping previously entered time.");
 
             if (!endError)
-                ModelState.AddModelError("EndError", "End time is overlapping previously entered time");
+                ModelState.AddModelError("EndError", "End time is overlapping previously entered time.");
+
+            if (!negativeError)
+                ModelState.AddModelError("NegativeError", "You have entered negative time.");
 
             entry.entry_total_time = Convert.ToInt32(totalTime);
             entry.entry_user_id = currentUser;
@@ -156,35 +166,41 @@ namespace _14_TimeMachine2.Controllers
             bool startError = true;
             bool endError = true;
 
+            int editedEntryId = entry.entry_id;
 
-            // Jake's validation work
-            DateTime startTime = DateTime.Parse(entry.entry_begin_time.ToString());
-            DateTime endTime = DateTime.Parse(entry.entry_end_time.ToString());
-            foreach (var currentEntry in entryList)
-            {
-                if (startTime <= currentEntry.entry_begin_time &&
-                    endTime >= currentEntry.entry_end_time ||
-                    startTime >= currentEntry.entry_begin_time &&
-                    endTime <= currentEntry.entry_end_time ||
-                    startTime == endTime)
-                {
-                    startError = false;
-                    endError = false;
-                }
 
-                if (startTime >= currentEntry.entry_begin_time &&
-                    startTime <= currentEntry.entry_end_time)
-                    startError = false;
+            //// Jake's validation work
+            //DateTime startTime = DateTime.Parse(entry.entry_begin_time.ToString());
+            //DateTime endTime = DateTime.Parse(entry.entry_end_time.ToString());
+            //foreach (var currentEntry in entryList)
+            //{
+            //    // Quick fix to make sure the validation does not block legitimate edits
+            //    if (currentEntry.entry_id != editedEntryId)
+            //    {
+            //        if (startTime <= currentEntry.entry_begin_time &&
+            //        endTime >= currentEntry.entry_end_time ||
+            //        startTime >= currentEntry.entry_begin_time &&
+            //        endTime <= currentEntry.entry_end_time ||
+            //        startTime == endTime)
+            //        {
+            //            startError = false;
+            //            endError = false;
+            //        }
 
-                if (endTime >= currentEntry.entry_begin_time &&
-                    endTime <= currentEntry.entry_end_time)
-                    endError = false;
-            }
-            if (!startError)
-                ModelState.AddModelError("StartError", "Start time is overlapping previously entered time");
+            //        if (startTime >= currentEntry.entry_begin_time &&
+            //            startTime <= currentEntry.entry_end_time)
+            //            startError = false;
 
-            if (!endError)
-                ModelState.AddModelError("EndError", "End time is overlapping previously entered time");
+            //        if (endTime >= currentEntry.entry_begin_time &&
+            //            endTime <= currentEntry.entry_end_time)
+            //            endError = false;
+            //    }
+            //    if (!startError)
+            //        ModelState.AddModelError("StartError", "Start time is overlapping previously entered time");
+
+            //    if (!endError)
+            //        ModelState.AddModelError("EndError", "End time is overlapping previously entered time");
+            //}
             entry.entry_total_time = Convert.ToInt32(totalTime);
             //entry.entry_user_id = currentUser;
             

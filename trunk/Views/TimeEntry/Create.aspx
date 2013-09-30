@@ -20,7 +20,7 @@
             <%: Html.LabelFor(model => model.entry_project_id) %>
         </td>
         <td class="editor-field">
-            <%: Html.DropDownList("entry_project_id", String.Empty) %>
+            <%: Html.DropDownList("entry_project_id", "--Select Project--") %>
             <%: Html.ValidationMessageFor(model => model.entry_project_id) %>
         </td>
         </tr>
@@ -33,6 +33,7 @@
             <%: Html.EditorFor(model => model.entry_begin_time) %>
             <%: Html.ValidationMessageFor(model => model.entry_begin_time) %>
             <%: Html.ValidationMessage("StartError") %>
+            <%: Html.ValidationMessage("NegativeError") %>
         </td>
         </tr>
 
@@ -47,6 +48,7 @@
             <%: Html.EditorFor(model => model.entry_end_time) %>
             <%: Html.ValidationMessageFor(model => model.entry_end_time) %>
             <%: Html.ValidationMessage("EndError") %>
+            <%: Html.ValidationMessage("NegativeError") %>
         </td>
         </tr>
 
@@ -55,7 +57,7 @@
             <%: Html.LabelFor(model => model.entry_location_id, "Location") %>
         </td>
         <td class="editor-field">
-            <%: Html.DropDownList("entry_location_id", String.Empty) %>
+            <%: Html.DropDownList("entry_location_id", "--Select Location--") %>
             <%: Html.ValidationMessageFor(model => model.entry_location_id) %>
         </td>
         </tr>
@@ -65,7 +67,7 @@
             <%: Html.LabelFor(model => model.entry_category_id, "Category") %>
         </td>
         <td class="editor-field">
-            <%: Html.DropDownList("entry_category_id", String.Empty) %>
+            <%: Html.DropDownList("entry_category_id", "--Select Category--") %>
             <%: Html.ValidationMessageFor(model => model.entry_category_id) %>
         </td>
         </tr>
@@ -101,7 +103,7 @@
 <% } %>
 
 <div>
-    <%: Html.ActionLink("Back to List", "Index") %>
+    <%: Html.ActionLink("Back to Timelog", "Index") %>
 </div>
 
 </asp:Content>
