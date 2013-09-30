@@ -21,9 +21,9 @@ a {
     text-decoration: underline;
 }
 
-    a:link, a:visited,
-    a:active, a:hover {
-        color: #333;
+    a, a:link, a:visited,
+    a:active {
+        color: inherit;
     }
 
     a:hover {
@@ -564,7 +564,7 @@ table {
 /* Lists containing edit/disable
 ----------------------------------------------------------*/
 .standard td, .standard th, .standard tr {
-    width: 125px;
+    /*width: 125px;*/
 }
 
 .standard th {
@@ -574,16 +574,16 @@ table {
 /* Lists not containing edit/disable
 ----------------------------------------------------------*/
 .zebra td, .zebra th, .zebra tr {
-    width: 200px;
+    /*width: 200px;*/
 }
 
 .zebra th {
-    width:200px;
+    /*width:200px;*/
     font-size:11pt;
 }
 
 .zebra tr:nth-child(odd) {
-    background-color:#ffffff;
+    background-color:#f9f9f9;
 }
 
 .zebra .centered {

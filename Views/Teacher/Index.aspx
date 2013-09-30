@@ -12,60 +12,45 @@
 </asp:Content>
 
 <asp:Content ID="Content5" ContentPlaceHolderID="HeadContent" runat="server">
-    <style type="text/css">
-        #userID {
-            width: 220px;
-        }
-        #firstName {
-            width: 220px;
-        }
-        #lastName {
-            width: 220px;
-        }
-    </style>
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
+    <h2>Teachers</h2>
+
     <form id="form1" runat="server">
-    <fieldset>
-        <legend></legend>
-        <div class="field">
-            <table>
-                <tr><td>User ID:   </td><td><input type="text" name="userID"    id="userID"/></td></tr>
-                <tr><td>First Name:</td><td><input type="text" name="firstName" id="firstName"/></td></tr>
-                <tr><td>Last Name: </td><td><input type="text" name="lastName"  id="lastName" /></td></tr>
-            </table>
-        </div>
-    </fieldset>
-        <p>
-            <input type="submit" value="Create Teacher" />
-        </p>
-        <%--<asp:Button ID="submitButton" runat="server" Text="Create Teacher" OnClick="submitButton_Click" />--%>
+        <table class="inlineForm">
+            <tr>
+                <td><input type="text" name="userID" id="userID" placeholder="User ID"/></td>
+                <td><input type="text" name="firstName" id="firstName" placeholder="First Name"/></td>
+                <td><input type="text" name="lastName" id="lastName" placeholder="Last Name"/></td>
+            </tr>
+        </table>
+        <input type="submit" value="Add Teacher" />
     </form>
     
-    <br /><br />
-    <h2 style="display: inline;">Teachers</h2> <a id="show_hide_button">show all</a>
-
-    <table class="zebra hasHeader">
-        <tbody>
-            <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Toggle Status</th>
-            </tr>
-            <% foreach (var user in Model.ToArray())
-               { 
-                   if (user.is_teacher())
-                   { %>
-                <tr id="tr_<%= user.user_id %>" <% if (!user.is_enabled()) { %>class="disabled_entity"<% } %>>
-                    <td><%= user.user_id  %></td>
-                    <td><%= user.user_first_name  %> <%= user.user_last_name %></td>
-                    <td><a class="enable_disable_link" onclick="toggle_entity_enabled('<%= user.user_id  %>', '<%= Url.Action("ToggleEnabled", "Teacher")  %>')">disable</a></td>
+    <section class="content">
+    <a id="show_hide_button">show all</a>
+        <table class="zebra hasHeader small">
+            <tbody>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Toggle Status</th>
                 </tr>
-            <% }} %>
-        </tbody>
-    </table>
+                <% foreach (var user in Model.ToArray())
+                   { 
+                       if (user.is_teacher())
+                       { %>
+                    <tr id="tr_<%= user.user_id %>" <% if (!user.is_enabled()) { %>class="disabled_entity"<% } %>>
+                        <td><%= user.user_id  %></td>
+                        <td><%= user.user_first_name  %> <%= user.user_last_name %></td>
+                        <td><a class="enable_disable_link" onclick="toggle_entity_enabled('<%= user.user_id  %>', '<%= Url.Action("ToggleEnabled", "Teacher")  %>')">disable</a></td>
+                    </tr>
+                <% }} %>
+            </tbody>
+        </table>
+    </section>
 
 
 </asp:Content>

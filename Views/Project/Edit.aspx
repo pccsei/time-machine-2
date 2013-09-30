@@ -13,88 +13,95 @@
 
     <fieldset>
         <legend>PROJECT</legend>
-
-<%--        <div class="editor-label">
-            <%: Html.LabelFor(model => model.project_id) %>
-        </div>--%>
-        <div class="editor-field">
-            <%: Html.HiddenFor(model => model.project_id) %>
-            <%: Html.ValidationMessageFor(model => model.project_id) %>
-        </div>
-
-        <div class="editor-label">
-            <%: Html.LabelFor(model => model.project_course_id, "Course") %>
-        </div>
-        <div class="editor-field">
-            <%: Html.DropDownList("project_course_id", String.Empty) %>
-            <%: Html.ValidationMessageFor(model => model.project_course_id) %>
-        </div>
-
-        <div class="editor-label">
-            <%: Html.LabelFor(model => model.project_name) %>
-        </div>
-        <div class="editor-field">
-            <%: Html.EditorFor(model => model.project_name) %>
-            <%: Html.ValidationMessageFor(model => model.project_name) %>
-        </div>
-
-<%--        <div class="editor-label">
-            <%: Html.LabelFor(model => model.project_created_by, "USER") %>
-        </div>--%>
-        <div class="editor-field">
-            <%: Html.HiddenFor(model => model.project_created_by) %>
-            <%: Html.ValidationMessageFor(model => model.project_created_by) %>
-        </div>
-
-<%--        <div class="editor-label">
-            <%: Html.LabelFor(model => model.project_date_created) %>
-        </div>--%>
-        <div class="editor-field">
-            <%: Html.HiddenFor(model => model.project_date_created) %>
-            <%: Html.ValidationMessageFor(model => model.project_date_created) %>
-        </div>
-
-        <div class="editor-label">
-            <%: Html.LabelFor(model => model.project_description) %>
-        </div>
-        <div class="editor-field">
-            <%: Html.EditorFor(model => model.project_description) %>
-            <%: Html.ValidationMessageFor(model => model.project_description) %>
-        </div>
-
-        <div class="editor-label">
-            <%: Html.LabelFor(model => model.project_begin_date) %>
-        </div>
-        <div class="editor-field">
-            <%: Html.EditorFor(model => model.project_begin_date) %>
-            <%: Html.ValidationMessageFor(model => model.project_begin_date) %>
-        </div>
-
-        <div class="editor-label">
-            <%: Html.LabelFor(model => model.project_end_date) %>
-        </div>
-        <div class="editor-field">
-            <%: Html.EditorFor(model => model.project_end_date) %>
-            <%: Html.ValidationMessageFor(model => model.project_end_date) %>
-        </div>
-
-        <%--<div class="editor-label">
-            <%: Html.LabelFor(model => model.project_is_enabled) %>
-        </div>--%>
-        <div class="editor-field">
-            <%: Html.HiddenFor(model => model.project_is_enabled) %>
-            <%: Html.ValidationMessageFor(model => model.project_is_enabled) %>
-        </div>
-
-        <p>
-            <input type="submit" value="Save" />
-        </p>
+        <table>
+            <%--<tr>
+                <td class="editor-label">
+                    <%: Html.LabelFor(model => model.project_id) %>
+                </td>
+                <td class="editor-field">--%>
+                    <%: Html.HiddenFor(model => model.project_id) %>
+                    <%: Html.ValidationMessageFor(model => model.project_id) %>
+                <%--</td>
+            </tr>--%>
+            <tr>
+                <td class="editor-label">
+                    <%: Html.LabelFor(model => model.project_course_id, "Course") %>
+                </td>
+                <td class="editor-field">
+                    <%: Html.DropDownList("project_course_id", String.Empty) %>
+                    <%: Html.ValidationMessageFor(model => model.project_course_id) %>
+                </td>
+            </tr>
+            <tr>
+                <td class="editor-label">
+                    <%: Html.LabelFor(model => model.project_name) %>
+                </td>
+                <td class="editor-field">
+                    <%: Html.EditorFor(model => model.project_name) %>
+                    <%: Html.ValidationMessageFor(model => model.project_name) %>
+                </td>
+            </tr>
+            <%--<tr>
+                <td class="editor-label">
+                    <%: Html.LabelFor(model => model.project_created_by, "USER") %>
+                </td>
+                <td class="editor-field">--%>
+                    <%: Html.HiddenFor(model => model.project_created_by) %>
+                    <%: Html.ValidationMessageFor(model => model.project_created_by) %>
+                <%--</td>
+            </tr>
+            <tr>
+                <td class="editor-label">
+                    <%: Html.LabelFor(model => model.project_date_created) %>
+                </td>
+                <td class="editor-field">--%>
+                    <%: Html.HiddenFor(model => model.project_date_created) %>
+                    <%: Html.ValidationMessageFor(model => model.project_date_created) %>
+                <%--</td>
+            </tr>--%>
+            <tr>
+                <td class="editor-label">
+                    <%: Html.LabelFor(model => model.project_description) %>
+                </td>
+                <td class="editor-field">
+                    <%: Html.EditorFor(model => model.project_description) %>
+                    <%: Html.ValidationMessageFor(model => model.project_description) %>
+                </td>
+            </tr>
+            <tr>
+                <td class="editor-label">
+                    <%: Html.LabelFor(model => model.project_begin_date) %>
+                </td>
+                <td class="editor-field">
+                    <%: Html.EditorFor(model => model.project_begin_date) %>
+                    <%: Html.ValidationMessageFor(model => model.project_begin_date) %>
+                </td>
+            </tr>
+            <tr>
+                <td class="editor-label">
+                    <%: Html.LabelFor(model => model.project_end_date) %>
+                </td>
+                <td class="editor-field">
+                    <%: Html.EditorFor(model => model.project_end_date) %>
+                    <%: Html.ValidationMessageFor(model => model.project_end_date) %>
+                </td>
+            </tr>
+            <%--<tr>
+                <td class="editor-label">
+                    <%: Html.LabelFor(model => model.project_is_enabled) %>
+                </td>
+                <td class="editor-field">--%>
+                    <%: Html.HiddenFor(model => model.project_is_enabled) %>
+                    <%: Html.ValidationMessageFor(model => model.project_is_enabled) %>
+                <%--</td>
+            </tr>--%>
+            <tr>
+                <td></td>
+                <td><input type="submit" value="Save" /> <%: Html.ActionLink("Cancel", "Index") %></td>
+            </tr>
+        </table>
     </fieldset>
 <% } %>
-
-<div>
-    <%: Html.ActionLink("Back to Projects", "Index") %>
-</div>
 
 </asp:Content>
 
