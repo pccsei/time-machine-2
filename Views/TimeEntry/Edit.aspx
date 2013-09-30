@@ -6,6 +6,15 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
+<style type="text/css">
+
+    td.editor-label {
+        padding-right: 15px;
+        text-align: right;
+    }
+
+</style>
+
 <h2>Edit</h2>
 
 <% using (Html.BeginForm()) { %>
@@ -14,66 +23,83 @@
     <fieldset>
         <legend>ENTRY</legend>
 
-        <div class="editor-label">
+        <table>
+        <tr>
+        <td class="editor-label">
             <%: Html.LabelFor(model => model.entry_project_id) %>
-        </div>
-        <div class="editor-field">
+        </td>
+        <td class="editor-field">
             <%: Html.DropDownList("entry_project_id", String.Empty) %>
             <%: Html.ValidationMessageFor(model => model.entry_project_id) %>
-        </div>
+        </td>
+        </tr>
 
-        <div class="editor-label">
-            Start Time
-        </div>
-        <div class="editor-field">
+        <tr>
+        <td class="editor-label">
+            <label for="entry_begin_time">Start Time</label>
+        </td>
+        <td class="editor-field">
             <%: Html.EditorFor(model => model.entry_begin_time) %>
             <%: Html.ValidationMessageFor(model => model.entry_begin_time) %>
             <%: Html.ValidationMessage("StartError") %>
-        </div>
+        </td>
+        </tr>
 
         <%: Html.HiddenFor(model => model.entry_id) %>
         <%: Html.HiddenFor(model => model.entry_user_id)%>
 
-        <div class="editor-label">
-            End Time
-        </div>
-        <div class="editor-field">
+        <tr>
+        <td class="editor-label">
+            <label for="entry_end_time">End Time</label>
+        </td>
+        <td class="editor-field">
             <%: Html.EditorFor(model => model.entry_end_time) %>
             <%: Html.ValidationMessageFor(model => model.entry_end_time) %>
             <%: Html.ValidationMessage("EndError") %>
-        </div>
+        </td>
+        </tr>
 
-        <div class="editor-label">
+        <tr>
+        <td class="editor-label">
             <%: Html.LabelFor(model => model.entry_location_id, "Location") %>
-        </div>
-        <div class="editor-field">
+        </td>
+        <td class="editor-field">
             <%: Html.DropDownList("entry_location_id", String.Empty) %>
             <%: Html.ValidationMessageFor(model => model.entry_location_id) %>
-        </div>
+        </td>
+        </tr>
 
-        <div class="editor-label">
+        <tr>
+        <td class="editor-label">
             <%: Html.LabelFor(model => model.entry_category_id, "Category") %>
-        </div>
-        <div class="editor-field">
+        </td>
+        <td class="editor-field">
             <%: Html.DropDownList("entry_category_id", String.Empty) %>
             <%: Html.ValidationMessageFor(model => model.entry_category_id) %>
-        </div>
+        </td>
+        </tr>
 
-        <div class="editor-label">
-            Work Accomplished
-        </div>
-        <div class="editor-field">
+        <tr>
+        <td class="editor-label">
+            <label for="entry_work_accomplished">Work Accomplished</label>
+        </td>
+        <td class="editor-field">
             <%: Html.EditorFor(model => model.entry_work_accomplished) %>
             <%: Html.ValidationMessageFor(model => model.entry_work_accomplished) %>
-        </div>
+        </td>
+        </tr>
 
-        <div class="editor-label">
-            Comment
-        </div>
-        <div class="editor-field">
+        <tr>
+        <td class="editor-label">
+            <label for="entry_comment">Comment</label>
+        </td>
+        <td class="editor-field">
             <%: Html.EditorFor(model => model.entry_comment) %>
+            <!-- <textarea id="entry_comment" name="entry_comment"></textarea> -->
             <%: Html.ValidationMessageFor(model => model.entry_comment) %>
-        </div>
+        </td>
+        </tr>
+        </table>
 
         <p>
             <input type="submit" value="Save" />

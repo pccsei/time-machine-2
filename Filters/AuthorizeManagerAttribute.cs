@@ -12,10 +12,10 @@ namespace _14_TimeMachine2.Filters
    {
       public override void OnActionExecuting(ActionExecutingContext filterContext)
       {
-         // If the user is not a manager, close the session
+         // Deny current user if he is not a manager
           if (!(bool)HttpContext.Current.Session["userIsManager"])
               filterContext.Result = new RedirectToRouteResult(
-                  new RouteValueDictionary { { "controller", "Error" }, { "action", "Index" } });
+                  new RouteValueDictionary { { "controller", "ManagerError" }, { "action", "Index" } });
       }
    }
 }

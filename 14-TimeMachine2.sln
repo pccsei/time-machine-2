@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "14-TimeMachine2", "14-TimeMachine2.csproj", "{67D05D46-70D8-4411-8AA0-36006F0ED5BD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "14-TimeMachine2.Tests", "14-TimeMachine2.Tests/14-TimeMachine2.Tests.csproj", "{5CF0376F-33D8-458E-B8E3-27C9261AA309}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "14-TimeMachine2.Tests", "14-TimeMachine2.Tests\14-TimeMachine2.Tests.csproj", "{5CF0376F-33D8-458E-B8E3-27C9261AA309}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

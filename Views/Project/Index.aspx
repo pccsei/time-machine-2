@@ -22,7 +22,7 @@
     </form>
     
     <br /><br />
-    <h2 style="display: inline;">Projects</h2> <a id="A1">show all</a>
+    <h2 style="display: inline;">Projects</h2> <a id="show_hide_button">show all</a>
 <table class="standard">
     <tr>
         <th>

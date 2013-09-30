@@ -13,7 +13,7 @@ namespace _14_TimeMachine2.Filters
     {
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
-            // If the user is not a teacher, redirect
+            // If the user is not a teacher or manager, display an error message
             if (!(bool)HttpContext.Current.Session["userIsTeacher"] && !(bool)HttpContext.Current.Session["userIsStudent"])
                 filterContext.Result = new RedirectToRouteResult(
                     new RouteValueDictionary { { "controller", "Error" }, { "action", "Index" } });

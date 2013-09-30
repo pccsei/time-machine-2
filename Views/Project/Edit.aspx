@@ -14,11 +14,11 @@
     <fieldset>
         <legend>PROJECT</legend>
 
-        <div class="editor-label">
+<%--        <div class="editor-label">
             <%: Html.LabelFor(model => model.project_id) %>
-        </div>
+        </div>--%>
         <div class="editor-field">
-            <%: Html.EditorFor(model => model.project_id) %>
+            <%: Html.HiddenFor(model => model.project_id) %>
             <%: Html.ValidationMessageFor(model => model.project_id) %>
         </div>
 
@@ -38,19 +38,19 @@
             <%: Html.ValidationMessageFor(model => model.project_name) %>
         </div>
 
-        <div class="editor-label">
+<%--        <div class="editor-label">
             <%: Html.LabelFor(model => model.project_created_by, "USER") %>
-        </div>
+        </div>--%>
         <div class="editor-field">
-            <%: Html.DropDownList("project_created_by", String.Empty) %>
+            <%: Html.HiddenFor(model => model.project_created_by) %>
             <%: Html.ValidationMessageFor(model => model.project_created_by) %>
         </div>
 
-        <div class="editor-label">
+<%--        <div class="editor-label">
             <%: Html.LabelFor(model => model.project_date_created) %>
-        </div>
+        </div>--%>
         <div class="editor-field">
-            <%: Html.EditorFor(model => model.project_date_created) %>
+            <%: Html.HiddenFor(model => model.project_date_created) %>
             <%: Html.ValidationMessageFor(model => model.project_date_created) %>
         </div>
 
