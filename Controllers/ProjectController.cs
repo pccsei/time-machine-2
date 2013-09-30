@@ -90,6 +90,7 @@ namespace _14_TimeMachine2.Controllers
         [HttpPost]
         public ActionResult Edit(PROJECT project)
         {
+            //project.project_created_by = currentUser;
             if (ModelState.IsValid)
             {
                 db.Entry(project).State = EntityState.Modified;
