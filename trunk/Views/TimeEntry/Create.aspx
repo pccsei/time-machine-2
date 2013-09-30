@@ -102,9 +102,9 @@
     </fieldset>
 <% } %>
 
-<div>
+<%--<div>
     <%: Html.ActionLink("Back to Timelog", "Index") %>
-</div>
+</div>--%>
 
 </asp:Content>
 
