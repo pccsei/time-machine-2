@@ -130,6 +130,50 @@ namespace _14_TimeMachine2.Models
             return stats;
         }
 
+        public Dictionary<string, float> getCourseStatsForStudentDictionary(int course_id)
+        {
+            var course   = db.COURSEs.Find(course_id);
+            var projects = course.PROJECTs.ToList();
+
+            Dictionary<string, float> dictionary = new Dictionary<string, float>();
+
+            // Total hours
+            foreach (ENTRY e in this.ENTRies)
+            {
+                if (projects.Find(
+                        delegate(PROJECT p)
+                        {
+                            return p.project_id == e.entry_project_id;
+                        }
+                    ) != null)
+                {
+                    if(dictionary.ContainsKey("Total Hours"))
+                    {
+                        dictionary["Total Hours"] += ((float)e.entry_total_time / 60.0f);
+                    }
+                    else
+                    {
+                        dictionary.Add("Total Hours", (float)e.entry_total_time / 60.0f);
+                    }
+                }
+            }
+
+            // Hours per day
+            if(!dictionary.ContainsKey("Total Hours"))
+            {
+                dictionary.Add("Total Hours", 0.0f);
+            }
+            dictionary.Add("Daily Hours", dictionary["Total Hours"] / (float)(DateTime.Now - course.course_begin_date).Days);
+
+            // Hours per week
+            dictionary.Add("Weekly Hours", dictionary["Daily Hours"] * 7.0f);
+
+            // Projected Grade
+            dictionary.Add("Projected Grade", dictionary["Weekly Hours"] * (float) course.course_ref_grade / (float) course.course_ref_hours);
+
+            return dictionary;
+        }
+
         public class USER_SortByLastName : IComparer<USER>
         {
 
