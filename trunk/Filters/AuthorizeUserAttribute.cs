@@ -18,29 +18,28 @@ namespace _14_TimeMachine2.Filters
 
             try
             {
-                string userId = (string) HttpContext.Current.Session["username"];
+                string userId = GlobalVariables.current_user_id;
                 USER currentUser = db.USERs.Find(userId);
-                string error = HttpContext.Current.Request.Path;
+                string error = HttpContext.Current.Request.Path;                
 
                 HttpContext.Current.Session["userIsStudent"] = false;
                 HttpContext.Current.Session["userIsTeacher"] = false;
                 HttpContext.Current.Session["userIsManager"] = false;
 
-                if (!error.Contains("Error"))
+                if (currentUser == null || !currentUser.is_enabled())
                 {
-                    if (currentUser == null || !currentUser.is_enabled())
-                    {
-                        filterContext.Result = new RedirectToRouteResult(
-                        new RouteValueDictionary { { "controller", "Error" }, { "action", "Index" } });
-
-                    }
-                    else
-                    {
-                        HttpContext.Current.Session["userIsStudent"] = currentUser.is_student();
-                        HttpContext.Current.Session["userIsTeacher"] = currentUser.is_teacher();
-                        HttpContext.Current.Session["userIsManager"] = currentUser.is_manager();
-                    }
+                   if (!error.Contains("Error"))
+                       filterContext.Result = new RedirectToRouteResult(
+                           new RouteValueDictionary { { "controller", "Error" }, { "action", "Index" } });
+ 
                 }
+                else
+                {
+                    HttpContext.Current.Session["userIsStudent"] = currentUser.is_student();
+                    HttpContext.Current.Session["userIsTeacher"] = currentUser.is_teacher();
+                    HttpContext.Current.Session["userIsManager"] = currentUser.is_manager();
+                }
+                
 
             }
             catch (Exception ex)

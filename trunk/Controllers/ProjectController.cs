@@ -15,8 +15,8 @@ namespace _14_TimeMachine2.Controllers
     {
         private TM2Entities2 db = new TM2Entities2();
 
-        //public string currentUser = GlobalVariables.current_user_id;
-        public string currentUser = "115245";
+        public string currentUser = GlobalVariables.current_user_id;
+        //public string currentUser = "115245";
 
         //
         // GET: /Project/
@@ -25,7 +25,7 @@ namespace _14_TimeMachine2.Controllers
         {
             var projects = db.PROJECTs.Include(p => p.COURSE).Include(p => p.USER);
             ViewBag.project_course_id = new SelectList(db.USERs.Find(currentUser).getCoursesForUser(), "course_id", "course_name");
-            return View(projects.ToList());
+            return View( db.USERs.Find(currentUser).getProjectsForUser().ToList());
         }
 
         [HttpPost]
@@ -80,7 +80,7 @@ namespace _14_TimeMachine2.Controllers
                 return HttpNotFound();
             }
             ViewBag.project_course_id = new SelectList(db.COURSEs, "course_id", "course_name", project.project_course_id);
-            ViewBag.project_created_by = new SelectList(db.USERs, "user_id", "user_first_name", project.project_created_by);
+            ViewBag.project_created_by = currentUser;
             return View(project);
         }
 
@@ -97,7 +97,7 @@ namespace _14_TimeMachine2.Controllers
                 return RedirectToAction("Index");
             }
             ViewBag.project_course_id = new SelectList(db.COURSEs, "course_id", "course_name", project.project_course_id);
-            ViewBag.project_created_by = new SelectList(db.USERs, "user_id", "user_first_name", project.project_created_by);
+            ViewBag.project_created_by = currentUser;
             return View(project);
         }
 

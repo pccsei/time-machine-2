@@ -16,7 +16,7 @@ namespace _14_TimeMachine2.Filters
             // If the user is not a teacher, redirect
             if (!(bool)HttpContext.Current.Session["userIsTeacher"])
                 filterContext.Result = new RedirectToRouteResult(
-                    new RouteValueDictionary { { "controller", "Error" }, { "action", "Index" } });
+                    new RouteValueDictionary { { "controller", "TeacherError" }, { "action", "Index" } });
         }
     }
 }

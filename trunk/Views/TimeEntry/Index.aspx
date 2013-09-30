@@ -42,9 +42,9 @@
         <th>
             <%: Html.DisplayNameFor(model => model.CATEGORY.category_name) %>
         </th>
-        <th>
+        <%--<th>
             <%: Html.DisplayNameFor(model => model.entry_work_accomplished) %>
-        </th>
+        </th>--%>
 
         <th></th>
     </tr>
@@ -71,14 +71,12 @@
         <td>
             <%: Html.DisplayFor(modelItem => item.CATEGORY.category_name) %>
         </td>
-        <td>
+        <%--<td>
             <%: Html.DisplayFor(modelItem => item.entry_work_accomplished) %>
-        </td>
+        </td>--%>
 
         <td>
-            <%: Html.ActionLink("Edit", "Edit", new {  id=item.entry_id  }) %> |
-           <%-- <%: Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) %> |--%>
-            <%: Html.ActionLink("Delete", "Delete", new {  id=item.entry_id  }) %>
+           <%: Html.ActionLink("More...", "Details", new { id=item.entry_id }) %>
         </td>
     </tr>
 <% } %>

@@ -4,3 +4,6 @@
 a {
     cursor: pointer;
 }
+td, th {
+    padding: 8px 15px;
+}

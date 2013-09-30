@@ -6,82 +6,116 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
+<style type="text/css">
+
+    td.display-label {
+        font-weight: bold;
+        padding-right: 15px;
+        text-align: right;
+    }
+
+</style>
+
 <h2>Delete</h2>
 
 <h3>Are you sure you want to delete this?</h3>
-<fieldset>
-    <legend>ENTRY</legend>
 
-    <div class="display-label">
-        <%: Html.DisplayNameFor(model => model.entry_id) %>
-    </div>
-    <div class="display-field">
+    <table>
+    <tr>
+    <td class="display-label">
+        Entry ID
+        <!-- <%: Html.DisplayNameFor(model => model.entry_id) %> -->
+    </td>
+    <td class="display-field">
         <%: Html.DisplayFor(model => model.entry_id) %>
-    </div>
-
-    <div class="display-label">
+    </td>
+    </tr>
+    
+    <tr>
+    <td class="display-label">
         <%: Html.DisplayNameFor(model => model.entry_begin_time) %>
-    </div>
-    <div class="display-field">
+    </td>
+    <td class="display-field">
         <%: Html.DisplayFor(model => model.entry_begin_time) %>
-    </div>
-
-    <div class="display-label">
+    </td>
+    </tr>
+    
+    <tr>
+    <td class="display-label">
         <%: Html.DisplayNameFor(model => model.entry_end_time) %>
-    </div>
-    <div class="display-field">
+    </td>
+    <td class="display-field">
         <%: Html.DisplayFor(model => model.entry_end_time) %>
-    </div>
-
-    <div class="display-label">
-        <%: Html.DisplayNameFor(model => model.entry_total_time) %>
-    </div>
-    <div class="display-field">
+    </td>
+    </tr>
+    
+    <tr>
+    <td class="display-label">
+        Minutes
+        <!-- <%: Html.DisplayNameFor(model => model.entry_total_time) %> -->
+    </td>
+    <td class="display-field">
         <%: Html.DisplayFor(model => model.entry_total_time) %>
-    </div>
-
-    <div class="display-label">
+    </td>
+    </tr>
+    
+    <tr>
+    <td class="display-label">
         <%: Html.DisplayNameFor(model => model.entry_work_accomplished) %>
-    </div>
-    <div class="display-field">
+    </td>
+    <td class="display-field">
         <%: Html.DisplayFor(model => model.entry_work_accomplished) %>
-    </div>
-
-    <div class="display-label">
+    </td>
+    </tr>
+    
+    <tr>
+    <td class="display-label">
         <%: Html.DisplayNameFor(model => model.entry_comment) %>
-    </div>
-    <div class="display-field">
+    </td>
+    <td class="display-field">
         <%: Html.DisplayFor(model => model.entry_comment) %>
-    </div>
-
-    <div class="display-label">
-        <%: Html.DisplayNameFor(model => model.USER.user_first_name) %>
-    </div>
-    <div class="display-field">
+    </td>
+    </tr>
+    
+    <tr>
+    <td class="display-label">
+        Student Name
+        <!-- <%: Html.DisplayNameFor(model => model.USER.user_first_name) %> -->
+    </td>
+    <td class="display-field">
         <%: Html.DisplayFor(model => model.USER.user_first_name) %>
-    </div>
-
-    <div class="display-label">
+        <%: Html.DisplayFor(model => model.USER.user_last_name) %>
+    </td>
+    </tr>
+    
+    <tr>
+    <td class="display-label">
         <%: Html.DisplayNameFor(model => model.PROJECT.project_name) %>
-    </div>
-    <div class="display-field">
+    </td>
+    <td class="display-field">
         <%: Html.DisplayFor(model => model.PROJECT.project_name) %>
-    </div>
-
-    <div class="display-label">
+    </td>
+    </tr>
+    
+    <tr>
+    <td class="display-label">
         <%: Html.DisplayNameFor(model => model.LOCATION.location_name) %>
-    </div>
-    <div class="display-field">
+    </td>
+    <td class="display-field">
         <%: Html.DisplayFor(model => model.LOCATION.location_name) %>
-    </div>
-
-    <div class="display-label">
+    </td>
+    </tr>
+    
+    <tr>
+    <td class="display-label">
         <%: Html.DisplayNameFor(model => model.CATEGORY.category_name) %>
-    </div>
-    <div class="display-field">
+    </td>
+    <td class="display-field">
         <%: Html.DisplayFor(model => model.CATEGORY.category_name) %>
-    </div>
-</fieldset>
+    </td>
+    </tr>
+    </table>
+
 <% using (Html.BeginForm()) { %>
     <p>
         <input type="submit" value="Delete" /> |

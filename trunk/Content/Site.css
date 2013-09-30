@@ -447,6 +447,7 @@ select {
 textarea {
     font-family: inherit;
     width: 500px;
+    height: 100px;
 }
 
     input:focus, textarea:focus {
