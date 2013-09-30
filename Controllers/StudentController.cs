@@ -28,6 +28,73 @@ namespace _14_TimeMachine2.Controllers
             return View(coursesForTeacher);
         }
 
+        [AuthorizeStudent]
+        [AuthorizeTeacher]
+        public ActionResult Summary(int id = 0)
+        {
+            USER user = db.USERs.Find(currentUser);
+            Dictionary<string, Dictionary<string, float>> stats = new Dictionary<string, Dictionary<string, float>>();
+            if(id != 0 && user.is_teacher() == true)
+                user = db.USERs.Find(id.ToString());
+            else
+                user = db.USERs.Find(currentUser);
+
+            ICollection<ENTRY> entryData = user.ENTRies;
+
+            Dictionary<string, Dictionary<int, double>> summary = new Dictionary<string, Dictionary<int, double>>();
+            foreach (COURSE course in user.getCoursesForUser())
+            {
+                summary.Add(course.course_name, new Dictionary<int, double>());
+                int submitDay = course.course_submit_day;
+                DateTime courseStartDay = course.course_begin_date;
+                DateTime relStartDay = DateTime.Parse(courseStartDay.ToString());
+
+                int startDayInt = (int)relStartDay.DayOfWeek;
+                
+                int extraDays = submitDay - startDayInt;
+                if (extraDays < 0)
+                    extraDays = 6 + extraDays;
+                List<int> projectIDs = new List<int>();
+                relStartDay = relStartDay.AddDays(extraDays).Date;
+
+                foreach(PROJECT project in course.PROJECTs)
+                {
+                    projectIDs.Add(project.project_id);
+                }
+
+                foreach (ENTRY entry in entryData)
+                {
+                    if (projectIDs.Contains((int)entry.entry_project_id))
+                    {
+                        Double days = Double.Parse((DateTime.Parse(entry.entry_begin_time.ToString()).Date - relStartDay).TotalDays.ToString());
+                        int week = (int)Math.Floor(days / 7) + 1;
+                        if (days < 0) { week = 1; }
+                        if (days < 0 && days % 7 == 0) { week -= 1; }
+
+                        if (summary[course.course_name].ContainsKey(week))
+                        {
+                            summary[course.course_name][week] += Double.Parse((entry.entry_total_time/ 60.0).ToString());
+                        }
+                        else
+                        {
+                            summary[course.course_name].Add(week, Double.Parse((entry.entry_total_time/60.0).ToString()));
+                        }
+                    }
+                }
+                stats.Add(course.course_name, user.getCourseStatsForStudentDictionary(course.course_id));
+            }
+
+
+            ViewData["Summary"] = summary;
+            ViewData["Stats"] = stats;
+
+
+            
+            return View("Summary");
+        }
+
+     
+
         [HttpPost]
         public ActionResult Create(FormCollection member)
         {
