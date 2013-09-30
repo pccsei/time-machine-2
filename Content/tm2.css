@@ -1,9 +1,30 @@
 ﻿.disabled_entity {
-    background: #ccc;
+    background: #666;
+    color: white !important;
 }
+
 a {
     cursor: pointer;
 }
+
 td, th {
     padding: 8px 15px;
+}
+
+td.editor-label {
+    padding-right: 15px;
+    text-align: right;
+    padding-top: 15px;
+}
+
+table.hasHeader {
+    border: 2px solid #ccc;
+}
+
+td, th {
+    vertical-align: top;
+}
+
+input, textarea {
+    margin: 0;
 }

@@ -118,8 +118,8 @@
 
 <% using (Html.BeginForm()) { %>
     <p>
-        <input type="submit" value="Delete" /> |
-        <%: Html.ActionLink("Back to List", "Index") %>
+        <input type="submit" value="Delete" />
+        <%: Html.ActionLink("Cancel", "Details", new { id = Model.entry_id }) %>
     </p>
 <% } %>
 

@@ -6,15 +6,6 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
-<style type="text/css">
-
-    td.editor-label {
-        padding-right: 15px;
-        text-align: right;
-    }
-
-</style>
-
 <h2>Edit</h2>
 
 <% using (Html.BeginForm()) { %>
@@ -84,7 +75,7 @@
             <label for="entry_work_accomplished">Work Accomplished</label>
         </td>
         <td class="editor-field">
-            <%: Html.EditorFor(model => model.entry_work_accomplished) %>
+            <%: Html.TextAreaFor(model => model.entry_work_accomplished) %>
             <%: Html.ValidationMessageFor(model => model.entry_work_accomplished) %>
         </td>
         </tr>
@@ -94,22 +85,20 @@
             <label for="entry_comment">Comment</label>
         </td>
         <td class="editor-field">
-            <%: Html.EditorFor(model => model.entry_comment) %>
-            <!-- <textarea id="entry_comment" name="entry_comment"></textarea> -->
+            <%: Html.TextAreaFor(model => model.entry_comment) %>
             <%: Html.ValidationMessageFor(model => model.entry_comment) %>
         </td>
         </tr>
+
+        <tr>
+        <td></td>
+        <td><input type="submit" value="Save" /> <%: Html.ActionLink("Cancel", "Details", new { id = Model.entry_id }) %></td>
+        </tr>
+
         </table>
 
-        <p>
-            <input type="submit" value="Save" />
-        </p>
     </fieldset>
 <% } %>
-
-<div>
-    <%: Html.ActionLink("Back to List", "Index") %>
-</div>
 
 </asp:Content>
 

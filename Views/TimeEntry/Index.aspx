@@ -21,7 +21,7 @@
         Create New Entry
     </a>
 </div>
-<table class="zebra">
+<table class="zebra hasHeader">
     <tr>
         <th>
             <%: Html.DisplayNameFor(model => model.PROJECT.project_name) %>

@@ -446,7 +446,7 @@ select {
 }
 textarea {
     font-family: inherit;
-    width: 500px;
+    /*width: 500px;*/
     height: 100px;
 }
 
@@ -547,7 +547,7 @@ div.submit {
         }
 
             /*#add:hover {
-                content:url("/seproject/timemachine2/Images/PL_Add_1x_Hit.png");
+                content:url("../Images/PL_Add_1x_Hit.png");
             }*/
 
 
@@ -559,7 +559,6 @@ table {
     border-collapse: collapse;
     border-spacing: 0;
     margin-top: 0.75em;
-    border: 0 none;
 }
 
 /* Lists containing edit/disable
@@ -583,7 +582,7 @@ table {
     font-size:11pt;
 }
 
-.zebra tr:nth-child(even) {
+.zebra tr:nth-child(odd) {
     background-color:#ffffff;
 }
 
@@ -597,7 +596,7 @@ th {
     font-size: 1.2em;
     text-align: left;
     border: none 0px;
-    background-color:#ddd;
+    background-color:#ccc;
 }
 
     th a {
@@ -637,7 +636,7 @@ th {
     }
 
 td {
-    //padding: 0.25em 2em 0.25em 0em;
+    /*padding: 0.25em 2em 0.25em 0em;*/
     border: 0 none;
 }
 

@@ -6,7 +6,7 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
-<h2>Student Summary</h2>
+<h2>Student List</h2>
 
         <!-- Dropdown list of all the classes to choose -->
         <div>
@@ -26,7 +26,7 @@
          </form>
 
 <!--A list of all the students in a class -->
-<table id ="memberTable">
+<table id ="memberTable" class="zebra hasHeader">
     <tr>
         <th>
             ID

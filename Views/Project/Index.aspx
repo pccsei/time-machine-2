@@ -23,7 +23,7 @@
     
     <br /><br />
     <h2 style="display: inline;">Projects</h2> <a id="show_hide_button">show all</a>
-<table class="standard">
+<table class="zebra hasHeader">
     <tr>
         <th>
             <%: Html.DisplayNameFor(model => model.project_name) %>
