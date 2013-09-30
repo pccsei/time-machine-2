@@ -47,8 +47,13 @@
     <br /><br />
     <h2 style="display: inline;">Teachers</h2> <a id="show_hide_button">show all</a>
 
-    <table class="standard">
+    <table class="zebra hasHeader">
         <tbody>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Toggle Status</th>
+            </tr>
             <% foreach (var user in Model.ToArray())
                { 
                    if (user.is_teacher())

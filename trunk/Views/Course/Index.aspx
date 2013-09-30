@@ -14,7 +14,7 @@
         Create New Course
     </a>
 </div>
-<table class="standard">
+<table class="zebra hasHeader">
     <tr>
 <%--        <th>
             <%: Html.DisplayNameFor(model => model.course_id) %>

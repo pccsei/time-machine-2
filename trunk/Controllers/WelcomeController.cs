@@ -18,7 +18,7 @@ namespace _14_TimeMachine2.Controllers
         public ActionResult Index()
         {
             if ((bool)HttpContext.Session["userIsStudent"])
-                return RedirectToAction("Index", "TimeEntry");
+                return RedirectToAction("Create", "TimeEntry");
             else if ((bool)HttpContext.Session["userIsTeacher"])
                 return RedirectToAction("Index", "Student");
             else if ((bool)HttpContext.Session["userIsManager"])
