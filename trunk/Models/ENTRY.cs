@@ -18,28 +18,38 @@ namespace _14_TimeMachine2.Models
     {
         [Required]
         public int entry_id { get; set; }
+
         [Display(Name = "Start Time")]
+        [Required(ErrorMessage = "required")]
         public Nullable<System.DateTime> entry_begin_time { get; set; }
-        [Required]
+
         [Display(Name = "End Time")]
+        [Required(ErrorMessage = "required")]
         public Nullable<System.DateTime> entry_end_time { get; set; }
+
         [Display(Name = "Hours")]
         public Nullable<int> entry_total_time { get; set; }
+
         [Display(Name = "Work Accomplished")]
-        [Required]
+        [Required(ErrorMessage = "required")]
         public string entry_work_accomplished { get; set; }
+
         [Display(Name = "Comment")]
         public string entry_comment { get; set; }
+
         [Display(Name = "Student")]
         public string entry_user_id { get; set; }
+
         [Display(Name = "Project")]
-        [Required]
+        [Required(ErrorMessage = "required")]
         public Nullable<int> entry_project_id { get; set; }
-        [Required]
+
         [Display(Name = "Location")]
+        [Required(ErrorMessage = "required")]
         public Nullable<int> entry_location_id { get; set; }
+
         [Display(Name = "Category")]
-        [Required]
+        [Required(ErrorMessage = "required")]
         public Nullable<int> entry_category_id { get; set; }
 
 

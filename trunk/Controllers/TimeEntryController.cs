@@ -78,54 +78,35 @@ namespace _14_TimeMachine2.Controllers
             // See if the entry is overlapping a previous entry
             List<ENTRY> entryList = new List<ENTRY>();
             entryList = db.USERs.Find(currentUser).ENTRies.ToList();
-            bool startError = true;
-            bool endError = true;
-            bool negativeError = true;
+            bool boundaryError = false;
 
-            //Jake Canipe's validation
-            foreach (var currentEntry in entryList)
+            // Rob's validation, based on Jake's work
+            if (startTime > endTime)
+                ModelState.AddModelError("NegativeTimeError", "The end time comes before the start time.");
+            else if (startTime == endTime)
+                ModelState.AddModelError("NoTimeError", "The end time is the same as the start time.");
+            else
             {
-                if (startTime > endTime)
-                    negativeError = false;
-                else
+                foreach (var currentEntry in entryList)
                 {
-
-                    if (startTime <= currentEntry.entry_begin_time &&
-                        endTime >= currentEntry.entry_end_time ||
-                        startTime >= currentEntry.entry_begin_time &&
-                        endTime <= currentEntry.entry_end_time ||
-                        startTime == endTime)
-                    {
-                        startError = false;
-                        endError = false;
-                    }
-
-                    if (startTime >= currentEntry.entry_begin_time &&
-                        startTime <= currentEntry.entry_end_time)
-                        startError = false;
-
-                    if (endTime >= currentEntry.entry_begin_time &&
-                        endTime <= currentEntry.entry_end_time)
-                        endError = false;
+                    if ((currentEntry.entry_begin_time <= startTime && startTime < currentEntry.entry_end_time) || // If startTime is within another entry's time
+                        (currentEntry.entry_begin_time < endTime && endTime <= currentEntry.entry_end_time) ||     // If endTime is within another entry's time
+                        (startTime <= currentEntry.entry_begin_time && currentEntry.entry_end_time <= endTime))    // If another entry's time is within the new time
+                        boundaryError = true;
                 }
+                if (boundaryError)
+                    ModelState.AddModelError("TimeBoundaryError", "The time entered overlaps a previously entered time.");
             }
-            if (!startError)
-                ModelState.AddModelError("StartError", "Start time is overlapping previously entered time.");
-
-            if (!endError)
-                ModelState.AddModelError("EndError", "End time is overlapping previously entered time.");
-
-            if (!negativeError)
-                ModelState.AddModelError("NegativeError", "You have entered negative time.");
 
             entry.entry_total_time = Convert.ToInt32(totalTime);
             entry.entry_user_id = currentUser;
+            ModelState.Remove("entry_id");
 
             if (ModelState.IsValid)            
             {
-                db.ENTRies.Add(entry);         
+                db.ENTRies.Add(entry);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Details", new { id = db.Entry(entry).Entity.entry_id });
             }
 
             ViewBag.entry_category_id = new SelectList(db.CATEGORies, "category_id", "category_name", entry.entry_category_id);
@@ -156,66 +137,53 @@ namespace _14_TimeMachine2.Controllers
         // POST: /TimeEntry/Edit/5
 
         [HttpPost]
-        public ActionResult Edit(ENTRY entry)
+        public ActionResult Edit(ENTRY edited_entry)
         {
-            Double totalTime = (DateTime.Parse(entry.entry_end_time.ToString()) - DateTime.Parse(entry.entry_begin_time.ToString())).TotalMinutes;
+            DateTime startTime = DateTime.Parse(edited_entry.entry_begin_time.ToString());
+            DateTime endTime = DateTime.Parse(edited_entry.entry_end_time.ToString());
+            Double totalTime = (DateTime.Parse(edited_entry.entry_end_time.ToString()) - DateTime.Parse(edited_entry.entry_begin_time.ToString())).TotalMinutes;
 
             // See if the entry is overlapping a previous entry
             List<ENTRY> entryList = new List<ENTRY>();
             entryList = db.USERs.Find(currentUser).ENTRies.ToList();
-            bool startError = true;
-            bool endError = true;
+            bool boundaryError = false;
 
-            int editedEntryId = entry.entry_id;
+            // Rob's validation, based on Jake's work
+            if (startTime > endTime)
+                ModelState.AddModelError("NegativeTimeError", "The end time comes before the start time.");
+            else if (startTime == endTime)
+                ModelState.AddModelError("NoTimeError", "The end time is the same as the start time.");
+            else
+            {
+                foreach (var currentEntry in entryList)
+                {
+                    if ((currentEntry.entry_id != edited_entry.entry_id) &&                                        // Don't check edited time against previous time
+                       ((currentEntry.entry_begin_time <= startTime && startTime < currentEntry.entry_end_time) || // If startTime is within another entry's time
+                        (currentEntry.entry_begin_time < endTime && endTime <= currentEntry.entry_end_time) ||     // If endTime is within another entry's time
+                        (startTime <= currentEntry.entry_begin_time && currentEntry.entry_end_time <= endTime)))   // If another entry's time is within the new time
+                        boundaryError = true;
+                }
+                if (boundaryError)
+                    ModelState.AddModelError("TimeBoundaryError", "The time entered overlaps a previously entered time.");
+            }
 
-
-            //// Jake's validation work
-            //DateTime startTime = DateTime.Parse(entry.entry_begin_time.ToString());
-            //DateTime endTime = DateTime.Parse(entry.entry_end_time.ToString());
-            //foreach (var currentEntry in entryList)
-            //{
-            //    // Quick fix to make sure the validation does not block legitimate edits
-            //    if (currentEntry.entry_id != editedEntryId)
-            //    {
-            //        if (startTime <= currentEntry.entry_begin_time &&
-            //        endTime >= currentEntry.entry_end_time ||
-            //        startTime >= currentEntry.entry_begin_time &&
-            //        endTime <= currentEntry.entry_end_time ||
-            //        startTime == endTime)
-            //        {
-            //            startError = false;
-            //            endError = false;
-            //        }
-
-            //        if (startTime >= currentEntry.entry_begin_time &&
-            //            startTime <= currentEntry.entry_end_time)
-            //            startError = false;
-
-            //        if (endTime >= currentEntry.entry_begin_time &&
-            //            endTime <= currentEntry.entry_end_time)
-            //            endError = false;
-            //    }
-            //    if (!startError)
-            //        ModelState.AddModelError("StartError", "Start time is overlapping previously entered time");
-
-            //    if (!endError)
-            //        ModelState.AddModelError("EndError", "End time is overlapping previously entered time");
-            //}
-            entry.entry_total_time = Convert.ToInt32(totalTime);
-            //entry.entry_user_id = currentUser;
+            // Recalculate the total time. Remove PK from validation.
+            edited_entry.entry_total_time = Convert.ToInt32(totalTime);
+            ModelState.Remove("entry_id");
             
             if (ModelState.IsValid)
             {
-                db.Entry(entry).State = EntityState.Modified;
+                ENTRY db_entry = db.ENTRies.Find(edited_entry.entry_id);
+                db.Entry(db_entry).CurrentValues.SetValues(edited_entry);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Details", new { id = db_entry.entry_id });
             }
 
-            ViewBag.entry_category_id = new SelectList(db.CATEGORies, "category_id", "category_name", entry.entry_category_id);
-            ViewBag.entry_location_id = new SelectList(db.LOCATIONs, "location_id", "location_name", entry.entry_location_id);
-            ViewBag.entry_project_id = new SelectList(db.PROJECTs, "project_id", "project_name", entry.entry_project_id);
-            ViewBag.entry_user_id = new SelectList(db.USERs, "user_id", "user_first_name", entry.entry_user_id);
-            return View(entry);
+            ViewBag.entry_category_id = new SelectList(db.CATEGORies, "category_id", "category_name", edited_entry.entry_category_id);
+            ViewBag.entry_location_id = new SelectList(db.LOCATIONs, "location_id", "location_name", edited_entry.entry_location_id);
+            ViewBag.entry_project_id = new SelectList(db.PROJECTs, "project_id", "project_name", edited_entry.entry_project_id);
+            ViewBag.entry_user_id = new SelectList(db.USERs, "user_id", "user_first_name", edited_entry.entry_user_id);
+            return View(edited_entry);
         }
 
         //

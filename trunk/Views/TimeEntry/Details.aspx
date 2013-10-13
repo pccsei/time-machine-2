@@ -49,11 +49,11 @@
     
     <tr>
     <td class="display-label">
-        Minutes
-        <!-- <%: Html.DisplayNameFor(model => model.entry_total_time) %> -->
+        <%: Html.DisplayNameFor(model => model.entry_total_time) %>
     </td>
     <td class="display-field">
-        <%: Html.DisplayFor(model => model.entry_total_time) %>
+        <%: ((float) Model.entry_total_time / 60.0f).ToString("n2") %>
+        <%--: Html.DisplayFor(model => model.entry_total_time) --%>
     </td>
     </tr>
     
