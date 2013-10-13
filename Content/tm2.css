@@ -47,6 +47,19 @@ table.inlineForm input {
     width: 150px;
 }
 
+.halftime input {
+    width: 130px;
+}
+
+.editor-field span.dash {
+    font-size: 1.2em;
+    padding: 5px;
+}
+
+span.field-validation-error {
+    display: block;
+}
+
 table.inlineForm select {
     width: 200px;
 }

@@ -13,7 +13,6 @@
 
     <fieldset>
         <legend>ENTRY</legend>
-
         <table>
             <tr>
                 <td class="editor-label">
@@ -27,20 +26,18 @@
 
             <tr>
                 <td class="editor-label">
-                    <label for="entry_begin_time">Start Time</label>
+                    <label for="entry_begin_time">Time</label>
                 </td>
-                <td class="editor-field">
-                    <%: Html.EditorFor(model => model.entry_begin_time) %>
+                <td class="editor-field halftime">
+                    <%: Html.EditorFor(model => model.entry_begin_time) %> <span class="dash">&ndash;</span>
+                    <%: Html.EditorFor(model => model.entry_end_time) %>
                     <%: Html.ValidationMessageFor(model => model.entry_begin_time) %>
-                    <%: Html.ValidationMessage("StartError") %>
-                    <%: Html.ValidationMessage("NegativeError") %>
+                    <%: Html.ValidationMessage("NegativeTimeError") %>
+                    <%: Html.ValidationMessage("NoTimeError") %>
+                    <%: Html.ValidationMessage("TimeBoundaryError") %>
                 </td>
             </tr>
-
-            <%: Html.HiddenFor(model => model.entry_id) %>
-            <%: Html.HiddenFor(model => model.entry_user_id)%>
-
-            <tr>
+            <%--<tr>
                 <td class="editor-label">
                     <label for="entry_end_time">End Time</label>
                 </td>
@@ -50,7 +47,7 @@
                     <%: Html.ValidationMessage("EndError") %>
                     <%: Html.ValidationMessage("NegativeError") %>
                 </td>
-            </tr>
+            </tr>--%>
 
             <tr>
                 <td class="editor-label">
@@ -75,10 +72,10 @@
             <tr>
                 <td class="editor-label">
                     <label for="entry_work_accomplished">Work Accomplished</label>
+                    <%: Html.ValidationMessageFor(model => model.entry_work_accomplished) %>
                 </td>
                 <td class="editor-field">
                     <%: Html.TextAreaFor(model => model.entry_work_accomplished) %>
-                    <%: Html.ValidationMessageFor(model => model.entry_work_accomplished) %>
                 </td>
             </tr>
 
@@ -101,10 +98,6 @@
 
     </fieldset>
 <% } %>
-
-<%--<div>
-    <%: Html.ActionLink("Back to Timelog", "Index") %>
-</div>--%>
 
 </asp:Content>
 

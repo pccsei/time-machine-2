@@ -42,7 +42,7 @@ namespace _14_TimeMachine2.Filters
                 
 
             }
-            catch (Exception ex)
+            catch
             {
                 HttpContext.Current.Response.Redirect("http://csmain/seproject/development/resources/500.htm");
             }
