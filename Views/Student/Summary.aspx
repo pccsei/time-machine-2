@@ -14,13 +14,13 @@
         <% foreach (KeyValuePair<int, double> entry in course.Value) { %>
             <tr>
                 <td>Week <%: entry.Key %></td>
-                <td><%: entry.Value %></td>
+                <td><%: entry.Value.ToString("n2") %> hours</td>
             </tr>
         <% } 
-           foreach (KeyValuePair<string, float> stats in ViewBag.stats[course.Key]) { %>
+           foreach (KeyValuePair<string, string> stats in ViewBag.stats[course.Key]) { %>
                 <tr>
                     <td><%: stats.Key %></td>
-                    <td><%: stats.Value.ToString("n2")%></td>
+                    <td><%: stats.Value %></td>
                </tr>
         <% } %>
         </tbody>
