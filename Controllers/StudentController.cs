@@ -28,8 +28,7 @@ namespace _14_TimeMachine2.Controllers
             return View(coursesForTeacher);
         }
 
-        [AuthorizeStudent]
-        [AuthorizeTeacher]
+        [AuthorizeBoth]
         public ActionResult Summary(int id = 0)
         {
             USER user = db.USERs.Find(currentUser);

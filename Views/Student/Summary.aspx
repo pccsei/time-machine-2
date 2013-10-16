@@ -29,6 +29,8 @@
     </table>
     <br /><br /><HR> 
     <% } %>
+
+    <%: Html.ActionLink("View student's timelog", "Index", "TimeEntry") %>
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="FeaturedContent" runat="server">
