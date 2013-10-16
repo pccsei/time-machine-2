@@ -33,7 +33,7 @@ namespace _14_TimeMachine2.Controllers
         {
             USER user;
             USER student = user = db.USERs.Find(currentUser);
-            Dictionary<string, Dictionary<string, float>> stats = new Dictionary<string, Dictionary<string, float>>();
+            Dictionary<string, Dictionary<string, string>> stats = new Dictionary<string, Dictionary<string, string>>();
 
             if (user.is_teacher())
             {
