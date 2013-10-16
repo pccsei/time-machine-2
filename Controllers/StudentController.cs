@@ -11,7 +11,6 @@ using System.Net.Mime;
 
 namespace _14_TimeMachine2.Controllers
 {
-    [AuthorizeTeacher]
     public class StudentController : Controller
     {
         private TM2Entities2 db = new TM2Entities2();
@@ -19,6 +18,7 @@ namespace _14_TimeMachine2.Controllers
         public string currentUser = GlobalVariables.current_user_id;
         //public string currentUser = "115245";
 
+        [AuthorizeTeacher]
         public ActionResult Index()
         {
             var coursesForTeacher = db.USERs.Find(currentUser).getCoursesForUser();
@@ -29,49 +29,50 @@ namespace _14_TimeMachine2.Controllers
         }
 
         [AuthorizeBoth]
-        public ActionResult Summary(int id = 0)
+        public ActionResult Summary(string id = "000000")
         {
-            USER user = db.USERs.Find(currentUser);
+            USER user;
+            USER student = user = db.USERs.Find(currentUser);
             Dictionary<string, Dictionary<string, float>> stats = new Dictionary<string, Dictionary<string, float>>();
-            if(id != 0 && user.is_teacher() == true)
-                user = db.USERs.Find(id.ToString());
-            else
-                user = db.USERs.Find(currentUser);
 
-            ICollection<ENTRY> entryData = user.ENTRies;
+            if (user.is_teacher())
+            {
+                if (id != "000000")
+                    student = db.USERs.Find(id);
+                else
+                    return RedirectToAction("Index");
+            }
 
+            ICollection<ENTRY> entryData = student.ENTRies;
+
+            // Get courses for the current user. May be student or teacher
             List<int> currentUserCoursesIDs = new List<int>();
-            foreach (COURSE c in db.USERs.Find(currentUser).getCoursesForUser())
+            foreach (COURSE c in user.getCoursesForUser())
             {
                 currentUserCoursesIDs.Add(c.course_id);
             }
             
-            List<int> userCourseIDs = new List<int>();
-            List<COURSE> userCourses = user.getCoursesForUser();
-
-            foreach (COURSE c in userCourses)
+            // Get courses for the student
+            List<int> studentCourseIDs = new List<int>();
+            List<COURSE> studentCourses = student.getCoursesForUser();
+            foreach (COURSE c in studentCourses)
             {
-                userCourseIDs.Add(c.course_id);
+                studentCourseIDs.Add(c.course_id);
             }
 
             Dictionary<string, Dictionary<int, double>> summary = new Dictionary<string, Dictionary<int, double>>();
-            foreach (COURSE course in userCourses)
+            foreach (COURSE course in studentCourses)
             {
-                if (currentUserCoursesIDs.Contains(course.course_id))
+                if (currentUserCoursesIDs.Contains(course.course_id)) // If current user is a teacher, show only that teacher's courses with the student
                 {
                     summary.Add(course.course_name, new Dictionary<int, double>());
-                    int submitDay = course.course_submit_day;
-                    DateTime courseStartDay = course.course_begin_date;
-                    DateTime relStartDay = DateTime.Parse(courseStartDay.ToString());
 
-                    int startDayInt = (int)relStartDay.DayOfWeek;
-
-                    int extraDays = submitDay - startDayInt;
+                    int extraDays = course.course_submit_day - (int) course.course_begin_date.DayOfWeek;
                     if (extraDays < 0)
-                        extraDays = 6 + extraDays;
-                    List<int> projectIDs = new List<int>();
-                    relStartDay = relStartDay.AddDays(extraDays).Date;
+                       extraDays += 7;
+                    DateTime relStartDay = course.course_begin_date.AddDays(extraDays);
 
+                    List<int> projectIDs = new List<int>();
                     foreach (PROJECT project in course.PROJECTs)
                     {
                         projectIDs.Add(project.project_id);
@@ -81,22 +82,22 @@ namespace _14_TimeMachine2.Controllers
                     {
                         if (projectIDs.Contains((int)entry.entry_project_id))
                         {
-                            Double days = Double.Parse((DateTime.Parse(entry.entry_begin_time.ToString()).Date - relStartDay).TotalDays.ToString());
-                            int week = (int)Math.Floor(days / 7) + 1;
-                            if (days < 0) { week = 1; }
-                            if (days < 0 && days % 7 == 0) { week -= 1; }
+                            Double days = ((DateTime) entry.entry_end_time - relStartDay).TotalDays;
+                            int week = (int) Math.Floor(days / 7.0) + 1;
+                            if (days < 0.0) { week = 1; }
+                            //if (days < 0 && days % 7 == 0) { week -= 1; } // What does this line do exactly??
 
                             if (summary[course.course_name].ContainsKey(week))
                             {
-                                summary[course.course_name][week] += Double.Parse((entry.entry_total_time / 60.0).ToString());
+                                summary[course.course_name][week] += (double) entry.entry_total_time / 60.0;
                             }
                             else
                             {
-                                summary[course.course_name].Add(week, Double.Parse((entry.entry_total_time / 60.0).ToString()));
+                                summary[course.course_name].Add(week, (double) entry.entry_total_time / 60.0);
                             }
                         }
                     }
-                    stats.Add(course.course_name, user.getCourseStatsForStudentDictionary(course.course_id));
+                    stats.Add(course.course_name, student.getCourseStatsForStudentDictionary(course.course_id));
                 }
             }
 
@@ -109,8 +110,9 @@ namespace _14_TimeMachine2.Controllers
             return View("Summary");
         }
 
-     
 
+
+        [AuthorizeTeacher]
         [HttpPost]
         public ActionResult Create(FormCollection member)
         {
@@ -182,11 +184,13 @@ namespace _14_TimeMachine2.Controllers
 
 
 
+        [AuthorizeTeacher]
         public ActionResult TimeLog()
         {
             return View();
         }
 
+        [AuthorizeTeacher]
         public ActionResult WeeklyView()
         {
             var coursesForTeacher = db.USERs.Find(currentUser).getCoursesForUser();
@@ -196,6 +200,7 @@ namespace _14_TimeMachine2.Controllers
             return View(coursesForTeacher);
         }
 
+        [AuthorizeTeacher]
         [HttpPost]
         public ActionResult ToggleEnabled(string id)
         {
