@@ -35,9 +35,7 @@ namespace _14_TimeMachine2.Controllers
             
             // Test to see if a student or a teacher is trying to access this page so the correct page is displayed
             if (id == null)
-            {
                 entryList = db.USERs.Find(currentUser).ENTRies.ToList();
-            }
             else
                 entryList = db.USERs.Find(id).ENTRies.ToList();
             return View(entryList);

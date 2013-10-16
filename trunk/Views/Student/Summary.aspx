@@ -13,7 +13,7 @@
         <tbody>
         <% foreach (KeyValuePair<int, double> entry in course.Value) { %>
             <tr>
-                <td>Week: <%: entry.Key %></td>
+                <td>Week <%: entry.Key %></td>
                 <td><%: entry.Value %></td>
             </tr>
         <% } 
@@ -28,7 +28,7 @@
     <br /><br /><HR> 
     <% } %>
 
-    <%: Html.ActionLink("View student's timelog", "Index", "TimeEntry") %>
+    <%: Html.ActionLink("View student's timelog", "Index/" + ViewData["StudentID"], "TimeEntry") %>
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="FeaturedContent" runat="server">
