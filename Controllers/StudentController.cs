@@ -78,36 +78,35 @@ namespace _14_TimeMachine2.Controllers
                         projectIDs.Add(project.project_id);
                     }
 
+                    double currentDay = (DateTime.Today - relStartDay).TotalDays;
+                    int currentWeek = (int)Math.Floor(currentDay / 7.0) + 1;
+                    if (currentDay < 0.0) currentWeek = 1;
+
+                    for (int x = 1; x <= currentWeek; x++)
+                        summary[course.course_name].Add(x, 0.0);
+
                     foreach (ENTRY entry in entryData)
                     {
                         if (projectIDs.Contains((int)entry.entry_project_id))
                         {
-                            Double days = ((DateTime) entry.entry_end_time - relStartDay).TotalDays;
-                            int week = (int) Math.Floor(days / 7.0) + 1;
-                            if (days < 0.0) { week = 1; }
+                            Double entryDay = ((DateTime) entry.entry_end_time - relStartDay).TotalDays;
+                            int entryWeek = (int)Math.Floor(entryDay / 7.0) + 1;
+                            if (entryDay < 0.0) entryWeek = 1;
                             //if (days < 0 && days % 7 == 0) { week -= 1; } // What does this line do exactly??
 
-                            if (summary[course.course_name].ContainsKey(week))
-                            {
-                                summary[course.course_name][week] += (double) entry.entry_total_time / 60.0;
-                            }
-                            else
-                            {
-                                summary[course.course_name].Add(week, (double) entry.entry_total_time / 60.0);
-                            }
+                            if (summary[course.course_name].ContainsKey(entryWeek))
+                                summary[course.course_name][entryWeek] += (double)entry.entry_total_time / 60.0;
                         }
                     }
                     stats.Add(course.course_name, student.getCourseStatsForStudentDictionary(course.course_id));
                 }
             }
 
-
             ViewData["Summary"] = summary;
             ViewData["Stats"] = stats;
+            ViewData["StudentID"] = student.user_id;
 
-
-            
-            return View("Summary");
+            return View();
         }
 
 
