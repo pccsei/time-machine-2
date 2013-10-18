@@ -51,8 +51,9 @@
         <td>
             <%: Html.DisplayFor(modelItem => item.course_name) %>
         </td>
-        <td class="centered">
-            <%: Html.DisplayFor(modelItem => item.course_submit_day) %>
+        <td>
+            <%: (DayOfWeek) item.course_submit_day %>
+            <%--: Html.DisplayFor(modelItem => item.course_submit_day) --%>
         </td>
 <%--        <td>
             <%: Html.DisplayFor(modelItem => item.course_date_created) %>
