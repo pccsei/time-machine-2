@@ -9,23 +9,23 @@
 <h2><%: Model.user_first_name %> <%: Model.user_last_name %></h2>
     <% foreach (KeyValuePair<string, Dictionary<int, double>> course in ViewBag.summary) { %>
     <h3><%: course.Key %></h3>
-     <table class="standard">
+    <table class="standard">
         <tbody>
         <% foreach (KeyValuePair<int, double> entry in course.Value) { %>
             <tr>
                 <td>Week <%: entry.Key %></td>
-                <td <% if (entry.Value < 5.0f) { %> style="background:#fcc" <% } %>><%: entry.Value.ToString("n2") %> hours</td>
+                <td <% if (entry.Value < 5.0f) { %> class="warning_value" <% } %>><%: entry.Value.ToString("n2") %> hours</td>
             </tr>
         <% } 
            foreach (KeyValuePair<string, string> stats in ViewBag.stats[course.Key]) { %>
-                <tr>
-                    <td><%: stats.Key %></td>
-                    <td><%: stats.Value %></td>
-               </tr>
+            <tr>
+                <td><%: stats.Key %></td>
+                <td><%: stats.Value %></td>
+            </tr>
         <% } %>
         </tbody>
     </table>
-    <br /><br /><HR> 
+    <br /><br />
     <% } %>
 
     <%: Html.ActionLink("View student's timelog", "Index/" + Model.user_id, "TimeEntry") %>
