@@ -18,8 +18,8 @@
 
 <% foreach (var course in Model) { %>
     <!--A list of all the students in a class -->
-    <table>
-        <tr class="course-<%: course.course_id %>">
+    <table class="zebra hasHeader course-<%: course.course_id %>">
+        <tr>
             <th>ID</th>
             <th>Student Name</th>
         <% for (int w = course.getCurrentWeek(); w > 0; w--)
@@ -29,11 +29,11 @@
         </tr>
     <% foreach (var student in course.getStudentsForCourse()) { 
         List<float> weeks = student.getWeeklyHoursForCourse(course.course_id); %>
-        <tr class="datarow <%: "student-" + student.user_id + " course-" + course.course_id %>">
+        <tr class="datarow <%: "student-" + student.user_id %>">
             <td><%: student.user_id %></td>
             <td><a href="<%: Url.Action("Summary", "Student") + "/" + student.user_id %>"><%: student.user_last_name %>, <%: student.user_first_name %></a></td>
         <% for (int w = weeks.Count - 1; w >= 0; w--) { %>
-            <td <% if (weeks[w] < 5.0f) { %> style="background:#fcc" <% } %>><%: weeks[w].ToString("n2") %></td>
+            <td <% if (weeks[w] < 5.0f) { %> class="warning_value" <% } %>><%: weeks[w].ToString("n2") %></td>
         <% } %>
             </tr>
     <% } %>
@@ -51,12 +51,12 @@
 <asp:Content ID="Content5" ContentPlaceHolderID="ScriptsSection" runat="server">
     <script type="text/javascript">
 
-        $('tr.datarow').hide();
-        $('tr.course-' + $('#CourseList').val()).show();
+        $('table.course_data').hide();
+        $('table.course-' + $('#CourseList').val()).show();
 
         $('#CourseList').change(function () {
-            $('tr.datarow').hide();
-            $('tr.course-' + $('#CourseList').val()).show();
+            $('table.course_data').hide();
+            $('table.course-' + $('#CourseList').val()).show();
         });
     </script>
 </asp:Content>
