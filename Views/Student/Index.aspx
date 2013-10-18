@@ -37,24 +37,12 @@
         foreach (var student in course.getStudentsForCourse()) { 
             var stats = student.getCourseStatsForStudent(course.course_id); %>
             <tr class="datarow <%: "student-" + student.user_id + " course-" + course.course_id %>">
-                <td>
-                    <%: student.user_id %>
-                </td>
-                <td>
-                    <a href="<%: Url.Action("Summary", "Student") + "/" + student.user_id %>"><%: student.user_last_name %>, <%: student.user_first_name %></a>
-                </td>
-                <td>
-                    <%: stats[0].ToString("n2") %>
-                </td>
-                <td>
-                    <%: stats[1].ToString("n2") %>
-                </td>
-                <td>
-                    <%: stats[2].ToString("n2") %>
-                </td>
-                <td>
-                    <%: stats[3].ToString("n2") %>%
-                </td>
+                <td><%: student.user_id %></td>
+                <td><a href="<%: Url.Action("Summary", "Student") + "/" + student.user_id %>"><%: student.user_last_name %>, <%: student.user_first_name %></a></td>
+                <td><%: stats[0].ToString("n2") %></td>
+                <td><%: stats[1].ToString("n2") %></td>
+                <td><%: stats[2].ToString("n2") %></td>
+                <td><%: stats[3].ToString("n2") %>%</td>
             </tr>
         <% } } %>
 

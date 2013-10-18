@@ -24,7 +24,7 @@
             <th>Student Name</th>
         <% for (int w = course.getCurrentWeek(); w > 0; w--)
                { %>
-            <th>Week <%: (w).ToString() %></th>          
+            <th>Week <%: (w).ToString() %></th>
         <% } %>
         </tr>
     <% foreach (var student in course.getStudentsForCourse()) { 
