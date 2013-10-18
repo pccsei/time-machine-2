@@ -17,28 +17,25 @@ namespace _14_TimeMachine2.Controllers
     public class TimeEntryController : Controller
     {
         private TM2Entities2 db = new TM2Entities2();
-        public string currentUser = GlobalVariables.current_user_id;
-        //public string currentUser = "115245";
 
-        public string getCurrentUser() 
+        private USER currentUser()
         {
-            return currentUser;
+            return db.USERs.Find(GlobalVariables.current_user_id);
         }
 
         public ActionResult Index(string id = null)
         {
-            //if((string.Compare(id, "") != 0))
-            //    currentUser = id;
-            var entries = db.ENTRies.Include(e => e.CATEGORY).Include(e => e.LOCATION).Include(e => e.PROJECT).Include(e => e.USER);
-            List<ENTRY> entryList = new List<ENTRY>();
+            USER student = currentUser();
 
-            
-            // Test to see if a student or a teacher is trying to access this page so the correct page is displayed
-            if (id == null)
-                entryList = db.USERs.Find(currentUser).ENTRies.ToList();
-            else
-                entryList = db.USERs.Find(id).ENTRies.ToList();
-            return View(entryList);
+            if (currentUser().is_teacher())
+            {
+                if (id == null || db.USERs.Find(id) == null)
+                    return RedirectToAction("Index", "Welcome");
+                else
+                    student = db.USERs.Find(id);
+            }
+
+            return View(student.ENTRies.ToList());
         }
 
         public ActionResult Details(int id = 0)
@@ -58,7 +55,7 @@ namespace _14_TimeMachine2.Controllers
         {
             ViewBag.entry_category_id = new SelectList(db.CATEGORies, "category_id", "category_name");
             ViewBag.entry_location_id = new SelectList(db.LOCATIONs, "location_id", "location_name");
-            ViewBag.entry_project_id = new SelectList(db.USERs.Find(currentUser).getProjectsForUser(), "project_id", "project_name");
+            ViewBag.entry_project_id = new SelectList(currentUser().getProjectsForUser(), "project_id", "project_name");
             ViewBag.entry_user_id = new SelectList(db.USERs, "user_id", "user_first_name");
             return View();
         }
@@ -75,7 +72,7 @@ namespace _14_TimeMachine2.Controllers
 
             // See if the entry is overlapping a previous entry
             List<ENTRY> entryList = new List<ENTRY>();
-            entryList = db.USERs.Find(currentUser).ENTRies.ToList();
+            entryList = currentUser().ENTRies.ToList();
             bool boundaryError = false;
 
             // Rob's validation, based on Jake's work
@@ -97,7 +94,7 @@ namespace _14_TimeMachine2.Controllers
             }
 
             entry.entry_total_time = Convert.ToInt32(totalTime);
-            entry.entry_user_id = currentUser;
+            entry.entry_user_id = currentUser().user_id;
             ModelState.Remove("entry_id");
 
             if (ModelState.IsValid)            
@@ -143,7 +140,7 @@ namespace _14_TimeMachine2.Controllers
 
             // See if the entry is overlapping a previous entry
             List<ENTRY> entryList = new List<ENTRY>();
-            entryList = db.USERs.Find(currentUser).ENTRies.ToList();
+            entryList = currentUser().ENTRies.ToList();
             bool boundaryError = false;
 
             // Rob's validation, based on Jake's work

@@ -29,7 +29,7 @@ namespace _14_TimeMachine2.Controllers
         }
 
         [AuthorizeBoth]
-        public ActionResult Summary(string id = "000000")
+        public ActionResult Summary(string id = null)
         {
             USER user;
             USER student = user = db.USERs.Find(currentUser);
@@ -37,7 +37,7 @@ namespace _14_TimeMachine2.Controllers
 
             if (user.is_teacher())
             {
-                if (id != "000000")
+                if (id != null)
                     student = db.USERs.Find(id);
                 else
                     return RedirectToAction("Index");
