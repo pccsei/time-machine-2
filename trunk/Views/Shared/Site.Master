@@ -29,20 +29,18 @@
                     <nav>
                         <ul id="menu">
                             <% if ((bool)HttpContext.Current.Session["userIsStudent"]){%>
-                                   <li><%: Html.ActionLink("Timelog", "Index", "TimeEntry") %></li> 
-                            <%;};%>                            
+                                   <li><%: Html.ActionLink("Timelog", "Index", "TimeEntry") %></li>
+                                   <li><%: Html.ActionLink("Summary", "Summary", "Student") %></li> 
+                            <% } %>
                             <% if ((bool)HttpContext.Current.Session["userIsTeacher"]){%>
-                                   <li><%: Html.ActionLink("Projects", "Index", "Project") %></li> 
-                            <%;};%>
-                            <% if ((bool)HttpContext.Current.Session["userIsTeacher"]){%>
-                                   <li><%: Html.ActionLink("Courses", "Index", "Course") %></li> 
-                            <%;};%>                            
-                            <% if ((bool)HttpContext.Current.Session["userIsTeacher"]){%>
-                                   <li><%: Html.ActionLink("Students", "Index", "Student") %></li> 
-                            <%;};%>
+                                   <li><%: Html.ActionLink("Student Summary", "Index", "Student") %></li> 
+                                   <li><%: Html.ActionLink("Weekly Totals", "WeeklyTotals", "Student") %></li> 
+                                   <li><%: Html.ActionLink("Project List", "Index", "Project") %></li> 
+                                   <li><%: Html.ActionLink("Course List", "Index", "Course") %></li> 
+                            <% } %>
                             <%  if ((bool)HttpContext.Current.Session["userIsManager"]) {%>
                                     <li><%: Html.ActionLink("Teachers", "Index", "Teacher") %></li> 
-                            <%;};%>
+                            <% } %>
 
                         </ul>
                     </nav>

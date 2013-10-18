@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<dynamic>" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<_14_TimeMachine2.Models.USER>" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
     Summary
@@ -6,7 +6,7 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
-<h2>Summary</h2>
+<h2><%: Model.user_first_name %> <%: Model.user_last_name %></h2>
     <% foreach (KeyValuePair<string, Dictionary<int, double>> course in ViewBag.summary) { %>
     <h3><%: course.Key %></h3>
      <table class="standard">
@@ -14,7 +14,7 @@
         <% foreach (KeyValuePair<int, double> entry in course.Value) { %>
             <tr>
                 <td>Week <%: entry.Key %></td>
-                <td><%: entry.Value.ToString("n2") %> hours</td>
+                <td <% if (entry.Value < 5.0f) { %> style="background:#fcc" <% } %>><%: entry.Value.ToString("n2") %> hours</td>
             </tr>
         <% } 
            foreach (KeyValuePair<string, string> stats in ViewBag.stats[course.Key]) { %>
@@ -28,7 +28,7 @@
     <br /><br /><HR> 
     <% } %>
 
-    <%: Html.ActionLink("View student's timelog", "Index/" + ViewData["StudentID"], "TimeEntry") %>
+    <%: Html.ActionLink("View student's timelog", "Index/" + Model.user_id, "TimeEntry") %>
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="FeaturedContent" runat="server">

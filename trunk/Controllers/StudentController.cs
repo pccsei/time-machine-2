@@ -44,7 +44,7 @@ namespace _14_TimeMachine2.Controllers
             }
 
             ICollection<ENTRY> entryData = student.ENTRies;
-
+            
             // Get courses for the current user. May be student or teacher
             List<int> currentUserCoursesIDs = new List<int>();
             foreach (COURSE c in user.getCoursesForUser())
@@ -104,12 +104,19 @@ namespace _14_TimeMachine2.Controllers
 
             ViewData["Summary"] = summary;
             ViewData["Stats"] = stats;
-            ViewData["StudentID"] = student.user_id;
 
-            return View();
+            return View(student);
         }
 
+        [AuthorizeTeacher]
+        public ActionResult WeeklyTotals()
+        {
+            var coursesForTeacher = db.USERs.Find(currentUser).getCoursesForUser();
+            var selectlist = new SelectList(coursesForTeacher, "course_id", "course_name", 1);
+            ViewData["Courses"] = selectlist;
 
+            return View(coursesForTeacher);
+        }
 
         [AuthorizeTeacher]
         [HttpPost]
@@ -120,14 +127,14 @@ namespace _14_TimeMachine2.Controllers
             string lastName = member.Get("user_last_name");
             string userID = member.Get("user_id");
             int CourseID = Int32.Parse(member.Get("CourseList"));
-            string error;
+            //string error;
             COURSE selectedCourse = db.COURSEs.Find(CourseID);
 
             USER user = db.USERs.Find(userID);
 
             if (user == null && (firstName == string.Empty || lastName == string.Empty))
             {
-                error = "User does not exist. Enter first and last name, or an existing student ID";
+                //error = "User does not exist. Enter first and last name, or an existing student ID";
                 //Response.StatusCode = (int)HttpStatusCode.BadRequest;
                 //return Json(new { success = false, response = error });
                 return RedirectToAction("index");
@@ -180,23 +187,10 @@ namespace _14_TimeMachine2.Controllers
             return RedirectToAction("index");
         }
 
-
-
-
         [AuthorizeTeacher]
         public ActionResult TimeLog()
         {
             return View();
-        }
-
-        [AuthorizeTeacher]
-        public ActionResult WeeklyView()
-        {
-            var coursesForTeacher = db.USERs.Find(currentUser).getCoursesForUser();
-            var selectlist = new SelectList(coursesForTeacher, "course_id", "course_name", 1);
-            ViewData["Courses"] = selectlist;
-
-            return View(coursesForTeacher);
         }
 
         [AuthorizeTeacher]
@@ -210,5 +204,7 @@ namespace _14_TimeMachine2.Controllers
 
             return View();
         }
+
+
     }
 }

@@ -41,8 +41,6 @@
                     <%: student.user_id %>
                 </td>
                 <td>
-                    <%--<%: Html.ActionLink(student.user_first_name + student.user_last_name, "*/TimeEntry/", 
-                        new {id = "student.user_id"}, null) %>--%>
                     <a href="<%: Url.Action("Summary", "Student") + "/" + student.user_id %>"><%: student.user_last_name %>, <%: student.user_first_name %></a>
                 </td>
                 <td>
@@ -57,11 +55,6 @@
                 <td>
                     <%: stats[3].ToString("n2") %>%
                 </td>
-                <%--<td>
-                    <%: Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) %> |
-                    <%: Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) %> |
-                    <%: Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ }) %>
-                </td>--%>
             </tr>
         <% } } %>
 

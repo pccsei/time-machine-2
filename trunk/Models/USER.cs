@@ -144,6 +144,46 @@ namespace _14_TimeMachine2.Models
             return dictionary;
         }
 
+        public List<float> getWeeklyHoursForCourse(int course_id)
+        {
+            var course = db.COURSEs.Find(course_id);
+            var projects = course.PROJECTs.ToList();
+
+            int extraDays = course.course_submit_day - (int)course.course_begin_date.DayOfWeek;
+            if (extraDays < 0)
+                extraDays += 7;
+            DateTime relStartDay = course.course_begin_date.AddDays(extraDays);
+
+            List<int> projectIDs = new List<int>();
+            foreach (PROJECT project in course.PROJECTs)
+            {
+                projectIDs.Add(project.project_id);
+            }
+
+            double currentDay = (DateTime.Today - relStartDay).TotalDays;
+            int currentWeek = (int)Math.Floor(currentDay / 7.0) + 1;
+            if (currentDay < 0.0) currentWeek = 1;
+
+            List<float> weeks = new List<float>();
+            for (int w = 1; w <= currentWeek; w++)
+                weeks.Add(0.0f);
+
+            foreach (ENTRY entry in this.ENTRies)
+            {
+                if (projectIDs.Contains((int)entry.entry_project_id))
+                {
+                    Double entryDay = ((DateTime)entry.entry_end_time - relStartDay).TotalDays;
+                    int entryWeek = (int)Math.Floor(entryDay / 7.0) + 1;
+                    if (entryDay < 0.0) entryWeek = 1;
+
+                    weeks[entryWeek - 1] += (float) entry.entry_total_time / 60.0f;
+                }
+            }
+
+            return weeks;
+        }
+
+
         public class USER_SortByLastName : IComparer<USER>
         {
 
