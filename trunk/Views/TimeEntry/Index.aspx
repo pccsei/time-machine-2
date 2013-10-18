@@ -49,7 +49,8 @@
         <th></th>
     </tr>
 
-<% foreach (var item in Model) { %>
+<% foreach (var item in Model.OrderByDescending(e => e.entry_end_time))
+   { %>
     
     <tr>
         <td>
