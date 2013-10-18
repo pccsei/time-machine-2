@@ -101,6 +101,20 @@ namespace _14_TimeMachine2.Models
 
             return teacher;
         }
+
+        public int getCurrentWeek()
+        {
+            int extraDays = this.course_submit_day - (int)this.course_begin_date.DayOfWeek;
+            if (extraDays < 0)
+                extraDays += 7;
+            DateTime relStartDay = this.course_begin_date.AddDays(extraDays);
+
+            double currentDay = (DateTime.Today - relStartDay).TotalDays;
+            int currentWeek = (int)Math.Floor(currentDay / 7.0) + 1;
+            if (currentDay < 0.0) currentWeek = 1;
+
+            return currentWeek;
+        }
         // ryoder [end]
     }
 }
