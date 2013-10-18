@@ -35,7 +35,9 @@
                     <%: Html.LabelFor(model => model.course_submit_day) %>
                 </td>
                 <td class="editor-field">
-                    <select id="course_submit_day" name="course_submit_day">
+                    <% string[] dayofweek = {"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"}; %>
+                    <%: Html.DropDownListFor(model => model.course_submit_day, dayofweek.Select((day, index) => new SelectListItem{Text = day, Value = index.ToString()}) ) %>
+                    <%--<select id="course_submit_day" name="course_submit_day">
                         <option value="0">Sunday</option>
                         <option value="1">Monday</option>
                         <option value="2">Tuesday</option>
@@ -43,7 +45,7 @@
                         <option value="4">Thursday</option>
                         <option value="5">Friday</option>
                         <option value="6">Saturday</option>
-                   </select>
+                   </select>--%>
                     <%--<%: Html.EditorFor(model => model.course_submit_day) %>
                     <%: Html.ValidationMessageFor(model => model.course_submit_day) %>--%>
                 </td>
