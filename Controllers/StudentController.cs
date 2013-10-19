@@ -21,11 +21,17 @@ namespace _14_TimeMachine2.Controllers
         [AuthorizeTeacher]
         public ActionResult Index()
         {
+            return RedirectToAction("List");
+        }
+
+        [AuthorizeTeacher]
+        public ActionResult List()
+        {
             var coursesForTeacher = db.USERs.Find(currentUser).getCoursesForUser();
             var selectlist = new SelectList(coursesForTeacher, "course_id", "course_name", 1);
             ViewData["Courses"] = selectlist;
 
-            return View(coursesForTeacher);
+            return View("Index", coursesForTeacher);
         }
 
         [AuthorizeBoth]
