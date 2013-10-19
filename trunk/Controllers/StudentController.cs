@@ -67,7 +67,7 @@ namespace _14_TimeMachine2.Controllers
                 {
                     summary.Add(course.course_name, new Dictionary<int, double>());
 
-                    int extraDays = course.course_submit_day - (int) course.course_begin_date.DayOfWeek;
+                    int extraDays = course.course_submit_day + 1 - (int) course.course_begin_date.DayOfWeek; // Adding one to move boundary to end of day
                     if (extraDays < 0)
                        extraDays += 7;
                     DateTime relStartDay = course.course_begin_date.AddDays(extraDays);
