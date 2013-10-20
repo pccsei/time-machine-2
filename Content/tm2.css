@@ -82,3 +82,17 @@ section.content {
     font-style: italic;
     color: #c00;
 }
+
+table.stemleaf td,
+table.stemleaf th {
+    padding: 8px 4px;
+}
+
+table.stemleaf td:first-child {
+    text-align: right;
+    padding-left:15px; 
+}
+
+table.stemleaf td:last-child { 
+    padding-right:15px;
+}
