@@ -39,7 +39,6 @@ namespace _14_TimeMachine2.Controllers
         {
             USER user;
             USER student = user = db.USERs.Find(currentUser);
-            Dictionary<COURSE, Dictionary<string, string>> stats = new Dictionary<COURSE, Dictionary<string, string>>();
 
             if (user.is_teacher())
             {
@@ -66,50 +65,14 @@ namespace _14_TimeMachine2.Controllers
                 studentCourseIDs.Add(c.course_id);
             }
 
-            Dictionary<COURSE, Dictionary<int, double>> summary = new Dictionary<COURSE, Dictionary<int, double>>();
+            Dictionary<COURSE, List<float>> weekly_course_totals = new Dictionary<COURSE, List<float>>();
             foreach (COURSE course in studentCourses)
             {
                 if (currentUserCoursesIDs.Contains(course.course_id)) // If current user is a teacher, show only that teacher's courses with the student
-                {
-                    summary.Add(course, new Dictionary<int, double>());
-
-                    int extraDays = course.course_submit_day + 1 - (int) course.course_begin_date.DayOfWeek; // Adding one to move boundary to end of day
-                    if (extraDays < 0)
-                       extraDays += 7;
-                    DateTime relStartDay = course.course_begin_date.AddDays(extraDays);
-
-                    List<int> projectIDs = new List<int>();
-                    foreach (PROJECT project in course.PROJECTs)
-                    {
-                        projectIDs.Add(project.project_id);
-                    }
-
-                    double currentDay = (DateTime.Today - relStartDay).TotalDays;
-                    int currentWeek = (int)Math.Floor(currentDay / 7.0) + 1;
-                    if (currentDay < 0.0) currentWeek = 1;
-
-                    for (int x = 1; x <= currentWeek; x++)
-                        summary[course].Add(x, 0.0);
-
-                    foreach (ENTRY entry in entryData)
-                    {
-                        if (projectIDs.Contains((int)entry.entry_project_id))
-                        {
-                            Double entryDay = ((DateTime) entry.entry_end_time - relStartDay).TotalDays;
-                            int entryWeek = (int)Math.Floor(entryDay / 7.0) + 1;
-                            if (entryDay < 0.0) entryWeek = 1;
-                            //if (days < 0 && days % 7 == 0) { week -= 1; } // What does this line do exactly??
-
-                            if (summary[course].ContainsKey(entryWeek))
-                                summary[course][entryWeek] += (double)entry.entry_total_time / 60.0;
-                        }
-                    }
-                    stats.Add(course, student.getCourseStatsForStudentDictionary(course.course_id));
-                }
+                    weekly_course_totals.Add(course, student.getWeeklyHoursForCourse(course.course_id));
             }
 
-            ViewData["Summary"] = summary;
-            ViewData["Stats"] = stats;
+            ViewData["WeeklyCourseTotals"] = weekly_course_totals;
 
             return View(student);
         }

@@ -31,7 +31,16 @@ table.medium {
 }
 
 table.small {
-    width: 50%;
+    width: 500px;
+    max-width: 100%;
+}
+
+table.stemleaf td:last-child {
+    max-width: 300px;
+}
+
+table.border {
+    border: 5px solid #ccc;
 }
 
 td, th {
