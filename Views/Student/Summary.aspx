@@ -7,21 +7,24 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
 <h2><%: Model.user_first_name %> <%: Model.user_last_name %></h2>
-    <% foreach (KeyValuePair<_14_TimeMachine2.Models.COURSE, Dictionary<int, double>> course_summary in ViewBag.summary) { %>
-    <h3><%: course_summary.Key.course_name %></h3>
+    <% foreach (KeyValuePair<_14_TimeMachine2.Models.COURSE, List<float>> weekly_totals in ViewBag.WeeklyCourseTotals)
+       { %>
+    <h3><%: weekly_totals.Key.course_name %></h3>
     <table class="standard zebra stemleaf" style="float:left; border:5px #ccc solid;">
         <tbody>
-        <% foreach (KeyValuePair<int, double> entry in course_summary.Value) { %>
+        <% int week = 1; foreach (float entry in weekly_totals.Value)
+           { %>
             <tr>
-                <td>Week <%: entry.Key %>:</td>
-                <td <% if (entry.Value < 5.0f) { %> class="warning_value" <% } %>><%: entry.Value.ToString("n2") %> hours</td>
+                <td>Week <%: week %>:</td>
+                <td <% if (entry < 5.0f)
+                       { %> class="warning_value" <% } %>><%: entry.ToString("n2")%> hours</td>
             </tr>
-        <% } %>
+        <%  week++; } %>
         </tbody>
     </table>
     <table class="standard zebra stemleaf" style="float:left; border:5px #ccc solid; margin-left: 30px">
         <tbody>
-        <% float[] stats = Model.getCourseStatsForStudent(course_summary.Key.course_id); %>
+        <% float[] stats = Model.getCourseStatsForStudent(weekly_totals.Key.course_id); %>
             <tr>
                 <td>Total Hours:</td>
                 <td><%: stats[0].ToString("n2") %></td>

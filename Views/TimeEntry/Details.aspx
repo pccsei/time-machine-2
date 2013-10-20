@@ -18,7 +18,7 @@
 
 <h2>Time Entry Details</h2>
 
-    <table>
+    <table class="zebra stemleaf">
     <tr>
     <td class="display-label">
         Entry ID
