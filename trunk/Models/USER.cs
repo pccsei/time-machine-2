@@ -139,7 +139,7 @@ namespace _14_TimeMachine2.Models
             dictionary.Add("Total Hours", stats[0].ToString("n2"));
             dictionary.Add("Hours per Day", stats[1].ToString("n2"));
             dictionary.Add("Hours per Week", stats[2].ToString("n2"));
-            dictionary.Add("Projected Grade", stats[3].ToString("n2"));
+            dictionary.Add("Projected Grade", stats[3].ToString("n2") + "%");
 
             return dictionary;
         }

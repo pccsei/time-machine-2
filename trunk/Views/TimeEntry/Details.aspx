@@ -16,7 +16,7 @@
 
 </style>
 
-<h2>Details</h2>
+<h2>Time Entry Details</h2>
 
     <table>
     <tr>
@@ -117,7 +117,8 @@
 <p>
     <%: Html.ActionLink("Edit", "Edit", new { id = Model.entry_id }) %> |
     <%: Html.ActionLink("Delete", "Delete", new {  id = Model.entry_id  }) %> | 
-    <%: Html.ActionLink("Back to Timelog", "Index") %>
+    <%: Html.ActionLink("Back to Timelog", "Index") %> | 
+    <%: Html.ActionLink("Log more time", "Create") %>
 </p>
 
 </asp:Content>
