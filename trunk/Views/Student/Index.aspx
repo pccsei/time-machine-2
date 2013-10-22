@@ -22,29 +22,33 @@
     </form>
 
     <section class="content">
-        <!--A list of all the students in a class -->
-        <table id ="memberTable" class="zebra hasHeader large">
-            <tr>
-                <th>ID</th>
-                <th>Student Name</th>
-                <th>Total Hours</th>
-                <th>Daily Hours</th>
-                <th>Weekly Hours</th>
-                <th>Projected Grade</th>
-            </tr>
 
-    <% foreach (var course in Model) { 
-        foreach (var student in course.getStudentsForCourse()) { 
-            var stats = student.getCourseStatsForStudent(course.course_id); %>
-            <tr class="datarow <%: "student-" + student.user_id + " course-" + course.course_id %>">
-                <td><%: student.user_id %></td>
-                <td><a href="<%: Url.Action("Summary", "Student") + "/" + student.user_id %>"><%: student.user_last_name %>, <%: student.user_first_name %></a></td>
-                <td><%: stats[0].ToString("n2") %></td>
-                <td><%: stats[1].ToString("n2") %></td>
-                <td><%: stats[2].ToString("n2") %></td>
-                <td><%: stats[3] >= 110.0f ? stats[3].ToString("n0") + "% +" : stats[3].ToString("n1") + "%" %></td>
-            </tr>
-        <% } } %>
+        <!--A list of all the students in a class -->
+        <table id ="memberTable" class="zebra hasHeader large tablesorter">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Student Name</th>
+                    <th>Total Hours</th>
+                    <th>Daily Hours</th>
+                    <th>Weekly Hours</th>
+                    <th>Projected Grade</th>
+                </tr>
+            </thead>
+            <tbody>
+        <% foreach (var course in Model) { 
+            foreach (var student in course.getStudentsForCourse()) { 
+                var stats = student.getCourseStatsForStudent(course.course_id); %>
+                <tr class="datarow <%: "student-" + student.user_id + " course-" + course.course_id %>">
+                    <td><%: student.user_id %></td>
+                    <td><a href="<%: Url.Action("Summary", "Student") + "/" + student.user_id %>"><%: student.user_last_name %>, <%: student.user_first_name %></a></td>
+                    <td><%: stats[0].ToString("n2") %></td>
+                    <td><%: stats[1].ToString("n2") %></td>
+                    <td><%: stats[2].ToString("n2") %></td>
+                    <td><%: stats[3] >= 110.0f ? stats[3].ToString("n0") + "% +" : stats[3].ToString("n1") + "%" %></td>
+                </tr>
+            <% } } %>
+            </tbody>
 
         </table>
     </section>
@@ -68,5 +72,6 @@
             $('tr.datarow').hide();
             $('tr.course-' + $('#CourseList').val()).show();
         });
+
     </script>
 </asp:Content>

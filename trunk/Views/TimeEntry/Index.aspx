@@ -21,66 +21,69 @@
         Create New Entry
     </a>
 </div>
-<table class="zebra hasHeader">
-    <tr>
-        <th>
-            <%: Html.DisplayNameFor(model => model.PROJECT.project_name) %>
-        </th>
-        <th>
-            Time Period
-            <%--: Html.DisplayNameFor(model => model.entry_begin_time) --%>
-        </th>
-<%--        <th>
-            <%: Html.DisplayNameFor(model => model.entry_end_time) %>
-        </th>--%>
-        <th>
-            <%: Html.DisplayNameFor(model => model.entry_total_time) %>
-        </th>
-        <th>
-            <%: Html.DisplayNameFor(model => model.LOCATION.location_name) %>
-        </th>
-        <th>
-            <%: Html.DisplayNameFor(model => model.CATEGORY.category_name) %>
-        </th>
-        <%--<th>
-            <%: Html.DisplayNameFor(model => model.entry_work_accomplished) %>
-        </th>--%>
+<table class="zebra hasHeader tablesorter">
+    <thead>
+        <tr>
+            <th>
+                <%: Html.DisplayNameFor(model => model.PROJECT.project_name) %>
+            </th>
+            <th>
+                Time Period
+                <%--: Html.DisplayNameFor(model => model.entry_begin_time) --%>
+            </th>
+    <%--        <th>
+                <%: Html.DisplayNameFor(model => model.entry_end_time) %>
+            </th>--%>
+            <th>
+                <%: Html.DisplayNameFor(model => model.entry_total_time) %>
+            </th>
+            <th>
+                <%: Html.DisplayNameFor(model => model.LOCATION.location_name) %>
+            </th>
+            <th>
+                <%: Html.DisplayNameFor(model => model.CATEGORY.category_name) %>
+            </th>
+            <%--<th>
+                <%: Html.DisplayNameFor(model => model.entry_work_accomplished) %>
+            </th>--%>
 
-        <th></th>
-    </tr>
-
-<% foreach (var item in Model.OrderByDescending(e => e.entry_end_time))
-   { %>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+    <% foreach (var item in Model.OrderByDescending(e => e.entry_end_time))
+       { %>
     
-    <tr>
-        <td>
-            <%: Html.DisplayFor(modelItem => item.PROJECT.project_name) %>
-        </td>
-        <td>
-            <%: ((DateTime) item.entry_begin_time).ToString("M/d h:mm tt") %> -
-            <%: ((DateTime) item.entry_end_time).ToString("h:mm tt") %>
-        </td>
-<%--        <td>
-            <%: Html.DisplayFor(modelItem => item.entry_end_time) %>
-        </td>--%>
-        <td>
-            <%: ((float) item.entry_total_time / 60.0f).ToString("n2") %>
-        </td>
-        <td>
-            <%: Html.DisplayFor(modelItem => item.LOCATION.location_name) %>
-        </td>
-        <td>
-            <%: Html.DisplayFor(modelItem => item.CATEGORY.category_name) %>
-        </td>
-        <%--<td>
-            <%: Html.DisplayFor(modelItem => item.entry_work_accomplished) %>
-        </td>--%>
+        <tr>
+            <td>
+                <%: Html.DisplayFor(modelItem => item.PROJECT.project_name) %>
+            </td>
+            <td>
+                <%: ((DateTime) item.entry_begin_time).ToString("M/d h:mm tt") %> -
+                <%: ((DateTime) item.entry_end_time).ToString("h:mm tt") %>
+            </td>
+    <%--        <td>
+                <%: Html.DisplayFor(modelItem => item.entry_end_time) %>
+            </td>--%>
+            <td>
+                <%: ((float) item.entry_total_time / 60.0f).ToString("n2") %>
+            </td>
+            <td>
+                <%: Html.DisplayFor(modelItem => item.LOCATION.location_name) %>
+            </td>
+            <td>
+                <%: Html.DisplayFor(modelItem => item.CATEGORY.category_name) %>
+            </td>
+            <%--<td>
+                <%: Html.DisplayFor(modelItem => item.entry_work_accomplished) %>
+            </td>--%>
 
-        <td>
-           <%: Html.ActionLink("More...", "Details", new { id=item.entry_id }) %>
-        </td>
-    </tr>
-<% } %>
+            <td>
+               <%: Html.ActionLink("More...", "Details", new { id=item.entry_id }) %>
+            </td>
+        </tr>
+    <% } %>
+    </tbody>
 
 </table>
 

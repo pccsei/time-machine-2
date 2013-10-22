@@ -18,28 +18,32 @@
 
 <% foreach (var course in Model) { %>
     <!--A list of all the students in a class -->
-    <table class="zebra hasHeader course-<%: course.course_id %>">
-        <tr>
-            <th>ID</th>
-            <th>Student Name</th>
-            <th>Total</th>
-        <% for (int w = course.getCurrentWeek(); w > 0; w--)
-               { %>
-            <th>Week <%: (w).ToString() %></th>
-        <% } %>
-        </tr>
-    <% foreach (var student in course.getStudentsForCourse()) { 
-        List<float> weeks = student.getWeeklyHoursForCourse(course.course_id);
-        var stats = student.getCourseStatsForStudent(course.course_id); %>
-        <tr class="datarow <%: "student-" + student.user_id %>">
-            <td><%: student.user_id %></td>
-            <td><a href="<%: Url.Action("Summary", "Student") + "/" + student.user_id %>"><%: student.user_last_name %>, <%: student.user_first_name %></a></td>
-            <td><%: stats[0].ToString("n2") %></td>
-        <% for (int w = weeks.Count - 1; w >= 0; w--) { %>
-            <td <% if (weeks[w] < 5.0f) { %> class="warning_value" <% } %>><%: weeks[w].ToString("n2") %></td>
-        <% } %>
+    <table class="zebra hasHeader course-<%: course.course_id %> tablesorter">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Student Name</th>
+                <th>Total</th>
+            <% for (int w = course.getCurrentWeek(); w > 0; w--)
+                   { %>
+                <th>Week <%: (w).ToString() %></th>
+            <% } %>
             </tr>
-    <% } %>
+        </thead>
+        <tbody>
+        <% foreach (var student in course.getStudentsForCourse()) { 
+            List<float> weeks = student.getWeeklyHoursForCourse(course.course_id);
+            var stats = student.getCourseStatsForStudent(course.course_id); %>
+            <tr class="datarow <%: "student-" + student.user_id %>">
+                <td><%: student.user_id %></td>
+                <td><a href="<%: Url.Action("Summary", "Student") + "/" + student.user_id %>"><%: student.user_last_name %>, <%: student.user_first_name %></a></td>
+                <td><%: stats[0].ToString("n2") %></td>
+            <% for (int w = weeks.Count - 1; w >= 0; w--) { %>
+                <td <% if (weeks[w] < 5.0f) { %> class="warning_value" <% } %>><%: weeks[w].ToString("n2") %></td>
+            <% } %>
+            </tr>
+        <% } %>
+        </tbody>
     </table>
 <% } %>
 
