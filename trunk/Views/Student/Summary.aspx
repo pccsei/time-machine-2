@@ -39,14 +39,16 @@
             </tr>
             <tr style="font-weight:bold;background:#cce6ff">
                 <td>Projected Grade:</td>
-                <td><%: stats[3].ToString("n0") %>%</td>
+                <td><%: stats[3] >= 110.0f ? stats[3].ToString("n0") : stats[3].ToString("n1") %>%</td>
             </tr>
         </tbody>
     </table>
     <br style="clear:both;" /><br />
     <% } %>
 
-    <%: Html.ActionLink("View student's timelog", "Index/" + Model.user_id, "TimeEntry") %>
+    <% if (_14_TimeMachine2.GlobalVariables.current_user.is_teacher()) { %>
+        <%: Html.ActionLink(String.Format("View {0}'s timelog", Model.user_first_name), "Index/" + Model.user_id, "TimeEntry") %>
+    <% } %>
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="FeaturedContent" runat="server">

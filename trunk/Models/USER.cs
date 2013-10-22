@@ -126,6 +126,8 @@ namespace _14_TimeMachine2.Models
 
             // Projected Grade
             stats[3] = stats[2] * (float) course.course_ref_grade / (float) course.course_ref_hours;
+            if (stats[3] > 110.0f)
+                stats[3] = 110.0f;
 
             return stats;
         }
@@ -139,7 +141,7 @@ namespace _14_TimeMachine2.Models
             dictionary.Add("Total Hours", stats[0].ToString("n2"));
             dictionary.Add("Hours per Day", stats[1].ToString("n2"));
             dictionary.Add("Hours per Week", stats[2].ToString("n2"));
-            dictionary.Add("Projected Grade", stats[3].ToString("n2") + "%");
+            dictionary.Add("Projected Grade", stats[3].ToString("n1") + "%");
 
             return dictionary;
         }
