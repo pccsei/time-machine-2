@@ -105,3 +105,7 @@ table.stemleaf td:first-child {
 table.stemleaf td:last-child { 
     padding-right:15px;
 }
+
+table.tablesorter th {
+    cursor: pointer;
+}

@@ -299,6 +299,8 @@
     <Content Include="Scripts\jquery-ui-sliderAccess.js" />
     <Content Include="Scripts\jquery-ui-timepicker-addon.js" />
     <Content Include="Scripts\jquery.ptTimeSelect.js" />
+    <Content Include="Scripts\jquery.tablesorter.js" />
+    <Content Include="Scripts\jquery.tablesorter.min.js" />
     <Content Include="Scripts\jquery.timepicker.js" />
     <Content Include="Scripts\time-entry.js" />
     <Content Include="Scripts\timemachine2.js" />

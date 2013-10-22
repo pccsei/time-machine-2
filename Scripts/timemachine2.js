@@ -42,6 +42,11 @@ $(window).load(function () {
     
 });
 
+$(document).ready(function () {
+    $(".tablesorter").tablesorter();
+}
+);
+
 
 // var show_disabled = 0;
 
