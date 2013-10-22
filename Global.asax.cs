@@ -19,6 +19,15 @@ namespace _14_TimeMachine2
 
     public static class GlobalVariables
     {
+        public static USER current_user
+        {
+            get
+            {
+                TM2Entities2 db = new TM2Entities2();
+                return db.USERs.Find(current_user_id);
+            }
+        }
+
         public static string current_user_id
         {
             get

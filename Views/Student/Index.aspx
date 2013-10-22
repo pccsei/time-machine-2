@@ -42,7 +42,7 @@
                 <td><%: stats[0].ToString("n2") %></td>
                 <td><%: stats[1].ToString("n2") %></td>
                 <td><%: stats[2].ToString("n2") %></td>
-                <td><%: stats[3].ToString("n2") %>%</td>
+                <td><%: stats[3] >= 110.0f ? stats[3].ToString("n0") + "% +" : stats[3].ToString("n1") + "%" %></td>
             </tr>
         <% } } %>
 
