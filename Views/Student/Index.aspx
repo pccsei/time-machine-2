@@ -73,5 +73,15 @@
             $('tr.course-' + $('#CourseList').val()).show();
         });
 
+        $(document).ready(function() { 
+            $(".tablesorter").tablesorter({ 
+                headers: { 
+                    3: {sorter: false},
+                    4: {sorter: false},
+                    5: {sorter: false}
+                },
+                sortList: [[1, 0]]
+            }); 
+        });
     </script>
 </asp:Content>

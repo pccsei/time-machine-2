@@ -106,6 +106,20 @@ table.stemleaf td:last-child {
     padding-right:15px;
 }
 
-table.tablesorter th {
-    cursor: pointer;
+th.header { 
+    background-image: url(images/sort_indicator.gif);     
+    cursor: pointer; 
+    background-repeat: no-repeat; 
+    background-position: center right 10px; 
+    padding-right: 30px;
+} 
+
+th.headerSortUp { 
+    background-image: url(images/desc_sort_indicator.gif); 
+    background-color: #bbb; 
+} 
+
+th.headerSortDown { 
+    background-image: url(images/asc_sort_indicator.gif); 
+    background-color: #bbb; 
 }

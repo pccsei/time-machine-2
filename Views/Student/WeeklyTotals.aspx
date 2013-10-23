@@ -18,7 +18,7 @@
 
 <% foreach (var course in Model) { %>
     <!--A list of all the students in a class -->
-    <table class="zebra hasHeader course-<%: course.course_id %> tablesorter">
+    <table class="zebra hasHeader course-<%: course.course_id %> tablesorter" style="width:auto">
         <thead>
             <tr>
                 <th>ID</th>
@@ -26,7 +26,7 @@
                 <th>Total</th>
             <% for (int w = course.getCurrentWeek(); w > 0; w--)
                    { %>
-                <th>Week <%: (w).ToString() %></th>
+                <th>W<%: (w).ToString() %></th>
             <% } %>
             </tr>
         </thead>
@@ -64,6 +64,12 @@
         $('#CourseList').change(function () {
             $('table.course_data').hide();
             $('table.course-' + $('#CourseList').val()).show();
+        });
+
+        $(document).ready(function () {
+            $(".tablesorter").tablesorter({
+                sortList: [[1, 0]]
+            });
         });
     </script>
 </asp:Content>
