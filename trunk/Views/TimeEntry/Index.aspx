@@ -65,7 +65,7 @@
     <%--        <td>
                 <%: Html.DisplayFor(modelItem => item.entry_end_time) %>
             </td>--%>
-            <td>
+            <td <% if ((float) item.entry_total_time / 60.0f > 4.0f) { %>style="color:#f90; font-style:italic"<% } %>>
                 <%: ((float) item.entry_total_time / 60.0f).ToString("n2") %>
             </td>
             <td>

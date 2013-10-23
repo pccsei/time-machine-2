@@ -97,12 +97,15 @@ namespace _14_TimeMachine2.Models
             return projectList;
         }
 
-        public float[] getCourseStatsForStudent(int course_id)
+        public List<float> getSummaryStatsForCourse(int course_id)
         {
             var course   = db.COURSEs.Find(course_id);
             var projects = course.PROJECTs.ToList();
 
-            float[] stats = new float[4] {0.0f, 0.0f, 0.0f, 0.0f};
+            List<float> stats = new List<float>();
+
+            for (var x = 1; x <= 4; x++)
+                stats.Add(0.0f);
 
             // Total hours
             foreach (ENTRY e in this.ENTRies)
@@ -130,20 +133,6 @@ namespace _14_TimeMachine2.Models
                 stats[3] = 110.0f;
 
             return stats;
-        }
-
-        public Dictionary<string, string> getCourseStatsForStudentDictionary(int course_id)
-        {
-            float[] stats = this.getCourseStatsForStudent(course_id);
-
-            Dictionary<string, string> dictionary = new Dictionary<string, string>();
-
-            dictionary.Add("Total Hours", stats[0].ToString("n2"));
-            dictionary.Add("Hours per Day", stats[1].ToString("n2"));
-            dictionary.Add("Hours per Week", stats[2].ToString("n2"));
-            dictionary.Add("Projected Grade", stats[3].ToString("n1") + "%");
-
-            return dictionary;
         }
 
         public List<float> getWeeklyHoursForCourse(int course_id)

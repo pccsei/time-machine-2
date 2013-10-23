@@ -33,7 +33,7 @@
         <tbody>
         <% foreach (var student in course.getStudentsForCourse()) { 
             List<float> weeks = student.getWeeklyHoursForCourse(course.course_id);
-            var stats = student.getCourseStatsForStudent(course.course_id); %>
+            List<float> stats = student.getSummaryStatsForCourse(course.course_id); %>
             <tr class="datarow <%: "student-" + student.user_id %>">
                 <td><%: student.user_id %></td>
                 <td><a href="<%: Url.Action("Summary", "Student") + "/" + student.user_id %>"><%: student.user_last_name %>, <%: student.user_first_name %></a></td>

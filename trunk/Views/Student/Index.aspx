@@ -24,7 +24,7 @@
     <section class="content">
 
         <!--A list of all the students in a class -->
-        <table id ="memberTable" class="zebra hasHeader large tablesorter">
+        <table id ="memberTable" class="zebra hasHeader tablesorter">
             <thead>
                 <tr>
                     <th>ID</th>
@@ -37,8 +37,8 @@
             </thead>
             <tbody>
         <% foreach (var course in Model) { 
-            foreach (var student in course.getStudentsForCourse()) { 
-                var stats = student.getCourseStatsForStudent(course.course_id); %>
+            foreach (var student in course.getStudentsForCourse()) {
+                List<float> stats = student.getSummaryStatsForCourse(course.course_id); %>
                 <tr class="datarow <%: "student-" + student.user_id + " course-" + course.course_id %>">
                     <td><%: student.user_id %></td>
                     <td><a href="<%: Url.Action("Summary", "Student") + "/" + student.user_id %>"><%: student.user_last_name %>, <%: student.user_first_name %></a></td>
