@@ -58,7 +58,7 @@
             <td>
                 <%: Html.DisplayFor(modelItem => item.PROJECT.project_name) %>
             </td>
-            <td>
+            <td><span class="sort_criterion" style="display:none"><%: ((DateTime) item.entry_begin_time).ToString("yyyyMMddHHmmss") %></span>
                 <%: ((DateTime) item.entry_begin_time).ToString("M/d h:mm tt") %> -
                 <%: ((DateTime) item.entry_end_time).ToString("h:mm tt") %>
             </td>
@@ -96,4 +96,14 @@
 </asp:Content>
 
 <asp:Content ID="Content5" ContentPlaceHolderID="ScriptsSection" runat="server">
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(".tablesorter").tablesorter({
+                headers: {
+                    5: { sorter: false }
+                },
+                sortList: [[1,1]]
+            });
+        });
+    </script>
 </asp:Content>

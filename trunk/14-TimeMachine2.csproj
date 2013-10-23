@@ -213,6 +213,9 @@
   <ItemGroup>
     <Content Include="Content\css\jquery-ui-timepicker-addon.css" />
     <Content Include="Content\css\jquery.timepicker.css" />
+    <Content Include="Content\images\asc_sort_indicator.gif" />
+    <Content Include="Content\images\sort_indicator.gif" />
+    <Content Include="Content\images\desc_sort_indicator.gif" />
     <Content Include="Content\tm2.css" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
