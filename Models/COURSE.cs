@@ -79,11 +79,6 @@ namespace _14_TimeMachine2.Models
                     studentList.Add(temp);
             }
 
-            // We still need the capability to sort by total hours
-            //var stats = student.getCourseStatsForStudent(course.course_id);
-            _14_TimeMachine2.Models.USER.USER_SortByLastName sortName = new _14_TimeMachine2.Models.USER.USER_SortByLastName();
-            studentList.Sort(sortName);            
-
             return studentList;
         }
 

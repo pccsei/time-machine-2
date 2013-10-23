@@ -24,7 +24,7 @@
     </table>
     <table class="standard zebra stemleaf" style="float:left; border:5px #ccc solid; margin-left: 30px">
         <tbody>
-        <% float[] stats = Model.getCourseStatsForStudent(weekly_totals.Key.course_id); %>
+        <% List<float> stats = Model.getSummaryStatsForCourse(weekly_totals.Key.course_id); %>
             <tr>
                 <td>Total Hours:</td>
                 <td><%: stats[0].ToString("n2") %></td>

@@ -1,5 +1,4 @@
-﻿// var day_of_week = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-var disabled_are_hidden = 1;
+﻿var disabled_are_hidden = 1;
 
 function toggle_entity_enabled(entity_id, post_action) {
     var entity_row      = $("#tr_" + entity_id);
@@ -43,39 +42,12 @@ $(window).load(function () {
 });
 
 
-// var show_disabled = 0;
-
-// function toggle_user_status(user_id) {
-    // var user_row = $("#tr_" + user_id);
-    // if (user_row.class == "disabled_user") {
-        // user_row.removeClass('disabled_user');
-    // }
-    // else {
-        // user_row.addClass('disabled_user');
-        // if (!show_disabled) user_row.toggle();
-    // }
-
-    // $.ajax({
-        // url: "UserToggleEnabled/",
-        // type: "POST",
-        // data: { user_id: user_id }
-    // });
-// }
-
-// $(window).load(function () {
-    // $('.disabled_user').hide();
-    // $("#toggle_disabled_teachers").click(function () {
-        // $('.disabled_user').toggle();
-        // show_disabled = show_disabled ^ 1;
-    // });
-// });
-
-    function OnSuccess(data) {
-        alert('Success');
-    }
-    function OnFailure(data, textStatus) {
-        var response = ajaxContext.get_response();
-        var statusCode = response.get_statusCode();
-        alert('Failure');
-        $('#targetDiv').empty();
-    }
+function OnSuccess(data) {
+    alert('Success');
+}
+function OnFailure(data, textStatus) {
+    var response = ajaxContext.get_response();
+    var statusCode = response.get_statusCode();
+    alert('Failure');
+    $('#targetDiv').empty();
+}
