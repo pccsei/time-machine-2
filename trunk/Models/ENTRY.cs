@@ -20,10 +20,12 @@ namespace _14_TimeMachine2.Models
         public int entry_id { get; set; }
 
         [Display(Name = "Start Time")]
+        [DisplayFormat(DataFormatString = "{0:dddd, M/d/yyyy h:mm tt}")]
         [Required(ErrorMessage = "required")]
         public Nullable<System.DateTime> entry_begin_time { get; set; }
 
         [Display(Name = "End Time")]
+        [DisplayFormat(DataFormatString = "{0:dddd, M/d/yyyy h:mm tt}")]
         [Required(ErrorMessage = "required")]
         public Nullable<System.DateTime> entry_end_time { get; set; }
 
