@@ -140,7 +140,9 @@ namespace _14_TimeMachine2.Models
             var course = db.COURSEs.Find(course_id);
             var projects = course.PROJECTs.ToList();
 
-            int extraDays = course.course_submit_day + 1 - (int)course.course_begin_date.DayOfWeek; // Adding one to move boundary to end of day
+            // Calculate extra days at the beginning of the semester. 
+            // Add 1 to the submit day to move its boundary to the end of the day.
+            int extraDays = course.course_submit_day + 1 - (int)course.course_begin_date.DayOfWeek;
             if (extraDays < 0)
                 extraDays += 7;
             DateTime relStartDay = course.course_begin_date.AddDays(extraDays);

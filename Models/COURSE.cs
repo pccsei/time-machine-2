@@ -99,7 +99,9 @@ namespace _14_TimeMachine2.Models
 
         public int getCurrentWeek()
         {
-            int extraDays = this.course_submit_day - (int)this.course_begin_date.DayOfWeek;
+            // Calculate extra days at the beginning of the semester. 
+            // Add 1 to the submit day to move its boundary to the end of the day.
+            int extraDays = this.course_submit_day + 1 - (int)this.course_begin_date.DayOfWeek; 
             if (extraDays < 0)
                 extraDays += 7;
             DateTime relStartDay = this.course_begin_date.AddDays(extraDays);
