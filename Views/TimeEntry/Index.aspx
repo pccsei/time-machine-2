@@ -59,7 +59,7 @@
                 <%: Html.DisplayFor(modelItem => item.PROJECT.project_name) %>
             </td>
             <td><span class="sort_criterion" style="display:none"><%: ((DateTime) item.entry_begin_time).ToString("yyyyMMddHHmmss") %></span>
-                <%: ((DateTime) item.entry_begin_time).ToString("M/d h:mm tt") %> -
+                <%: ((DateTime) item.entry_begin_time).ToString("ddd. M/d h:mm tt") %> -
                 <%: ((DateTime) item.entry_end_time).ToString("h:mm tt") %>
             </td>
     <%--        <td>
