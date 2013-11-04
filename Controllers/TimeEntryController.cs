@@ -55,7 +55,7 @@ namespace _14_TimeMachine2.Controllers
         {
             ViewBag.entry_category_id = new SelectList(db.CATEGORies, "category_id", "category_name");
             ViewBag.entry_location_id = new SelectList(db.LOCATIONs, "location_id", "location_name");
-            ViewBag.entry_project_id = new SelectList(currentUser().getProjectsForUser(), "project_id", "project_name");
+            ViewBag.entry_project_id = new SelectList(currentUser().getProjectsForUser(), "project_id", "project_name", currentUser().getLastProjectSelected());
             ViewBag.entry_user_id = new SelectList(db.USERs, "user_id", "user_first_name");
             return View();
         }
