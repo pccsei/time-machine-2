@@ -97,6 +97,11 @@ namespace _14_TimeMachine2.Models
             return projectList;
         }
 
+        public int getLastProjectSelected()
+        {
+            return (int) this.ENTRies.Last().entry_project_id;
+        }
+
         public List<float> getSummaryStatsForCourse(int course_id)
         {
             var course   = db.COURSEs.Find(course_id);
