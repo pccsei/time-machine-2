@@ -27,7 +27,7 @@ namespace _14_TimeMachine2.Controllers
         {
             USER student = currentUser();
 
-            if (currentUser().is_teacher())
+            if (currentUser().is_teacher() && !currentUser().is_student())
             {
                 if (id == null || db.USERs.Find(id) == null)
                     return RedirectToAction("Index", "Welcome");
