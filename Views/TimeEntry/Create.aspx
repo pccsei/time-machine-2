@@ -11,6 +11,12 @@
 <% using (Html.BeginForm()) { %>
     <%: Html.ValidationSummary(true, "There was an error validating your entry.") %>
 
+    <div class="help_tip">
+        <p>Try these timespans:</p>
+        <ul>
+        </ul>
+    </div>
+
     <fieldset>
         <legend>ENTRY</legend>
         <table>
@@ -21,6 +27,7 @@
                 <td class="editor-field">
                     <%: Html.DropDownList("entry_project_id", "--Select Project--") %>
                     <%: Html.ValidationMessageFor(model => model.entry_project_id) %>
+                    <script type="text/javascript">$("#entry_project_id").focus();</script>
                 </td>
             </tr>
 
@@ -38,23 +45,25 @@
             </tr>
 
             <tr>
-                <td class="editor-label"><label for="entry_begin_time">Begin</label></td>
+                <td class="editor-label"><label for="begin_time">Begin Time</label></td>
                 <td class="editor-field">
-                    <%: Html.TextBoxFor(model => model.entry_begin_time, new {@readonly = "readonly" }) %>
+                    <%: Html.TextBox("begin_time", "Waiting...", new {@disabled = "disabled", @readonly = "readonly", @class="begin_time" }) %>
+                    <%: Html.HiddenFor(model => model.entry_begin_time, new {@readonly = "readonly", @class="begin_time" }) %>
                 </td>
             </tr>
 
             <tr>
-                <td class="editor-label"><label for="entry_end_time">End</label></td>
+                <td class="editor-label"><label for="end_time">End Time</label></td>
                 <td class="editor-field">
-                    <%: Html.TextBoxFor(model => model.entry_end_time, new { @readonly = "readonly" }) %>
+                    <%: Html.TextBox("end_time", "Waiting...", new {@disabled = "disabled", @readonly = "readonly", @class="end_time" }) %>
+                    <%: Html.HiddenFor(model => model.entry_end_time, new {@readonly = "readonly", @class="end_time" }) %>
                 </td>
             </tr>
 
             <tr>
-                <td class="editor-label"><label for="entry_end_time">Hours</label></td>
+                <td class="editor-label"><label for="entry_end_time">Total Hours</label></td>
                 <td class="editor-field">
-                    <%: Html.TextBox("total_hours", "0", new { disabled = "disabled", @readonly = "readonly" }) %>
+                    <%: Html.TextBox("total_hours", "Waiting...", new { disabled = "disabled", @readonly = "readonly" }) %>
                 </td>
             </tr>
 
@@ -118,6 +127,7 @@
         </table>
 
     </fieldset>
+
 <% } %>
 
 </asp:Content>
