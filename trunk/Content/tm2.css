@@ -128,3 +128,10 @@ input[readonly="readonly"] {
     background: #ddd;
     border: #ddd;
 }
+
+.help_tip {
+    float: right;
+    background: #ddd;
+    border: 5px solid #ccc;
+    padding: 0 20px;
+}
