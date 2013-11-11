@@ -141,6 +141,6 @@
 <asp:Content ID="Content5" ContentPlaceHolderID="ScriptsSection" runat="server">
     <%: Scripts.Render("~/bundles/jqueryval") %>
     <%: Scripts.Render("~/Scripts/sugar.min.js") %>
-    <%: Scripts.Render("~/Scripts/timespan-min.js") %>
+    <%: Scripts.Render("~/Scripts/timespan.min.js") %>
     <script type="text/javascript">populate_edit_fields();</script>
 </asp:Content>
