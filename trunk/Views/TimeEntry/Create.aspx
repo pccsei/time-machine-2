@@ -26,17 +26,38 @@
 
             <tr>
                 <td class="editor-label">
-                    <label for="entry_begin_time">Time</label>
+                    <label for="timespan">Timespan</label>
                 </td>
-                <td class="editor-field halftime">
-                    <%: Html.EditorFor(model => model.entry_begin_time) %> <span class="dash">&ndash;</span>
-                    <%: Html.EditorFor(model => model.entry_end_time) %>
+                <td class="editor-field">
+                    <input id="timespan" name="timespan" type="text" /><br />
                     <%: Html.ValidationMessageFor(model => model.entry_begin_time) %>
                     <%: Html.ValidationMessage("NegativeTimeError") %>
                     <%: Html.ValidationMessage("NoTimeError") %>
                     <%: Html.ValidationMessage("TimeBoundaryError") %>
                 </td>
             </tr>
+
+            <tr>
+                <td class="editor-label"><label for="entry_begin_time">Begin</label></td>
+                <td class="editor-field">
+                    <%: Html.TextBoxFor(model => model.entry_begin_time, new {@readonly = "readonly" }) %>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="editor-label"><label for="entry_end_time">End</label></td>
+                <td class="editor-field">
+                    <%: Html.TextBoxFor(model => model.entry_end_time, new { @readonly = "readonly" }) %>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="editor-label"><label for="entry_end_time">Hours</label></td>
+                <td class="editor-field">
+                    <%: Html.TextBox("total_hours", "0", new { disabled = "disabled", @readonly = "readonly" }) %>
+                </td>
+            </tr>
+
             <%--<tr>
                 <td class="editor-label">
                     <label for="entry_end_time">End Time</label>
@@ -109,4 +130,6 @@
 
 <asp:Content ID="Content5" ContentPlaceHolderID="ScriptsSection" runat="server">
     <%: Scripts.Render("~/bundles/jqueryval") %>
+    <%: Scripts.Render("~/Scripts/sugar.min.js") %>
+    <%: Scripts.Render("~/Scripts/timespan-min.js") %>
 </asp:Content>

@@ -14,7 +14,7 @@ td, th {
 td.editor-label {
     padding-right: 0px;
     text-align: right;
-    padding-top: 15px;
+    padding-top: 12px;
 }
 
 table.hasHeader {
@@ -122,4 +122,9 @@ th.headerSortUp {
 th.headerSortDown { 
     background-image: url(images/asc_sort_indicator.gif); 
     background-color: #bbb; 
+}
+
+input[readonly="readonly"] {
+    background: #ddd;
+    border: #ddd;
 }
