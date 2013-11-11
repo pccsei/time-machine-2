@@ -12,8 +12,26 @@
     <%: Html.ValidationSummary(true, "There was an error validating your entry.") %>
 
     <div class="help_tip">
-        <p>Try these timespans:</p>
-        <ul>
+        <p>Try these timespans or enter your own:</p>
+        <ul id="time_suggestions" style="padding-left: 20px">
+            <li><a>3-4p</a></li>
+            <li><a>yesterday 3-4p</a></li>
+            <li><a>two days ago 3-4p</a></li>
+            <li><a>Wed 3a-4:30p</a></li>
+            <li><a>last Wed 3-4p</a></li>
+            <li><a>11/8 3-4p</a></li>
+            <li><a>11-12</a></li>
+            <li><a>11-1</a></li>
+            <li><a>11-1a</a></li>
+            <li><a>11p-1</a> (same as previous)</li>
+            <li><a>2-2</a></li>
+            <li><a>2-now</a></li>
+            <li><a>2a-now</a></li>
+            <li><a>now-4</a></li>
+            <li><a>now-4a</a></li>
+            <li><a>5 minutes ago - now</a></li>
+            <li><a>2:55 - 15 minutes from now</a></li>
+            <li><a>yesterday 9:05 - 15 hours ago</a></li>
         </ul>
     </div>
 
