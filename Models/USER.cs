@@ -13,6 +13,7 @@ namespace _14_TimeMachine2.Models
     using System.Collections.Generic;
     using System.Linq;
     using System.ComponentModel.DataAnnotations;
+    using System.Web.Mvc;
     
     public partial class USER
     {
@@ -101,6 +102,20 @@ namespace _14_TimeMachine2.Models
         {
             return (int) this.ENTRies.Last().entry_project_id;
         }
+
+        //public SelectList getProjectSelectList()
+        //{
+        //    List<PROJECT> userProjects = this.getProjectsForUser();
+
+
+        //    foreach (PROJECT p in userProjects)
+        //    {
+        //    }
+
+        //    SelectList list = new SelectList(userProjects, "project_id", "project_name", this.getLastProjectSelected());
+
+        //    return list;
+        //}
 
         public List<float> getSummaryStatsForCourse(int course_id)
         {

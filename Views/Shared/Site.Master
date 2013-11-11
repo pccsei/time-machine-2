@@ -19,7 +19,7 @@
         <%: Scripts.Render("~/Scripts/jquery.timepicker.js") %>
         <%: Scripts.Render("~/Scripts/jquery-ui-sliderAccess.js") %>
         <%: Scripts.Render("~/Scripts/jquery-ui-timepicker-addon.js") %>
-        <%: Scripts.Render("~/Scripts/time-entry.js") %>
+        <%--<%: Scripts.Render("~/Scripts/time-entry.js") %>--%>
         <%: Scripts.Render("~/Scripts/jquery.tablesorter.min.js") %>
         <%: Scripts.Render("~/Scripts/timemachine2.js") %>
 <script type="text/javascript">

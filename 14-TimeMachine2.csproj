@@ -305,6 +305,7 @@
     <Content Include="Scripts\jquery.tablesorter.js" />
     <Content Include="Scripts\jquery.tablesorter.min.js" />
     <Content Include="Scripts\jquery.timepicker.js" />
+    <Content Include="Scripts\sugar.min.js" />
     <Content Include="Scripts\time-entry.js" />
     <Content Include="Scripts\timemachine2.js" />
     <Content Include="Scripts\jquery-1.7.1.js" />
@@ -321,6 +322,7 @@
     <Content Include="Scripts\knockout-2.1.0.debug.js" />
     <Content Include="Scripts\knockout-2.1.0.js" />
     <Content Include="Scripts\modernizr-2.5.3.js" />
+    <Content Include="Scripts\timespan-min.js" />
     <Content Include="Theme\redmond\images\animated-overlay.gif" />
     <Content Include="Theme\redmond\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Theme\redmond\images\ui-bg_flat_55_fbec88_40x100.png" />
