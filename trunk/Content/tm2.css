@@ -127,6 +127,7 @@ th.headerSortDown {
 input[readonly="readonly"] {
     background: #ddd;
     border: #ddd;
+    color: black !important;
 }
 
 .help_tip {

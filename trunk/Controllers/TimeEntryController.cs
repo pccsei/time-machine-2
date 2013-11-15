@@ -27,10 +27,13 @@ namespace _14_TimeMachine2.Controllers
         {
             USER student = currentUser();
 
-            if (currentUser().is_teacher() && !currentUser().is_student())
+            if (currentUser().is_teacher())
             {
                 if (id == null || db.USERs.Find(id) == null)
-                    return RedirectToAction("Index", "Welcome");
+                {
+                    if (!currentUser().is_student())
+                        return RedirectToAction("Index", "Welcome");
+                }
                 else
                     student = db.USERs.Find(id);
             }
@@ -53,9 +56,10 @@ namespace _14_TimeMachine2.Controllers
 
         public ActionResult Create()
         {
-            ViewBag.entry_category_id = new SelectList(db.CATEGORies, "category_id", "category_name");
-            ViewBag.entry_location_id = new SelectList(db.LOCATIONs, "location_id", "location_name");
-            ViewBag.entry_project_id = new SelectList(currentUser().getProjectsForUser(), "project_id", "project_name", currentUser().getLastProjectSelected());
+            ENTRY last_entry = currentUser().ENTRies.Last();
+            ViewBag.entry_category_id = new SelectList(db.CATEGORies, "category_id", "category_name", last_entry.entry_category_id);
+            ViewBag.entry_location_id = new SelectList(db.LOCATIONs, "location_id", "location_name", last_entry.entry_location_id);
+            ViewBag.entry_project_id = new SelectList(currentUser().getProjectsForUser(), "project_id", "project_name", last_entry.entry_project_id);
             ViewBag.entry_user_id = new SelectList(db.USERs, "user_id", "user_first_name");
             return View();
         }
@@ -66,34 +70,42 @@ namespace _14_TimeMachine2.Controllers
         [HttpPost]
         public ActionResult Create(ENTRY entry)
         {
-            DateTime startTime = DateTime.Parse(entry.entry_begin_time.ToString());
-            DateTime endTime = DateTime.Parse(entry.entry_end_time.ToString());
-            Double totalTime = endTime.Subtract(startTime).TotalMinutes;
-
-            // See if the entry is overlapping a previous entry
-            List<ENTRY> entryList = new List<ENTRY>();
-            entryList = currentUser().ENTRies.ToList();
-            bool boundaryError = false;
-
-            // Rob's validation, based on Jake's work
-            if (startTime > endTime)
-                ModelState.AddModelError("NegativeTimeError", "The end time comes before the start time.");
-            else if (startTime == endTime)
-                ModelState.AddModelError("NoTimeError", "The end time is the same as the start time.");
-            else
+            try
             {
-                foreach (var currentEntry in entryList)
+                DateTime startTime = DateTime.Parse(entry.entry_begin_time.ToString());
+                DateTime endTime = DateTime.Parse(entry.entry_end_time.ToString());
+                Double totalTime = endTime.Subtract(startTime).TotalMinutes;
+
+                // See if the entry is overlapping a previous entry
+                List<ENTRY> entryList = new List<ENTRY>();
+                entryList = currentUser().ENTRies.ToList();
+                bool boundaryError = false;
+
+                // Rob's validation, based on Jake's work
+                if (startTime > endTime)
+                    ModelState.AddModelError("NegativeTimeError", "The end time comes before the start time.");
+                else if (startTime == endTime)
+                    ModelState.AddModelError("NoTimeError", "The end time is the same as the start time.");
+                else
                 {
-                    if ((currentEntry.entry_begin_time <= startTime && startTime < currentEntry.entry_end_time) || // If startTime is within another entry's time
-                        (currentEntry.entry_begin_time < endTime && endTime <= currentEntry.entry_end_time) ||     // If endTime is within another entry's time
-                        (startTime <= currentEntry.entry_begin_time && currentEntry.entry_end_time <= endTime))    // If another entry's time is within the new time
-                        boundaryError = true;
+                    foreach (var currentEntry in entryList)
+                    {
+                        if ((currentEntry.entry_begin_time <= startTime && startTime < currentEntry.entry_end_time) || // If startTime is within another entry's time
+                            (currentEntry.entry_begin_time < endTime && endTime <= currentEntry.entry_end_time) ||     // If endTime is within another entry's time
+                            (startTime <= currentEntry.entry_begin_time && currentEntry.entry_end_time <= endTime))    // If another entry's time is within the new time
+                            boundaryError = true;
+                    }
+                    if (boundaryError)
+                        ModelState.AddModelError("TimeBoundaryError", "The time entered overlaps a previously entered time.");
                 }
-                if (boundaryError)
-                    ModelState.AddModelError("TimeBoundaryError", "The time entered overlaps a previously entered time.");
+
+                entry.entry_total_time = Convert.ToInt32(totalTime);
+            }
+            catch
+            {
+                ModelState.AddModelError("MissingTimeError", "Invalid time format.");
             }
 
-            entry.entry_total_time = Convert.ToInt32(totalTime);
             entry.entry_user_id = currentUser().user_id;
             ModelState.Remove("entry_id");
 
@@ -104,6 +116,7 @@ namespace _14_TimeMachine2.Controllers
                 return RedirectToAction("Details", new { id = db.Entry(entry).Entity.entry_id });
             }
 
+            ViewBag.timespan = Request.Form["timespan"];
             ViewBag.entry_category_id = new SelectList(db.CATEGORies, "category_id", "category_name", entry.entry_category_id);
             ViewBag.entry_location_id = new SelectList(db.LOCATIONs, "location_id", "location_name", entry.entry_location_id);
             ViewBag.entry_project_id  = new SelectList(db.PROJECTs, "project_id", "project_name", entry.entry_project_id);

@@ -45,7 +45,10 @@ namespace _14_TimeMachine2.Controllers
                 if (id != null)
                     student = db.USERs.Find(id);
                 else
-                    return RedirectToAction("Index");
+                {
+                    if (!user.is_student())
+                        return RedirectToAction("Index");
+                }
             }
 
             ICollection<ENTRY> entryData = student.ENTRies;
