@@ -43,16 +43,16 @@
             <tr>
                 <td class="editor-label"><label for="begin_time">Begin Time</label></td>
                 <td class="editor-field">
-                    <%: Html.TextBox("begin_time", "Waiting...", new {@disabled = "disabled", @readonly = "readonly", @class="begin_time" }) %>
-                    <%: Html.HiddenFor(model => model.entry_begin_time, new {@readonly = "readonly", @class="begin_time" }) %>
+                    <%: Html.TextBox("begin_time", "Waiting...", new {@disabled = "disabled", @readonly = "readonly", @class="begin_time display" }) %>
+                    <%: Html.HiddenFor(model => model.entry_begin_time, new {@readonly = "readonly", @class="begin_time submit" }) %>
                 </td>
             </tr>
 
             <tr>
                 <td class="editor-label"><label for="end_time">End Time</label></td>
                 <td class="editor-field">
-                    <%: Html.TextBox("end_time", "Waiting...", new {@disabled = "disabled", @readonly = "readonly", @class="end_time" }) %>
-                    <%: Html.HiddenFor(model => model.entry_end_time, new {@readonly = "readonly", @class="end_time" }) %>
+                    <%: Html.TextBox("end_time", "Waiting...", new {@disabled = "disabled", @readonly = "readonly", @class="end_time display" }) %>
+                    <%: Html.HiddenFor(model => model.entry_end_time, new {@readonly = "readonly", @class="end_time submit" }) %>
                 </td>
             </tr>
 

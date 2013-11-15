@@ -5,6 +5,7 @@ $(window).load(function () {
   $("#time_suggestions li a").click(function () {
     $("#timespan").val($(this).text());
     interpret_timespan($("#timespan").val());
+    $("#timespan").focus();
   });
 
   $("#timespan").keyup(function () { interpret_timespan($("#timespan").val()) });
@@ -169,8 +170,22 @@ function interpret_timespan(input)
 
   var total_hours = (end_time.minutesSince(begin_time) / 60).toFixed(2);
   if (total_hours == "NaN") total_hours = "Waiting...";
+  
+  if (begin_time.isValid()) {
+    $(".begin_time").val(begin_time.format(date_format));
+  }
+  else {
+    $(".begin_time.display").val("Waiting...");
+    $(".begin_time.submit").val("");
+  }
 
-  $(".begin_time").val(begin_time.isValid() ? begin_time.format(date_format) : "Waiting...");
-  $(".end_time").val(end_time.isValid() ? end_time.format(date_format) : "Waiting...");
+  if (end_time.isValid()) {
+    $(".end_time").val(end_time.format(date_format));
+  }
+  else {
+    $(".end_time.display").val("Waiting...");
+    $(".end_time.submit").val("");
+  }
+
   $("#total_hours").val(total_hours);
 }

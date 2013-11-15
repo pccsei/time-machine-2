@@ -98,10 +98,10 @@ namespace _14_TimeMachine2.Models
             return projectList;
         }
 
-        public int getLastProjectSelected()
-        {
-            return (int) this.ENTRies.Last().entry_project_id;
-        }
+        //public int getLastProjectSelected()
+        //{
+        //    return (int) this.ENTRies.Last().entry_project_id;
+        //}
 
         //public SelectList getProjectSelectList()
         //{

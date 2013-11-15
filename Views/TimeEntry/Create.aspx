@@ -23,7 +23,7 @@
             <li><a>11-12</a></li>
             <li><a>11-1</a></li>
             <li><a>11-1a</a></li>
-            <li><a>11p-1</a> (same as previous)</li>
+            <li><a>11p-1</a></li>
             <li><a>2-2</a></li>
             <li><a>2-now</a></li>
             <li><a>2a-now</a></li>
@@ -54,8 +54,10 @@
                     <label for="timespan">Timespan</label>
                 </td>
                 <td class="editor-field">
-                    <input id="timespan" name="timespan" type="text" /><br />
+                    <input id="timespan" name="timespan" type="text" value="<%: (String) ViewBag.timespan %>" /><br />
+                    <%: Html.ValidationMessage("MissingTimeError") %>
                     <%: Html.ValidationMessageFor(model => model.entry_begin_time) %>
+                    <%: Html.ValidationMessageFor(model => model.entry_end_time) %>
                     <%: Html.ValidationMessage("NegativeTimeError") %>
                     <%: Html.ValidationMessage("NoTimeError") %>
                     <%: Html.ValidationMessage("TimeBoundaryError") %>
@@ -65,16 +67,16 @@
             <tr>
                 <td class="editor-label"><label for="begin_time">Begin Time</label></td>
                 <td class="editor-field">
-                    <%: Html.TextBox("begin_time", "Waiting...", new {@disabled = "disabled", @readonly = "readonly", @class="begin_time" }) %>
-                    <%: Html.HiddenFor(model => model.entry_begin_time, new {@readonly = "readonly", @class="begin_time" }) %>
+                    <%: Html.TextBox("begin_time", "Waiting...", new {@disabled = "disabled", @readonly = "readonly", @class="begin_time display" }) %>
+                    <%: Html.HiddenFor(model => model.entry_begin_time, new {@class="begin_time submit" }) %>
                 </td>
             </tr>
 
             <tr>
                 <td class="editor-label"><label for="end_time">End Time</label></td>
                 <td class="editor-field">
-                    <%: Html.TextBox("end_time", "Waiting...", new {@disabled = "disabled", @readonly = "readonly", @class="end_time" }) %>
-                    <%: Html.HiddenFor(model => model.entry_end_time, new {@readonly = "readonly", @class="end_time" }) %>
+                    <%: Html.TextBox("end_time", "Waiting...", new {@disabled = "disabled", @readonly = "readonly", @class="end_time display" }) %>
+                    <%: Html.HiddenFor(model => model.entry_end_time, new {@class="end_time submit" }) %>
                 </td>
             </tr>
 
@@ -160,4 +162,8 @@
     <%: Scripts.Render("~/bundles/jqueryval") %>
     <%: Scripts.Render("~/Scripts/sugar.min.js") %>
     <%: Scripts.Render("~/Scripts/timespan.min.js") %>
+    <script type="text/javascript">
+        if ($("#timespan").val())
+            interpret_timespan($("#timespan").val())
+    </script>
 </asp:Content>
