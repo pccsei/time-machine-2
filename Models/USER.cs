@@ -167,6 +167,13 @@ namespace _14_TimeMachine2.Models
                 extraDays += 7;
             DateTime relStartDay = course.course_begin_date.AddDays(extraDays);
 
+            int extraDaysEnd = (int)course.course_end_date.DayOfWeek - course.course_submit_day;
+            if (extraDaysEnd < 0)
+                extraDaysEnd += 7;
+            DateTime lastSubmitDay = course.course_end_date.AddDays(-extraDaysEnd);
+            Double lastEntryDay = ((DateTime)course.course_end_date - relStartDay).TotalDays + 1;
+            int lastEntryWeek = (int) Math.Ceiling(lastEntryDay / 7.0);
+
             List<int> projectIDs = new List<int>();
             foreach (PROJECT project in course.PROJECTs)
             {
@@ -188,8 +195,9 @@ namespace _14_TimeMachine2.Models
                     Double entryDay = ((DateTime)entry.entry_end_time - relStartDay).TotalDays;
                     int entryWeek = (int)Math.Floor(entryDay / 7.0) + 1;
                     if (entryDay < 0.0) entryWeek = 1;
+                    if (entryWeek > lastEntryWeek) entryWeek = lastEntryWeek;
                     if (entryWeek <= currentWeek)
-                        weeks[entryWeek - 1] += (float)entry.entry_total_time / 60.0f;
+                        weeks[entryWeek - 1] += (float) entry.entry_total_time / 60.0f;
                 }
             }
 

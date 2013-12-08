@@ -97,18 +97,31 @@ namespace _14_TimeMachine2.Models
             return teacher;
         }
 
-        public int getCurrentWeek()
+        public DateTime getRelativeStartTime()
         {
             // Calculate extra days at the beginning of the semester. 
             // Add 1 to the submit day to move its boundary to the end of the day.
-            int extraDays = this.course_submit_day + 1 - (int)this.course_begin_date.DayOfWeek; 
+            int extraDays = this.course_submit_day + 1 - (int)this.course_begin_date.DayOfWeek;
             if (extraDays < 0)
                 extraDays += 7;
-            DateTime relStartDay = this.course_begin_date.AddDays(extraDays);
+            return this.course_begin_date.AddDays(extraDays);
+        }
+
+        public int getLastEntryWeek()
+        {
+            Double lastEntryDay = ((DateTime)this.course_end_date - this.getRelativeStartTime()).TotalDays;
+            return (int)Math.Floor(lastEntryDay / 7.0);
+        }
+
+        public int getCurrentWeek()
+        {
+            DateTime relStartDay = this.getRelativeStartTime();
+            int lastEntryWeek = this.getLastEntryWeek();
 
             double currentDay = (DateTime.Today - relStartDay).TotalDays;
             int currentWeek = (int)Math.Floor(currentDay / 7.0) + 1;
             if (currentDay < 0.0) currentWeek = 1;
+            if (currentWeek > lastEntryWeek) currentWeek = lastEntryWeek;
 
             return currentWeek;
         }
