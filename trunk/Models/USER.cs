@@ -188,8 +188,8 @@ namespace _14_TimeMachine2.Models
                     Double entryDay = ((DateTime)entry.entry_end_time - relStartDay).TotalDays;
                     int entryWeek = (int)Math.Floor(entryDay / 7.0) + 1;
                     if (entryDay < 0.0) entryWeek = 1;
-
-                    weeks[entryWeek - 1] += (float) entry.entry_total_time / 60.0f;
+                    if (entryWeek <= currentWeek)
+                        weeks[entryWeek - 1] += (float)entry.entry_total_time / 60.0f;
                 }
             }
 

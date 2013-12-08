@@ -5,21 +5,39 @@
 
 a, a:link {
     cursor: pointer;
+    padding: 0;
+}
+
+table {
+    margin-top: 0;
+}
+
+table.hasHeader {
+    border: 5px solid #ccc;
+    border-top: none;
+}
+
+.table-holder {
+    overflow-x: auto;
+    overflow-y: hidden;
+    border: 5px solid #ccc;
+    border-top: none;
+    margin-top: .75em;
+}
+
+.table-holder table.hasHeader {
+    border: none;
 }
 
 td, th {
     padding: 8px 15px;
+    white-space: nowrap;
 }
 
 td.editor-label {
     padding-right: 0px;
     text-align: right;
     padding-top: 12px;
-}
-
-table.hasHeader {
-    border: 5px solid #ccc;
-    border-top: none;
 }
 
 table.large {

@@ -18,6 +18,7 @@
 
 <% foreach (var course in Model) { %>
     <!--A list of all the students in a class -->
+    <div class="table-holder">
     <table class="zebra hasHeader course-<%: course.course_id %> tablesorter" style="width:auto">
         <thead>
             <tr>
@@ -45,6 +46,7 @@
         <% } %>
         </tbody>
     </table>
+    </div>
 <% } %>
 
 </asp:Content>
