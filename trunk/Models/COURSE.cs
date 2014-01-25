@@ -113,17 +113,22 @@ namespace _14_TimeMachine2.Models
             return (int)Math.Floor(lastEntryDay / 7.0);
         }
 
-        public int getCurrentWeek()
+        public int getLatestWeek()
         {
             DateTime relStartDay = this.getRelativeStartTime();
             int lastEntryWeek = this.getLastEntryWeek();
 
             double currentDay = (DateTime.Today - relStartDay).TotalDays;
-            int currentWeek = (int)Math.Floor(currentDay / 7.0) + 1;
-            if (currentDay < 0.0) currentWeek = 1;
-            if (currentWeek > lastEntryWeek) currentWeek = lastEntryWeek;
+            int latestWeek = (int)Math.Floor(currentDay / 7.0) + 1;
+            if (currentDay < 0.0) latestWeek = 1;
+            if (latestWeek > lastEntryWeek) latestWeek = lastEntryWeek;
 
-            return currentWeek;
+            return latestWeek;
+        }
+
+        public DateTime getLatestDay()
+        {
+            return DateTime.Now < this.course_end_date ? DateTime.Now : this.course_end_date;
         }
         // ryoder [end]
     }

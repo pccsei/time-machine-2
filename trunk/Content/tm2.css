@@ -23,6 +23,8 @@ table.hasHeader {
     border: 5px solid #ccc;
     border-top: none;
     margin-top: .75em;
+    display: inline-block;
+    max-width: 100%;
 }
 
 .table-holder table.hasHeader {

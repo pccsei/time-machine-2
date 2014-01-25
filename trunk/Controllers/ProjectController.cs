@@ -25,7 +25,7 @@ namespace _14_TimeMachine2.Controllers
         {
             var projects = db.PROJECTs.Include(p => p.COURSE).Include(p => p.USER);
             ViewBag.project_course_id = new SelectList(db.USERs.Find(currentUser).getCoursesForUser(), "course_id", "course_name");
-            return View( db.USERs.Find(currentUser).getProjectsForUser().ToList());
+            return View( db.USERs.Find(currentUser).getProjects().ToList());
         }
 
         [HttpPost]
@@ -51,7 +51,7 @@ namespace _14_TimeMachine2.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.project_course_id = new SelectList(db.USERs.Find(currentUser).getProjectsForUser(), "project_id", "project_name");
+            ViewBag.project_course_id = new SelectList(db.USERs.Find(currentUser).getProjects(), "project_id", "project_name");
             ViewBag.course_id = new SelectList(db.USERs.Find(currentUser).getCoursesForUser(), "course_id", "course_name");
             return View(project);
         }

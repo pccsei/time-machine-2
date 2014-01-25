@@ -80,7 +80,7 @@ namespace _14_TimeMachine2.Models
             return courseList;
         }
 
-        public List<PROJECT> getProjectsForUser()
+        public List<PROJECT> getProjects()
         {
             List<COURSE> courseList = new List<COURSE>();
             List<PROJECT> projectList = new List<PROJECT>();
@@ -97,6 +97,27 @@ namespace _14_TimeMachine2.Models
 
             return projectList;
         }
+
+        // Return a Select List of active projects for the user with parenthetical course name
+        public List<SelectListItem> getProjectSelectList()
+        {
+            List<PROJECT> project_list = this.getProjects();
+            List<SelectListItem> project_select_list = new List<SelectListItem>();
+            foreach (PROJECT p in project_list)
+            {
+                COURSE parent_course = db.COURSEs.Find(p.project_course_id);
+                if (p.project_is_enabled == 1 && parent_course.course_is_enabled == 1)
+                {
+                    project_select_list.Add(new SelectListItem()
+                    {
+                        Text = p.project_name + " (" + parent_course.course_name + ")",
+                        Value = p.project_id.ToString()
+                    });
+                }
+            }
+            return project_select_list;
+        }
+
 
         //public int getLastProjectSelected()
         //{
@@ -142,7 +163,7 @@ namespace _14_TimeMachine2.Models
             }
 
             // Hours per day
-            stats[1] = stats[0] / (float) (DateTime.Now - course.course_begin_date).Days;
+            stats[1] = stats[0] / (float) (course.getLatestDay() - course.course_begin_date).Days;
 
             // Hours per week
             stats[2] = stats[1] * 7.0f;
@@ -159,20 +180,10 @@ namespace _14_TimeMachine2.Models
         {
             var course = db.COURSEs.Find(course_id);
             var projects = course.PROJECTs.ToList();
+            int latestWeek = course.getLatestWeek();
 
-            // Calculate extra days at the beginning of the semester. 
-            // Add 1 to the submit day to move its boundary to the end of the day.
-            int extraDays = course.course_submit_day + 1 - (int)course.course_begin_date.DayOfWeek;
-            if (extraDays < 0)
-                extraDays += 7;
-            DateTime relStartDay = course.course_begin_date.AddDays(extraDays);
-
-            int extraDaysEnd = (int)course.course_end_date.DayOfWeek - course.course_submit_day;
-            if (extraDaysEnd < 0)
-                extraDaysEnd += 7;
-            DateTime lastSubmitDay = course.course_end_date.AddDays(-extraDaysEnd);
-            Double lastEntryDay = ((DateTime)course.course_end_date - relStartDay).TotalDays + 1;
-            int lastEntryWeek = (int) Math.Ceiling(lastEntryDay / 7.0);
+            DateTime relStartDay = course.getRelativeStartTime();
+            int lastEntryWeek = course.getLastEntryWeek();
 
             List<int> projectIDs = new List<int>();
             foreach (PROJECT project in course.PROJECTs)
@@ -180,12 +191,8 @@ namespace _14_TimeMachine2.Models
                 projectIDs.Add(project.project_id);
             }
 
-            double currentDay = (DateTime.Today - relStartDay).TotalDays;
-            int currentWeek = (int)Math.Floor(currentDay / 7.0) + 1;
-            if (currentDay < 0.0) currentWeek = 1;
-
             List<float> weeks = new List<float>();
-            for (int w = 1; w <= currentWeek; w++)
+            for (int w = 1; w <= latestWeek; w++)
                 weeks.Add(0.0f);
 
             foreach (ENTRY entry in this.ENTRies)
@@ -196,7 +203,7 @@ namespace _14_TimeMachine2.Models
                     int entryWeek = (int)Math.Floor(entryDay / 7.0) + 1;
                     if (entryDay < 0.0) entryWeek = 1;
                     if (entryWeek > lastEntryWeek) entryWeek = lastEntryWeek;
-                    if (entryWeek <= currentWeek)
+                    if (entryWeek <= latestWeek)
                         weeks[entryWeek - 1] += (float) entry.entry_total_time / 60.0f;
                 }
             }
