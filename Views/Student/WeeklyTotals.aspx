@@ -25,7 +25,7 @@
                 <th>ID</th>
                 <th>Student Name</th>
                 <th>Total</th>
-            <% for (int w = course.getCurrentWeek(); w > 0; w--)
+            <% for (int w = course.getLatestWeek(); w > 0; w--)
                    { %>
                 <th>W<%: (w).ToString() %></th>
             <% } %>

@@ -157,10 +157,10 @@ function interpret_timespan(input)
   if (begin_time.isValid() && end_time.isValid())
   {
     while (begin_time.getMinutes() % 5 != 0)
-  {
-    begin_time.addMinutes(-1);
-    end_time.addMinutes(-1);
-  }
+    {
+      begin_time.addMinutes(-1);
+      end_time.addMinutes(-1);
+    }
     while (end_time.getMinutes() % 5 != 0)
       end_time.addMinutes(1);
     
