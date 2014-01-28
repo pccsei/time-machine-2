@@ -19,6 +19,7 @@ namespace _14_TimeMachine2
 
     public static class GlobalVariables
     {
+        private static int selected_course_id_stored;
         public static USER current_user
         {
             get
@@ -34,7 +35,41 @@ namespace _14_TimeMachine2
             {
                 string current_login_id = HttpContext.Current.User.Identity.Name;
                 string current_user_id  = current_login_id.Substring(current_login_id.LastIndexOf('\\') + 1);
-                return (string)(HttpContext.Current.Session["username"] = current_user_id);
+                return (string)(HttpContext.Current.Session["username"] = current_user_id);//"rhowell";// "115339";// 
+            }
+        }
+
+        public static COURSE selected_course
+        {
+            get
+            {
+                TM2Entities2 db = new TM2Entities2();
+                return db.COURSEs.Find(selected_course_id);
+            }
+        }
+
+        public static int selected_course_id
+        {
+            get
+            {
+                if (HttpContext.Current.Session["course"] == null)
+                {
+                    TM2Entities2 db = new TM2Entities2();
+                    if (current_user.ENTRies.Count() > 0 && current_user.is_student())
+                        selected_course_id_stored = db.PROJECTs.Find(current_user.ENTRies.Last().entry_project_id).project_course_id;
+                    else
+                        selected_course_id_stored = current_user.MEMBERs.Last().member_course_id;
+                }
+                else
+                {
+                    selected_course_id_stored = (int)HttpContext.Current.Session["course"];
+                }
+
+                return selected_course_id_stored;
+            }
+            set
+            {
+                HttpContext.Current.Session["course"] = selected_course_id_stored = value;
             }
         }
     }
