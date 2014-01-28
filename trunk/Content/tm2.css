@@ -188,6 +188,7 @@ header nav {
 
 header label[for=selected_course] {
     display: inline;
+    margin-right: 8px;
 }
 
 header select#selected_course {

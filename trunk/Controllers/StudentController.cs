@@ -15,8 +15,8 @@ namespace _14_TimeMachine2.Controllers
     {
         private TM2Entities2 db = new TM2Entities2();
 
-        public string currentUser = GlobalVariables.current_user_id;
-        //public string currentUser = "115245";
+        private USER   currentUser   = GlobalVariables.current_user;
+        private COURSE currentCourse = GlobalVariables.selected_course;
 
         [AuthorizeTeacher]
         public ActionResult Index()
@@ -27,7 +27,7 @@ namespace _14_TimeMachine2.Controllers
         [AuthorizeTeacher]
         public ActionResult List()
         {
-            var coursesForTeacher = db.USERs.Find(currentUser).getCoursesForUser();
+            var coursesForTeacher = currentUser.getCoursesForUser();
             var selectlist = new SelectList(coursesForTeacher, "course_id", "course_name", 1);
             ViewData["Courses"] = selectlist;
 
@@ -37,45 +37,40 @@ namespace _14_TimeMachine2.Controllers
         [AuthorizeBoth]
         public ActionResult Summary(string id = null)
         {
-            USER user;
-            USER student = user = db.USERs.Find(currentUser);
+            USER student = currentUser;
 
-            if (user.is_teacher())
+            if (currentUser.is_teacher())
             {
-                if (id != null)
+                if (id != null && db.USERs.Find(id) != null)
                     student = db.USERs.Find(id);
                 else
                 {
-                    if (!user.is_student())
+                    if (!currentUser.is_student())
                         return RedirectToAction("Index");
                 }
             }
 
-            ICollection<ENTRY> entryData = student.ENTRies;
+            //ICollection<ENTRY> entryData = student.ENTRies;
             
-            // Get courses for the current user. May be student or teacher
-            List<int> currentUserCoursesIDs = new List<int>();
-            foreach (COURSE c in user.getCoursesForUser())
-            {
-                currentUserCoursesIDs.Add(c.course_id);
-            }
+            //// Get courses for the current user. May be student or teacher
+            //List<int> currentUserCoursesIDs = new List<int>();
+            //foreach (COURSE c in currentUser.getCoursesForUser())
+            //    currentUserCoursesIDs.Add(c.course_id);
             
-            // Get courses for the student
-            List<int> studentCourseIDs = new List<int>();
-            List<COURSE> studentCourses = student.getCoursesForUser();
-            foreach (COURSE c in studentCourses)
-            {
-                studentCourseIDs.Add(c.course_id);
-            }
+            //// Get courses for the student
+            //List<int> studentCourseIDs = new List<int>();
+            //List<COURSE> studentCourses = student.getCoursesForUser();
+            //foreach (COURSE c in studentCourses)
+            //    studentCourseIDs.Add(c.course_id);
 
-            Dictionary<COURSE, List<float>> weekly_course_totals = new Dictionary<COURSE, List<float>>();
-            foreach (COURSE course in studentCourses)
-            {
-                if (currentUserCoursesIDs.Contains(course.course_id)) // If current user is a teacher, show only that teacher's courses with the student
-                    weekly_course_totals.Add(course, student.getWeeklyHoursForCourse(course.course_id));
-            }
+            //List<float> weekly_course_totals = new List<float>();
+            //foreach (COURSE course in studentCourses)
+            //{
+            //    if (currentUserCoursesIDs.Contains(course.course_id)) // If current user is a teacher, show only that teacher's courses with the student
+            //        weekly_course_totals = student.getWeeklyHoursForCourse(course.course_id);
+            //}
 
-            ViewData["WeeklyCourseTotals"] = weekly_course_totals;
+            ViewData["WeeklyCourseTotals"] = student.getWeeklyHoursForCourse(currentCourse.course_id);
 
             return View(student);
         }
@@ -83,7 +78,7 @@ namespace _14_TimeMachine2.Controllers
         [AuthorizeTeacher]
         public ActionResult WeeklyTotals()
         {
-            var coursesForTeacher = db.USERs.Find(currentUser).getCoursesForUser();
+            var coursesForTeacher = currentUser.getCoursesForUser();
             var selectlist = new SelectList(coursesForTeacher, "course_id", "course_name", 1);
             ViewData["Courses"] = selectlist;
 
