@@ -38,6 +38,12 @@
                     <img id="logo" src="<%= Url.Action("Time machine logo 2.png", "Images")%>" alt="Logo" />
                 </div>
                 <div class="float-right">
+<%--                    <label for="selected_course">(<%: _14_TimeMachine2.GlobalVariables.selected_course.course_name %>) Select Course: </label>
+                    <select id="selected_course" data-url="<%= Url.Action("SetSelectedCourse", "Welcome")  %>">
+                        <option value="25">CS 451</option>
+                        <option value="32">CS 452</option>
+                        <option value="33">CS 414</option>
+                    </select>--%>
                     <nav>
                         <ul id="menu">
                             <% if ((bool)HttpContext.Current.Session["userIsStudent"]){%>

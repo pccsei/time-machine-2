@@ -156,3 +156,61 @@ input[readonly="readonly"] {
     border: 5px solid #ccc;
     padding: 0 20px;
 }
+
+ul#menu li {
+    background: #efeeef;
+    padding: 0 .4em .1em !important;
+    border: .15em solid #ccc;
+    margin: 5px 0;
+    display: inline-block;
+}
+
+#menu li:hover,
+#menu li:hover a {
+    background: #50abec;
+    border-color: #50abec;
+    color: #fff !important;
+}
+
+    #menu li.current,
+    #menu li.current a {
+        background: #ccc;
+        color: #fff !important;
+    }
+
+header .float-right {
+    text-align: right;
+}
+
+header nav {
+    margin-top: 20px;
+}
+
+header label[for=selected_course] {
+    display: inline;
+}
+
+header select#selected_course {
+    width: auto;
+}
+
+@media only screen and (max-width: 600px) {
+    header .float-left ,
+
+    header .float-right {
+        float: none;
+        text-align: center;
+    }
+}
+
+@media only screen and (max-width: 500px) {
+    header .float-left {
+        text-align: center;
+    }
+}
+
+@media only screen and (max-width: 1024px) {
+    .content-wrapper {
+        padding: 0 25px;
+    }
+}

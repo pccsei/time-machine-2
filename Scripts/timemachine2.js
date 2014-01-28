@@ -38,9 +38,22 @@ $(window).load(function () {
         disabled_are_hidden = 1;
       }
     );
-    
+
+    $("select#selected_course").change(function () {
+        $.when(change_selected_course($(this).attr("data-url"), $(this).val())).done(function (a) {
+            location.reload(true);
+        });
+    });
 });
 
+// Load the Welcome/SetSelectedCourse/[id] controller to change the course
+function change_selected_course(url, course) {
+    return $.ajax({
+        url: url,
+        type: "GET",
+        data: { id: course }
+    });
+}
 
 function OnSuccess(data) {
     alert('Success');

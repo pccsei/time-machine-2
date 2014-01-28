@@ -652,16 +652,16 @@ tr.pager td {
 
     /* header
     ----------------------------------------------------------*/
-    header .float-left,
+    /*header .float-left,
     header .float-right {
         float: none;
-    }
+    }*/
 
     /* logo */
-    header .site-title {
+    /*header .site-title {
         margin: 10px;
         text-align: center;
-    }
+    }*/
 
     /* login */
     #login {

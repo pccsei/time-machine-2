@@ -66,7 +66,12 @@ namespace _14_TimeMachine2.Controllers
 
         public ActionResult Create()
         {
-            ENTRY last_entry = currentUser().ENTRies.Last();            
+            ENTRY last_entry;
+            if (currentUser().ENTRies.Count() > 0)
+                last_entry = currentUser().ENTRies.Last();
+            else
+                last_entry = new ENTRY();
+
             ViewBag.entry_category_id = new SelectList(db.CATEGORies, "category_id", "category_name", last_entry.entry_category_id);
             ViewBag.entry_location_id = new SelectList(db.LOCATIONs, "location_id", "location_name", last_entry.entry_location_id);
             ViewBag.entry_project_id = new SelectList(currentUser().getProjectSelectList(), "Value", "Text", last_entry.entry_project_id);

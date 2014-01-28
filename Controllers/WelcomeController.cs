@@ -26,7 +26,13 @@ namespace _14_TimeMachine2.Controllers
             else
                 return RedirectToAction("Index", "Error");
         }
-        
+
+        public string SetSelectedCourse(int id = 0)
+        {
+            _14_TimeMachine2.GlobalVariables.selected_course_id = id;
+            return db.COURSEs.Find(id).course_name + " was selected";
+        }
+
         public string ToggleMeStudent()
         {
             _14_TimeMachine2.Models.USER user = new _14_TimeMachine2.Models.USER();
