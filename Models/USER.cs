@@ -80,49 +80,58 @@ namespace _14_TimeMachine2.Models
             return courseList;
         }
 
-        public List<PROJECT> getProjects()
+        public List<PROJECT> getProjects(bool all_courses = false)
         {
-            List<COURSE> courseList = new List<COURSE>();
             List<PROJECT> projectList = new List<PROJECT>();
 
-            foreach (MEMBER m in this.MEMBERs)
+            if (all_courses)
             {
-                courseList.Add(db.COURSEs.Find(m.member_course_id));
-            }
+                List<COURSE> courseList = this.getCoursesForUser();
 
-            foreach (COURSE m in courseList)
-            {
-                projectList.AddRange(db.PROJECTs.Where(p => p.project_course_id == m.course_id));
+                foreach (COURSE m in courseList)
+                {
+                    projectList.AddRange(db.PROJECTs.Where(p => p.project_course_id == m.course_id));
+                }
             }
+            else
+                projectList.AddRange(db.PROJECTs.Where(p => p.project_course_id == GlobalVariables.selected_course_id));
 
             return projectList;
         }
 
-        // Return a Select List of active projects for the user with parenthetical course name
-        public List<SelectListItem> getProjectSelectList()
+        public List<ENTRY> getEntries(bool all_courses = false)
         {
-            List<PROJECT> project_list = this.getProjects();
-            List<SelectListItem> project_select_list = new List<SelectListItem>();
-            foreach (PROJECT p in project_list)
-            {
-                COURSE parent_course = db.COURSEs.Find(p.project_course_id);
-                if (p.project_is_enabled == 1 && parent_course.course_is_enabled == 1)
-                {
-                    project_select_list.Add(new SelectListItem()
-                    {
-                        Text = p.project_name + " (" + parent_course.course_name + ")",
-                        Value = p.project_id.ToString()
-                    });
-                }
-            }
-            return project_select_list;
+            List<ENTRY> entryList = new List<ENTRY>();
+
+            if (all_courses)
+                entryList = this.ENTRies.ToList();
+            else
+                foreach (PROJECT p in this.getProjects())
+                    entryList.AddRange(this.ENTRies.Where(e => e.entry_project_id == p.project_id));
+
+            return entryList.OrderBy(e => e.entry_id).ToList();
         }
 
-
-        //public int getLastProjectSelected()
+        // Return a Select List of active projects for the user with parenthetical course name
+        //public List<SelectListItem> getProjectSelectList()
         //{
-        //    return (int) this.ENTRies.Last().entry_project_id;
+        //    List<PROJECT> project_list = this.getProjects();
+        //    List<SelectListItem> project_select_list = new List<SelectListItem>();
+        //    foreach (PROJECT p in project_list)
+        //    {
+        //        COURSE parent_course = db.COURSEs.Find(p.project_course_id);
+        //        if (p.project_is_enabled == 1 && parent_course.course_is_enabled == 1)
+        //        {
+        //            project_select_list.Add(new SelectListItem()
+        //            {
+        //                Text = p.project_name + " (" + parent_course.course_name + ")",
+        //                Value = p.project_id.ToString()
+        //            });
+        //        }
+        //    }
+        //    return project_select_list;
         //}
+
 
         //public SelectList getProjectSelectList()
         //{
@@ -138,12 +147,18 @@ namespace _14_TimeMachine2.Models
         //    return list;
         //}
 
-        public List<float> getSummaryStatsForCourse(int course_id)
+        public List<float> getSummaryStatsForCourse(int? course_id = null)
         {
-            var course   = db.COURSEs.Find(course_id);
-            var projects = course.PROJECTs.ToList();
-
+            COURSE course;
+            List<PROJECT> projects;
             List<float> stats = new List<float>();
+
+            if (course_id == null || db.COURSEs.Find(course_id) == null)
+                course = GlobalVariables.selected_course;
+            else
+                course = db.COURSEs.Find(course_id);
+
+            projects = course.PROJECTs.ToList();
 
             for (var x = 1; x <= 4; x++)
                 stats.Add(0.0f);

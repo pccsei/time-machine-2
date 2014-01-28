@@ -7,12 +7,9 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
 <h2><%: Model.user_first_name %> <%: Model.user_last_name %></h2>
-    <% foreach (KeyValuePair<_14_TimeMachine2.Models.COURSE, List<float>> weekly_totals in ViewBag.WeeklyCourseTotals)
-       { %>
-    <h3><%: weekly_totals.Key.course_name %></h3>
     <table class="standard zebra stemleaf" style="float:left; border:5px #ccc solid;">
         <tbody>
-        <% int week = 1; foreach (float entry in weekly_totals.Value)
+        <% int week = 1; foreach (float entry in ViewBag.WeeklyCourseTotals)
            { %>
             <tr>
                 <td>Week <%: week %>:</td>
@@ -24,7 +21,7 @@
     </table>
     <table class="standard zebra stemleaf" style="float:left; border:5px #ccc solid; margin-left: 30px">
         <tbody>
-        <% List<float> stats = Model.getSummaryStatsForCourse(weekly_totals.Key.course_id); %>
+        <% List<float> stats = Model.getSummaryStatsForCourse(); %>
             <tr>
                 <td>Total Hours:</td>
                 <td><%: stats[0].ToString("n2") %></td>
@@ -44,7 +41,6 @@
         </tbody>
     </table>
     <br style="clear:both;" /><br />
-    <% } %>
 
     <% if (_14_TimeMachine2.GlobalVariables.current_user.is_teacher()) { %>
         <%: Html.ActionLink(String.Format("View {0}'s timelog", Model.user_first_name), "Index/" + Model.user_id, "TimeEntry") %>

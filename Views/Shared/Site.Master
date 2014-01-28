@@ -38,12 +38,14 @@
                     <a href="<%= Url.Action("Index", "Welcome")%>"><img id="logo" src="<%= Url.Action("Time machine logo 2.png", "Images")%>" alt="Logo" /></a>
                 </div>
                 <div class="float-right">
-<%--                    <label for="selected_course">(<%: _14_TimeMachine2.GlobalVariables.selected_course.course_name %>) Select Course: </label>
-                    <select id="selected_course" data-url="<%= Url.Action("SetSelectedCourse", "Welcome")  %>">
-                        <option value="25">CS 451</option>
-                        <option value="32">CS 452</option>
-                        <option value="33">CS 414</option>
-                    </select>--%>
+                    <% List<_14_TimeMachine2.Models.COURSE> courses_list = _14_TimeMachine2.GlobalVariables.current_user.getCoursesForUser();
+                       int course_selection = _14_TimeMachine2.GlobalVariables.selected_course_id; 
+                       SelectList course_dropdown = new SelectList(courses_list, "course_id", "course_name", course_selection);
+                       Dictionary<string,Object> change_course_url_attr = new Dictionary<string,Object> { {"data-url", Url.Action("SetSelectedCourse", "Welcome")} }; %>
+                    
+                    <label for="selected_course">Current Course: </label>
+                    <%: Html.DropDownList("selected_course", course_dropdown, change_course_url_attr) %>
+
                     <nav>
                         <ul id="menu">
                             <% if ((bool)HttpContext.Current.Session["userIsStudent"]){%>
