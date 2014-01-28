@@ -37,10 +37,14 @@ namespace _14_TimeMachine2.Models
         [Required]
         [Display(Name = "Begin Date")]
         [DataType(DataType.Date)]
+        // This format string is required for the datepicker field to be populated in edit mode in Chrome.
+        // See http://stackoverflow.com/questions/12633471/mvc4-datatype-date-editorfor-wont-display-date-value-in-chrome-fine-in-ie
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public System.DateTime course_begin_date { get; set; }
         [Required]
         [Display(Name = "End Date")]
         [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public System.DateTime course_end_date { get; set; }
         [Required]
         [Display(Name = "Enabled?")]
