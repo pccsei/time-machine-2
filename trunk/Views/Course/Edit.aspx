@@ -15,6 +15,9 @@
         <legend>COURSE</legend>
 
         <table>
+        <%: Html.HiddenFor(model => model.course_id) %>
+        <%: Html.HiddenFor(model => model.course_date_created) %>
+        <%: Html.HiddenFor(model => model.course_is_enabled) %>
             <%--<tr>
                 <td class="editor-field">
                     <%: Html.EditorFor(model => model.course_id) %>

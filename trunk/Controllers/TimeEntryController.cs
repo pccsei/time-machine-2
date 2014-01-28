@@ -55,10 +55,12 @@ namespace _14_TimeMachine2.Controllers
         {
             ENTRY entry = db.ENTRies.Find(id);
             if (entry == null)
-            {
                 return HttpNotFound();
-            }
-            return View(entry);
+            // Students can see only their own entries, teachers see all
+            else if (currentUser().is_teacher() || entry.entry_user_id == currentUser().user_id)
+                return View(entry);
+            else
+                return RedirectToAction("Index", "Welcome");
         }
 
         //
@@ -146,14 +148,18 @@ namespace _14_TimeMachine2.Controllers
         {
             ENTRY entry = db.ENTRies.Find(id);
             if (entry == null)
-            {
                 return HttpNotFound();
+            // Students can edit only their own entries, teachers can edit all
+            else if (currentUser().is_teacher() || entry.entry_user_id == currentUser().user_id)
+            {
+                ViewBag.entry_category_id = new SelectList(db.CATEGORies, "category_id", "category_name", entry.entry_category_id);
+                ViewBag.entry_location_id = new SelectList(db.LOCATIONs, "location_id", "location_name", entry.entry_location_id);
+                ViewBag.entry_project_id = new SelectList(currentUser().getProjectSelectList(), "Value", "Text", entry.entry_project_id);
+                ViewBag.entry_user_id = new SelectList(db.USERs, "user_id", "user_first_name", entry.entry_user_id);
+                return View(entry);
             }
-            ViewBag.entry_category_id = new SelectList(db.CATEGORies, "category_id", "category_name", entry.entry_category_id);
-            ViewBag.entry_location_id = new SelectList(db.LOCATIONs, "location_id", "location_name", entry.entry_location_id);
-            ViewBag.entry_project_id = new SelectList(currentUser().getProjectSelectList(), "Value", "Text", entry.entry_project_id);
-            ViewBag.entry_user_id = new SelectList(db.USERs, "user_id", "user_first_name", entry.entry_user_id);
-            return View(entry);
+            else
+                return RedirectToAction("Index", "Welcome");
         }
 
         //
@@ -190,8 +196,10 @@ namespace _14_TimeMachine2.Controllers
                     ModelState.AddModelError("TimeBoundaryError", "The time entered overlaps a previously entered time.");
             }
 
-            // Recalculate the total time. Remove PK from validation.
+            // Recalculate the total time.
             edited_entry.entry_total_time = Convert.ToInt32(totalTime);
+
+            // Remove PK from validation. Otherwise it will assume a duplicated key.
             ModelState.Remove("entry_id");
             
             if (ModelState.IsValid)

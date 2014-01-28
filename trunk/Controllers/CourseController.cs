@@ -81,26 +81,34 @@ namespace _14_TimeMachine2.Controllers
         public ActionResult Edit(int id = 0)
         {
             COURSE course = db.COURSEs.Find(id);
+
             if (course == null)
-            {
                 return HttpNotFound();
-            }
-            return View(course);
+            else
+                return View(course);
         }
 
         //
         // POST: /Course/Edit/5
 
         [HttpPost]
-        public ActionResult Edit(COURSE course)
+        public ActionResult Edit(COURSE edited_course)
         {
-            if (ModelState.IsValid)
+            // Remove PK from validation. Otherwise it will assume a duplicated key.
+            ModelState.Remove("course_id");
+
+            if (ModelState.IsValid && edited_course != null)
             {
-                db.Entry(course).State = EntityState.Modified;
-                db.SaveChanges();
+                COURSE db_course = db.COURSEs.Find(edited_course.course_id);
+                if (db_course != null)
+                {
+                    db.Entry(db_course).CurrentValues.SetValues(edited_course);
+                    db.SaveChanges();
+                }
                 return RedirectToAction("Index");
             }
-            return View(course);
+            else
+                return View(edited_course);
         }
 
         //
