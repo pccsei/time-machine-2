@@ -46,12 +46,13 @@ mark {
 }
 
 
-    .float-left #logo {
-        width:240px;
-        position: relative;
-        right: 0px;
-        bottom: 10px;
-    }
+header #logo {
+    width:240px;
+    display: inline-block;
+    /*position: relative;
+    right: 0px;
+    bottom: 10px;*/
+}
 
 .float-right {
     float: right;
@@ -702,7 +703,7 @@ tr.pager td {
     ul#menu {
         margin: 0;
         padding: 0;
-        text-align: center;
+        /*text-align: center;*/
     }
 
         ul#menu li {
