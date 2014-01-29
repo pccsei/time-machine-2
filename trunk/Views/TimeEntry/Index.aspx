@@ -21,6 +21,7 @@
         Create New Entry
     </a>
 </div>
+<div class="table-holder">
 <table class="zebra hasHeader tablesorter">
     <thead>
         <tr>
@@ -86,6 +87,7 @@
     </tbody>
 
 </table>
+</div>
 
 </asp:Content>
 

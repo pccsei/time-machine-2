@@ -12,12 +12,12 @@
     <form id="form1" runat="server">
         <table class="inlineForm">
             <tr>
-                <td><input type="text" name="projectName" id="projectName" placeholder="Project Name" /></td>
-                <td><%: Html.DropDownList("project_course_id", (SelectList)(ViewBag.project_course_id), "-- Select Course --", String.Empty) %></td>
+                <td><input type="text" name="projectName" id="projectName" placeholder="Project Name" /> <input type="submit" value="Create Project" /></td>
+<%--                <td><%: Html.DropDownList("project_course_id", (SelectList)(ViewBag.project_course_id), "-- Select Course --", String.Empty) %></td>--%>
                 <%--<td><input type="text" name="ProjectDescription"  id="ProjectDescription" placeholder="Project Description" /></td>--%>
             </tr>
         </table>
-        <input type="submit" value="Create Project" />
+        
     </form>
     
     <section class="content">
@@ -34,7 +34,7 @@
             <th style="width: 100px"></th>
         </tr>
 
-<% foreach (var item in Model) { %>
+<% foreach (var item in _14_TimeMachine2.GlobalVariables.selected_course.PROJECTs) { %>
     <tr id="tr_<%= item.project_id %>" <% if (!item.is_enabled()) { %>class="disabled_entity"<% } %>>
         <td>
             <%: Html.DisplayFor(modelItem => item.project_name) %>

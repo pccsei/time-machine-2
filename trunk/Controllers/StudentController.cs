@@ -27,11 +27,11 @@ namespace _14_TimeMachine2.Controllers
         [AuthorizeTeacher]
         public ActionResult List()
         {
-            var coursesForTeacher = currentUser.getCoursesForUser();
-            var selectlist = new SelectList(coursesForTeacher, "course_id", "course_name", 1);
-            ViewData["Courses"] = selectlist;
+            //var coursesForTeacher = currentUser.getCoursesForUser();
+            //var selectlist = new SelectList(coursesForTeacher, "course_id", "course_name", 1);
+            //ViewData["Courses"] = selectlist;
 
-            return View("Index", coursesForTeacher);
+            return View("Index", currentCourse);
         }
 
         [AuthorizeBoth]
@@ -78,11 +78,11 @@ namespace _14_TimeMachine2.Controllers
         [AuthorizeTeacher]
         public ActionResult WeeklyTotals()
         {
-            var coursesForTeacher = currentUser.getCoursesForUser();
-            var selectlist = new SelectList(coursesForTeacher, "course_id", "course_name", 1);
-            ViewData["Courses"] = selectlist;
+            //var coursesForTeacher = currentUser.getCoursesForUser();
+            //var selectlist = new SelectList(coursesForTeacher, "course_id", "course_name", 1);
+            //ViewData["Courses"] = selectlist;
 
-            return View(coursesForTeacher);
+            return View(currentCourse);
         }
 
         [AuthorizeTeacher]
