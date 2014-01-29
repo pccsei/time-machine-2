@@ -33,23 +33,37 @@
     <body>
         <header>
             <div class="content-wrapper">
-                <div class="float-left">
+                <div class="logo">
                     <!-- The image works on localhost but not on the server, the problem is the path name -->
                     <a href="<%= Url.Action("Index", "Welcome")%>"><img id="logo" src="<%= Url.Action("Time machine logo 2.png", "Images")%>" alt="Logo" /></a>
                 </div>
-                <div class="float-right">
+                <div class="nav">
+                    <div id="admin_links">
+                        <% if ((bool)HttpContext.Current.Session["userIsTeacher"]) { %>
+                            <%: Html.ActionLink("Edit Courses", "Index", "Course", null, new { id = "edit_courses" })%>
+                        <% } %>
+                        <%  if ((bool)HttpContext.Current.Session["userIsManager"]) { %>
+                            &nbsp;<%: Html.ActionLink("Manage Teachers", "Index", "Teacher", null, new { id = "admin_link" })%>
+                        <% } %>
+                    </div>
+
                     <% List<_14_TimeMachine2.Models.COURSE> courses_list = _14_TimeMachine2.GlobalVariables.current_user.getCoursesForUser();
                        int course_selection = _14_TimeMachine2.GlobalVariables.selected_course_id; 
                        SelectList course_dropdown = new SelectList(courses_list, "course_id", "course_name", course_selection);
                        Dictionary<string,Object> change_course_url_attr = new Dictionary<string,Object> { {"data-url", Url.Action("SetSelectedCourse", "Welcome")} }; %>
                     
-                    <label for="selected_course">Current Course: </label>
-                    <%: Html.DropDownList("selected_course", course_dropdown, change_course_url_attr) %>
+                    <div id="course_select">
+                        <label for="selected_course">Current Course: </label>
+                        <%: Html.DropDownList("selected_course", course_dropdown, change_course_url_attr) %>
+                    </div>
+
 
                     <nav>
                         <ul id="menu">
                             <% if ((bool)HttpContext.Current.Session["userIsStudent"]){%>
+                                <% if (_14_TimeMachine2.GlobalVariables.selected_course.is_enabled()) { %>
                                    <li><%: Html.ActionLink("Log Time", "Create", "TimeEntry") %></li>
+                                <% } %>
                                    <li><%: Html.ActionLink("Time Log", "Index", "TimeEntry") %></li>
                                    <li><%: Html.ActionLink("Summary", "Summary", "Student") %></li> 
                             <% } %>
@@ -57,10 +71,6 @@
                                    <li><%: Html.ActionLink("Student Summary", "Index", "Student") %></li> 
                                    <li><%: Html.ActionLink("Weekly Totals", "WeeklyTotals", "Student") %></li> 
                                    <li><%: Html.ActionLink("Project List", "Index", "Project") %></li> 
-                                   <li><%: Html.ActionLink("Course List", "Index", "Course") %></li> 
-                            <% } %>
-                            <%  if ((bool)HttpContext.Current.Session["userIsManager"]) {%>
-                                   <li><%: Html.ActionLink("Teachers", "Index", "Teacher") %></li> 
                             <% } %>
 
                         </ul>
