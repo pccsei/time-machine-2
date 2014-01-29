@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<IEnumerable<_14_TimeMachine2.Models.COURSE>>" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<_14_TimeMachine2.Models.COURSE>" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
     Index
@@ -10,7 +10,6 @@
 
         <!-- Dropdown list of all the classes to choose -->
     <form  method="post" action="<%: Url.Action("Create", "Student") %>">
-        <p>Choose course: <%= Html.DropDownList("CourseList", (SelectList)ViewData["Courses"]) %></p>
         <table class="inlineForm">
             <tr>
                 <td><input type="text" name="user_id" id="user_id" placeholder="User ID"/></td>
@@ -24,6 +23,7 @@
     <section class="content">
 
         <!--A list of all the students in a class -->
+        <div class="table-holder">
         <table id ="memberTable" class="zebra hasHeader tablesorter">
             <thead>
                 <tr>
@@ -36,10 +36,9 @@
                 </tr>
             </thead>
             <tbody>
-        <% foreach (var course in Model) { 
-            foreach (var student in course.getStudentsForCourse()) {
-                List<float> stats = student.getSummaryStatsForCourse(course.course_id); %>
-                <tr class="datarow <%: "student-" + student.user_id + " course-" + course.course_id %>">
+            <% foreach (var student in Model.getStudentsForCourse()) {
+                List<float> stats = student.getSummaryStatsForCourse(); %>
+                <tr class="datarow <%: "student-" + student.user_id + " course-" + Model.course_id %>">
                     <td><%: student.user_id %></td>
                     <td><a href="<%: Url.Action("Summary", "Student") + "/" + student.user_id %>"><%: student.user_last_name %>, <%: student.user_first_name %></a></td>
                     <td><%: stats[0].ToString("n2") %></td>
@@ -47,10 +46,11 @@
                     <td><%: stats[2].ToString("n2") %></td>
                     <td><%: stats[3] >= 110.0f ? stats[3].ToString("n0") + "% +" : stats[3].ToString("n1") + "%" %></td>
                 </tr>
-            <% } } %>
+            <% } %>
             </tbody>
 
         </table>
+        </div>
     </section>
 
 
@@ -65,13 +65,13 @@
 <asp:Content ID="Content5" ContentPlaceHolderID="ScriptsSection" runat="server">
     <script type="text/javascript">
 
-        $('tr.datarow').hide();
-        $('tr.course-' + $('#CourseList').val()).show();
+        //$('tr.datarow').hide();
+        //$('tr.course-' + $('#CourseList').val()).show();
 
-        $('#CourseList').change(function () {
-            $('tr.datarow').hide();
-            $('tr.course-' + $('#CourseList').val()).show();
-        });
+        //$('#CourseList').change(function () {
+        //    $('tr.datarow').hide();
+        //    $('tr.course-' + $('#CourseList').val()).show();
+        //});
 
         $(document).ready(function() { 
             $(".tablesorter").tablesorter({ 

@@ -24,6 +24,8 @@ table.hasHeader {
     border-top: none;
     margin-top: .75em;
     display: inline-block;
+    box-sizing:border-box;
+    -moz-box-sizing:border-box; /* Firefox */
     max-width: 100%;
 }
 
@@ -72,7 +74,7 @@ input, textarea, select {
     margin: 0;
 }
 
-table.inlineForm input {
+table.inlineForm input[type=text] {
     width: 150px;
 }
 
@@ -93,6 +95,10 @@ table.inlineForm select {
     width: 200px;
 }
 
+table.inlineForm {
+    margin-top: 15px;
+}
+
 table.inlineForm td {
     padding: 0;
     padding-right: 15px;
@@ -100,6 +106,10 @@ table.inlineForm td {
 
 input[type=submit] {
     margin-top: 10px;
+}
+
+td input[type=submit] {
+    margin: 0;
 }
 
 section.content {

@@ -15,44 +15,40 @@ namespace _14_TimeMachine2.Controllers
     {
         private TM2Entities2 db = new TM2Entities2();
 
-        public string currentUser = GlobalVariables.current_user_id;
-        //public string currentUser = "115245";
+        private USER currentUser = GlobalVariables.current_user;
+        private COURSE currentCourse = GlobalVariables.selected_course;
 
         //
         // GET: /Project/
 
         public ActionResult Index()
         {
-            var projects = db.PROJECTs.Include(p => p.COURSE).Include(p => p.USER);
-            ViewBag.project_course_id = new SelectList(db.USERs.Find(currentUser).getCoursesForUser(), "course_id", "course_name");
-            return View( db.USERs.Find(currentUser).getProjects().ToList());
+            //var projects = db.PROJECTs.Include(p => p.COURSE).Include(p => p.USER);
+            //ViewBag.project_course_id = new SelectList(currentUser.getCoursesForUser(), "course_id", "course_name");
+            return View();
         }
 
         [HttpPost]
-        public ActionResult Index(string projectName, string projectDescription, int project_course_id)
+        public ActionResult Index(string projectName, string projectDescription)
         {
             PROJECT project = new PROJECT();
-            COURSE  course  = new COURSE();
+
+            project.project_name = projectName;
+            project.project_course_id = currentCourse.course_id;
+            project.project_description = projectDescription;
+            project.project_created_by = currentUser.user_id;
+            project.project_date_created = DateTime.Now;
+            project.project_begin_date = DateTime.Now;
+            project.project_end_date = currentCourse.course_end_date;
+            project.project_is_enabled = 1;
 
             if (ModelState.IsValid)
             {
-                project.project_name = projectName;
-                project.project_course_id = project_course_id;
-                project.project_description = projectDescription;
-                course = db.COURSEs.Find(project_course_id);
-                project.project_created_by = currentUser;
-                project.project_date_created = DateTime.Now;
-                project.project_begin_date = DateTime.Now;
-                project.project_end_date = course.course_end_date;
-                project.project_is_enabled = 1;
-    
                 db.PROJECTs.Add(project);
-
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.project_course_id = new SelectList(db.USERs.Find(currentUser).getProjects(), "project_id", "project_name");
-            ViewBag.course_id = new SelectList(db.USERs.Find(currentUser).getCoursesForUser(), "course_id", "course_name");
+
             return View(project);
         }
 
@@ -62,10 +58,10 @@ namespace _14_TimeMachine2.Controllers
         public ActionResult Details(int id = 0)
         {
             PROJECT project = db.PROJECTs.Find(id);
+
             if (project == null)
-            {
                 return HttpNotFound();
-            }
+
             return View(project);
         }
 
@@ -75,12 +71,12 @@ namespace _14_TimeMachine2.Controllers
         public ActionResult Edit(int id = 0)
         {
             PROJECT project = db.PROJECTs.Find(id);
+
             if (project == null)
-            {
                 return HttpNotFound();
-            }
+
             ViewBag.project_course_id = new SelectList(db.COURSEs, "course_id", "course_name", project.project_course_id);
-            ViewBag.project_created_by = currentUser;
+            ViewBag.project_created_by = currentUser.user_id;
             return View(project);
         }
 
@@ -90,7 +86,7 @@ namespace _14_TimeMachine2.Controllers
         [HttpPost]
         public ActionResult Edit(PROJECT project)
         {
-            //project.project_created_by = currentUser;
+            //project.project_created_by = currentUser.user_id;
             if (ModelState.IsValid)
             {
                 db.Entry(project).State = EntityState.Modified;
@@ -98,7 +94,7 @@ namespace _14_TimeMachine2.Controllers
                 return RedirectToAction("Index");
             }
             ViewBag.project_course_id = new SelectList(db.COURSEs, "course_id", "course_name", project.project_course_id);
-            ViewBag.project_created_by = currentUser;
+            ViewBag.project_created_by = currentUser.user_id;
             return View(project);
         }
 
