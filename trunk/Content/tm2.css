@@ -169,8 +169,15 @@ input[readonly="readonly"] {
     float: right;
     background: #ddd;
     border: 5px solid #ccc;
-    padding: 10px 20px;
+    padding: 15px 20px;
+    max-width: 300px;
 }
+
+    .help_tip ul,
+    .help_tip ol {
+        padding-left: 20px;
+        margin: 0;
+    }
 
 div.logo {
     display: inline-block;

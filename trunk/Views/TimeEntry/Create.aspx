@@ -13,7 +13,7 @@
 
     <div class="help_tip">
         <p>Try these timespans or enter your own:</p>
-        <ul id="time_suggestions" style="padding-left: 20px">
+        <ul id="time_suggestions">
             <li><a>3-4p</a></li>
             <li><a>yesterday 3-4p</a></li>
             <li><a>two days ago 3-4p</a></li>

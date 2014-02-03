@@ -13,7 +13,7 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
-<h2>Time Log</h2>
+<h2>Time Log for <% var user = Model.First().USER; %><%: user.user_first_name + " " + user.user_last_name %></h2>
 
 <div class="submit">
     <a class="create" href="<%: Url.Action("Create") %>">
