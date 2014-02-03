@@ -6,7 +6,13 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
-<h2><%: _14_TimeMachine2.GlobalVariables.selected_course.course_name %> Summary for <%: Model.user_first_name %> <%: Model.user_last_name %></h2>
+<h2>Summary for <%: Model.user_first_name %> <%: Model.user_last_name %></h2>
+    <div class="help_tip">
+        <ul>
+            <li><em>Hours per Day</em> = <em>Total Hours</em> divided by the number of days so far in the semester. Thus, the average will go down each day unless additional time is entered.</li>
+            <li><em>Hours per Week</em> = <em>Hours per Day</em> times 7. It is not necessarily the average of the individual weeks on the side.</li>
+        </ul>
+    </div>
     <table class="standard zebra stemleaf" style="float:left; border:5px #ccc solid;">
         <tbody>
         <% int week = 1; foreach (float entry in ViewBag.WeeklyCourseTotals)
