@@ -6,7 +6,7 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
-<h2><%: Model.user_first_name %> <%: Model.user_last_name %></h2>
+<h2><%: _14_TimeMachine2.GlobalVariables.selected_course.course_name %> Summary for <%: Model.user_first_name %> <%: Model.user_last_name %></h2>
     <table class="standard zebra stemleaf" style="float:left; border:5px #ccc solid;">
         <tbody>
         <% int week = 1; foreach (float entry in ViewBag.WeeklyCourseTotals)
@@ -34,10 +34,12 @@
                 <td>Hours per Week:</td>
                 <td><%: stats[2].ToString("n2") %></td>
             </tr>
+            <% if (_14_TimeMachine2.GlobalVariables.selected_course_id != 33) { %>
             <tr style="font-weight:bold;background:#cce6ff">
                 <td>Projected Grade:</td>
                 <td><%: stats[3] >= 110.0f ? stats[3].ToString("n0") : stats[3].ToString("n1") %>%</td>
             </tr>
+            <% } %>
         </tbody>
     </table>
     <br style="clear:both;" /><br />
