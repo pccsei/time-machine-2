@@ -33,9 +33,14 @@ namespace _14_TimeMachine2
         {
             get
             {
-                string current_login_id = HttpContext.Current.User.Identity.Name;
-                string current_user_id  = current_login_id.Substring(current_login_id.LastIndexOf('\\') + 1);
-                return (string)(HttpContext.Current.Session["username"] = current_user_id);//"rhowell";// "115339";// 
+                if (HttpContext.Current.Session["username"] == null)
+                {
+                    string current_login_id = HttpContext.Current.User.Identity.Name;
+                    string current_user_id = current_login_id.Substring(current_login_id.LastIndexOf('\\') + 1);
+                    HttpContext.Current.Session["username"] = current_user_id;
+                }
+
+                return (string)(HttpContext.Current.Session["username"]);//"rhowell";// "115339";// 
             }
         }
 

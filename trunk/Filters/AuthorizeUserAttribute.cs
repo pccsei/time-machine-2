@@ -14,12 +14,9 @@ namespace _14_TimeMachine2.Filters
     {
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
-            TM2Entities2 db = new TM2Entities2();
-
             try
             {
-                string userId = GlobalVariables.current_user_id;
-                USER currentUser = db.USERs.Find(userId);
+                USER currentUser = GlobalVariables.current_user;
                 string error = HttpContext.Current.Request.Path;                
 
                 HttpContext.Current.Session["userIsStudent"] = false;
