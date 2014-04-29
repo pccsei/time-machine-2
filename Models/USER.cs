@@ -74,7 +74,7 @@ namespace _14_TimeMachine2.Models
 
             foreach (MEMBER m in this.MEMBERs)
             {
-                courseList.Add(db.COURSEs.Find(m.member_course_id));
+                courseList.Add(m.COURSE);
             }
 
             return courseList;
@@ -119,7 +119,7 @@ namespace _14_TimeMachine2.Models
         //    List<SelectListItem> project_select_list = new List<SelectListItem>();
         //    foreach (PROJECT p in project_list)
         //    {
-        //        COURSE parent_course = db.COURSEs.Find(p.project_course_id);
+        //        COURSE parent_course = p.COURSE;
         //        if (p.project_is_enabled == 1 && parent_course.course_is_enabled == 1)
         //        {
         //            project_select_list.Add(new SelectListItem()

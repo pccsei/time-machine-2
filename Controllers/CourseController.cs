@@ -15,15 +15,14 @@ namespace _14_TimeMachine2.Controllers
     {
         private TM2Entities2 db = new TM2Entities2();
 
-        public string currentUser = GlobalVariables.current_user_id;
-        //public string currentUser = "115245";
+        public USER currentUser = GlobalVariables.current_user;
 
         //
         // GET: /Course/
 
         public ActionResult Index()
         {
-            return View(db.USERs.Find(currentUser).getCoursesForUser().ToList());
+            return View(currentUser.getCoursesForUser().ToList());
         }
 
         //
@@ -65,7 +64,7 @@ namespace _14_TimeMachine2.Controllers
                 member.member_course_id = course.course_id;
                 member.member_is_enabled = 1;
                 member.member_position = "teacher";
-                member.member_user_id = currentUser;
+                member.member_user_id = currentUser.user_id;
 
                 db.MEMBERs.Add(member);
                 db.SaveChanges();

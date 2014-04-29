@@ -37,13 +37,13 @@ namespace _14_TimeMachine2.Controllers
 
             //List<ENTRY> active_student_entries = student.ENTRies.ToList();
 
-            //// Filter out entries from disabled projects and courses
-            //foreach (PROJECT p in student.getProjects())
-            //{
-            //    if (p.project_is_enabled == 0 || db.COURSEs.Find(p.project_course_id).course_is_enabled == 0)
-            //        foreach (ENTRY e in student.ENTRies.Where(t => t.entry_project_id == p.project_id))
-            //            active_student_entries.Remove(e);
-            //}
+            // // Filter out entries from disabled projects and courses
+            // foreach (PROJECT p in student.getProjects())
+            // {
+            //     if (p.project_is_enabled == 0 || p.COURSE.course_is_enabled == 0)
+            //         foreach (ENTRY e in student.ENTRies.Where(t => t.entry_project_id == p.project_id))
+            //             active_student_entries.Remove(e);
+            // }
 
             return View(student.getEntries());
         }

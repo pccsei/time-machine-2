@@ -61,7 +61,7 @@ namespace _14_TimeMachine2
                 {
                     TM2Entities2 db = new TM2Entities2();
                     if (current_user.ENTRies.Count() > 0 && current_user.is_student())
-                        selected_course_id_stored = db.PROJECTs.Find(current_user.ENTRies.Last().entry_project_id).project_course_id;
+                        selected_course_id_stored = current_user.ENTRies.Last().PROJECT.project_course_id;
                     else
                         selected_course_id_stored = current_user.MEMBERs.Last().member_course_id;
                 }
