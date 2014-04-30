@@ -56,6 +56,7 @@
                 <td class="editor-field">
                     <input id="timespan" name="timespan" type="text" value="<%: (String) ViewBag.timespan %>" /><br />
                     <%: Html.ValidationMessage("MissingTimeError") %>
+                    <%: Html.ValidationMessage("ProjectBoundaryError") %>
                     <%: Html.ValidationMessageFor(model => model.entry_begin_time) %>
                     <%: Html.ValidationMessageFor(model => model.entry_end_time) %>
                     <%: Html.ValidationMessage("NegativeTimeError") %>

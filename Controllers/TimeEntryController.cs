@@ -93,6 +93,8 @@ namespace _14_TimeMachine2.Controllers
                 DateTime startTime = DateTime.Parse(entry.entry_begin_time.ToString());
                 DateTime endTime = DateTime.Parse(entry.entry_end_time.ToString());
                 Double totalTime = endTime.Subtract(startTime).TotalMinutes;
+                DateTime course_begin = DateTime.Parse(currentCourse.course_begin_date.ToString());
+                DateTime course_end = DateTime.Parse(currentCourse.course_end_date.ToString());
 
                 // See if the entry is overlapping a previous entry
                 List<ENTRY> entryList = new List<ENTRY>();
@@ -100,7 +102,12 @@ namespace _14_TimeMachine2.Controllers
                 bool boundaryError = false;
 
                 // Rob's validation, based on Jake's work
-                if (startTime > endTime)
+                if (startTime < course_begin ||
+                    startTime > course_end ||
+                    endTime < course_begin ||
+                    endTime > course_end)
+                    ModelState.AddModelError("ProjectBoundaryError", "Your time entry is not within the course begin and end dates.");
+                else if (startTime > endTime)
                     ModelState.AddModelError("NegativeTimeError", "The end time comes before the start time.");
                 else if (startTime == endTime)
                     ModelState.AddModelError("NoTimeError", "The end time is the same as the start time.");
