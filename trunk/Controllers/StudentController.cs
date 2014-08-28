@@ -93,9 +93,11 @@ namespace _14_TimeMachine2.Controllers
             string firstName = member.Get("user_first_name");
             string lastName = member.Get("user_last_name");
             string userID = member.Get("user_id");
-            int CourseID = Int32.Parse(member.Get("CourseList"));
-            //string error;
-            COURSE selectedCourse = db.COURSEs.Find(CourseID);
+            // 8/26/14 -- Comment the following three lines and added the declaration immediately after them
+            //int CourseID = Int32.Parse(member.Get("CourseList"));
+            ////string error;
+            //COURSE selectedCourse = db.COURSEs.Find(CourseID);
+            int CourseID = currentCourse.course_id;
 
             USER user = db.USERs.Find(userID);
 
